@@ -4,7 +4,7 @@
 Gym progress tracking mobile app
 
 ## Repo structure
-
+- `common` - common JavaScript/TypeScript utils, methods, types
 - `services` contains all backend-side services:
     - `analyze` - recommendation system microservice (written in Python)
     - `api` - REST API Server (written in TypeScript + ExpressJS)
