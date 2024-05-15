@@ -1,9 +1,11 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router";
+import React from "react";
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Colors } from "@/constants/Colors";
+import { useColorScheme } from "@/hooks/useColorScheme";
+import { Icon } from "@/components/Icon";
+import Icons from "@/constants/Icons";
+import BottomTabIcon from "@/components/navigation/BottomTabIcon";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -11,24 +13,65 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors[colorScheme ?? "light"].primary,
+        tabBarShowLabel: false,
         headerShown: false,
-      }}>
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: "Home",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <BottomTabIcon
+              icon={focused ? Icons.homeFill : Icons.home}
+              name="Home"
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="calendar"
+        options={{
+          title: "Calendar",
+          tabBarIcon: ({ color }) => (
+            <BottomTabIcon
+              icon={Icons.calendar}
+              name="Calendar"
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="workouts"
+        options={{
+          title: "Workouts",
+          tabBarIcon: ({ color }) => (
+            <BottomTabIcon icon={Icons.bolt} name="Workouts" color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'Explore',
+          title: "Explore",
+          tabBarIcon: ({ color }) => (
+            <BottomTabIcon icon={Icons.safari} name="Explore" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="statistics"
+        options={{
+          title: "Statistics",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <BottomTabIcon
+              icon={focused ? Icons.chartFill : Icons.chart}
+              name="Statistics"
+              color={color}
+            />
           ),
         }}
       />
