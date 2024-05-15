@@ -6,6 +6,7 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { Icon } from "@/components/Icon";
 import Icons from "@/constants/Icons";
 import BottomTabIcon from "@/components/navigation/BottomTabIcon";
+import { StyleSheet } from "react-native";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -14,6 +15,8 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].primary,
+        tabBarInactiveTintColor: Colors[colorScheme ?? "light"].tabIconDefault,
+        tabBarStyle: styles.tabNavigator,
         tabBarShowLabel: false,
         headerShown: false,
       }}
@@ -78,3 +81,10 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  tabNavigator: {
+    paddingBottom: 0,
+    height: 52,
+  },
+});
