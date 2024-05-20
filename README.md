@@ -15,6 +15,6 @@ Gym progress tracking mobile app
   - `components` - reusable components
   - `constants` - app constants
   - `hooks` - custom hooks
-  - `scripts`` - scripts for app
+  - `scripts` - scripts for app
   - `types` - app types
   - `utils` - app utils
