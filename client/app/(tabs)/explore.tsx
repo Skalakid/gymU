@@ -7,7 +7,7 @@ import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 
-export default function TabTwoScreen() {
+function ExplorePage() {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
@@ -114,6 +114,8 @@ export default function TabTwoScreen() {
     </ParallaxScrollView>
   );
 }
+
+export default ExplorePage;
 
 const styles = StyleSheet.create({
   headerImage: {

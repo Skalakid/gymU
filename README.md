@@ -1,25 +1,3 @@
-<<<<<<< HEAD
-# gymU
-
-Gym progress tracking mobile app
-
-## Repo structure
-
-- `common` - common JavaScript/TypeScript utils, methods, types
-- `services` contains all backend-side services:
-  - `analyze` - recommendation system microservice (written in Python)
-  - `api` - REST API Server (written in TypeScript + ExpressJS)
-  - `postgres` - PostgreSQL database server (Dockerfile, schemas, scripts etc.)
-- `client` contains all RN Expo App structure:
-  - `app` - main app code
-  - `assets` - images, fonts etc.
-  - `components` - reusable components
-  - `constants` - app constants
-  - `hooks` - custom hooks
-  - `scripts` - scripts for app
-  - `types` - app types
-  - `utils` - app utils
-=======
 <a name="readme-top"></a>
 
 ![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -64,6 +42,23 @@ This project aims to create a sophisticated gym progress and habit tracking app.
 To be added...
 
 <!-- ROADMAP -->
+
+## Repo structure
+
+- `common` - common JavaScript/TypeScript utils, methods, types
+- `services` contains all backend-side services:
+  - `analyze` - recommendation system microservice (written in Python)
+  - `api` - REST API Server (written in TypeScript + ExpressJS)
+  - `postgres` - PostgreSQL database server (Dockerfile, schemas, scripts etc.)
+- `client` contains all RN Expo App structure:
+  - `app` - main app code
+  - `assets` - images, fonts etc.
+  - `components` - reusable components
+  - `constants` - app constants
+  - `hooks` - custom hooks
+  - `scripts` - scripts for app
+  - `types` - app types
+  - `utils` - app utils
 
 ## Roadmap
 
@@ -128,4 +123,3 @@ All Rights Reserved. See `LICENSE.txt` for more information.
     </tr>
 
 </table>
->>>>>>> dev

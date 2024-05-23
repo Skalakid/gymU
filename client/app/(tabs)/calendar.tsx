@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const calendar = () => {
+function CalendarPage() {
   return (
     <View>
-      <Text>calendar</Text>
+      <Text>Calendar page</Text>
     </View>
   );
-};
+}
 
-export default calendar;
+export default CalendarPage;
