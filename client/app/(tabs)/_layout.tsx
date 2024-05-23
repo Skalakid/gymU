@@ -1,12 +1,11 @@
 import { Tabs } from "expo-router";
 import React from "react";
-
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { Icon } from "@/components/Icon";
 import Icons from "@/constants/Icons";
 import BottomTabIcon from "@/components/navigation/BottomTabIcon";
 import { StyleSheet } from "react-native";
+import HomePage from "./home";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -22,7 +21,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: "Home",
           tabBarIcon: ({ color, focused }) => (
