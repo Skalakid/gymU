@@ -1,12 +1,19 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { StyleSheet } from "react-native";
 
 const CalendarPage = () => {
   return (
-    <View>
-      <Text>Calendar page</Text>
-    </View>
+    <ThemedView style={styles.container}>
+      <ThemedText>Calendar page</ThemedText>
+    </ThemedView>
   );
 };
 
 export default CalendarPage;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
