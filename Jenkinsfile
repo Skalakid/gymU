@@ -11,6 +11,7 @@ pipeline {
                 sh 'ls -lsa'
                 withChecks('injected name') {
                     sh 'echo Hello World!'
+                    sh 'echo Hello World v2!'
                 }
             }
         }
