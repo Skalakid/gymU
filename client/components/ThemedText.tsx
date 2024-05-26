@@ -8,6 +8,7 @@ export type ThemedTextProps = TextProps & {
   darkColor?: string;
   size?: keyof typeof SizePresets;
   weight?: keyof typeof WeightPresets;
+  textType?: "text" | "description";
 };
 
 export function ThemedText({
@@ -17,10 +18,11 @@ export function ThemedText({
   darkColor,
   size = "default",
   weight = "regular",
+  textType = "text",
   ...rest
 }: ThemedTextProps) {
   const textColor =
-    color || useThemeColor({ light: lightColor, dark: darkColor }, "text");
+    color || useThemeColor({ light: lightColor, dark: darkColor }, textType);
 
   return (
     <Text

@@ -6,6 +6,7 @@ import PrimaryButton from "@/components/button/PrimaryButton";
 import SecondaryButton from "@/components/button/SecondaryButton";
 import { ThemedText } from "@/components/ThemedText";
 import { router } from "expo-router";
+import ROUTES from "@/constants/Routes";
 
 const StartPage = () => {
   return (
@@ -25,10 +26,13 @@ const StartPage = () => {
           Change habits, train hard, gain muscles and progress with us now!
         </ThemedText>
 
-        <PrimaryButton value="Login" onPress={() => router.push("/login")} />
+        <PrimaryButton
+          value="Login"
+          onPress={() => router.push(ROUTES.login)}
+        />
         <SecondaryButton
           value="Sign up"
-          onPress={() => router.push("/sign-up")}
+          onPress={() => router.push(ROUTES.signUp)}
         />
       </View>
     </ThemedView>
