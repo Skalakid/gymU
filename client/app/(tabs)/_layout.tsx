@@ -7,7 +7,7 @@ import BottomTabIcon from "@/components/navigation/BottomTabIcon";
 import { StyleSheet } from "react-native";
 import HomePage from "./home";
 
-export default function TabLayout() {
+const TabLayout = () => {
   const colorScheme = useColorScheme();
 
   return (
@@ -79,7 +79,9 @@ export default function TabLayout() {
       />
     </Tabs>
   );
-}
+};
+
+export default TabLayout;
 
 const styles = StyleSheet.create({
   tabNavigator: {

@@ -36,7 +36,7 @@ import { Colors } from "react-native/Libraries/NewAppScreen";
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+const RootLayout = () => {
   const colorScheme = useColorScheme();
   const [fontsLoaded, fontError] = useFonts({
     Poppins_100Thin,
@@ -79,7 +79,9 @@ export default function RootLayout() {
       </ThemeProvider>
     </SafeAreaView>
   );
-}
+};
+
+export default RootLayout;
 
 const styles = StyleSheet.create({
   container: {
