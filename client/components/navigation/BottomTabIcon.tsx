@@ -1,8 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
-import { Icon } from "../Icon";
+import Icon from "../Icon";
 import Icons from "@/constants/Icons";
-import { useThemeColor } from "@/hooks/useThemeColor";
 import { Colors } from "@/constants/Colors";
 
 type BottomTabIcon = {

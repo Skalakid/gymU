@@ -16,13 +16,13 @@ type IconProps = {
   contentFit?: ImageContentFit;
 };
 
-export function Icon({
+const Icon = ({
   icon,
   color = "blue",
   size = 16,
   style,
   contentFit = "contain",
-}: IconProps) {
+}: IconProps) => {
   return (
     <Image
       source={icon as ImageSourcePropType}
@@ -31,4 +31,6 @@ export function Icon({
       tintColor={color}
     />
   );
-}
+};
+
+export default Icon;
