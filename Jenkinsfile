@@ -18,6 +18,11 @@ pipeline {
                 withChecks('Second check') {
                     sh 'echo Hello World! v4'
                 }
+
+                
+                withChecks('Third check') {
+                    sh 'echo Hello World! v4'
+                }
             }
         }
     }
