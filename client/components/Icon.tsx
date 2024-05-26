@@ -1,4 +1,5 @@
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
+import { Colors } from "@/constants/Colors";
 import Icons from "@/constants/Icons";
 import { Image, ImageContentFit } from "expo-image";
 import {
@@ -8,17 +9,19 @@ import {
   type ViewStyle,
 } from "react-native";
 
-type IconProps = {
-  icon: (typeof Icons)[keyof typeof Icons];
-  color: string;
-  size: number;
+export type IconType = (typeof Icons)[keyof typeof Icons];
+
+export type IconProps = {
+  icon: IconType;
+  color?: string;
+  size?: number;
   style?: StyleProp<ViewStyle & ImageStyle>;
   contentFit?: ImageContentFit;
 };
 
 const Icon = ({
   icon,
-  color = "blue",
+  color = Colors.white,
   size = 16,
   style,
   contentFit = "contain",

@@ -48,22 +48,18 @@ const SizePresets: Record<string, TextStyle> = {
   h1: {
     ...WeightPresets.bold,
     fontSize: 40,
-    lineHeight: 40,
   },
   h2: {
     ...WeightPresets.bold,
     fontSize: 32,
-    lineHeight: 32,
   },
   h3: {
     ...WeightPresets.bold,
     fontSize: 30,
-    lineHeight: 30,
   },
   h4: {
     ...WeightPresets.bold,
     fontSize: 24,
-    lineHeight: 24,
   },
   link: {
     textDecorationLine: "underline",
