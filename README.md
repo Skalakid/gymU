@@ -37,7 +37,45 @@ This project aims to create a sophisticated gym progress and habit tracking app.
 
 ## Getting Started
 
-### Installation
+### Services
+For detailed information about particular services see:
+
+- [Postgres](services/postgres/README.md)
+- [Api](services/api/README.md)
+- [Analyze](services/analyze/README.md)
+- To be added...
+
+#### Requirements
+
+All services are contenerized using docker, so you need to install [Docker Engine](https://docs.docker.com/engine/install/). If everything is okay, type the command below to get currently installed Docker version
+
+```bash
+docker version
+```
+
+#### Setup
+
+To run backend services, go to the `services` directory and run command:
+
+```bash
+docker compose up
+```
+
+or if you want to run services in background:
+
+```bash
+docker compose up -d
+```
+
+To shutdown and remove the containers of all services, in the same directory run:
+
+```bash
+docker compose down
+```
+
+### Client
+
+#### Installation
 
 To be added...
 
