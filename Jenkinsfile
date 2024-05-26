@@ -5,6 +5,7 @@ pipeline {
     stages {
         stage('Test v1') {
             steps {
+                def comment = pullRequest.comment('This PR is highly illogical..')
                 sh 'node --version'
                 sh 'ls -lsa'
             }
