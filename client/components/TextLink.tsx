@@ -9,7 +9,11 @@ type LinkProps = ThemedTextProps & {
 const TextLink = ({ onPress, ...rest }: LinkProps) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <ThemedText {...rest} style={[styles.link, rest.style]} />
+      <ThemedText
+        {...rest}
+        weight={rest.weight || "medium"}
+        style={[styles.link, rest.style]}
+      />
     </TouchableOpacity>
   );
 };

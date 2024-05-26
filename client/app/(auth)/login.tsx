@@ -14,7 +14,7 @@ const LoginPage = () => {
   return (
     <PageWithGoBackHeader style={styles.container}>
       <View style={styles.headingText}>
-        <ThemedText size="h4" weight="semiBOod">
+        <ThemedText size="h4" weight="semiBold">
           Hello 👋
         </ThemedText>
         <ThemedText size="l" weight="medium" textType="description">
@@ -36,19 +36,25 @@ const LoginPage = () => {
         value={password}
       />
 
-      <View>
-        <TextLink
-          style={styles.link}
-          onPress={() => console.log("Forgot password")}
-          size="m"
-        >
-          Forgot password?
-        </TextLink>
-      </View>
+      <TextLink
+        style={styles.forgotPasswordLink}
+        onPress={() => console.log("Forgot password")}
+        size="m"
+      >
+        Forgot password?
+      </TextLink>
 
       <View style={styles.button}>
         <PrimaryButton value="Login" onPress={() => console.log("Login")} />
       </View>
+
+      <TextLink
+        style={styles.dontHaveAccountLink}
+        onPress={() => console.log("Don't have an account?")}
+        size="m"
+      >
+        Don’t have an account? Register
+      </TextLink>
     </PageWithGoBackHeader>
   );
 };
@@ -63,9 +69,13 @@ const styles = StyleSheet.create({
     gap: 5,
     marginBottom: 10,
   },
-  link: {
+  forgotPasswordLink: {
     textAlign: "right",
     marginBottom: 10,
+  },
+  dontHaveAccountLink: {
+    textAlign: "center",
+    marginTop: 10,
   },
   button: {
     marginHorizontal: 40,
