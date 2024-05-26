@@ -63,10 +63,11 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingLeft: 20,
     paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 20,
     justifyContent: "center",
     flexDirection: "row",
     gap: 10,
-    paddingVertical: 20,
   },
 
   text: {

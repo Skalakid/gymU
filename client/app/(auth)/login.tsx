@@ -1,11 +1,18 @@
+import TextLink from "@/components/TextLink";
 import { ThemedText } from "@/components/ThemedText";
+import PrimaryButton from "@/components/button/PrimaryButton";
+import TextInput from "@/components/input/TextInput";
 import PageWithGoBackHeader from "@/components/page/PageWithGoBackHeader";
-
+import { Link } from "expo-router";
+import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
-    <PageWithGoBackHeader>
+    <PageWithGoBackHeader style={styles.container}>
       <View style={styles.headingText}>
         <ThemedText size="h4" weight="semiBOod">
           Hello 👋
@@ -14,6 +21,34 @@ const LoginPage = () => {
           Welcome back! You have been missed during this time
         </ThemedText>
       </View>
+
+      <TextInput
+        label="Email"
+        placeholder="Enter your email..."
+        onChangeText={(text) => setEmail(text)}
+        value={email}
+      />
+      <TextInput
+        label="Password"
+        placeholder="Enter your password..."
+        type="password"
+        onChangeText={(password) => setPassword(password)}
+        value={password}
+      />
+
+      <View>
+        <TextLink
+          style={styles.link}
+          onPress={() => console.log("Forgot password")}
+          size="m"
+        >
+          Forgot password?
+        </TextLink>
+      </View>
+
+      <View style={styles.button}>
+        <PrimaryButton value="Login" onPress={() => console.log("Login")} />
+      </View>
     </PageWithGoBackHeader>
   );
 };
@@ -21,7 +56,18 @@ const LoginPage = () => {
 export default LoginPage;
 
 const styles = StyleSheet.create({
+  container: {
+    gap: 10,
+  },
   headingText: {
     gap: 5,
+    marginBottom: 10,
+  },
+  link: {
+    textAlign: "right",
+    marginBottom: 10,
+  },
+  button: {
+    marginHorizontal: 40,
   },
 });
