@@ -1,30 +1,34 @@
-import { Text, type TextProps, StyleSheet } from "react-native";
+import { Text, type TextProps, StyleSheet, TextStyle } from "react-native";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { SizePresets, WeightPresets } from "@/constants/Typography";
 
 export type ThemedTextProps = TextProps & {
+  color?: string;
   lightColor?: string;
   darkColor?: string;
-  type?: "default" | "title" | "defaultSemiBold" | "subtitle" | "link";
+  size?: keyof typeof SizePresets;
+  weight?: keyof typeof WeightPresets;
 };
 
 export function ThemedText({
   style,
+  color,
   lightColor,
   darkColor,
-  type = "default",
+  size = "default",
+  weight = "regular",
   ...rest
 }: ThemedTextProps) {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+  const textColor =
+    color || useThemeColor({ light: lightColor, dark: darkColor }, "text");
 
   return (
     <Text
       style={[
-        { color },
-        type === "default" ? styles.default : undefined,
-        type === "title" ? styles.title : undefined,
-        type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
-        type === "subtitle" ? styles.subtitle : undefined,
-        type === "link" ? styles.link : undefined,
+        SizePresets[size],
+        WeightPresets[weight],
+        { color: textColor },
+        styles.default,
         style,
       ]}
       {...rest}
@@ -34,26 +38,6 @@ export function ThemedText({
 
 const styles = StyleSheet.create({
   default: {
-    fontSize: 16,
-    lineHeight: 24,
-  },
-  defaultSemiBold: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: "600",
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: "bold",
-    lineHeight: 32,
-  },
-  subtitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  link: {
-    lineHeight: 30,
-    fontSize: 16,
-    color: "#0a7ea4",
+    fontFamily: "Poppins",
   },
 });

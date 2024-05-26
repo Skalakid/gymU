@@ -14,7 +14,7 @@ type BottomTabIcon = {
 export default function BottomTabIcon({
   name,
   icon,
-  color = Colors.light.tabIconDefault,
+  color = Colors.light.icon,
 }: BottomTabIcon) {
   return (
     <View style={styles.container}>
