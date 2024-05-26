@@ -5,7 +5,6 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import Icons from "@/constants/Icons";
 import BottomTabIcon from "@/components/navigation/BottomTabIcon";
 import { StyleSheet } from "react-native";
-import HomePage from "./home";
 
 const TabLayout = () => {
   const colorScheme = useColorScheme();
@@ -15,7 +14,10 @@ const TabLayout = () => {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].primary,
         tabBarInactiveTintColor: Colors[colorScheme ?? "light"].tabIconDefault,
-        tabBarStyle: styles.tabNavigator,
+        tabBarStyle: {
+          ...styles.tabNavigator,
+          backgroundColor: Colors[colorScheme ?? "light"].background,
+        },
         tabBarShowLabel: false,
         headerShown: false,
       }}
@@ -87,5 +89,6 @@ const styles = StyleSheet.create({
   tabNavigator: {
     paddingBottom: 0,
     height: 52,
+    borderTopWidth: 0,
   },
 });

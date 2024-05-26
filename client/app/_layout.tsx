@@ -31,7 +31,7 @@ import {
 } from "@expo-google-fonts/poppins";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import { Colors } from "@/constants/Colors";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -70,14 +70,21 @@ const RootLayout = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      <SafeAreaView
+        style={[
+          styles.container,
+          {
+            backgroundColor: Colors[colorScheme ?? "light"].background,
+          },
+        ]}
+      >
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
-      </ThemeProvider>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ThemeProvider>
   );
 };
 
@@ -86,6 +93,5 @@ export default RootLayout;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.light.background,
   },
 });
