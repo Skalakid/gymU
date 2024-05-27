@@ -38,6 +38,7 @@ This project aims to create a sophisticated gym progress and habit tracking app.
 ## Getting Started
 
 ### Services
+
 For detailed information about particular services see:
 
 - [Postgres](services/postgres/README.md)
@@ -75,11 +76,38 @@ docker compose down
 
 ### Client
 
-#### Installation
+To start working with client app, go to the `client` directory and run:
 
-To be added...
+```bash
+yarn install
+```
+
+To run the app in development mode, run:
+
+```bash
+yarn start
+```
+
+and choose the platform you want to run the app on. Press `a` to run the app on Android emulator or `i` to run the app on iOS emulator.
 
 <!-- ROADMAP -->
+
+## Repo structure
+
+- `common` - common JavaScript/TypeScript utils, methods, types
+- `services` contains all backend-side services:
+  - `analyze` - recommendation system microservice (written in Python)
+  - `api` - REST API Server (written in TypeScript + ExpressJS)
+  - `postgres` - PostgreSQL database server (Dockerfile, schemas, scripts etc.)
+- `client` contains all RN Expo App structure:
+  - `app` - main app code
+  - `assets` - images, fonts etc.
+  - `components` - reusable components
+  - `constants` - app constants
+  - `hooks` - custom hooks
+  - `scripts` - scripts for app
+  - `types` - app types
+  - `utils` - app utils
 
 ## Roadmap
 
