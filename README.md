@@ -76,6 +76,20 @@ docker compose down
 
 ### Client
 
+To start working with client app, go to the `client` directory and run:
+
+```bash
+yarn install
+```
+
+To run the app in development mode, run:
+
+```bash
+yarn start
+```
+
+and choose the platform you want to run the app on. Press `a` to run the app on Android emulator or `i` to run the app on iOS emulator.
+
 ### Server
 
 #### dev
@@ -102,11 +116,24 @@ This will compile typescript files and create `index.js` in `dist` directory. Th
 yarn start
 ```
 
-#### Installation
-
-To be added...
-
 <!-- ROADMAP -->
+
+## Repo structure
+
+- `common` - common JavaScript/TypeScript utils, methods, types
+- `services` contains all backend-side services:
+  - `analyze` - recommendation system microservice (written in Python)
+  - `api` - REST API Server (written in TypeScript + ExpressJS)
+  - `postgres` - PostgreSQL database server (Dockerfile, schemas, scripts etc.)
+- `client` contains all RN Expo App structure:
+  - `app` - main app code
+  - `assets` - images, fonts etc.
+  - `components` - reusable components
+  - `constants` - app constants
+  - `hooks` - custom hooks
+  - `scripts` - scripts for app
+  - `types` - app types
+  - `utils` - app utils
 
 ## Roadmap
 
