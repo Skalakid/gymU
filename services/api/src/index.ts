@@ -15,16 +15,6 @@ const pool = new Pool({
   database: process.env.DB_SCHEMA,
 });
 
-(async () => {
-  try {
-    const { rows } = await pool.query("SELECT current_user");
-    const current_user = rows[0]["current_user"];
-    console.log(current_user + "log");
-  } catch (error) {
-    console.error(error);
-  }
-})();
-
 app.get("/", (req: Request, res: Response) => {
   res.send("Basic Node server with TypeScript");
 });
