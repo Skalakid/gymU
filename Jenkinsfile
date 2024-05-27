@@ -12,7 +12,6 @@ pipeline {
                 withChecks('injected name') {
                     sh 'echo Hello World!'
                     sh 'echo Hello World v2!'
-                    sh 'echo Hello World v3!'
                 }
                 
                 withChecks('Second check') {
