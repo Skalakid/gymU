@@ -55,18 +55,34 @@ docker version
 ```
 
 #### Setup
+##### Development mode
 
-To run backend services, go to the `services` directory and run command:
+To run backend services in `dev` mode, go to the `services` directory and run command:
 
 ```bash
-docker compose up
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up  --build
 ```
 
 or if you want to run services in background:
 
 ```bash
-docker compose up -d
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up  --build -d
 ```
+##### Production mode
+
+To run backend services in `prod` mode, go to the `services` directory and run command:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up  --build
+```
+
+or if you want to run services in background:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up  --build -d
+```
+
+#### Shutting down
 
 To shutdown and remove the containers of all services, in the same directory run:
 
