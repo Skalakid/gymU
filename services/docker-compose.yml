@@ -1,6 +1,6 @@
 version: '3.9'
 
-name: "GymU"
+name: "gymu"
 
 networks:
   gymu.network:
@@ -41,5 +41,21 @@ services:
         - postgres_password
         - postgres_user
 
+      networks:
+        - gymu.network
+
+    api:
+      build: 
+        context: ./api
+        dockerfile: Dockerfile
+      container_name: api.service
+      volumes:
+        - ./api/src:/app/src
+      ports:
+        - 3000:3000
+      secrets:
+        - postgres_db
+        - postgres_password
+        - postgres_user
       networks:
         - gymu.network

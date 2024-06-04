@@ -5,7 +5,6 @@
 
 const primaryOrange = "#F06312";
 const secondaryBlue = "#4562C9";
-const iconColor = "#A8A8A8";
 
 export const Colors = {
   light: {
@@ -14,7 +13,7 @@ export const Colors = {
     background: "#FFFFFF",
     text: "#11181C",
     description: "#BCBCBC",
-    icon: iconColor,
+    icon: "#11181C",
   },
   dark: {
     primary: primaryOrange,
@@ -22,7 +21,7 @@ export const Colors = {
     background: "#141313",
     text: "#FFFFFF",
     description: "#BCBCBC",
-    icon: iconColor,
+    icon: "#A8A8A8",
   },
   white: "#FFFFFF",
 };
