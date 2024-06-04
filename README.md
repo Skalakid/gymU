@@ -56,17 +56,35 @@ docker version
 
 #### Setup
 
-To run backend services, go to the `services` directory and run command:
+##### Development mode
+
+To run backend services in `dev` mode, go to the `services` directory and run command:
 
 ```bash
-docker compose up
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up  --build
 ```
 
 or if you want to run services in background:
 
 ```bash
-docker compose up -d
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up  --build -d
 ```
+
+##### Production mode
+
+To run backend services in `prod` mode, go to the `services` directory and run command:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up  --build
+```
+
+or if you want to run services in background:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up  --build -d
+```
+
+#### Shutting down
 
 To shutdown and remove the containers of all services, in the same directory run:
 
@@ -89,6 +107,32 @@ yarn start
 ```
 
 and choose the platform you want to run the app on. Press `a` to run the app on Android emulator or `i` to run the app on iOS emulator.
+
+### Server
+
+#### dev
+
+To run server in development mode run:
+
+```bash
+yarn dev
+```
+
+This will start `nodemon` that will listen for changes and automatically restart server after saving changes.
+
+#### prod
+
+To run server in production mode first run
+
+```bash
+yarn build
+```
+
+This will compile typescript files and create `index.js` in `dist` directory. Then run
+
+```bash
+yarn start
+```
 
 <!-- ROADMAP -->
 
