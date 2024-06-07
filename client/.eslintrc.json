@@ -1,0 +1,29 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "react-native", "react", "prettier"],
+  "rules": {
+    "no-console": "warn"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}
