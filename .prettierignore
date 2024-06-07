@@ -1,0 +1,6 @@
+**/*.html
+**/*.yml
+**/*.yaml
+**/*.css
+**/*.md
+**/node_modules
