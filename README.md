@@ -92,6 +92,10 @@ docker compose down
 
 ### Client
 
+> [!IMPORTANT]  
+> If you're using VScode make sure that you have installed [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions.
+
+
 To start working with client app, go to the `client` directory and run:
 
 ```bash

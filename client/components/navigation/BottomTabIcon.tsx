@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet } from "react-native";
-import React from "react";
-import Icon from "../Icon";
-import Icons from "@/constants/Icons";
-import { Colors } from "@/constants/Colors";
+import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import Icon from '../Icon';
+import Icons from '@/constants/Icons';
+import { Colors } from '@/constants/Colors';
 
 type BottomTabIcon = {
   name: string;
@@ -26,8 +26,8 @@ export default function BottomTabIcon({
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     gap: 2,
   },
   text: {
