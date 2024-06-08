@@ -1,6 +1,6 @@
-import express, { Express, Request, Response } from "express";
-import dotenv from "dotenv";
-import { Client, Pool } from "pg";
+import express, { Express, Request, Response } from 'express';
+import dotenv from 'dotenv';
+import { Client, Pool } from 'pg';
 
 dotenv.config();
 
@@ -15,8 +15,8 @@ const pool = new Pool({
   database: process.env.DB_SCHEMA,
 });
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Basic Node server with TypeScript");
+app.get('/', (req: Request, res: Response) => {
+  res.send('Basic Node server with TypeScript');
 });
 
 app.listen(port, () => {

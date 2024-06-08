@@ -1,10 +1,10 @@
-import { Tabs } from "expo-router";
-import React from "react";
-import { Colors } from "@/constants/Colors";
-import { useColorScheme } from "@/hooks/useColorScheme";
-import Icons from "@/constants/Icons";
-import BottomTabIcon from "@/components/navigation/BottomTabIcon";
-import { StyleSheet } from "react-native";
+import { Tabs } from 'expo-router';
+import React from 'react';
+import { Colors } from '@/constants/Colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
+import Icons from '@/constants/Icons';
+import BottomTabIcon from '@/components/navigation/BottomTabIcon';
+import { StyleSheet } from 'react-native';
 
 const TabLayout = () => {
   const colorScheme = useColorScheme();
@@ -12,11 +12,11 @@ const TabLayout = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].primary,
-        tabBarInactiveTintColor: Colors[colorScheme ?? "light"].icon,
+        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].primary,
+        tabBarInactiveTintColor: Colors[colorScheme ?? 'light'].icon,
         tabBarStyle: {
           ...styles.tabNavigator,
-          backgroundColor: Colors[colorScheme ?? "light"].background,
+          backgroundColor: Colors[colorScheme ?? 'light'].background,
         },
         tabBarShowLabel: false,
         headerShown: false,
@@ -25,7 +25,7 @@ const TabLayout = () => {
       <Tabs.Screen
         name="home"
         options={{
-          title: "Home",
+          title: 'Home',
           tabBarIcon: ({ color, focused }) => (
             <BottomTabIcon
               icon={focused ? Icons.homeFill : Icons.home}
@@ -38,7 +38,7 @@ const TabLayout = () => {
       <Tabs.Screen
         name="calendar"
         options={{
-          title: "Calendar",
+          title: 'Calendar',
           tabBarIcon: ({ color }) => (
             <BottomTabIcon
               icon={Icons.calendar}
@@ -51,7 +51,7 @@ const TabLayout = () => {
       <Tabs.Screen
         name="workouts"
         options={{
-          title: "Workouts",
+          title: 'Workouts',
           tabBarIcon: ({ color }) => (
             <BottomTabIcon icon={Icons.bolt} name="Workouts" color={color} />
           ),
@@ -60,7 +60,7 @@ const TabLayout = () => {
       <Tabs.Screen
         name="explore"
         options={{
-          title: "Explore",
+          title: 'Explore',
           tabBarIcon: ({ color }) => (
             <BottomTabIcon icon={Icons.safari} name="Explore" color={color} />
           ),
@@ -69,7 +69,7 @@ const TabLayout = () => {
       <Tabs.Screen
         name="statistics"
         options={{
-          title: "Statistics",
+          title: 'Statistics',
           tabBarIcon: ({ color, focused }) => (
             <BottomTabIcon
               icon={focused ? Icons.chartFill : Icons.chart}

@@ -1,6 +1,6 @@
-import { Text, type TextProps, StyleSheet, TextStyle } from "react-native";
-import { useThemeColor } from "@/hooks/useThemeColor";
-import { SizePresets, WeightPresets } from "@/constants/Typography";
+import { Text, type TextProps, StyleSheet } from 'react-native';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { SizePresets, WeightPresets } from '@/constants/Typography';
 
 export type ThemedTextProps = TextProps & {
   color?: string;
@@ -8,7 +8,7 @@ export type ThemedTextProps = TextProps & {
   darkColor?: string;
   size?: keyof typeof SizePresets;
   weight?: keyof typeof WeightPresets;
-  textType?: "text" | "description";
+  textType?: 'text' | 'description';
 };
 
 export function ThemedText({
@@ -16,9 +16,9 @@ export function ThemedText({
   color,
   lightColor,
   darkColor,
-  size = "default",
-  weight = "regular",
-  textType = "text",
+  size = 'default',
+  weight = 'regular',
+  textType = 'text',
   ...rest
 }: ThemedTextProps) {
   const textColor =
@@ -40,6 +40,6 @@ export function ThemedText({
 
 const styles = StyleSheet.create({
   default: {
-    fontFamily: "Poppins",
+    fontFamily: 'Poppins',
   },
 });
