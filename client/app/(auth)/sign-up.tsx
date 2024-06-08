@@ -1,15 +1,15 @@
-import TextLink from "@/components/TextLink";
-import { ThemedText } from "@/components/ThemedText";
-import SecondaryButton from "@/components/button/SecondaryButton";
-import TextInput from "@/components/input/TextInput";
-import PageWithGoBackHeader from "@/components/page/PageWithGoBackHeader";
-import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import TextLink from '@/components/TextLink';
+import { ThemedText } from '@/components/ThemedText';
+import SecondaryButton from '@/components/button/SecondaryButton';
+import TextInput from '@/components/input/TextInput';
+import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
+import { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 const SignUpPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
 
   return (
     <PageWithGoBackHeader style={styles.container}>
@@ -47,13 +47,13 @@ const SignUpPage = () => {
       <View style={styles.button}>
         <SecondaryButton
           value="Register"
-          onPress={() => console.log("Login")}
+          onPress={() => console.log('Login')}
         />
       </View>
 
       <TextLink
         style={styles.alreadyHaveAccountLink}
-        onPress={() => console.log("Already have an account?")}
+        onPress={() => console.log('Already have an account?')}
         size="m"
       >
         Don’t have an account? Register
@@ -73,14 +73,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   link: {
-    textAlign: "right",
+    textAlign: 'right',
   },
   button: {
     marginTop: 10,
     marginHorizontal: 40,
   },
   alreadyHaveAccountLink: {
-    textAlign: "center",
+    textAlign: 'center',
     marginTop: 10,
   },
 });

@@ -21,8 +21,11 @@ export function ThemedText({
   textType = 'text',
   ...rest
 }: ThemedTextProps) {
-  const textColor =
-    color || useThemeColor({ light: lightColor, dark: darkColor }, textType);
+  const themeColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    textType,
+  );
+  const textColor = color || themeColor;
 
   return (
     <Text
