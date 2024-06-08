@@ -45,3 +45,8 @@ Tables:
 - `user_workout` - Stores workouts that where downloaded by user from workout templates
 - `user_workout_log` - Stores logs of user workouts. Log is generated after finishing a workout and contains all information about the training session
 - `user_exercise_history_item` - Stores history of user exercises. Each item is a single exercise that was done by user and contains all information about the exercise and progress that was made
+
+
+## Prisma ORM
+
+More info about Prisma can be found in [api / README.md](../api/README.md#prisma)

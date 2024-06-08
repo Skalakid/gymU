@@ -34,10 +34,7 @@ services:
         - POSTGRES_DB_FILE=/run/secrets/postgres_db
         - POSTGRES_USER_FILE=/run/secrets/postgres_user
         - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
-        - PGUSER=...
-        - PGPASSWORD=...
-        - PGDATABASE=...
-        
+
       secrets:
         - postgres_db
         - postgres_password
@@ -58,6 +55,8 @@ services:
       ports:
         - 3000:3000
       environment:
+        # Enter database url here to connect to database via Prisma in docker
+        # Example: postgresql://<postgress>:<randomPassword>@postgres:5432/<db>
         - DATABASE_URL=...
       secrets:
         - postgres_db
