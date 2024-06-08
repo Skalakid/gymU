@@ -1,12 +1,12 @@
-import { ThemedView } from "@/components/ThemedView";
-import { Image } from "expo-image";
-import Images from "@/constants/Images";
-import { StyleSheet, View } from "react-native";
-import PrimaryButton from "@/components/button/PrimaryButton";
-import SecondaryButton from "@/components/button/SecondaryButton";
-import { ThemedText } from "@/components/ThemedText";
-import { router } from "expo-router";
-import ROUTES from "@/constants/Routes";
+import { ThemedView } from '@/components/ThemedView';
+import { Image } from 'expo-image';
+import Images from '@/constants/Images';
+import { StyleSheet, View } from 'react-native';
+import PrimaryButton from '@/components/button/PrimaryButton';
+import SecondaryButton from '@/components/button/SecondaryButton';
+import { ThemedText } from '@/components/ThemedText';
+import { router } from 'expo-router';
+import ROUTES from '@/constants/Routes';
 
 const StartPage = () => {
   return (
@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingVertical: 100,
   },
   image: {
@@ -56,18 +56,18 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
   },
   content: {
-    justifyContent: "flex-end",
-    alignItems: "center",
+    justifyContent: 'flex-end',
+    alignItems: 'center',
     paddingHorizontal: 40,
     paddingVertical: 20,
     gap: 10,
   },
   welcomeText: {
     width: 200,
-    textAlign: "center",
+    textAlign: 'center',
   },
   subText: {
-    textAlign: "center",
+    textAlign: 'center',
     paddingVertical: 10,
   },
 });

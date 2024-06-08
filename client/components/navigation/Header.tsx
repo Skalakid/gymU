@@ -1,8 +1,8 @@
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { ThemedView } from "../ThemedView";
-import { ThemedText } from "../ThemedText";
-import IconButton from "../button/IconButton";
-import { IconType } from "../Icon";
+import { StyleSheet, View, ViewStyle } from 'react-native';
+import { ThemedView } from '../ThemedView';
+import { ThemedText } from '../ThemedText';
+import IconButton from '../button/IconButton';
+import { IconType } from '../Icon';
 
 export type HeaderProps = {
   title?: string;
@@ -60,19 +60,19 @@ export default Header;
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    width: '100%',
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 10,
     paddingBottom: 20,
-    justifyContent: "center",
-    flexDirection: "row",
+    justifyContent: 'center',
+    flexDirection: 'row',
     gap: 10,
   },
 
   text: {
     flex: 1,
 
-    justifyContent: "center",
+    justifyContent: 'center',
   },
 });

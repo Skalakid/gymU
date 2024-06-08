@@ -1,19 +1,19 @@
-import { Colors } from "@/constants/Colors";
-import { SizePresets, WeightPresets } from "@/constants/Typography";
+import { Colors } from '@/constants/Colors';
+import { SizePresets, WeightPresets } from '@/constants/Typography';
 import {
   StyleSheet,
   View,
   TextInput as RNTextInput,
   useColorScheme,
-} from "react-native";
-import { ThemedText } from "../ThemedText";
+} from 'react-native';
+import { ThemedText } from '../ThemedText';
 
 type TextInputProps = {
   value?: string;
   label?: string;
   placeholder?: string;
   onChangeText?: (text: string) => void;
-  type?: "password" | "text";
+  type?: 'password' | 'text';
 };
 
 const TextInput = ({
@@ -21,10 +21,10 @@ const TextInput = ({
   label,
   placeholder,
   onChangeText,
-  type = "text",
+  type = 'text',
 }: TextInputProps) => {
   const colorScheme = useColorScheme();
-  const primaryColor = Colors[colorScheme ?? "light"].text;
+  const primaryColor = Colors[colorScheme ?? 'light'].text;
 
   return (
     <View style={styles.container}>
@@ -45,7 +45,7 @@ const TextInput = ({
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
-        secureTextEntry={type === "password"}
+        secureTextEntry={type === 'password'}
       />
     </View>
   );
@@ -55,13 +55,13 @@ export default TextInput;
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    width: '100%',
     gap: 5,
   },
   textInput: {
     padding: 16,
     borderRadius: 15,
     borderWidth: 2,
-    fontFamily: "Poppins",
+    fontFamily: 'Poppins',
   },
 });

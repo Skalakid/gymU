@@ -1,14 +1,12 @@
-import { Colors } from "@/constants/Colors";
+import { Colors } from '@/constants/Colors';
 import {
   ActivityIndicator,
-  ActivityIndicatorComponent,
   StyleSheet,
-  Text,
   TextStyle,
   TouchableOpacity,
   ViewStyle,
-} from "react-native";
-import { ThemedText } from "../ThemedText";
+} from 'react-native';
+import { ThemedText } from '../ThemedText';
 
 export type ButtonProps = {
   value: string;
@@ -50,9 +48,9 @@ export default PrimaryButton;
 const styles = StyleSheet.create({
   button: {
     backgroundColor: Colors.dark.primary,
-    width: "100%",
+    width: '100%',
     paddingVertical: 16,
-    alignItems: "center",
+    alignItems: 'center',
     borderRadius: 15,
   },
 });

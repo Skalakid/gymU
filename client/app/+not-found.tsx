@@ -30,6 +30,6 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   text: {
-    textAlign: "center",
+    textAlign: 'center',
   },
 });

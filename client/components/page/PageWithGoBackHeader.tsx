@@ -1,9 +1,9 @@
-import { ThemedView } from "@/components/ThemedView";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import Header from "../navigation/Header";
-import { IconType } from "../Icon";
-import Icons from "@/constants/Icons";
-import { router } from "expo-router";
+import { ThemedView } from '@/components/ThemedView';
+import { StyleSheet, ViewStyle } from 'react-native';
+import Header from '../navigation/Header';
+import { IconType } from '../Icon';
+import Icons from '@/constants/Icons';
+import { router } from 'expo-router';
 
 type PageWithGoBackHeaderProps = {
   children: React.ReactNode;

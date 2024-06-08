@@ -1,4 +1,4 @@
-const orangeLogo = require("../assets/logo/gymU-logo-orange.svg");
+import orangeLogo from '../assets/logo/gymU-logo-orange.svg';
 
 export default {
   orangeLogo,

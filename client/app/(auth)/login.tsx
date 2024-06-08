@@ -1,15 +1,14 @@
-import TextLink from "@/components/TextLink";
-import { ThemedText } from "@/components/ThemedText";
-import PrimaryButton from "@/components/button/PrimaryButton";
-import TextInput from "@/components/input/TextInput";
-import PageWithGoBackHeader from "@/components/page/PageWithGoBackHeader";
-import { Link } from "expo-router";
-import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import TextLink from '@/components/TextLink';
+import { ThemedText } from '@/components/ThemedText';
+import PrimaryButton from '@/components/button/PrimaryButton';
+import TextInput from '@/components/input/TextInput';
+import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
+import { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <PageWithGoBackHeader style={styles.container}>
@@ -38,14 +37,14 @@ const LoginPage = () => {
 
       <TextLink
         style={styles.forgotPasswordLink}
-        onPress={() => console.log("Forgot password")}
+        onPress={() => console.log('Forgot password')}
         size="m"
       >
         Forgot password?
       </TextLink>
 
       <View style={styles.button}>
-        <PrimaryButton value="Login" onPress={() => console.log("Login")} />
+        <PrimaryButton value="Login" onPress={() => console.log('Login')} />
       </View>
 
       <TextLink
@@ -70,11 +69,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   forgotPasswordLink: {
-    textAlign: "right",
+    textAlign: 'right',
     marginBottom: 10,
   },
   dontHaveAccountLink: {
-    textAlign: "center",
+    textAlign: 'center',
     marginTop: 10,
   },
   button: {

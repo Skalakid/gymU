@@ -1,4 +1,4 @@
-import { TextStyle } from "react-native";
+import { TextStyle } from 'react-native';
 
 const BASE: TextStyle = {
   fontSize: 16,
@@ -6,19 +6,19 @@ const BASE: TextStyle = {
 
 const WeightPresets: Record<string, TextStyle> = {
   bold: {
-    fontWeight: "700",
+    fontWeight: '700',
   },
   semiBold: {
-    fontWeight: "600",
+    fontWeight: '600',
   },
   medium: {
-    fontWeight: "500",
+    fontWeight: '500',
   },
   regular: {
-    fontWeight: "400",
+    fontWeight: '400',
   },
   light: {
-    fontWeight: "300",
+    fontWeight: '300',
   },
 };
 
@@ -62,8 +62,8 @@ const SizePresets: Record<string, TextStyle> = {
     fontSize: 24,
   },
   link: {
-    textDecorationLine: "underline",
-    color: "blue",
+    textDecorationLine: 'underline',
+    color: 'blue',
   },
 };
 
