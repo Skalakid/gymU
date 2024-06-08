@@ -3,25 +3,25 @@
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
 
-const primaryOrange = "#F06312";
-const secondaryBlue = "#4562C9";
+const primaryOrange = '#F06312';
+const secondaryBlue = '#4562C9';
 
 export const Colors = {
   light: {
     primary: primaryOrange,
     secondary: secondaryBlue,
-    background: "#FFFFFF",
-    text: "#11181C",
-    description: "#BCBCBC",
-    icon: "#11181C",
+    background: '#FFFFFF',
+    text: '#11181C',
+    description: '#BCBCBC',
+    icon: '#11181C',
   },
   dark: {
     primary: primaryOrange,
     secondary: secondaryBlue,
-    background: "#141313",
-    text: "#FFFFFF",
-    description: "#BCBCBC",
-    icon: "#A8A8A8",
+    background: '#141313',
+    text: '#FFFFFF',
+    description: '#BCBCBC',
+    icon: '#A8A8A8',
   },
-  white: "#FFFFFF",
+  white: '#FFFFFF',
 };
