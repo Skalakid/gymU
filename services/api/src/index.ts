@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth';
+import userRoutes from './routes/user';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use(authRoutes);
+app.use('/user', userRoutes);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
