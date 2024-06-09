@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import authRoutes from './routes/auth';
 
 dotenv.config();
 
@@ -17,6 +18,8 @@ app.use((req, res, next) => {
 app.get('/', (req: Request, res: Response) => {
   res.send('Basic Node server with TypeScript');
 });
+
+app.use(authRoutes);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
