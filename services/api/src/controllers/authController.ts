@@ -4,6 +4,66 @@ import bcrypt from 'bcrypt';
 import { ReturnUser, checkEmailUniqueness } from './userController';
 import jwt from 'jsonwebtoken';
 
+function generateAuthenticationToken(data: string | object | Buffer) {
+  const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
+  if (!accessTokenSecret) {
+    return null;
+  }
+  return jwt.sign(data, accessTokenSecret, { expiresIn: '1h' });
+}
+
+function generateRefreshToken(data: string | object | Buffer) {
+  const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET;
+  if (!refreshTokenSecret) {
+    return null;
+  }
+  return jwt.sign(data, refreshTokenSecret);
+}
+
+function refreshToken(req: Request, res: Response) {
+  const { refreshToken } = req.body;
+  if (!refreshToken) {
+    return res.sendStatus(401);
+  }
+
+  if (
+    prisma.refresh_token.findFirst({
+      where: {
+        token: refreshToken as string,
+      },
+    }) === null
+  ) {
+    return res.sendStatus(403);
+  }
+
+  jwt.verify(
+    refreshToken as string,
+    process.env.REFRESH_TOKEN_SECRET as string,
+    (err, decoded) => {
+      if (err || !decoded) {
+        return res.sendStatus(403);
+      }
+
+      const user = decoded as ReturnUser;
+      console.log({
+        user_id: user.user_id,
+        email: user.email,
+        username: user.username,
+      });
+      const accessToken = generateAuthenticationToken({
+        user_id: user.user_id,
+        email: user.email,
+        username: user.username,
+      });
+      if (!accessToken) {
+        return res.status(500).send('Internal server error');
+      }
+
+      res.status(200).send({ accessToken });
+    },
+  );
+}
+
 async function login(req: Request, res: Response) {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -32,13 +92,30 @@ async function login(req: Request, res: Response) {
       username: user.username,
     };
 
-    const accesTokenSecret = process.env.ACCESS_TOKEN_SECRET;
-    if (!accesTokenSecret) {
+    const accessToken = generateAuthenticationToken(returnUser);
+
+    const storedRefreshToken = await prisma.refresh_token.findFirst({
+      where: {
+        user_id: user.user_id,
+      },
+    });
+
+    const refreshToken =
+      storedRefreshToken?.token || generateRefreshToken(returnUser);
+    if (!accessToken || !refreshToken) {
       return res.status(500).send('Internal server error');
     }
-    const accessToken = jwt.sign(returnUser, accesTokenSecret);
 
-    res.status(200).send({ accessToken });
+    if (!storedRefreshToken?.token) {
+      await prisma.refresh_token.create({
+        data: {
+          user_id: user.user_id,
+          token: refreshToken,
+        },
+      });
+    }
+
+    res.status(200).send({ accessToken, refreshToken });
   } catch (error) {
     res.status(500).send({ error: error });
   }
@@ -74,4 +151,4 @@ async function signup(req: Request, res: Response) {
   }
 }
 
-export { login, signup };
+export { login, signup, refreshToken };
