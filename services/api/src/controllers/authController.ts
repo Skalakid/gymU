@@ -151,4 +151,27 @@ async function signup(req: Request, res: Response) {
   }
 }
 
-export { login, signup, refreshToken };
+async function logout(req: Request, res: Response) {
+  try {
+    const { refreshToken } = req.body;
+    if (!refreshToken) {
+      return res.sendStatus(401);
+    }
+
+    const deletedTokens = await prisma.refresh_token.deleteMany({
+      where: {
+        token: refreshToken as string,
+      },
+    });
+
+    if (deletedTokens.count === 0) {
+      return res.sendStatus(404);
+    }
+
+    res.sendStatus(204);
+  } catch (error) {
+    res.status(500).send({ error: error });
+  }
+}
+
+export { login, signup, refreshToken, logout };
