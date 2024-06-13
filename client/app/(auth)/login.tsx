@@ -3,12 +3,18 @@ import { ThemedText } from '@/components/ThemedText';
 import PrimaryButton from '@/components/button/PrimaryButton';
 import TextInput from '@/components/input/TextInput';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { login } = useAuthContext();
+  const [email, setEmail] = useState('test@test.pl');
+  const [password, setPassword] = useState('test');
+
+  const handleLogin = () => {
+    login(email, password);
+  };
 
   return (
     <PageWithGoBackHeader style={styles.container}>
@@ -44,7 +50,7 @@ const LoginPage = () => {
       </TextLink>
 
       <View style={styles.button}>
-        <PrimaryButton value="Login" onPress={() => console.log('Login')} />
+        <PrimaryButton value="Login" onPress={handleLogin} />
       </View>
 
       <TextLink

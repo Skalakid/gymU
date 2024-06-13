@@ -3,13 +3,20 @@ import { ThemedText } from '@/components/ThemedText';
 import SecondaryButton from '@/components/button/SecondaryButton';
 import TextInput from '@/components/input/TextInput';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 const SignUpPage = () => {
+  const { register } = useAuthContext();
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+
+  const handleRegisterUser = () => {
+    register(email, username, password);
+  };
 
   return (
     <PageWithGoBackHeader style={styles.container}>
@@ -30,6 +37,12 @@ const SignUpPage = () => {
         value={email}
       />
       <TextInput
+        label="Username"
+        placeholder="Enter your username..."
+        onChangeText={(text) => setUsername(text)}
+        value={username}
+      />
+      <TextInput
         label="Password"
         placeholder="Enter your password..."
         type="password"
@@ -45,10 +58,7 @@ const SignUpPage = () => {
       />
 
       <View style={styles.button}>
-        <SecondaryButton
-          value="Register"
-          onPress={() => console.log('Login')}
-        />
+        <SecondaryButton value="Register" onPress={handleRegisterUser} />
       </View>
 
       <TextLink

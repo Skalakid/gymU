@@ -19,7 +19,7 @@
   },
   "plugins": ["@typescript-eslint", "react-native", "react", "prettier"],
   "rules": {
-    "no-console": "warn"
+    "no-console": ["warn", { "allow": ["error"] }]
   },
   "settings": {
     "import/resolver": {
