@@ -29,13 +29,12 @@ services:
 
         ### SETUP SCRIPTS ###
         - ./postgres/setup.sh:/docker-entrypoint-initdb.d/setup.sh
-        - ./postgres/setup.sql:/docker-entrypoint-initdb.d/setup.sh
         
       environment:
         - POSTGRES_DB_FILE=/run/secrets/postgres_db
         - POSTGRES_USER_FILE=/run/secrets/postgres_user
         - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
-        
+
       secrets:
         - postgres_db
         - postgres_password
@@ -48,11 +47,17 @@ services:
       build: 
         context: ./api
         dockerfile: Dockerfile
+      depends_on:
+        - postgres
       container_name: api.service
       volumes:
         - ./api/src:/app/src
       ports:
         - 3000:3000
+      environment:
+        # Enter database url here to connect to database via Prisma in docker
+        # Example: postgresql://<postgress>:<randomPassword>@postgres:5432/<db>
+        - DATABASE_URL=...
       secrets:
         - postgres_db
         - postgres_password
