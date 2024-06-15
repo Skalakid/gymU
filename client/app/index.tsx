@@ -1,4 +1,4 @@
-import { ThemedView } from '@/components/ThemedView';
+import ThemedView from '@/components/ThemedView';
 import { Colors } from '@/constants/Colors';
 import { ActivityIndicator, StyleSheet } from 'react-native';
 

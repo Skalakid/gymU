@@ -1,5 +1,5 @@
 import TextLink from '@/components/TextLink';
-import { ThemedText } from '@/components/ThemedText';
+import ThemedText from '@/components/ThemedText';
 import SecondaryButton from '@/components/button/SecondaryButton';
 import TextInput from '@/components/input/TextInput';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
