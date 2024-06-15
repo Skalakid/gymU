@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
-interface CustomRequest extends Request {
+interface AuthRequest extends Request {
   user?: string | JwtPayload | undefined;
 }
 
 function authenticateToken(
-  req: CustomRequest,
+  req: AuthRequest,
   res: Response,
   next: NextFunction,
 ) {
@@ -33,3 +33,4 @@ function authenticateToken(
 }
 
 export { authenticateToken };
+export type { AuthRequest };
