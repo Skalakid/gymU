@@ -1,4 +1,5 @@
 import * as SecureStore from 'expo-secure-store';
+import { refreshAccessToken } from './auth';
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
@@ -13,9 +14,10 @@ export type ApiResponse = {
 async function fetchApi(
   endpoint: string,
   method: Method,
-  headers = {},
-  body = {},
+  headers: object | null = null,
+  body: object | null = null,
   useAccessToken = true,
+  retries = 1,
 ): Promise<Response> {
   let accessToken: string | null = null;
   if (useAccessToken) {
@@ -33,6 +35,15 @@ async function fetchApi(
     },
     ...(body && { body: JSON.stringify(body) }),
   });
+
+  if (useAccessToken && response.status === 403 && retries > 0) {
+    try {
+      await refreshAccessToken();
+    } catch (error) {
+      return response;
+    }
+    return fetchApi(endpoint, method, headers, body, useAccessToken, 0);
+  }
 
   return response;
 }

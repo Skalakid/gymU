@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import fetchApi from '../services/api';
+import fetchApi from '../api/fetch';
 import * as SecureStore from 'expo-secure-store';
+import SECURE_STORE_KEYS from '../constants/SecureStoreKeys';
 
 type AuthContextProviderProps = { children: React.ReactNode };
 
@@ -14,6 +15,7 @@ type AuthContext = {
   register: (email: string, username: string, password: string) => void;
   logout: () => void;
   authState: AuthState;
+  user: User | null;
   isLoaded: boolean;
 };
 
@@ -25,15 +27,14 @@ const AuthContext = React.createContext<AuthContext>({
     token: null,
     authenticated: false,
   },
+  user: null,
   isLoaded: false,
 });
 
 type LoginResponse = {
   accessToken: string;
   refreshToken: string;
-};
-
-const ACCESS_TOKEN_KEY = 'accessToken';
+} & User;
 
 function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -41,6 +42,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
     token: null,
     authenticated: false,
   });
+  const [user, setUser] = useState<User | null>(null);
 
   const login = async (email: string, password: string) => {
     if (!email || !password) {
@@ -67,7 +69,19 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
 
     const data: LoginResponse = await response.json();
     setAuthState({ token: data.accessToken, authenticated: true });
-    SecureStore.setItemAsync(ACCESS_TOKEN_KEY, data.accessToken);
+    setUser({
+      user_id: data.user_id,
+      email: data.email,
+      username: data.username,
+    });
+    await SecureStore.setItemAsync(
+      SECURE_STORE_KEYS.ACCESS_TOKEN,
+      data.accessToken,
+    );
+    await SecureStore.setItemAsync(
+      SECURE_STORE_KEYS.REFRESH_TOKEN,
+      data.refreshToken,
+    );
   };
 
   const register = useCallback(
@@ -97,24 +111,50 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
   );
 
   const logout = async () => {
-    await SecureStore.deleteItemAsync(ACCESS_TOKEN_KEY);
+    await SecureStore.deleteItemAsync(SECURE_STORE_KEYS.ACCESS_TOKEN);
+    await SecureStore.deleteItemAsync(SECURE_STORE_KEYS.REFRESH_TOKEN);
     setAuthState({ token: null, authenticated: false });
+    setUser(null);
   };
 
   useEffect(() => {
     const loadToken = async () => {
-      const token = await SecureStore.getItemAsync(ACCESS_TOKEN_KEY);
-      if (token) {
+      const token = await SecureStore.getItemAsync(
+        SECURE_STORE_KEYS.ACCESS_TOKEN,
+      );
+
+      try {
+        const response = await fetchApi(
+          '/user/current',
+          'GET',
+          null,
+          null,
+          true,
+        );
+        if (!response.ok) {
+          throw new Error('Invalid token');
+        }
+
+        const data = await response.json();
+        setUser({
+          user_id: data.user_id,
+          email: data.email,
+          username: data.username,
+        });
         setAuthState({ token, authenticated: true });
+      } catch (error) {
+        setUser(null);
+        setAuthState({ token: null, authenticated: false });
       }
+
       setIsLoaded(true);
     };
     loadToken();
   }, []);
 
   const value = React.useMemo(
-    () => ({ authState, isLoaded, login, register, logout }),
-    [authState, isLoaded, register],
+    () => ({ authState, user, isLoaded, login, register, logout }),
+    [authState, user, isLoaded, register],
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
