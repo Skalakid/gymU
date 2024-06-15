@@ -44,7 +44,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
   });
   const [user, setUser] = useState<User | null>(null);
 
-  const login = async (email: string, password: string) => {
+  const login = useCallback(async (email: string, password: string) => {
     if (!email || !password) {
       throw new Error('Email, username, and password are required');
     }
@@ -82,7 +82,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
       SECURE_STORE_KEYS.REFRESH_TOKEN,
       data.refreshToken,
     );
-  };
+  }, []);
 
   const register = useCallback(
     async (email: string, username: string, password: string) => {
@@ -107,15 +107,19 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
       }
       login(email, password);
     },
-    [],
+    [login],
   );
 
-  const logout = async () => {
+  const deleteTokens = useCallback(async () => {
     await SecureStore.deleteItemAsync(SECURE_STORE_KEYS.ACCESS_TOKEN);
     await SecureStore.deleteItemAsync(SECURE_STORE_KEYS.REFRESH_TOKEN);
+  }, []);
+
+  const logout = useCallback(async () => {
+    await deleteTokens();
     setAuthState({ token: null, authenticated: false });
     setUser(null);
-  };
+  }, [deleteTokens]);
 
   useEffect(() => {
     const loadToken = async () => {
@@ -143,6 +147,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
         });
         setAuthState({ token, authenticated: true });
       } catch (error) {
+        await deleteTokens();
         setUser(null);
         setAuthState({ token: null, authenticated: false });
       }
@@ -150,11 +155,11 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
       setIsLoaded(true);
     };
     loadToken();
-  }, []);
+  }, [deleteTokens]);
 
   const value = React.useMemo(
     () => ({ authState, user, isLoaded, login, register, logout }),
-    [authState, user, isLoaded, register],
+    [authState, user, isLoaded, login, register, logout],
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
