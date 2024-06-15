@@ -8,7 +8,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { router } from 'expo-router';
 import ROUTES from '@/constants/Routes';
 
-const StartPage = () => {
+const LandingPage = () => {
   return (
     <ThemedView style={styles.page}>
       <View style={styles.imageContainer}>
@@ -39,7 +39,7 @@ const StartPage = () => {
   );
 };
 
-export default StartPage;
+export default LandingPage;
 
 const styles = StyleSheet.create({
   page: {

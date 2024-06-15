@@ -1,11 +1,16 @@
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import PrimaryButton from '@/components/button/PrimaryButton';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { StyleSheet } from 'react-native';
 
 const HomePage = () => {
+  const { logout } = useAuthContext();
   return (
     <ThemedView style={styles.container}>
       <ThemedText>Home page</ThemedText>
+
+      <PrimaryButton value="Logout" onPress={logout} />
     </ThemedView>
   );
 };

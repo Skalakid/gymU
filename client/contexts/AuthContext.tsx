@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import fetchApi from '../services/api';
 import * as SecureStore from 'expo-secure-store';
 
@@ -14,6 +14,7 @@ type AuthContext = {
   register: (email: string, username: string, password: string) => void;
   logout: () => void;
   authState: AuthState;
+  isLoaded: boolean;
 };
 
 const AuthContext = React.createContext<AuthContext>({
@@ -24,6 +25,7 @@ const AuthContext = React.createContext<AuthContext>({
     token: null,
     authenticated: false,
   },
+  isLoaded: false,
 });
 
 type LoginResponse = {
@@ -31,7 +33,10 @@ type LoginResponse = {
   refreshToken: string;
 };
 
+const ACCESS_TOKEN_KEY = 'accessToken';
+
 function AuthContextProvider({ children }: AuthContextProviderProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [authState, setAuthState] = useState<AuthState>({
     token: null,
     authenticated: false,
@@ -54,7 +59,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
       )();
 
       setAuthState({ token: result.accessToken, authenticated: true });
-      SecureStore.setItemAsync('accessToken', result.accessToken);
+      SecureStore.setItemAsync(ACCESS_TOKEN_KEY, result.accessToken);
 
       return result;
     } catch (error) {
@@ -92,13 +97,24 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
   };
 
   const logout = async () => {
-    await SecureStore.deleteItemAsync('accessToken');
+    await SecureStore.deleteItemAsync(ACCESS_TOKEN_KEY);
     setAuthState({ token: null, authenticated: false });
   };
 
+  useEffect(() => {
+    const loadToken = async () => {
+      const token = await SecureStore.getItemAsync(ACCESS_TOKEN_KEY);
+      if (token) {
+        setAuthState({ token, authenticated: true });
+      }
+      setIsLoaded(true);
+    };
+    loadToken();
+  }, []);
+
   const value = React.useMemo(
-    () => ({ authState, login, register, logout }),
-    [authState],
+    () => ({ authState, isLoaded, login, register, logout }),
+    [authState, isLoaded],
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
