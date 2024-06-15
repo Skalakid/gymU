@@ -3,17 +3,36 @@ import { ThemedText } from '@/components/ThemedText';
 import PrimaryButton from '@/components/button/PrimaryButton';
 import TextInput from '@/components/input/TextInput';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
+import ROUTES from '@/constants/Routes';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 const LoginPage = () => {
   const { login } = useAuthContext();
+  const router = useRouter();
   const [email, setEmail] = useState('test@test.pl');
   const [password, setPassword] = useState('test');
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleLogin = () => {
-    login(email, password);
+  const handleLogin = async () => {
+    try {
+      setErrorMessage('');
+      setIsLoading(true);
+      await login(email, password);
+    } catch (error) {
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const navigateToRegisterPage = () => {
+    router.replace(ROUTES.signUp);
   };
 
   return (
@@ -27,6 +46,9 @@ const LoginPage = () => {
         </ThemedText>
       </View>
 
+      <ThemedText size="h5" weight="regular" textType="error">
+        {errorMessage || ' '}
+      </ThemedText>
       <TextInput
         label="Email"
         placeholder="Enter your email..."
@@ -50,15 +72,19 @@ const LoginPage = () => {
       </TextLink>
 
       <View style={styles.button}>
-        <PrimaryButton value="Login" onPress={handleLogin} />
+        <PrimaryButton
+          value="Login"
+          onPress={handleLogin}
+          isLoading={isLoading}
+        />
       </View>
 
       <TextLink
         style={styles.dontHaveAccountLink}
-        onPress={() => console.log("Don't have an account?")}
+        onPress={navigateToRegisterPage}
         size="m"
       >
-        Don’t have an account? Register
+        Don't have an account? Register
       </TextLink>
     </PageWithGoBackHeader>
   );
@@ -72,7 +98,6 @@ const styles = StyleSheet.create({
   },
   headingText: {
     gap: 5,
-    marginBottom: 10,
   },
   forgotPasswordLink: {
     textAlign: 'right',

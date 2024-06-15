@@ -5,6 +5,7 @@
 
 const primaryOrange = '#F06312';
 const secondaryBlue = '#4562C9';
+const error = '#FF0000';
 
 export const Colors = {
   light: {
@@ -14,6 +15,7 @@ export const Colors = {
     text: '#11181C',
     description: '#BCBCBC',
     icon: '#11181C',
+    error,
   },
   dark: {
     primary: primaryOrange,
@@ -22,6 +24,7 @@ export const Colors = {
     text: '#FFFFFF',
     description: '#BCBCBC',
     icon: '#A8A8A8',
+    error,
   },
   white: '#FFFFFF',
 };
