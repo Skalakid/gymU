@@ -4,20 +4,26 @@ import * as SecureStore from 'expo-secure-store';
 
 type AuthContextProviderProps = { children: React.ReactNode };
 
+type AuthState = {
+  token: string | null;
+  authenticated: boolean;
+};
+
 type AuthContext = {
   login: (email: string, password: string) => void;
   register: (email: string, username: string, password: string) => void;
   logout: () => void;
-  session?: string | null;
-  isLoading: boolean;
+  authState: AuthState;
 };
 
 const AuthContext = React.createContext<AuthContext>({
   login: () => null,
   register: () => null,
   logout: () => null,
-  session: null,
-  isLoading: false,
+  authState: {
+    token: null,
+    authenticated: false,
+  },
 });
 
 type LoginResponse = {
@@ -26,11 +32,7 @@ type LoginResponse = {
 };
 
 function AuthContextProvider({ children }: AuthContextProviderProps) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [authState, setAuthState] = useState<{
-    token: string | null;
-    authenticated: boolean;
-  }>({
+  const [authState, setAuthState] = useState<AuthState>({
     token: null,
     authenticated: false,
   });
@@ -52,7 +54,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
       )();
 
       setAuthState({ token: result.accessToken, authenticated: true });
-      console.log(SecureStore);
+      SecureStore.setItemAsync('accessToken', result.accessToken);
 
       return result;
     } catch (error) {
@@ -88,11 +90,15 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
       return null;
     }
   };
-  const logout = () => {};
+
+  const logout = async () => {
+    await SecureStore.deleteItemAsync('accessToken');
+    setAuthState({ token: null, authenticated: false });
+  };
 
   const value = React.useMemo(
-    () => ({ isLoading, login, register, logout }),
-    [isLoading],
+    () => ({ authState, login, register, logout }),
+    [authState],
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
