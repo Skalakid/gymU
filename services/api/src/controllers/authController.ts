@@ -117,7 +117,7 @@ async function login(req: Request, res: Response) {
 
     res.status(200).send({ accessToken, refreshToken });
   } catch (error) {
-    res.status(500).send({ error: error });
+    res.status(500).send('Internal server error');
   }
 }
 
@@ -147,7 +147,7 @@ async function signup(req: Request, res: Response) {
       username: user.username,
     });
   } catch (error) {
-    res.status(500).send({ error: error });
+    res.status(500).send('Internal server error');
   }
 }
 
@@ -170,7 +170,7 @@ async function logout(req: Request, res: Response) {
 
     res.sendStatus(204);
   } catch (error) {
-    res.status(500).send({ error: error });
+    res.status(500).send('Internal server error');
   }
 }
 
