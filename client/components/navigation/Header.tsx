@@ -1,6 +1,6 @@
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import { ThemedView } from '../ThemedView';
-import { ThemedText } from '../ThemedText';
+import ThemedView from '../ThemedView';
+import ThemedText from '../ThemedText';
 import IconButton from '../button/IconButton';
 import { IconType } from '../Icon';
 

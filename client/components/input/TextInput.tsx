@@ -6,7 +6,7 @@ import {
   TextInput as RNTextInput,
   useColorScheme,
 } from 'react-native';
-import { ThemedText } from '../ThemedText';
+import ThemedText from '../ThemedText';
 
 type TextInputProps = {
   value?: string;

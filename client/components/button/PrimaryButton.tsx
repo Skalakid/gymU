@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import { ThemedText } from '../ThemedText';
+import ThemedText from '../ThemedText';
 
 export type ButtonProps = {
   value: string;

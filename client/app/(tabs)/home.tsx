@@ -1,5 +1,5 @@
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import ThemedText from '@/components/ThemedText';
+import ThemedView from '@/components/ThemedView';
 import PrimaryButton from '@/components/button/PrimaryButton';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { StyleSheet } from 'react-native';

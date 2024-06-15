@@ -1,10 +1,10 @@
-import { ThemedView } from '@/components/ThemedView';
+import ThemedView from '@/components/ThemedView';
 import { Image } from 'expo-image';
 import Images from '@/constants/Images';
 import { StyleSheet, View } from 'react-native';
 import PrimaryButton from '@/components/button/PrimaryButton';
 import SecondaryButton from '@/components/button/SecondaryButton';
-import { ThemedText } from '@/components/ThemedText';
+import ThemedText from '@/components/ThemedText';
 import { router } from 'expo-router';
 import ROUTES from '@/constants/Routes';
 

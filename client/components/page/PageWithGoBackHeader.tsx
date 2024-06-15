@@ -1,4 +1,4 @@
-import { ThemedView } from '@/components/ThemedView';
+import ThemedView from '@/components/ThemedView';
 import { StyleSheet, ViewStyle } from 'react-native';
 import Header from '../navigation/Header';
 import { IconType } from '../Icon';

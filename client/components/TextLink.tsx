@@ -1,4 +1,4 @@
-import { ThemedText, ThemedTextProps } from '@/components/ThemedText';
+import ThemedText, { ThemedTextProps } from '@/components/ThemedText';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
 type LinkProps = ThemedTextProps & {
