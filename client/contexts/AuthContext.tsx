@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import fetchApi from '../services/api';
 import * as SecureStore from 'expo-secure-store';
 
@@ -43,41 +43,40 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
   });
 
   const login = async (email: string, password: string) => {
-    try {
-      if (!email || !password) {
-        throw new Error('Email, username, and password are required');
-      }
-      const result = await fetchApi<LoginResponse>(
-        '/login',
-        'POST',
-        {},
-        {
-          email,
-          password,
-        },
-        false,
-      )();
-
-      setAuthState({ token: result.accessToken, authenticated: true });
-      SecureStore.setItemAsync(ACCESS_TOKEN_KEY, result.accessToken);
-
-      return result;
-    } catch (error) {
-      console.error(error);
-      return null;
+    if (!email || !password) {
+      throw new Error('Email, username, and password are required');
     }
+
+    const response = await fetchApi(
+      '/login',
+      'POST',
+      {},
+      {
+        email,
+        password,
+      },
+      false,
+    );
+
+    if (!response.ok) {
+      if (response.status.toString()[0] === '4') {
+        throw new Error('Invalid email or password!');
+      }
+      throw new Error('Something went wrong... Please try again later.');
+    }
+
+    const data: LoginResponse = await response.json();
+    setAuthState({ token: data.accessToken, authenticated: true });
+    SecureStore.setItemAsync(ACCESS_TOKEN_KEY, data.accessToken);
   };
 
-  const register = async (
-    email: string,
-    username: string,
-    password: string,
-  ) => {
-    try {
+  const register = useCallback(
+    async (email: string, username: string, password: string) => {
       if (!email || !username || !password) {
         throw new Error('Email, username, and password are required');
       }
-      const newUser = await fetchApi<User>(
+
+      const response = await fetchApi(
         '/signup',
         'POST',
         {},
@@ -87,14 +86,15 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
           password,
         },
         false,
-      )();
+      );
 
-      return newUser;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  };
+      if (!response.ok) {
+        throw new Error('Something went wrong... Please try signing up later.');
+      }
+      login(email, password);
+    },
+    [],
+  );
 
   const logout = async () => {
     await SecureStore.deleteItemAsync(ACCESS_TOKEN_KEY);
@@ -114,7 +114,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   const value = React.useMemo(
     () => ({ authState, isLoaded, login, register, logout }),
-    [authState, isLoaded],
+    [authState, isLoaded, register],
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

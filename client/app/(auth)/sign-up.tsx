@@ -3,19 +3,38 @@ import { ThemedText } from '@/components/ThemedText';
 import SecondaryButton from '@/components/button/SecondaryButton';
 import TextInput from '@/components/input/TextInput';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
+import ROUTES from '@/constants/Routes';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 const SignUpPage = () => {
   const { register } = useAuthContext();
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleRegisterUser = () => {
-    register(email, username, password);
+  const handleRegisterUser = async () => {
+    try {
+      setErrorMessage('');
+      setIsLoading(true);
+      await register(email, username, password);
+    } catch (error) {
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const navigateToLoginPage = () => {
+    router.replace(ROUTES.login);
   };
 
   return (
@@ -30,6 +49,9 @@ const SignUpPage = () => {
         </ThemedText>
       </View>
 
+      <ThemedText size="h5" weight="regular" textType="error">
+        {errorMessage || ' '}
+      </ThemedText>
       <TextInput
         label="Email"
         placeholder="Enter your email..."
@@ -58,15 +80,19 @@ const SignUpPage = () => {
       />
 
       <View style={styles.button}>
-        <SecondaryButton value="Register" onPress={handleRegisterUser} />
+        <SecondaryButton
+          value="Register"
+          onPress={handleRegisterUser}
+          isLoading={isLoading}
+        />
       </View>
 
       <TextLink
         style={styles.alreadyHaveAccountLink}
-        onPress={() => console.log('Already have an account?')}
+        onPress={navigateToLoginPage}
         size="m"
       >
-        Don’t have an account? Register
+        Already have an account? Login
       </TextLink>
     </PageWithGoBackHeader>
   );
@@ -80,7 +106,6 @@ const styles = StyleSheet.create({
   },
   headingText: {
     gap: 5,
-    marginBottom: 10,
   },
   link: {
     textAlign: 'right',

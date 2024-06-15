@@ -8,7 +8,7 @@ export type ThemedTextProps = TextProps & {
   darkColor?: string;
   size?: keyof typeof SizePresets;
   weight?: keyof typeof WeightPresets;
-  textType?: 'text' | 'description';
+  textType?: 'text' | 'description' | 'error';
 };
 
 export function ThemedText({
