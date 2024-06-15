@@ -38,19 +38,29 @@ import { AuthContextProvider, useAuthContext } from '@/contexts/AuthContext';
 SplashScreen.preventAutoHideAsync();
 
 const InitialLayout = () => {
-  const { authState } = useAuthContext();
+  const { authState, isLoaded } = useAuthContext();
   const segments = useSegments();
   const router = useRouter();
 
   useEffect(() => {
+    if (!isLoaded) {
+      return;
+    }
     const isTabsGroup = segments[0] === '(tabs)';
     if (authState.authenticated && !isTabsGroup) {
       router.replace('/home');
     } else if (!authState.authenticated) {
       router.replace('/landing');
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authState]);
+  }, [authState, isLoaded]);
+
+  useEffect(() => {
+    if (isLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [isLoaded]);
 
   return <Slot />;
 };
