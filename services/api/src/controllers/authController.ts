@@ -45,11 +45,6 @@ function refreshToken(req: Request, res: Response) {
       }
 
       const user = decoded as ReturnUser;
-      console.log({
-        user_id: user.user_id,
-        email: user.email,
-        username: user.username,
-      });
       const accessToken = generateAuthenticationToken({
         user_id: user.user_id,
         email: user.email,
@@ -115,7 +110,7 @@ async function login(req: Request, res: Response) {
       });
     }
 
-    res.status(200).send({ accessToken, refreshToken });
+    res.status(200).send({ accessToken, refreshToken, ...returnUser });
   } catch (error) {
     res.status(500).send('Internal server error');
   }
