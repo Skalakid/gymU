@@ -8,7 +8,7 @@
     "start": "node dist/index.js",
     "prod": "yarn build && yarn start",
     "dev": "prisma generate && nodemon src/index.ts --legacy-watch",
-    "dev:db:push": "prisma db push && yarn dev",
+    "dev:db:push": "./setup.sh && yarn db:push && yarn dev",
     "lint": "eslint . --ext .ts,.tsx",
     "prettier": "prettier --write .",
     "db:sync": "prisma db pull",

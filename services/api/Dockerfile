@@ -19,5 +19,3 @@ COPY . .
 EXPOSE 3000
 
 ENTRYPOINT ["yarn"]
-
-CMD ["node", "src/index.js"]
