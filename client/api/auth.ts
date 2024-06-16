@@ -1,7 +1,20 @@
 import * as SecureStore from 'expo-secure-store';
 import SECURE_STORE_KEYS from '../constants/SecureStoreKeys';
+import { router } from 'expo-router';
+import { Alert } from 'react-native';
 
 const DOMAIN = process.env.EXPO_PUBLIC_API_URL;
+
+const showRefreshTokenFailAlert = () => {
+  return new Promise((resolve) => {
+    Alert.alert(
+      'Authentication Error',
+      'Your session has expired. Please log in again.',
+      [{ text: 'Okay', onPress: () => resolve(true) }],
+      { cancelable: false },
+    );
+  });
+};
 
 async function refreshAccessToken() {
   const refreshToken = await SecureStore.getItemAsync(
@@ -37,7 +50,11 @@ async function refreshAccessToken() {
       data.accessToken,
     );
   } catch (error) {
-    console.error('[REFRESH TOKEN]:', error);
+    if (error instanceof Error) {
+      console.error('[REFRESH TOKEN]:', error.message);
+    }
+    await showRefreshTokenFailAlert();
+    router.replace('/logout');
     throw new Error('Error refreshing token');
   }
 }
