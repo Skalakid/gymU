@@ -20,19 +20,18 @@ function generateRefreshToken(data: string | object | Buffer) {
   return jwt.sign(data, refreshTokenSecret);
 }
 
-function refreshToken(req: Request, res: Response) {
+async function refreshToken(req: Request, res: Response) {
   const { refreshToken } = req.body;
   if (!refreshToken) {
     return res.sendStatus(401);
   }
 
-  if (
-    prisma.refresh_token.findFirst({
-      where: {
-        token: refreshToken as string,
-      },
-    }) === null
-  ) {
+  const token = await prisma.refresh_token.findFirst({
+    where: {
+      token: refreshToken as string,
+    },
+  });
+  if (token === null) {
     return res.sendStatus(403);
   }
 
