@@ -2,9 +2,9 @@
 
 #### dev
 
-To run server in development via docker, update `DATABASE_URL` variable in docker-compose.yml file.
+To run the server in development mode without Docker, update the .env file with the DATABASE_URL variable and use the command below. DATABASE_URL is necessary for Prisma to operate properly. However, if you plan to use Docker, make sure you do not set up this variable.'
 
-Then mode run:
+Then run:
 
 ```bash
 yarn dev
