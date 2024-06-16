@@ -12,6 +12,3 @@ if ! grep -q DATABASE_URL .env; then
         cat /run/secrets/postgres_db
     ) >> .env
 fi
-
-echo $DATABASE_ADDRESS
-cat ./.env
