@@ -12,8 +12,8 @@ import { StyleSheet, View } from 'react-native';
 const LoginPage = () => {
   const { login } = useAuthContext();
   const router = useRouter();
-  const [email, setEmail] = useState('test@test.pl');
-  const [password, setPassword] = useState('test');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
