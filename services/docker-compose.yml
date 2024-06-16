@@ -54,10 +54,9 @@ services:
         - ./api/src:/app/src
       ports:
         - 3000:3000
+        - 5555:5555
       environment:
-        # Enter database url here to connect to database via Prisma in docker
-        # Example: postgresql://<postgress>:<randomPassword>@postgres:5432/<db>
-        - DATABASE_URL=...
+        - DATABASE_ADDRESS=postgres.service
       secrets:
         - postgres_db
         - postgres_password
