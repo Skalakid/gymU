@@ -57,6 +57,22 @@ docker version
 #### Setup
 ##### Development mode
 
+###### Via `yarn workspaces`
+
+To run backend services in dev mode, in the main directory run:
+
+```bash
+yarn services:dev:run
+```
+
+or in detached mode:
+
+```bash
+yarn services:dev:run -d
+```
+
+###### Manually
+
 To run backend services in `dev` mode, go to the `services` directory and run command:
 
 ```bash
@@ -69,6 +85,22 @@ or if you want to run services in background:
 docker compose -f docker-compose.yml -f docker-compose.dev.yml up  --build -d
 ```
 ##### Production mode
+
+###### Via `yarn workspaces`
+
+To run backend services in prod mode, in the main directory run:
+
+```bash
+yarn services:prod:run
+```
+
+or in detached mode:
+
+```bash
+yarn services:prod:run -d
+```
+
+###### Manually
 
 To run backend services in `prod` mode, go to the `services` directory and run command:
 
@@ -84,7 +116,12 @@ docker compose -f docker-compose.yml -f docker-compose.prod.yml up  --build -d
 
 #### Shutting down
 
-To shutdown and remove the containers of all services, in the same directory run:
+To shutdown and remove the containers of all services, in the main directory run:
+
+```bash
+yarn services:down
+```
+or manually, in the `services` directory:
 
 ```bash
 docker compose down
