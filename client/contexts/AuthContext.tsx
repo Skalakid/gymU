@@ -116,6 +116,15 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
   }, []);
 
   const logout = useCallback(async () => {
+    try {
+      const refreshToken = await SecureStore.getItemAsync(
+        SECURE_STORE_KEYS.REFRESH_TOKEN,
+      );
+      await fetchApi('/logout', 'DELETE', {}, { refreshToken }, true);
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+
     await deleteTokens();
     setAuthState({ token: null, authenticated: false });
     setUser(null);
