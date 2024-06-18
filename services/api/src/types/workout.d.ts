@@ -12,4 +12,9 @@ type NewUserWorkout = {
   timestamp: Date;
 };
 
-export type { NewWorkoutTemplate, NewUserWorkout };
+type WorkoutTag = {
+  workout_template_id: number;
+  tag_id: number;
+}
+
+export type { NewWorkoutTemplate, NewUserWorkout, WorkoutTag };
