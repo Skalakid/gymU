@@ -15,6 +15,14 @@ model app_user {
   created_at       DateTime?          @default(now()) @db.Timestamptz(6)
   user_workout     user_workout[]
   workout_template workout_template[]
+  refresh_token    refresh_token[]
+}
+
+model refresh_token {
+  refresh_token_id Int      @id @default(autoincrement())
+  token            String
+  user_id          Int
+  app_user         app_user @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model body_part {
