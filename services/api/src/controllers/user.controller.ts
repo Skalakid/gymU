@@ -20,8 +20,7 @@ async function checkEmailUniqueness(email: string) {
   }
 }
 
-async function getAllUsers(req: Request, res: Response) {
-  console.log('getAllUsers');
+async function getAllUsers(_req: Request, res: Response) {
   try {
     const users: ReturnUser[] = (await prisma.app_user.findMany()).map(
       (user) => ({

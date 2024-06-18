@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import { prisma } from '../config/db.server';
 import bcrypt from 'bcrypt';
-import { ReturnUser, checkEmailUniqueness } from './userController';
+import { ReturnUser, checkEmailUniqueness } from './user.controller';
 import jwt from 'jsonwebtoken';
+import CONST from '../constants/CONST';
 
 function generateAuthenticationToken(data: string | object | Buffer) {
   const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
@@ -126,7 +127,10 @@ async function signup(req: Request, res: Response) {
   }
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(
+      password,
+      CONST.AUTH.SALT_OR_ROUNDS,
+    );
     const user = await prisma.app_user.create({
       data: {
         email,
