@@ -4,6 +4,7 @@ import { authenticateToken } from '../middlewares/auth.middleware';
 
 const router = express.Router();
 
+router.get('/current', authenticateToken, userController.getCurrentUser);
 router.get('/all', authenticateToken, userController.getAllUsers);
 
 export = router;
