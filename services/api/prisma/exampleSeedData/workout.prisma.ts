@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client';
 import { prisma } from '../../src/config/db.server';
 import { NewWorkoutTemplate } from '../../src/types/workout';
+import {WorkoutTag} from '../../src/types/workout';
 
 export default async function seedWorkouts() {
   const workoutTemplates = await prisma.workout_template.findMany();
@@ -36,6 +37,21 @@ export default async function seedWorkouts() {
       }),
     );
     console.log('Exercise template items seeded');
+  }
+
+  const workoutTags = await prisma.workout_tags.findMany();
+  if (workoutTags.length === 0) {
+    await Promise.all(
+      getWorkoutTags().map(async (workoutTag) => {
+        await prisma.workout_tags.create({
+          data: {
+            tag_id: workoutTag.tag_id,
+            workout_template_id: workoutTag.workout_template_id,
+          },
+        });
+      }),
+    );
+    console.log('Workout tags seeded');
   }
 }
 
@@ -128,5 +144,30 @@ function getExerciseTemplateItems(): NewExerciseTemplateItem[] {
       }),
       order_index: 3,
     },
+  ];
+}
+
+function getWorkoutTags(): WorkoutTag[] {
+  return [
+    {
+      tag_id: 1,
+      workout_template_id: 1
+    },
+    {
+      tag_id: 2,
+      workout_template_id: 1
+    },
+    {
+     tag_id: 3,
+      workout_template_id: 2
+    },
+    {
+      tag_id: 4,
+       workout_template_id: 2
+     },
+     {
+      tag_id: 5,
+       workout_template_id: 2
+     },
   ];
 }

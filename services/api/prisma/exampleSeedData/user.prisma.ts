@@ -2,7 +2,7 @@ import { prisma } from '../../src/config/db.server';
 import { NewUser } from '../../src/types/user';
 import bcrypt from 'bcrypt';
 
-export default async function seedUsers() {
+export default async function seedTags() {
   const currentUsers = await prisma.app_user.findMany();
   if (currentUsers.length === 0) {
     await Promise.all(
