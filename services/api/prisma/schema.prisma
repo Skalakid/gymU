@@ -54,7 +54,6 @@ model exercise_template_item {
 
 model exercise_type {
   exercise_type_id Int        @id @default(autoincrement())
-  exercise_id      Int
   name             String     @db.VarChar(50)
   has_reps         Boolean?   @default(false)
   has_series       Boolean?   @default(false)
