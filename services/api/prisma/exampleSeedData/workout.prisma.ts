@@ -114,7 +114,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItem[] {
         time: 120,
         break: 60,
       }),
-      order_index: 2,
+      order_index: 3,
     },
     // workout 2
     {

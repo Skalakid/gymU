@@ -49,7 +49,7 @@ async function getAllWorkouts(req: AuthRequest, res: Response) {
             username: app_user.username,
           },
           workout_tags: workout.workout_tags.map(
-            (workout_tag) => workout_tag.tag,
+            (workout_tag) => workout_tag.tag.name,
           ),
           workout_level: workout_level.name,
         };
@@ -70,4 +70,86 @@ async function getAllWorkouts(req: AuthRequest, res: Response) {
   }
 }
 
-export { getAllWorkouts };
+async function getWorkoutDetails(req: AuthRequest, res: Response) {
+  try {
+    const workoutId = req.params.id;
+    const workout = await prisma.workout_template.findUnique({
+      where: {
+        workout_id: Number(workoutId),
+      },
+      include: {
+        app_user: {
+          select: {
+            username: true,
+          },
+        },
+        workout_tags: {
+          select: {
+            tag: true,
+          },
+        },
+        workout_level: {
+          select: {
+            name: true,
+          },
+        },
+        exercise_template_item: {
+          select: {
+            exercise: {
+              select: {
+                name: true,
+                exercise_type: {
+                  select: {
+                    name: true,
+                  },
+                },
+              },
+            },
+            value: true,
+            order_index: true,
+            exercise_id: true,
+          },
+        },
+      },
+    });
+
+    if (!workout) {
+      return res.status(404).send('Workout not found');
+    }
+
+    const exerciseItems = workout.exercise_template_item
+      .map((item) => {
+        return {
+          exercise_id: item.exercise_id,
+          exercise_name: item.exercise.name,
+          exercise_type: item.exercise.exercise_type.name,
+          value: item.value,
+          order_index: item.order_index,
+        };
+      })
+      .sort((a, b) => a.order_index - b.order_index);
+
+    const workoutWithTagName = {
+      workout_id: workout.workout_id,
+      naem: workout.name,
+      description: workout.description,
+      private: workout.private,
+      created_at: workout.created_at,
+      author: {
+        user_id: workout.author_id,
+        username: workout.app_user.username,
+      },
+      workout_tags: workout.workout_tags.map(
+        (workout_tag) => workout_tag.tag.name,
+      ),
+      workout_level: workout.workout_level.name,
+      exercises: exerciseItems,
+    };
+
+    res.status(201).send(workoutWithTagName);
+  } catch (error) {
+    return res.send(500).send('Internal server error');
+  }
+}
+
+export { getAllWorkouts, getWorkoutDetails };

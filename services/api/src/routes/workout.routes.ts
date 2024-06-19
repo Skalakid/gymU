@@ -5,5 +5,6 @@ import { authenticateToken } from '../middlewares/auth.middleware';
 const router = express.Router();
 
 router.get('/all', workoutController.getAllWorkouts);
+router.get('/:id', workoutController.getWorkoutDetails);
 
 export = router;
