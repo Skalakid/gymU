@@ -115,6 +115,12 @@ model workout_tags {
   workout_template    workout_template @relation(fields: [workout_template_id], references: [workout_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
+model workout_level {
+  level_id         Int                @id @default(autoincrement())
+  name             String             @db.VarChar(50)
+  workout_template workout_template[]
+}
+
 model workout_template {
   workout_id             Int                      @id @default(autoincrement())
   author_id              Int
@@ -122,8 +128,10 @@ model workout_template {
   description            String
   created_at             DateTime?                @default(now()) @db.Timestamptz(6)
   private                Boolean?                 @default(false)
+  workout_level_id       Int
   exercise_template_item exercise_template_item[]
   user_workout           user_workout[]
   workout_tags           workout_tags[]
   app_user               app_user                 @relation(fields: [author_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  workout_level          workout_level            @relation(fields: [workout_level_id], references: [level_id])
 }

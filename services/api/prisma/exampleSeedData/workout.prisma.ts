@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client';
 import { prisma } from '../../src/config/db.server';
 import { NewWorkoutTemplate } from '../../src/types/workout';
-import {WorkoutTag} from '../../src/types/workout';
+import { WorkoutTag } from '../../src/types/workout';
 
 export default async function seedWorkouts() {
   const workoutTemplates = await prisma.workout_template.findMany();
@@ -15,6 +15,7 @@ export default async function seedWorkouts() {
             description: workoutTemplate.description,
             created_at: workoutTemplate.created_at,
             private: workoutTemplate.private,
+            workout_level_id: workoutTemplate.workout_level_id,
           },
         });
       }),
@@ -64,6 +65,7 @@ function getWorkoutTemplates(): NewWorkoutTemplate[] {
         'Professional workout dedicated for gym lovers that focuses on all muscle groups',
       created_at: new Date(),
       private: false,
+      workout_level_id: 1,
     },
     {
       author_id: 1,
@@ -71,6 +73,7 @@ function getWorkoutTemplates(): NewWorkoutTemplate[] {
       description: 'Lets gooooo!',
       created_at: new Date(),
       private: false,
+      workout_level_id: 4,
     },
   ];
 }
@@ -151,23 +154,23 @@ function getWorkoutTags(): WorkoutTag[] {
   return [
     {
       tag_id: 1,
-      workout_template_id: 1
+      workout_template_id: 1,
     },
     {
       tag_id: 2,
-      workout_template_id: 1
+      workout_template_id: 1,
     },
     {
-     tag_id: 3,
-      workout_template_id: 2
+      tag_id: 3,
+      workout_template_id: 2,
     },
     {
       tag_id: 4,
-       workout_template_id: 2
-     },
-     {
+      workout_template_id: 2,
+    },
+    {
       tag_id: 5,
-       workout_template_id: 2
-     },
+      workout_template_id: 2,
+    },
   ];
 }

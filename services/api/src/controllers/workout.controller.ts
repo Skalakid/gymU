@@ -1,7 +1,7 @@
 import { Response } from 'express';
 import { prisma } from '../config/db.server';
 import { AuthRequest } from '../middlewares/auth.middleware';
-import {PaginatedResponse} from '../types/api.d'
+import { PaginatedResponse } from '../types/api.d';
 
 async function getAllWorkouts(req: AuthRequest, res: Response) {
   try {
@@ -13,7 +13,7 @@ async function getAllWorkouts(req: AuthRequest, res: Response) {
 
     const workouts = await prisma.workout_template.findMany({
       skip: skip,
-      take: pageSize, 
+      take: pageSize,
       include: {
         app_user: {
           select: {
@@ -22,22 +22,39 @@ async function getAllWorkouts(req: AuthRequest, res: Response) {
         },
         workout_tags: {
           select: {
-            tag: true
+            tag: true,
+          },
+        },
+        workout_level: {
+          select: {
+            name: true,
           },
         },
       },
     });
 
-    const workoutsWithTagName = workouts.map(({app_user, author_id, ...workout}) => {
-      return {
-        ...workout,
-        author: {
-          user_id: author_id,
-          username: app_user.username
-        },
-        workout_tags: workout.workout_tags.map(workout_tag => workout_tag.tag),
-      };
-    });
+    const workoutsWithTagName = workouts.map(
+      ({
+        app_user,
+        author_id,
+        workout_level,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        workout_level_id,
+        ...workout
+      }) => {
+        return {
+          ...workout,
+          author: {
+            user_id: author_id,
+            username: app_user.username,
+          },
+          workout_tags: workout.workout_tags.map(
+            (workout_tag) => workout_tag.tag,
+          ),
+          workout_level: workout_level.name,
+        };
+      },
+    );
 
     const paginatedResponse: PaginatedResponse = {
       currentPage: page,
