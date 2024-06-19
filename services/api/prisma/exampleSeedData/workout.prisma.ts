@@ -2,6 +2,7 @@ import { Prisma } from '@prisma/client';
 import { prisma } from '../../src/config/db.server';
 import { NewWorkoutTemplate } from '../../src/types/workout';
 import { WorkoutTag } from '../../src/types/workout';
+import { NewExerciseTemplateItem } from '../../src/types/exercise';
 
 export default async function seedWorkouts() {
   const workoutTemplates = await prisma.workout_template.findMany();
@@ -77,13 +78,6 @@ function getWorkoutTemplates(): NewWorkoutTemplate[] {
     },
   ];
 }
-
-type NewExerciseTemplateItem = {
-  workout_template_id: number;
-  exercise_id: number;
-  value: Prisma.JsonValue;
-  order_index: number;
-};
 
 function getExerciseTemplateItems(): NewExerciseTemplateItem[] {
   return [

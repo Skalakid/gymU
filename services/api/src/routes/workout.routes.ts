@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.get('/all', workoutController.getAllWorkouts);
 router.get('/:id', workoutController.getWorkoutDetails);
+router.post('/create', workoutController.createWorkout);
 
 export = router;

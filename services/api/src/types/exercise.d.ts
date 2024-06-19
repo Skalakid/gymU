@@ -13,4 +13,11 @@ type NewExercise = {
   description: string;
 };
 
+type NewExerciseTemplateItem = {
+  workout_template_id: number;
+  exercise_id: number;
+  value: Prisma.JsonValue;
+  order_index: number;
+};
+
 export type { NewExerciseType, NewExercise, NewExerciseTemplateItem };

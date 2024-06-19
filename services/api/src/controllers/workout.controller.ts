@@ -2,6 +2,8 @@ import { Response } from 'express';
 import { prisma } from '../config/db.server';
 import { AuthRequest } from '../middlewares/auth.middleware';
 import { PaginatedResponse } from '../types/api.d';
+import { NewWorkoutTemplate } from '../types/workout';
+import { NewExerciseTemplateItem } from '../types/exercise';
 
 async function getAllWorkouts(req: AuthRequest, res: Response) {
   try {
@@ -131,7 +133,7 @@ async function getWorkoutDetails(req: AuthRequest, res: Response) {
 
     const workoutWithTagName = {
       workout_id: workout.workout_id,
-      naem: workout.name,
+      name: workout.name,
       description: workout.description,
       private: workout.private,
       created_at: workout.created_at,
@@ -152,4 +154,75 @@ async function getWorkoutDetails(req: AuthRequest, res: Response) {
   }
 }
 
-export { getAllWorkouts, getWorkoutDetails };
+type ExerciseItem = {
+  exercise_id: number;
+  value: number;
+  order_index: number;
+};
+
+async function createWorkout(req: AuthRequest, res: Response) {
+  try {
+    const {
+      name,
+      description,
+      is_private,
+      workout_level_id,
+      tag_ids,
+      exercises,
+    } = req.body;
+
+    if (
+      name === undefined ||
+      description === undefined ||
+      is_private === undefined ||
+      workout_level_id === undefined ||
+      tag_ids === undefined ||
+      exercises === undefined
+    ) {
+      return res.status(400).send('Missing required fields');
+    }
+
+    const newWorkout = await prisma.workout_template.create({
+      data: {
+        author_id: Number(req.user) || 1,
+        name,
+        description,
+        created_at: new Date(),
+        private: is_private,
+        workout_level_id,
+      },
+    });
+
+    if (!newWorkout) {
+      return res.status(500).send('Failed to create workout');
+    }
+
+    const workoutTags = tag_ids.map((tag_id: number) => {
+      return prisma.workout_tags.create({
+        data: {
+          tag_id,
+          workout_template_id: newWorkout.workout_id,
+        },
+      });
+    });
+
+    const exerciseItems = exercises.map((item: ExerciseItem) => {
+      return prisma.exercise_template_item.create({
+        data: {
+          workout_template_id: newWorkout.workout_id,
+          exercise_id: item.exercise_id,
+          value: item.value,
+          order_index: item.order_index,
+        },
+      });
+    });
+
+    await prisma.$transaction([...workoutTags, ...exerciseItems]);
+
+    res.status(201).send(newWorkout);
+  } catch (error) {
+    return res.send(500).send('Internal server error');
+  }
+}
+
+export { getAllWorkouts, getWorkoutDetails, createWorkout };
