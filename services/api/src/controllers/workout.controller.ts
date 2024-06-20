@@ -8,7 +8,7 @@ async function getAllWorkouts(req: AuthRequest, res: Response) {
     const page = Number(req.query.page) || 1;
     const pageSize = Number(req.query.size) || 10;
     const skip = (page - 1) * pageSize;
-    const tags = req.query.tag_ids as string;
+    const tags = req.query.tag_ids?.toString();
 
     let tagsCondition = undefined;
     if (tags) {
@@ -243,4 +243,15 @@ async function createWorkout(req: AuthRequest, res: Response) {
   }
 }
 
-export { getAllWorkouts, getWorkoutDetails, createWorkout };
+async function getAllWorkoutTags(req: AuthRequest, res: Response) {
+  try {
+    const workoutTags = await prisma.tag.findMany({});
+    res.status(201).send({
+      workoutTags: workoutTags,
+    });
+  } catch (error) {
+    return res.send(500).send('Internal server error');
+  }
+}
+
+export { getAllWorkouts, getWorkoutDetails, createWorkout, getAllWorkoutTags };
