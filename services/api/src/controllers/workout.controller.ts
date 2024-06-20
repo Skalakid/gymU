@@ -2,20 +2,38 @@ import { Response } from 'express';
 import { prisma } from '../config/db.server';
 import { AuthRequest } from '../middlewares/auth.middleware';
 import { PaginatedResponse } from '../types/api.d';
-import { NewWorkoutTemplate } from '../types/workout';
-import { NewExerciseTemplateItem } from '../types/exercise';
 
 async function getAllWorkouts(req: AuthRequest, res: Response) {
   try {
     const page = Number(req.query.page) || 1;
     const pageSize = Number(req.query.size) || 10;
     const skip = (page - 1) * pageSize;
+    const tags = req.query.tag_ids as string;
 
-    const allWorkouts = await prisma.workout_template.count();
+    let tagsCondition = undefined;
+    if (tags) {
+      const tagIds = tags.split(',').map((item) => Number(item));
+      tagsCondition = {
+        workout_tags: {
+          some: {
+            tag: {
+              tag_id: {
+                in: tagIds,
+              },
+            },
+          },
+        },
+      };
+    }
+
+    const allWorkouts = await prisma.workout_template.count({
+      where: tagsCondition,
+    });
 
     const workouts = await prisma.workout_template.findMany({
       skip: skip,
       take: pageSize,
+      where: tagsCondition,
       include: {
         app_user: {
           select: {
