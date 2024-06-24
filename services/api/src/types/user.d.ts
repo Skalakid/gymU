@@ -4,4 +4,10 @@ type NewUser = {
   password: string;
 };
 
-export type { NewUser };
+type ReturnUser = {
+  user_id: number;
+  email: string;
+  username: string;
+};
+
+export type { NewUser, ReturnUser };

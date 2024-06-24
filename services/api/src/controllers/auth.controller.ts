@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
 import { prisma } from '../config/db.server';
 import bcrypt from 'bcrypt';
-import { ReturnUser, checkEmailUniqueness } from './user.controller';
 import jwt from 'jsonwebtoken';
 import CONST from '../constants/CONST';
+import { checkEmailUniqueness } from '../services/user.service';
+import { ReturnUser } from '../types/user';
 
 function generateAuthenticationToken(data: string | object | Buffer) {
   const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
