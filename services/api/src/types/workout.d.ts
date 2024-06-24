@@ -18,4 +18,10 @@ type WorkoutTag = {
   tag_id: number;
 };
 
-export type { NewWorkoutTemplate, NewUserWorkout, WorkoutTag };
+type ExerciseWorkoutItem = {
+  exercise_id: number;
+  value: number;
+  order_index: number;
+};
+
+export type { NewWorkoutTemplate, NewUserWorkout, WorkoutTag, ExerciseWorkoutItem };

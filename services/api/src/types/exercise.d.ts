@@ -20,4 +20,7 @@ type NewExerciseTemplateItem = {
   order_index: number;
 };
 
+
+
+
 export type { NewExerciseType, NewExercise, NewExerciseTemplateItem };
