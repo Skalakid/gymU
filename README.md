@@ -253,5 +253,4 @@ All Rights Reserved. See `LICENSE.txt` for more information.
         <td align="center"><a href="https://github.com/xramzesx">@xramzesx</a></td>
         <td align="center"><a href="https://github.com/m-bert">@m-bert</a></td>
     </tr>
-
 </table>
