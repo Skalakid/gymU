@@ -55,6 +55,7 @@ docker version
 ```
 
 #### Setup
+
 ##### Development mode
 
 ###### Via `yarn workspaces`
@@ -84,6 +85,7 @@ or if you want to run services in background:
 ```bash
 docker compose -f docker-compose.yml -f docker-compose.dev.yml up  --build -d
 ```
+
 ##### Production mode
 
 ###### Via `yarn workspaces`

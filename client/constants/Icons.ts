@@ -1,3 +1,5 @@
+import arrowLeft from '../assets/icons/arrow-left.svg';
+import arrowBottom from '../assets/icons/arrow-bottom.svg';
 import bell from '../assets/icons/bell.svg';
 import bolt from '../assets/icons/bolt.svg';
 import calendar from '../assets/icons/calendar.svg';
@@ -15,6 +17,8 @@ import open from '../assets/icons/open.svg';
 import safari from '../assets/icons/safari.svg';
 
 export default {
+  arrowLeft,
+  arrowBottom,
   bell,
   bolt,
   calendar,

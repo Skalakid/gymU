@@ -3,7 +3,7 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from '@react-navigation/native';
-import { Stack } from 'expo-router';
+import { Slot, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
@@ -32,9 +32,38 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet } from 'react-native';
 import { Colors } from '@/constants/Colors';
+import { AuthContextProvider, useAuthContext } from '@/contexts/AuthContext';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
+
+const InitialLayout = () => {
+  const { authState, isLoaded } = useAuthContext();
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoaded) {
+      return;
+    }
+    const isTabsGroup = segments[0] === '(tabs)';
+    if (authState.authenticated && !isTabsGroup) {
+      router.replace('/home');
+    } else if (!authState.authenticated) {
+      router.replace('(auth)');
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authState, isLoaded]);
+
+  useEffect(() => {
+    if (isLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [isLoaded]);
+
+  return <Slot />;
+};
 
 const RootLayout = () => {
   const colorScheme = useColorScheme();
@@ -70,21 +99,20 @@ const RootLayout = () => {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <SafeAreaView
-        style={[
-          styles.container,
-          {
-            backgroundColor: Colors[colorScheme ?? 'light'].background,
-          },
-        ]}
-      >
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-      </SafeAreaView>
-    </ThemeProvider>
+    <AuthContextProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <SafeAreaView
+          style={[
+            styles.container,
+            {
+              backgroundColor: Colors[colorScheme ?? 'light'].background,
+            },
+          ]}
+        >
+          <InitialLayout />
+        </SafeAreaView>
+      </ThemeProvider>
+    </AuthContextProvider>
   );
 };
 

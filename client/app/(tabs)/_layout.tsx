@@ -13,7 +13,7 @@ const TabLayout = () => {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].primary,
-        tabBarInactiveTintColor: Colors[colorScheme ?? 'light'].tabIconDefault,
+        tabBarInactiveTintColor: Colors[colorScheme ?? 'light'].icon,
         tabBarStyle: {
           ...styles.tabNavigator,
           backgroundColor: Colors[colorScheme ?? 'light'].background,
@@ -89,6 +89,6 @@ const styles = StyleSheet.create({
   tabNavigator: {
     paddingBottom: 0,
     height: 52,
-    borderTopWidth: 0,
+    borderTopWidth: 1,
   },
 });
