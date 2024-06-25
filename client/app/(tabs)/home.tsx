@@ -12,7 +12,7 @@ const HomePage = () => {
       <ThemedText weight="semiBold">Currently logged user: </ThemedText>
       <ThemedText textType="description">User ID: {user?.username}</ThemedText>
       <ThemedText textType="description">Email: {user?.email}</ThemedText>
-      <ThemedText textType="description">USername: {user?.username}</ThemedText>
+      <ThemedText textType="description">Username: {user?.username}</ThemedText>
 
       <PrimaryButton value="Logout" onPress={logout} />
     </ThemedView>
