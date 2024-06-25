@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import ApiError from '../error/ApiError';
 
 interface AuthRequest extends Request {
   user?: string | JwtPayload | undefined;
@@ -13,13 +14,13 @@ function authenticateToken(
   const authToken = req.header('Authorization');
   const token = authToken && authToken.split(' ')[1];
   if (!token) {
-    return res.sendStatus(401);
+    throw new ApiError(401, 'Unauthorized');
   }
 
   try {
     const accesTokenSecret = process.env.ACCESS_TOKEN_SECRET;
     if (!accesTokenSecret) {
-      return res.status(500).send('Internal server error');
+      throw new ApiError(500, 'Internal server error');
     }
 
     jwt.verify(token, accesTokenSecret, (err, user) => {
@@ -28,7 +29,7 @@ function authenticateToken(
       next();
     });
   } catch (err) {
-    res.status(400).send('Invalid Token');
+    next(err);
   }
 }
 

@@ -1,26 +1,35 @@
-import { Response } from 'express';
+import { NextFunction, Response } from 'express';
 import { AuthRequest } from '../middlewares/auth.middleware';
 import * as UserService from '../services/user.service';
 import { ReturnUser } from '../types/user';
+import ApiError from '../error/ApiError';
 
-async function getAllUsers(req: AuthRequest, res: Response) {
+async function getAllUsers(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
   try {
     const users = await UserService.getAllUsers();
     res.status(201).send(users);
   } catch (error) {
-    return [];
+    next(error);
   }
 }
 
-async function getCurrentUser(req: AuthRequest, res: Response) {
+async function getCurrentUser(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
   try {
     const user = req.user as ReturnUser;
     if (!user) {
-      return res.sendStatus(401); // 401 because the user is not authenticated and user parameter is not set
+      throw new ApiError(401, 'User not authenticated'); // 401 because the user is not authenticated and user parameter is not set
     }
     res.status(200).send(user);
   } catch (error) {
-    return res.send(500).send('Internal server error');
+    next(error);
   }
 }
 
