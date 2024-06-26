@@ -45,4 +45,18 @@ async function getExerciseDetails(exercise_id: number) {
   return exercises;
 }
 
-export { getAllExercises, getExerciseDetails };
+async function getAllExersiceTypes() {
+  const exerciseTypes = await prisma.exercise_type.findMany({
+    select: {
+      name: true,
+      has_reps: true,
+      has_series: true,
+      has_weights: true,
+      has_time: true,
+      is_break: true,
+    },
+  });
+  return exerciseTypes;
+}
+
+export { getAllExercises, getExerciseDetails, getAllExersiceTypes };

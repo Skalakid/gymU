@@ -25,7 +25,6 @@ async function getExerciseDetails(
     if (!exerciseId || exerciseId <= 0) {
       throw new ApiError(400, 'Invalid exercise id');
     }
-    console.log('XD');
 
     const exercises = await ExerciseService.getExerciseDetails(exerciseId);
     res.status(201).send(exercises);
@@ -34,4 +33,17 @@ async function getExerciseDetails(
   }
 }
 
-export { getAllExercises, getExerciseDetails };
+async function getAllExersiceTypes(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const exerciseTypes = await ExerciseService.getAllExersiceTypes();
+    res.status(201).send(exerciseTypes);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export { getAllExercises, getExerciseDetails, getAllExersiceTypes };

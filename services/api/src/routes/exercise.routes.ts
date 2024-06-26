@@ -5,6 +5,7 @@ import { authenticateToken } from '../middlewares/auth.middleware';
 const router = express.Router();
 
 router.get('/all', authenticateToken, exerciseController.getAllExercises);
+router.get('/types', authenticateToken, exerciseController.getAllExersiceTypes);
 router.get('/:id', authenticateToken, exerciseController.getExerciseDetails);
 
 export = router;

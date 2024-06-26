@@ -22,4 +22,9 @@ async function getExerciseDetails(exercise_id: number) {
   };
 }
 
-export { getAllExercises, getExerciseDetails };
+async function getAllExersiceTypes() {
+  const exerciseTypes = await ExerciseDB.getAllExersiceTypes();
+  return exerciseTypes;
+}
+
+export { getAllExercises, getExerciseDetails, getAllExersiceTypes };
