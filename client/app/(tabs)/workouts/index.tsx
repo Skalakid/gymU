@@ -1,40 +1,46 @@
+import fetchApi from '@/api/fetch';
 import ThemedText from '@/components/ThemedText';
 import ThemedView from '@/components/ThemedView';
 import Header from '@/components/navigation/Header';
 import WorkoutItem from '@/components/workouts/WorkoutItem';
+import { Colors } from '@/constants/Colors';
 import Icons from '@/constants/Icons';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
+
+type Workout = {
+  workout_id: number;
+  name: string;
+  description: string;
+  created_at: string;
+  private: boolean;
+  workout_tags: string[];
+  author: {
+    user_id: number;
+    username: string;
+  };
+  workout_level: string;
+};
 
 const WorkoutsPage = () => {
-  const workouts = [
-    {
-      workout_id: 1,
-      name: 'Giga workout',
-      description:
-        'Professional workout dedicated for gym lovers that focuses on all muscle groups',
-      created_at: '2024-06-26T19:25:59.053Z',
-      private: false,
-      workout_tags: ['Arms', 'Back'],
-      author: {
-        user_id: 1,
-        username: 'devUser',
-      },
-      workout_level: 'beginner',
-    },
-    {
-      workout_id: 2,
-      name: '"the timetable is known" type of workout',
-      description: 'Lets gooooo!',
-      created_at: '2024-06-26T19:25:59.053Z',
-      private: false,
-      workout_tags: ['Chest', 'Cardio', 'Legs'],
-      author: {
-        user_id: 1,
-        username: 'devUser',
-      },
-      workout_level: 'medium',
-    },
-  ];
+  const [workouts, setWorkouts] = useState<Workout[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const getAllWorkouts = async () => {
+    try {
+      const response = await fetchApi('/workout/all', 'GET', null);
+      const paginatedWorkouts: PaginatedResponse<Workout> =
+        await response.json();
+      setWorkouts(paginatedWorkouts.data);
+      setIsLoaded(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllWorkouts();
+  }, []);
 
   return (
     <ThemedView style={styles.container}>
@@ -52,6 +58,13 @@ const WorkoutsPage = () => {
             />
           )}
           ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
+          ListEmptyComponent={() =>
+            isLoaded ? (
+              <ThemedText>No workouts found...</ThemedText>
+            ) : (
+              <ActivityIndicator color={Colors.dark.primary} />
+            )
+          }
         />
       </ThemedView>
     </ThemedView>

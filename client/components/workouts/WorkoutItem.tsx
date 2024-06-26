@@ -2,7 +2,7 @@ import React from 'react';
 import ThemedView from '../ThemedView';
 import ThemedText from '../ThemedText';
 import { StyleSheet, View } from 'react-native';
-import Icon from '../Icon';
+import Icon from '../common/Icon';
 import Icons from '@/constants/Icons';
 import { capitalize } from '@/utils/text.utils';
 
