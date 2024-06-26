@@ -11,6 +11,7 @@ type NewExercise = {
   exercise_type_id: number;
   name: string;
   description: string;
+  body_parts: string[];
 };
 
 type NewExerciseTemplateItem = {
@@ -19,8 +20,5 @@ type NewExerciseTemplateItem = {
   value: Prisma.JsonValue;
   order_index: number;
 };
-
-
-
 
 export type { NewExerciseType, NewExercise, NewExerciseTemplateItem };

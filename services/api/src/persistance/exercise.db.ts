@@ -1,0 +1,48 @@
+import { prisma } from '../config/db.server';
+
+async function getAllExercises() {
+  const exercises = await prisma.exercise.findMany({
+    select: {
+      exercise_id: true,
+      name: true,
+      exercise_type: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+
+  return exercises;
+}
+
+async function getExerciseDetails(exercise_id: number) {
+  const exercises = await prisma.exercise.findUnique({
+    where: {
+      exercise_id: exercise_id,
+    },
+    select: {
+      exercise_id: true,
+      name: true,
+      description: true,
+      exercise_type: {
+        select: {
+          name: true,
+        },
+      },
+      exercises_body_parts: {
+        select: {
+          body_part: {
+            select: {
+              name: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  return exercises;
+}
+
+export { getAllExercises, getExerciseDetails };

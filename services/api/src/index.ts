@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 import workoutRoutes from './routes/workout.routes';
+import exerciseRoutes from './routes/exercise.routes';
 import errorHandler from './middlewares/error.middleware';
 
 dotenv.config();
@@ -26,6 +27,7 @@ app.get('/', (req: Request, res: Response) => {
 app.use(authRoutes);
 app.use('/user', userRoutes);
 app.use('/workout', workoutRoutes);
+app.use('/exercise', exerciseRoutes);
 
 app.use(errorHandler);
 
