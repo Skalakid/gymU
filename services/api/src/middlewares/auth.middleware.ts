@@ -11,10 +11,6 @@ function authenticateToken(
   res: Response,
   next: NextFunction,
 ) {
-  if (process.env.NODE_ENV !== 'production') {
-    return next();
-  }
-
   const authToken = req.header('Authorization');
   const token = authToken && authToken.split(' ')[1];
   if (!token) {
