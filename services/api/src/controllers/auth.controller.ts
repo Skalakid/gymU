@@ -1,9 +1,11 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { prisma } from '../config/db.server';
 import bcrypt from 'bcrypt';
-import { ReturnUser, checkEmailUniqueness } from './user.controller';
 import jwt from 'jsonwebtoken';
 import CONST from '../constants/CONST';
+import { checkEmailUniqueness } from '../services/user.service';
+import { ReturnUser } from '../types/user';
+import ApiError from '../error/ApiError';
 
 function generateAuthenticationToken(data: string | object | Buffer) {
   const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
@@ -21,48 +23,52 @@ function generateRefreshToken(data: string | object | Buffer) {
   return jwt.sign(data, refreshTokenSecret);
 }
 
-async function refreshToken(req: Request, res: Response) {
-  const { refreshToken } = req.body;
-  if (!refreshToken) {
-    return res.sendStatus(401);
+async function refreshToken(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { refreshToken } = req.body;
+    if (!refreshToken) {
+      throw new ApiError(400, 'Missing refresh token');
+    }
+
+    const token = await prisma.refresh_token.findFirst({
+      where: {
+        token: refreshToken as string,
+      },
+    });
+    if (token === null) {
+      throw new ApiError(403, 'Invalid refresh token');
+    }
+
+    jwt.verify(
+      refreshToken as string,
+      process.env.REFRESH_TOKEN_SECRET as string,
+      (err, decoded) => {
+        if (err || !decoded) {
+          return res.sendStatus(403);
+        }
+
+        const user = decoded as ReturnUser;
+        const accessToken = generateAuthenticationToken({
+          user_id: user.user_id,
+          email: user.email,
+          username: user.username,
+        });
+        if (!accessToken) {
+          return res.status(500).send('Internal server error');
+        }
+
+        res.status(200).send({ accessToken });
+      },
+    );
+  } catch (error) {
+    next(error);
   }
-
-  const token = await prisma.refresh_token.findFirst({
-    where: {
-      token: refreshToken as string,
-    },
-  });
-  if (token === null) {
-    return res.sendStatus(403);
-  }
-
-  jwt.verify(
-    refreshToken as string,
-    process.env.REFRESH_TOKEN_SECRET as string,
-    (err, decoded) => {
-      if (err || !decoded) {
-        return res.sendStatus(403);
-      }
-
-      const user = decoded as ReturnUser;
-      const accessToken = generateAuthenticationToken({
-        user_id: user.user_id,
-        email: user.email,
-        username: user.username,
-      });
-      if (!accessToken) {
-        return res.status(500).send('Internal server error');
-      }
-
-      res.status(200).send({ accessToken });
-    },
-  );
 }
 
-async function login(req: Request, res: Response) {
+async function login(req: Request, res: Response, next: NextFunction) {
   const { email, password } = req.body;
   if (!email || !password) {
-    return res.status(400).send('Missing required fields');
+    throw new ApiError(400, 'Missing required fields');
   }
 
   try {
@@ -73,12 +79,12 @@ async function login(req: Request, res: Response) {
     });
 
     if (!user) {
-      return res.status(404).send('User not found');
+      throw new ApiError(404, 'User not found');
     }
 
     const passwordMatch = await bcrypt.compare(password, user.password_hash);
     if (!passwordMatch) {
-      return res.status(401).send('Invalid password');
+      throw new ApiError(401, 'Invalid password');
     }
 
     const returnUser: ReturnUser = {
@@ -98,7 +104,7 @@ async function login(req: Request, res: Response) {
     const refreshToken =
       storedRefreshToken?.token || generateRefreshToken(returnUser);
     if (!accessToken || !refreshToken) {
-      return res.status(500).send('Internal server error');
+      throw new ApiError(500, 'Internal server error');
     }
 
     if (!storedRefreshToken?.token) {
@@ -112,18 +118,18 @@ async function login(req: Request, res: Response) {
 
     res.status(200).send({ accessToken, refreshToken, ...returnUser });
   } catch (error) {
-    res.status(500).send('Internal server error');
+    next(error);
   }
 }
 
-async function signup(req: Request, res: Response) {
+async function signup(req: Request, res: Response, next: NextFunction) {
   const { email, username, password } = req.body;
   if (!email || !username || !password) {
-    return res.status(400).send('Missing required fields');
+    throw new ApiError(400, 'Missing required fields');
   }
 
   if (!(await checkEmailUniqueness(email))) {
-    return res.status(409).send('Email already in use');
+    throw new ApiError(409, 'Email already in use');
   }
 
   try {
@@ -145,15 +151,15 @@ async function signup(req: Request, res: Response) {
       username: user.username,
     });
   } catch (error) {
-    res.status(500).send('Internal server error');
+    next(error);
   }
 }
 
-async function logout(req: Request, res: Response) {
+async function logout(req: Request, res: Response, next: NextFunction) {
   try {
     const { refreshToken } = req.body;
     if (!refreshToken) {
-      return res.sendStatus(401);
+      throw new ApiError(400, 'Missing refresh token');
     }
 
     const deletedTokens = await prisma.refresh_token.deleteMany({
@@ -163,12 +169,12 @@ async function logout(req: Request, res: Response) {
     });
 
     if (deletedTokens.count === 0) {
-      return res.sendStatus(404);
+      throw new ApiError(404, 'Token not found');
     }
 
     res.sendStatus(204);
   } catch (error) {
-    res.status(500).send('Internal server error');
+    next(error);
   }
 }
 

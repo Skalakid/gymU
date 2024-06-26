@@ -1,0 +1,119 @@
+import { NextFunction, Response } from 'express';
+import { prisma } from '../config/db.server';
+import { AuthRequest } from '../middlewares/auth.middleware';
+import * as WorkoutService from '../services/workout.service';
+import ApiError from '../error/ApiError';
+
+async function getAllWorkouts(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const page = Number(req.query.page) || 1;
+    const pageSize = Number(req.query.size) || 10;
+    const skip = (page - 1) * pageSize;
+    const tags = req.query.tag_ids?.toString();
+
+    let tagIds = null;
+    if (tags) {
+      tagIds = tags.split(',').map((item) => Number(item));
+    }
+
+    const allWorkoutsPaginated = await WorkoutService.getAllWorkouts(
+      skip,
+      page,
+      pageSize,
+      tagIds,
+    );
+
+    res.status(201).send(allWorkoutsPaginated);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function getWorkoutDetails(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const workoutId = Number(req.params.id) || -1;
+    if (Number.isNaN(workoutId) || workoutId <= 0) {
+      throw new ApiError(400, 'Invalid workout id');
+    }
+
+    const workoutWithTagName =
+      await WorkoutService.getWorkoutDetails(workoutId);
+    if (!workoutWithTagName) {
+      throw new ApiError(404, 'Workout not found');
+    }
+
+    res.status(201).send(workoutWithTagName);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function createWorkout(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const {
+      name,
+      description,
+      is_private,
+      workout_level_id,
+      tag_ids,
+      exercises,
+    } = req.body;
+
+    if (
+      name === undefined ||
+      description === undefined ||
+      is_private === undefined ||
+      workout_level_id === undefined ||
+      tag_ids === undefined ||
+      exercises === undefined
+    ) {
+      throw new ApiError(400, 'Missing required fields');
+    }
+
+    const newWorkout = await WorkoutService.createWorkout(
+      Number(req.user),
+      name,
+      description,
+      is_private,
+      workout_level_id,
+      tag_ids,
+      exercises,
+    );
+    if (!newWorkout) {
+      throw new ApiError(500, 'Failed to create workout');
+    }
+
+    res.status(201).send(newWorkout);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function getAllWorkoutTags(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const workoutTags = await prisma.tag.findMany({});
+    res.status(201).send({
+      workoutTags: workoutTags,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export { getAllWorkouts, getWorkoutDetails, createWorkout, getAllWorkoutTags };

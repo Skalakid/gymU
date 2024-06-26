@@ -1,53 +1,37 @@
-import { Request, Response } from 'express';
-import { prisma } from '../config/db.server';
+import { NextFunction, Response } from 'express';
 import { AuthRequest } from '../middlewares/auth.middleware';
+import * as UserService from '../services/user.service';
+import { ReturnUser } from '../types/user';
+import ApiError from '../error/ApiError';
 
-type ReturnUser = {
-  user_id: number;
-  email: string;
-  username: string;
-};
-
-async function checkEmailUniqueness(email: string) {
+async function getAllUsers(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
   try {
-    const user = await prisma.app_user.findUnique({
-      where: {
-        email: email,
-      },
-    });
-    return user === null;
-  } catch (error) {
-    return false;
-  }
-}
-
-async function getAllUsers(req: AuthRequest, res: Response) {
-  try {
-    const users: ReturnUser[] = (await prisma.app_user.findMany()).map(
-      (user) => ({
-        user_id: user.user_id,
-        email: user.email,
-        username: user.username,
-      }),
-    );
-
+    const users = await UserService.getAllUsers();
     res.status(201).send(users);
   } catch (error) {
-    return [];
+    next(error);
   }
 }
 
-async function getCurrentUser(req: AuthRequest, res: Response) {
+async function getCurrentUser(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
   try {
     const user = req.user as ReturnUser;
     if (!user) {
-      throw new Error('User not found');
+      throw new ApiError(401, 'User not authenticated'); // 401 because the user is not authenticated and user parameter is not set
     }
     res.status(200).send(user);
   } catch (error) {
-    return res.send(500).send('Internal server error');
+    next(error);
   }
 }
 
-export { checkEmailUniqueness, getAllUsers, getCurrentUser };
+export { getAllUsers, getCurrentUser };
 export type { ReturnUser };
