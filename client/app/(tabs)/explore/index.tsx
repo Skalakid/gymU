@@ -1,13 +1,22 @@
 import fetchApi from '@/api/fetch';
 import ThemedText from '@/components/ThemedText';
 import ThemedView from '@/components/ThemedView';
+import Tile from '@/components/common/Tile';
 import Header from '@/components/navigation/Header';
+import WorkoutForm from '@/components/workoutForm/WorkoutForm';
 import TagSelector from '@/components/workouts/TagSelector';
 import WorkoutItem from '@/components/workouts/WorkoutItem';
 import { Colors } from '@/constants/Colors';
 import Icons from '@/constants/Icons';
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  Modal,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 type WorkoutTagsRespone = {
   workout_tags: WorkoutType[];
@@ -18,6 +27,7 @@ const ExplorePage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [areTagsLoaded, setAreTagsLoaded] = useState(false);
   const [tags, setTags] = useState<WorkoutType[]>([]);
+  const [showWorkoutForm, setShowWorkoutForm] = useState(false);
 
   const getAllWorkouts = async (tagIds: number[] | null = null) => {
     try {
@@ -87,6 +97,24 @@ const ExplorePage = () => {
             )
           }
         />
+
+        <Tile style={styles.addWorkoutTile}>
+          <TouchableOpacity
+            style={styles.addWorkoutButton}
+            onPress={() => {
+              setShowWorkoutForm(true);
+            }}
+          >
+            <ThemedText>+</ThemedText>
+          </TouchableOpacity>
+        </Tile>
+        <Modal
+          animationType="slide"
+          visible={showWorkoutForm}
+          transparent={true}
+        >
+          <WorkoutForm closeForm={() => setShowWorkoutForm((prev) => !prev)} />
+        </Modal>
       </ThemedView>
     </ThemedView>
   );
@@ -107,5 +135,22 @@ const styles = StyleSheet.create({
   },
   workoutList: {
     gap: 10,
+  },
+
+  addWorkoutTile: {
+    height: 100,
+
+    borderColor: 'white',
+    borderWidth: 2,
+    borderStyle: 'dashed',
+    borderRadius: 15,
+  },
+
+  addWorkoutButton: {
+    height: '100%',
+    width: '100%',
+
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
 });
