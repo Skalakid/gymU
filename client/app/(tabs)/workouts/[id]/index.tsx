@@ -1,51 +1,84 @@
+import fetchApi from '@/api/fetch';
 import ThemedText from '@/components/ThemedText';
-import PrimaryButton from '@/components/button/PrimaryButton';
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import Icon from '@/components/common/Icon';
+import LabeledText from '@/components/common/LabeledText';
+import Tag from '@/components/common/tag/Tag';
+import Icons from '@/constants/Icons';
+import useTheme from '@/hooks/useTheme';
+import { capitalize } from '@/utils/text.utils';
+import { useLocalSearchParams } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 const WorkoutDetailsPage = () => {
+  const theme = useTheme();
   const { id } = useLocalSearchParams();
-  const router = useRouter();
+  const [workoutDetails, setWorkoutDetails] = useState<Workout | null>(null);
+
+  const getWorkoutDetails = useCallback(async () => {
+    try {
+      const response = await fetchApi(`/workout/${id}`, 'GET');
+      if (!response.ok) {
+        console.error(response.statusText);
+        return;
+      }
+      const workoutDetails = await response.json();
+      setWorkoutDetails(workoutDetails);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [id]);
+
+  useEffect(() => {
+    getWorkoutDetails();
+  }, [getWorkoutDetails]);
 
   return (
-    <View>
-      <ThemedText>General info</ThemedText>
-      <PrimaryButton
-        value="test"
-        onPress={() => {
-          router.navigate(`/workouts/${id}/exercises`);
-        }}
-      />
-    </View>
+    <ScrollView>
+      <View style={styles.content}>
+        <LabeledText
+          label="Created by"
+          text={workoutDetails?.author.username || ''}
+          color={theme.primary}
+          weight="medium"
+        />
+        <LabeledText label="Name" text={workoutDetails?.name || ''} />
+        <LabeledText
+          label="Description"
+          text={workoutDetails?.description || ''}
+          style={{ marginBottom: 10 }}
+        />
+
+        <View style={styles.row}>
+          <Icon icon={Icons.flame} size={20} color={theme.text} />
+          <ThemedText>{capitalize(workoutDetails?.workout_level)}</ThemedText>
+        </View>
+
+        <View style={styles.row}>
+          <Icon icon={Icons.hashtag} size={20} color={theme.text} />
+          <View style={styles.tagList}>
+            {(workoutDetails?.workout_tags || []).map((tag, index) => (
+              <Tag key={`tag${index}`} value={capitalize(tag)} size="l" />
+            ))}
+          </View>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
 export default WorkoutDetailsPage;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'transparent',
-    justifyContent: 'space-between',
-  },
   content: {
-    flex: 1,
+    gap: 15,
   },
-  header: { backgroundColor: 'transparent', marginBottom: 64 },
-  modal: {
-    flex: 1,
-    paddingHorizontal: 20,
-    borderTopEndRadius: 15,
-    borderTopLeftRadius: 15,
+  row: {
+    flexDirection: 'row',
+    gap: 20,
   },
-  gradient: {
-    position: 'absolute',
-    top: 0,
-    width: '100%',
-    height: 250,
+  tagList: {
+    flexDirection: 'row',
+    gap: 10,
   },
 });

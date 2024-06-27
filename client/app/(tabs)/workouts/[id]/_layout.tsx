@@ -1,12 +1,13 @@
 import ThemedView from '@/components/ThemedView';
 import Header from '@/components/navigation/Header';
+import PageSwitcher from '@/components/navigation/PageSwitcher';
 import Icons from '@/constants/Icons';
 import Images from '@/constants/Images';
 import useTheme from '@/hooks/useTheme';
 import { useIsFocused } from '@react-navigation/native';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Slot, useRouter, useSegments } from 'expo-router';
+import { Slot, usePathname, useRouter, useSegments } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated';
 
@@ -15,6 +16,8 @@ const WorkoutDetailsPage = () => {
   const router = useRouter();
   const isFocused = useIsFocused();
   const segments = useSegments();
+  const pathName = usePathname();
+  const id = pathName.split('/')[2];
 
   if (!isFocused) return null;
   return (
@@ -51,6 +54,15 @@ const WorkoutDetailsPage = () => {
           style={[styles.modal, { backgroundColor: theme.background }]}
           entering={SlideInDown}
         >
+          <View style={styles.switcher}>
+            <PageSwitcher
+              currentRoute={pathName}
+              pages={[
+                { name: 'General info', href: `/workouts/${id}` },
+                { name: 'Exercises', href: `/workouts/${id}/exercises` },
+              ]}
+            />
+          </View>
           <Slot />
         </Animated.View>
       </View>
@@ -73,10 +85,10 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
   },
-  header: { backgroundColor: 'transparent', marginBottom: 64 },
+  header: { backgroundColor: 'transparent', marginBottom: 120 },
   modal: {
     flex: 1,
-    paddingHorizontal: 20,
+    padding: 20,
     borderTopEndRadius: 15,
     borderTopLeftRadius: 15,
   },
@@ -84,6 +96,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     width: '100%',
-    height: 250,
+    height: 150,
+  },
+  switcher: {
+    alignItems: 'center',
+    width: '100%',
+    paddingBottom: 20,
   },
 });
