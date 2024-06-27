@@ -2,6 +2,7 @@ import fetchApi from '@/api/fetch';
 import ThemedText from '@/components/ThemedText';
 import Icon from '@/components/common/Icon';
 import LabeledText from '@/components/common/LabeledText';
+import Tile from '@/components/common/Tile';
 import Tag from '@/components/common/tag/Tag';
 import Icons from '@/constants/Icons';
 import useTheme from '@/hooks/useTheme';
@@ -36,32 +37,36 @@ const WorkoutDetailsPage = () => {
   return (
     <ScrollView>
       <View style={styles.content}>
-        <LabeledText
-          label="Created by"
-          text={workoutDetails?.author.username || ''}
-          color={theme.primary}
-          weight="medium"
-        />
-        <LabeledText label="Name" text={workoutDetails?.name || ''} />
-        <LabeledText
-          label="Description"
-          text={workoutDetails?.description || ''}
-          style={{ marginBottom: 10 }}
-        />
+        <Tile style={styles.tile}>
+          <LabeledText
+            label="Created by"
+            text={workoutDetails?.author.username || ''}
+            color={theme.primary}
+            weight="medium"
+          />
+          <LabeledText label="Name" text={workoutDetails?.name || ''} />
+          <LabeledText
+            label="Description"
+            text={workoutDetails?.description || ''}
+            style={{ marginBottom: 10 }}
+          />
+        </Tile>
 
-        <View style={styles.row}>
-          <Icon icon={Icons.flame} size={20} color={theme.text} />
-          <ThemedText>{capitalize(workoutDetails?.workout_level)}</ThemedText>
-        </View>
-
-        <View style={styles.row}>
-          <Icon icon={Icons.hashtag} size={20} color={theme.text} />
-          <View style={styles.tagList}>
-            {(workoutDetails?.workout_tags || []).map((tag, index) => (
-              <Tag key={`tag${index}`} value={capitalize(tag)} size="l" />
-            ))}
+        <Tile style={styles.tile}>
+          <View style={styles.row}>
+            <Icon icon={Icons.flame} size={20} color={theme.text} />
+            <ThemedText>{capitalize(workoutDetails?.workout_level)}</ThemedText>
           </View>
-        </View>
+
+          <View style={styles.row}>
+            <Icon icon={Icons.hashtag} size={20} color={theme.text} />
+            <View style={styles.tagList}>
+              {(workoutDetails?.workout_tags || []).map((tag, index) => (
+                <Tag key={`tag${index}`} value={capitalize(tag)} size="l" />
+              ))}
+            </View>
+          </View>
+        </Tile>
       </View>
     </ScrollView>
   );
@@ -80,5 +85,8 @@ const styles = StyleSheet.create({
   tagList: {
     flexDirection: 'row',
     gap: 10,
+  },
+  tile: {
+    gap: 15,
   },
 });

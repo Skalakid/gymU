@@ -7,6 +7,7 @@ const WorkoutsLayout = () => {
         headerShown: false,
       }}
     >
+      <Stack.Screen name="index" />
       <Stack.Screen name="[id]" options={{ freezeOnBlur: true }} />
     </Stack>
   );
