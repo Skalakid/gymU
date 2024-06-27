@@ -1,4 +1,4 @@
-import TextLink from '@/components/TextLink';
+import TextLink from '@/components/common/TextLink';
 import ThemedText from '@/components/ThemedText';
 import PrimaryButton from '@/components/button/PrimaryButton';
 import TextInput from '@/components/input/TextInput';

@@ -1,5 +1,4 @@
 import { NextFunction, Response } from 'express';
-import { prisma } from '../config/db.server';
 import { AuthRequest } from '../middlewares/auth.middleware';
 import * as WorkoutService from '../services/workout.service';
 import ApiError from '../error/ApiError';
@@ -16,7 +15,7 @@ async function getAllWorkouts(
     const tags = req.query.tag_ids?.toString();
 
     let tagIds = null;
-    if (tags) {
+    if (tags !== undefined) {
       tagIds = tags.split(',').map((item) => Number(item));
     }
 
@@ -107,9 +106,9 @@ async function getAllWorkoutTags(
   next: NextFunction,
 ) {
   try {
-    const workoutTags = await prisma.tag.findMany({});
+    const workoutTags = await WorkoutService.getAllWorkoutTags();
     res.status(201).send({
-      workoutTags: workoutTags,
+      workout_tags: workoutTags,
     });
   } catch (error) {
     next(error);
