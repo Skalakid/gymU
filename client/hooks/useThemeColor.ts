@@ -7,19 +7,20 @@ import { useColorScheme } from 'react-native';
 import { Colors } from '@/constants/Colors';
 
 const useThemeColor = (
-  props: { light?: string; dark?: string },
+  props?: { light?: string; dark?: string } | null,
   colorName?: keyof typeof Colors.light & keyof typeof Colors.dark,
 ) => {
   const theme = useColorScheme() ?? 'light';
-  const colorFromProps = props[theme];
+  if (props) {
+    const colorFromProps = props[theme];
 
-  if (colorFromProps) {
-    return colorFromProps;
-  } else if (colorName) {
-    return Colors[theme][colorName];
-  } else {
-    return 'transparent';
+    if (colorFromProps) {
+      return colorFromProps;
+    } else if (colorName) {
+      return Colors[theme][colorName];
+    }
   }
+  return 'transparent';
 };
 
 export default useThemeColor;
