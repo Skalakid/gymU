@@ -7,25 +7,24 @@ import { capitalize } from '@/utils/text.utils';
 import Tile from '../common/Tile';
 import Tag from '../common/tag/Tag';
 import useTheme from '@/hooks/useTheme';
-import { useRouter } from 'expo-router';
 
 type WorkoutItemProp = {
-  id: number;
   name: string;
   level: string;
   tags?: string[];
+  onPress?: () => void;
 };
 
-const WorkoutItem = ({ id, name, level, tags = [] }: WorkoutItemProp) => {
+const WorkoutItem = ({
+  name,
+  level,
+  tags = [],
+  onPress = () => {},
+}: WorkoutItemProp) => {
   const theme = useTheme();
-  const router = useRouter();
-
-  const handlePress = () => {
-    router.navigate(`/workouts/${id}`);
-  };
 
   return (
-    <TouchableOpacity onPress={handlePress}>
+    <TouchableOpacity onPress={onPress}>
       <Tile style={styles.container}>
         <ThemedText size="l" weight="medium">
           {name}

@@ -6,6 +6,7 @@ import TagSelector from '@/components/workouts/TagSelector';
 import WorkoutItem from '@/components/workouts/WorkoutItem';
 import { Colors } from '@/constants/Colors';
 import Icons from '@/constants/Icons';
+import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 
@@ -14,6 +15,7 @@ type WorkoutTagsRespone = {
 };
 
 const ExplorePage = () => {
+  const router = useRouter();
   const [workouts, setWorkouts] = useState<Workout[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [areTagsLoaded, setAreTagsLoaded] = useState(false);
@@ -73,10 +75,12 @@ const ExplorePage = () => {
           keyExtractor={(item) => item.workout_id.toString()}
           renderItem={({ item }) => (
             <WorkoutItem
-              id={item.workout_id}
               name={item.name}
               level={item.workout_level}
               tags={item.workout_tags}
+              onPress={() => {
+                router.navigate(`/explore/${item.workout_id}`);
+              }}
             />
           )}
           ItemSeparatorComponent={() => <View style={{ height: 20 }} />}

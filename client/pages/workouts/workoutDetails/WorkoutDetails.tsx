@@ -1,3 +1,4 @@
+import fetchApi from '@/api/fetch';
 import ThemedView from '@/components/ThemedView';
 import Header from '@/components/navigation/Header';
 import PageSwitcher from '@/components/navigation/PageSwitcher';
@@ -7,9 +8,17 @@ import useTheme from '@/hooks/useTheme';
 import { useIsFocused } from '@react-navigation/native';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Slot, usePathname, useRouter, useSegments } from 'expo-router';
+import {
+  useLocalSearchParams,
+  usePathname,
+  useRouter,
+  useSegments,
+} from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated';
+import WorkoutGeneralInfo from './WorkoutGeneralInfo';
+import WorkoutExercises from './WorkoutExercises';
 
 const WorkoutDetailsPage = () => {
   const theme = useTheme();
@@ -17,7 +26,40 @@ const WorkoutDetailsPage = () => {
   const isFocused = useIsFocused();
   const segments = useSegments();
   const pathName = usePathname();
-  const id = pathName.split('/')[2];
+  const { id } = useLocalSearchParams();
+  const [currentSubpage, setCurrentSubpage] = useState(0);
+  const [workoutDetails, setWorkoutDetails] = useState<Workout | null>(null);
+
+  const getWorkoutDetails = useCallback(async () => {
+    try {
+      const response = await fetchApi(`/workout/${id}`, 'GET');
+      if (!response.ok) {
+        console.error(response.statusText);
+        return;
+      }
+      const workoutDetails = await response.json();
+      setWorkoutDetails(workoutDetails);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [id]);
+
+  useEffect(() => {
+    getWorkoutDetails();
+  }, [getWorkoutDetails]);
+
+  const renderSubpage = () => {
+    if (!workoutDetails) return null;
+
+    switch (currentSubpage) {
+      case 0:
+        return <WorkoutGeneralInfo workoutDetails={workoutDetails} />;
+      case 1:
+        return <WorkoutExercises workoutDetails={workoutDetails} />;
+      default:
+        return null;
+    }
+  };
 
   if (!isFocused) return null;
   return (
@@ -57,13 +99,12 @@ const WorkoutDetailsPage = () => {
           <View style={styles.switcher}>
             <PageSwitcher
               currentRoute={pathName}
-              pages={[
-                { name: 'General info', href: `/workouts/${id}` },
-                { name: 'Exercises', href: `/workouts/${id}/exercises` },
-              ]}
+              pages={[' General info', 'Exercises']}
+              onRouteChange={(index) => setCurrentSubpage(index)}
             />
           </View>
-          <Slot />
+
+          {renderSubpage()}
         </Animated.View>
       </View>
     </ThemedView>
