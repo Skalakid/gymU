@@ -1,5 +1,3 @@
-import fetchApi from '@/api/fetch';
-import ThemedText from '@/components/ThemedText';
 import ThemedView from '@/components/ThemedView';
 import Header from '@/components/navigation/Header';
 import Icons from '@/constants/Icons';
@@ -8,35 +6,15 @@ import useTheme from '@/hooks/useTheme';
 import { useIsFocused } from '@react-navigation/native';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
+import { Slot, useRouter, useSegments } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated';
 
 const WorkoutDetailsPage = () => {
-  const { id } = useLocalSearchParams();
   const theme = useTheme();
   const router = useRouter();
   const isFocused = useIsFocused();
-  const [workoutDetails, setWorkoutDetails] = useState({} as Workout);
-
-  const getWorkoutDetails = useCallback(async () => {
-    try {
-      const response = await fetchApi(`/workout/${id}`, 'GET');
-      if (!response.ok) {
-        console.error(response.statusText);
-        return;
-      }
-      const workoutDetails = await response.json();
-      setWorkoutDetails(workoutDetails);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [id]);
-
-  useEffect(() => {
-    getWorkoutDetails();
-  }, [getWorkoutDetails]);
+  const segments = useSegments();
 
   if (!isFocused) return null;
   return (
@@ -58,15 +36,22 @@ const WorkoutDetailsPage = () => {
           style={styles.header}
           leftIcon={Icons.arrowLeft}
           leftIconSize={32}
-          leftIconOnPress={() => router.back()}
+          leftIconOnPress={() => {
+            if (
+              segments[segments.length - 1] === 'exercises' &&
+              segments[segments.length - 2] === '[id]'
+            ) {
+              router.back();
+            }
+            router.back();
+          }}
         />
 
         <Animated.View
           style={[styles.modal, { backgroundColor: theme.background }]}
           entering={SlideInDown}
         >
-          <ThemedText>{id}</ThemedText>
-          <ThemedText>{workoutDetails.name}</ThemedText>
+          <Slot />
         </Animated.View>
       </View>
     </ThemedView>
