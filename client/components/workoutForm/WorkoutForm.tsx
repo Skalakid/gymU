@@ -167,17 +167,16 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
         style={styles.list}
         data={chosenTags}
         renderItem={({ item, index }) => (
-          <SelectableTag
-            orderIndex={index}
-            value={item.name}
-            size="l"
-            onSelectionChange={(index) => {
+          <TouchableOpacity
+            style={[styles.tag, { backgroundColor: theme.secondary }]}
+            onPress={() => {
               const copy = [...chosenTags];
               copy.splice(index, 1);
               setChosenTags(copy);
             }}
-            isSelected={false}
-          />
+          >
+            <ThemedText>{item.name}</ThemedText>
+          </TouchableOpacity>
         )}
         horizontal
         ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
@@ -269,6 +268,16 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins',
     justifyContent: 'space-around',
     alignItems: 'center',
+  },
+
+  tag: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+
+    height: '25%',
+    padding: 5,
+    borderRadius: 10,
   },
 
   list: {
