@@ -65,14 +65,16 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
   }, []);
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView style={[styles.container, { backgroundColor: theme.tile }]}>
       <ThemedText size="l">General info</ThemedText>
+
       <TextInput
         label="Workout name"
         placeholder="Enter workout name..."
         onChangeText={(text) => setWorkoutName(text)}
         value={workoutName}
       />
+
       <TextInput
         label="Description"
         placeholder="Enter workout description..."
@@ -209,12 +211,16 @@ export default WorkoutForm;
 
 const styles = StyleSheet.create({
   container: {
-    top: '40%',
-    height: '50%',
+    top: '30%',
+    height: '65%',
 
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-around',
+
+    padding: 10,
+
+    borderRadius: 15,
   },
 
   selectWrapper: {
@@ -225,6 +231,8 @@ const styles = StyleSheet.create({
   },
 
   button: {
+    margin: 10,
+    marginBottom: 0,
     padding: 16,
     borderRadius: 15,
     borderWidth: 2,
@@ -234,6 +242,7 @@ const styles = StyleSheet.create({
   },
 
   list: {
-    flex: 1,
+    width: '100%',
+    margin: 10,
   },
 });
