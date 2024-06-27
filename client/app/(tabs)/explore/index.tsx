@@ -68,6 +68,7 @@ const ExplorePage = () => {
         title="Explore workouts"
         rightIcon={Icons.circleAdd}
         rightIconSize={26}
+        rightIconOnPress={() => setShowWorkoutForm(true)}
       />
       <ThemedView style={[styles.content]}>
         {areTagsLoaded && (
@@ -98,17 +99,6 @@ const ExplorePage = () => {
           }
         />
 
-        <Tile style={styles.addWorkoutTile}>
-          <TouchableOpacity
-            style={styles.addWorkoutButton}
-            onPress={() => {
-              setShowWorkoutForm(true);
-            }}
-          >
-            {/* TODO: Change to SVG */}
-            <ThemedText>+</ThemedText>
-          </TouchableOpacity>
-        </Tile>
         {/* TODO: Create separate screen instead of `Modal` */}
         <Modal
           animationType="slide"
