@@ -85,7 +85,11 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
   },
-  header: { backgroundColor: 'transparent', marginBottom: 120 },
+  header: {
+    backgroundColor: 'transparent',
+    marginBottom: 120,
+    paddingLeft: 10,
+  },
   modal: {
     flex: 1,
     padding: 20,

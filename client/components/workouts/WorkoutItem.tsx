@@ -27,7 +27,7 @@ const WorkoutItem = ({ id, name, level, tags = [] }: WorkoutItemProp) => {
   return (
     <TouchableOpacity onPress={handlePress}>
       <Tile style={styles.container}>
-        <ThemedText size="m" weight="medium">
+        <ThemedText size="l" weight="medium">
           {name}
         </ThemedText>
 

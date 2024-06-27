@@ -25,10 +25,12 @@ const ExerciseItem = ({ exercise }: ExerciseItemProp) => {
     ? JSON.parse(exercise.value)
     : null;
 
+  const isBreak = Object.values(value || {}).length === 1 && value?.break;
+
   return (
     <TouchableOpacity>
       <Tile style={styles.container}>
-        <ThemedText size="m" weight="medium">
+        <ThemedText size="l" weight="medium">
           {exercise.exercise_name}
         </ThemedText>
         <View style={styles.info}>
@@ -48,10 +50,12 @@ const ExerciseItem = ({ exercise }: ExerciseItemProp) => {
             </View>
           )}
 
-          {value?.time && (
+          {(value?.time || isBreak) && (
             <View style={styles.row}>
               <Icon icon={Icons.time} size={14} color={theme.text} />
-              <ThemedText size="s">{value?.time || '~'} seconds</ThemedText>
+              <ThemedText size="s">
+                {value?.time || (isBreak && value.break) || '~'} seconds
+              </ThemedText>
             </View>
           )}
         </View>
