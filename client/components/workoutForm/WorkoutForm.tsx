@@ -126,7 +126,13 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
         <SelectDropdown
           dropdownStyle={{ backgroundColor: theme.background }}
           data={allTags}
-          onSelect={(value, _) => setChosenTags((prev) => [...prev, value])}
+          onSelect={(value, _) => {
+            if (chosenTags.includes(value)) {
+              return;
+            }
+
+            setChosenTags((prev) => [...prev, value]);
+          }}
           renderButton={(_selectedItem, _isOpened) => {
             return (
               <ThemedView
