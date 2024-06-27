@@ -1,11 +1,11 @@
 import { ViewStyle, StyleSheet } from 'react-native';
-import { ThemedText } from '../ThemedText';
-import { ThemedView } from '../ThemedView';
+
+import ThemedView from '../ThemedView';
 import { useMemo } from 'react';
 import ThemedCalendarRow from './ThemedCalendarRow';
-import ThemedCalendarDay from './ThemedCalendarDay';
+import ThemedCalendarHeader from './header/ThemedCalendarHeader';
 
-type CalendarEvent = {
+export type CalendarEvent = {
   color?: string;
   name?: string;
 };
@@ -13,11 +13,12 @@ type CalendarEvent = {
 export type CalendarCell = {
   date: string;
   events: CalendarEvent[];
-  selected?: boolean;
   currentMonth: boolean;
+  selected?: boolean;
+  current?: boolean;
 };
 
-type CalendarEvents = {
+export type CalendarEvents = {
   [date: string]: CalendarEvent[];
 };
 
@@ -27,17 +28,8 @@ type ThemedCalendarDayProps = {
   month: number;
   year: number;
   events: CalendarEvents;
-};
-
-/// TODO: Add local translations
-const weekDays = {
-  Mon: { id: 1 },
-  Tue: { id: 2 },
-  Wed: { id: 3 },
-  Thu: { id: 4 },
-  Fri: { id: 5 },
-  Sat: { id: 6 },
-  Sun: { id: 0 },
+  selectedDate?: string;
+  currentDate?: string;
 };
 
 const zerofill = (value: number, padding: number = 2) => {
@@ -51,11 +43,13 @@ const prepareCalendar = (
   month: number,
   year: number,
   events: CalendarEvents,
+  selected?: string,
+  current?: string,
 ) => {
   const firstDay = new Date(year, month - 1, 1, 1);
 
-  if (firstDay.getDate()) {
-    firstDay.setDate(firstDay.getDate() - firstDay.getDay());
+  if (firstDay.getDay()) {
+    firstDay.setDate(firstDay.getDate() - firstDay.getDay() + 1);
   } else {
     firstDay.setDate(firstDay.getDate() - 6);
   }
@@ -75,6 +69,15 @@ const prepareCalendar = (
         events: currentDate in events ? events[currentDate] : [],
         currentMonth: firstDay.getMonth() + 1 === month,
       };
+
+      if (currentDate === selected) {
+        result[i][j].selected = true;
+      }
+
+      if (currentDate === current) {
+        result[i][j].current = true;
+      }
+
       firstDay.setDate(firstDay.getDate() + 1);
     }
   }
@@ -82,32 +85,27 @@ const prepareCalendar = (
   return result;
 };
 
-console.log(
-  prepareCalendar(6, 2024, {
-    '2024-06-14': [{ name: 'wódeczka', color: 'red' }],
-  }),
-);
-
 const ThemedCalendar = ({
   month,
   year,
   events,
   style,
+  selectedDate,
+  currentDate,
   onDayPress,
 }: ThemedCalendarDayProps) => {
   const currentCalendar = useMemo(
-    () => prepareCalendar(month, year, events ?? {}),
-    [month, year, events],
+    () => prepareCalendar(month, year, events ?? {}, selectedDate, currentDate),
+    [month, year, events, selectedDate, currentDate],
   );
 
   const calendar = currentCalendar.map((row, index) => (
-    <ThemedCalendarRow children={row} key={index} />
+    <ThemedCalendarRow children={row} key={index} onDayPress={onDayPress} />
   ));
 
-  console.log(calendar);
   return (
     <ThemedView style={[style]}>
-      <ThemedText>Siema</ThemedText>
+      <ThemedCalendarHeader />
       <ThemedView style={styles.calendar}>{calendar}</ThemedView>
     </ThemedView>
   );
