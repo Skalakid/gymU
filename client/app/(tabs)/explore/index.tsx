@@ -105,9 +105,11 @@ const ExplorePage = () => {
               setShowWorkoutForm(true);
             }}
           >
+            {/* TODO: Change to SVG */}
             <ThemedText>+</ThemedText>
           </TouchableOpacity>
         </Tile>
+        {/* TODO: Create separate screen instead of `Modal` */}
         <Modal
           animationType="slide"
           visible={showWorkoutForm}

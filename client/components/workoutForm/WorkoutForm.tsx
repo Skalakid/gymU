@@ -32,6 +32,7 @@ for (let i = 0; i < difficulties.length; ++i) {
   pickerData.push({ label: difficulties[i], level: i });
 }
 
+// TODO: Code duplicate
 type WorkoutTagsRespone = {
   workout_tags: WorkoutType[];
 };
@@ -48,6 +49,7 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
   const [description, setDescription] = useState('');
   const [difficulty, setDifficulty] = useState(null);
 
+  // TODO: Code duplicate
   const getAllWorkoutTags = async () => {
     try {
       const response = await fetchApi('/workout/tag/all', 'GET', null);
@@ -83,7 +85,7 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
         <SelectDropdown
           data={pickerData}
           onSelect={(value, _) => setDifficulty(value.level)}
-          renderButton={(selectedItem, isOpened) => {
+          renderButton={(selectedItem, _isOpened) => {
             return (
               <ThemedView
                 style={[
@@ -101,7 +103,7 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
               </ThemedView>
             );
           }}
-          renderItem={(item, index, isSelected) => {
+          renderItem={(item, _index, _isSelected) => {
             return (
               <ThemedView style={{ backgroundColor: theme.background }}>
                 <ThemedText style={{ color: primaryColor }}>
@@ -113,12 +115,13 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
         />
       </View>
 
+      {/* TODO: Extract to separate component */}
       <View style={styles.selectWrapper}>
         <Icon icon={Icons.hashtag} size={32} color={theme.subTile} />
         <SelectDropdown
           data={allTags}
           onSelect={(value, _) => setChosenTags((prev) => [...prev, value])}
-          renderButton={(selectedItem, isOpened) => {
+          renderButton={(selectedItem, _isOpened) => {
             return (
               <ThemedView
                 style={[
@@ -135,7 +138,7 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
               </ThemedView>
             );
           }}
-          renderItem={(item, index, isSelected) => {
+          renderItem={(item, _index, _isSelected) => {
             return (
               <ThemedView style={{ backgroundColor: theme.background }}>
                 <ThemedText style={{ color: primaryColor }}>
@@ -170,7 +173,8 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
 
       <TouchableOpacity
         onPress={async () => {
-          const response = await fetchApi(
+          // TODO: Handle response
+          await fetchApi(
             '/workout/create',
             'POST',
             null,
@@ -185,8 +189,7 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
             true,
           );
 
-          console.log(response);
-          //   closeForm();
+          closeForm();
         }}
         style={[
           styles.button,
