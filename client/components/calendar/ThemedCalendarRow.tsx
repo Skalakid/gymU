@@ -1,19 +1,18 @@
 import { useMemo } from 'react';
-import { ThemedView } from '../ThemedView';
-import ThemedCalendarDay from './ThemedCalendarDay';
+import ThemedView from '../ThemedView';
+import ThemedCalendarDay from './day/ThemedCalendarDay';
 import { CalendarCell } from './ThemedCalendar';
 import { Dimensions, StyleSheet } from 'react-native';
 
 type ThemedCalendarRowProps = {
   children: CalendarCell[];
+  onDayPress?: (day: string) => void;
 };
 
-const isCurrentMont = (month: number, date: string) => {
-  const currentDate = new Date(date);
-  return currentDate.getMonth() + 1 == month;
-};
-
-const ThemedCalendarRow = ({ children }: ThemedCalendarRowProps) => {
+const ThemedCalendarRow = ({
+  children,
+  onDayPress,
+}: ThemedCalendarRowProps) => {
   const cells = useMemo(
     () =>
       children.map((cell, index) => (
@@ -21,6 +20,7 @@ const ThemedCalendarRow = ({ children }: ThemedCalendarRowProps) => {
           cell={cell}
           currentMonth={cell.currentMonth}
           key={index}
+          onPress={onDayPress}
         />
       )),
     [children],
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
 
     height: 45,
-    borderColor: 'blue',
+
     gap: 5,
     justifyContent: 'center',
   },
