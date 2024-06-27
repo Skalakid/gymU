@@ -89,7 +89,7 @@ async function getWorkoutDetails(workoutId: number) {
   return workoutWithTagName;
 }
 
-function createWorkout(
+async function createWorkout(
   author_id: number,
   name: string,
   description: string,
@@ -98,7 +98,7 @@ function createWorkout(
   tag_ids: number[],
   exercises: ExerciseWorkoutItem[],
 ) {
-  return WorkoutDB.createWorkout(
+  return await WorkoutDB.createWorkout(
     author_id,
     name,
     description,
@@ -109,4 +109,19 @@ function createWorkout(
   );
 }
 
-export { getAllWorkouts, getWorkoutDetails, createWorkout };
+async function getAllWorkoutTags() {
+  const tags = (await WorkoutDB.getAllWorkoutTags())
+    .map((tag) => tag.workout_tags.map((workout_tag) => workout_tag.tag))
+    .flat(1);
+
+  const uniqueIds: number[] = [];
+  return tags.filter((tag) => {
+    if (uniqueIds.includes(tag.tag_id)) {
+      return false;
+    }
+    uniqueIds.push(tag.tag_id);
+    return true;
+  });
+}
+
+export { getAllWorkouts, getWorkoutDetails, createWorkout, getAllWorkoutTags };

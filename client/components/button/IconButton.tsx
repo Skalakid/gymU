@@ -1,5 +1,5 @@
 import { StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
-import Icon, { IconProps } from '../Icon';
+import Icon, { IconProps } from '../common/Icon';
 
 type IconButtonProps = IconProps & {
   onPress?: () => void;

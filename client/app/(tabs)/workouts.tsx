@@ -9,25 +9,7 @@ const WorkoutsPage = () => {
 
   return (
     <ThemedView style={styles.container}>
-      <ThemedText>Workouts page</ThemedText>
-      <Button
-        title="add"
-        onPress={() => {
-          setModalVisible((prev) => !prev);
-        }}
-      />
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <WorkoutForm />
-      </Modal>
+      <ThemedText>Your workouts page</ThemedText>
     </ThemedView>
   );
 };

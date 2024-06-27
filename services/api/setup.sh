@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -f .env ]; then 
+    touch .env
+fi
+
 if ! grep -q DATABASE_URL .env; then
     echo \n >> .env
     echo DATABASE_URL=postgresql://$(

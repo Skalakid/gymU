@@ -9,6 +9,7 @@ import chart from '../assets/icons/chart.svg';
 import circleAdd from '../assets/icons/circle-add.svg';
 import dumbell from '../assets/icons/dumbell.svg';
 import flame from '../assets/icons/flame.svg';
+import hashtag from '../assets/icons/hashtag.svg';
 import heartFill from '../assets/icons/heart-fill.svg';
 import heart from '../assets/icons/heart.svg';
 import homeFill from '../assets/icons/home-fill.svg';
@@ -28,6 +29,7 @@ export default {
   circleAdd,
   dumbell,
   flame,
+  hashtag,
   heartFill,
   heart,
   homeFill,
