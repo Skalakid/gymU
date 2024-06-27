@@ -85,6 +85,7 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
       <View style={styles.selectWrapper}>
         <Icon icon={Icons.flame} size={32} color={theme.subTile} />
         <SelectDropdown
+          dropdownStyle={{ backgroundColor: theme.background }}
           data={pickerData}
           onSelect={(value, _) => setDifficulty(value.level)}
           renderButton={(selectedItem, _isOpened) => {
@@ -107,7 +108,9 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
           }}
           renderItem={(item, _index, _isSelected) => {
             return (
-              <ThemedView style={{ backgroundColor: theme.background }}>
+              <ThemedView
+                style={[styles.selectItem, { backgroundColor: theme.tile }]}
+              >
                 <ThemedText style={{ color: primaryColor }}>
                   {item.label}
                 </ThemedText>
@@ -121,9 +124,10 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
       <View style={styles.selectWrapper}>
         <Icon icon={Icons.hashtag} size={32} color={theme.subTile} />
         <SelectDropdown
+          dropdownStyle={{ backgroundColor: theme.background }}
           data={allTags}
           onSelect={(value, _) => setChosenTags((prev) => [...prev, value])}
-          renderButton={(selectedItem, _isOpened) => {
+          renderButton={(_selectedItem, _isOpened) => {
             return (
               <ThemedView
                 style={[
@@ -134,15 +138,15 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
                   },
                 ]}
               >
-                <ThemedText>
-                  {(selectedItem && selectedItem.label) || 'Choose tags...'}
-                </ThemedText>
+                <ThemedText>Add tag</ThemedText>
               </ThemedView>
             );
           }}
           renderItem={(item, _index, _isSelected) => {
             return (
-              <ThemedView style={{ backgroundColor: theme.background }}>
+              <ThemedView
+                style={[styles.selectItem, { backgroundColor: theme.tile }]}
+              >
                 <ThemedText style={{ color: primaryColor }}>
                   {item.name}
                 </ThemedText>
@@ -228,6 +232,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+  },
+
+  selectItem: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+
+    borderRadius: 10,
+    padding: 2,
+    margin: 2,
   },
 
   button: {
