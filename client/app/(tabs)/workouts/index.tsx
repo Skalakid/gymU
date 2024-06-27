@@ -9,27 +9,20 @@ import Icons from '@/constants/Icons';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 
-type Workout = {
-  workout_id: number;
-  name: string;
-  description: string;
-  created_at: string;
-  private: boolean;
-  workout_tags: string[];
-  author: {
-    user_id: number;
-    username: string;
-  };
-  workout_level: string;
+type WorkoutTagsRespone = {
+  workout_tags: WorkoutType[];
 };
 
 const WorkoutsPage = () => {
   const [workouts, setWorkouts] = useState<Workout[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [areTagsLoaded, setAreTagsLoaded] = useState(false);
+  const [tags, setTags] = useState<WorkoutType[]>([]);
 
-  const getAllWorkouts = async () => {
+  const getAllWorkouts = async (tagIds: number[] | null = null) => {
     try {
-      const response = await fetchApi('/workout/all', 'GET', null);
+      const params = tagIds !== null ? `?tag_ids=${tagIds.join(',')}` : '';
+      const response = await fetchApi(`/workout/all${params}`, 'GET');
       const paginatedWorkouts: PaginatedResponse<Workout> =
         await response.json();
       setWorkouts(paginatedWorkouts.data);
@@ -39,26 +32,37 @@ const WorkoutsPage = () => {
     }
   };
 
+  const getAllWorkoutTags = async () => {
+    try {
+      const response = await fetchApi('/workout/tag/all', 'GET', null);
+      const data: WorkoutTagsRespone = await response.json();
+      setTags(data.workout_tags);
+      setAreTagsLoaded(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getAllWorkouts();
+    getAllWorkoutTags();
   }, []);
 
-  const tags = ['Biceps', 'Triceps', 'Chest', 'Back', 'Legs', 'Shoulders'];
-
-  const handleTagSelectionChange = (selectedTags: string[]) => {
-    console.log(selectedTags);
+  const handleTagSelectionChange = (selectedTags: WorkoutType[]) => {
+    getAllWorkouts(selectedTags.map((tag) => tag.tag_id));
   };
 
   return (
     <ThemedView style={styles.container}>
       <Header title="Workouts" rightIcon={Icons.circleAdd} rightIconSize={26} />
       <ThemedView style={[styles.content]}>
-        <TagSelector
-          style={styles.tagSelector}
-          tags={tags}
-          onSelectionChange={handleTagSelectionChange}
-        />
-
+        {areTagsLoaded && (
+          <TagSelector
+            style={styles.tagSelector}
+            tags={tags}
+            onSelectionChange={handleTagSelectionChange}
+          />
+        )}
         <FlatList
           style={styles.workoutList}
           data={workouts}

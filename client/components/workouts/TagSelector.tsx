@@ -4,13 +4,19 @@ import SelectableTag from '../common/tag/SelectableTag';
 import { useEffect, useState } from 'react';
 
 type TagProps = {
-  tags: string[];
-  onSelectionChange: (selectedTags: string[]) => void;
+  tags: WorkoutType[];
+  onSelectionChange: (selectedTags: WorkoutType[]) => void;
   style?: ViewStyle;
 };
 
 const TagSelector = ({ tags, onSelectionChange, style }: TagProps) => {
-  const selectableTags = ['All', ...tags];
+  const selectableTags = [
+    {
+      tag_id: 0,
+      name: 'All',
+    },
+    ...tags,
+  ];
   const [selections, setSelections] = useState<boolean[]>(
     selectableTags.map(() => true),
   );
@@ -35,7 +41,9 @@ const TagSelector = ({ tags, onSelectionChange, style }: TagProps) => {
       newSelections[0] = checkIfAllSelected(newSelections);
     }
     setSelections(newSelections);
-    onSelectionChange(tags.filter((_, index) => newSelections[index]));
+
+    console.log(newSelections);
+    onSelectionChange(tags.filter((_, index) => newSelections.slice(1)[index]));
   };
 
   useEffect(() => {
@@ -47,11 +55,11 @@ const TagSelector = ({ tags, onSelectionChange, style }: TagProps) => {
     <View style={[styles.container, style]}>
       <FlatList
         style={styles.list}
-        data={['All', ...tags]}
+        data={selectableTags}
         renderItem={({ item, index }) => (
           <SelectableTag
             orderIndex={index}
-            value={item}
+            value={item.name}
             size="l"
             onSelectionChange={handleTagSelectionChange}
             isSelected={selections[index]}

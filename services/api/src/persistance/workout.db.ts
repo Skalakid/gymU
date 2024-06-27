@@ -148,9 +148,22 @@ async function createWorkout(
   return newWorkout;
 }
 
+async function getAllWorkoutTags() {
+  return await prisma.workout_template.findMany({
+    select: {
+      workout_tags: {
+        select: {
+          tag: true,
+        },
+      },
+    },
+  });
+}
+
 export {
   getAllWorkoutsPaginated,
   countAllFilteredWorkouts,
   getWorkoutDetails,
   createWorkout,
+  getAllWorkoutTags,
 };

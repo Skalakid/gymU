@@ -7,6 +7,6 @@ const router = express.Router();
 router.get('/all', workoutController.getAllWorkouts);
 router.get('/:id', authenticateToken, workoutController.getWorkoutDetails);
 router.post('/create', authenticateToken, workoutController.createWorkout);
-router.get('/tag/all', authenticateToken, workoutController.getAllWorkoutTags);
+router.get('/tag/all', workoutController.getAllWorkoutTags);
 
 export = router;

@@ -34,8 +34,8 @@ const WorkoutItem = ({ name, level, tags = [] }: WorkoutItemProp) => {
         <View style={styles.row}>
           <Icon icon={Icons.hashtag} size={16} color={theme.subTile} />
           <View style={styles.tagList}>
-            {tags.map((tag) => (
-              <Tag value={capitalize(tag)} />
+            {tags.map((tag, index) => (
+              <Tag key={`${name}${index}`} value={capitalize(tag)} />
             ))}
           </View>
         </View>
