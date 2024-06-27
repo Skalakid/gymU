@@ -13,7 +13,7 @@ type WorkoutTagsRespone = {
   workout_tags: WorkoutType[];
 };
 
-const WorkoutsPage = () => {
+const ExplorePage = () => {
   const [workouts, setWorkouts] = useState<Workout[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [areTagsLoaded, setAreTagsLoaded] = useState(false);
@@ -54,7 +54,11 @@ const WorkoutsPage = () => {
 
   return (
     <ThemedView style={styles.container}>
-      <Header title="Workouts" rightIcon={Icons.circleAdd} rightIconSize={26} />
+      <Header
+        title="Explore workouts"
+        rightIcon={Icons.circleAdd}
+        rightIconSize={26}
+      />
       <ThemedView style={[styles.content]}>
         {areTagsLoaded && (
           <TagSelector
@@ -88,7 +92,7 @@ const WorkoutsPage = () => {
   );
 };
 
-export default WorkoutsPage;
+export default ExplorePage;
 
 const styles = StyleSheet.create({
   container: {

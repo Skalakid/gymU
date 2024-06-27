@@ -2,15 +2,15 @@ import ThemedText from '@/components/ThemedText';
 import ThemedView from '@/components/ThemedView';
 import { StyleSheet } from 'react-native';
 
-const ExplorePage = () => {
+const WorkoutsPage = () => {
   return (
     <ThemedView style={styles.container}>
-      <ThemedText>Explore page</ThemedText>
+      <ThemedText>Your workouts page</ThemedText>
     </ThemedView>
   );
 };
 
-export default ExplorePage;
+export default WorkoutsPage;
 
 const styles = StyleSheet.create({
   container: {

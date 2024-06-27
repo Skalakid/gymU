@@ -41,8 +41,6 @@ const TagSelector = ({ tags, onSelectionChange, style }: TagProps) => {
       newSelections[0] = checkIfAllSelected(newSelections);
     }
     setSelections(newSelections);
-
-    console.log(newSelections);
     onSelectionChange(tags.filter((_, index) => newSelections.slice(1)[index]));
   };
 
