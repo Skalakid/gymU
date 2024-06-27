@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   useColorScheme,
   FlatList,
+  Alert,
 } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
 import fetchApi from '@/api/fetch';
@@ -185,6 +186,15 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
 
       <TouchableOpacity
         onPress={async () => {
+          if (
+            workoutName === '' ||
+            description === '' ||
+            difficulty === null ||
+            chosenTags.length === 0
+          ) {
+            Alert.alert('Please fill in all fields');
+            return;
+          }
           // TODO: Handle response
           await fetchApi(
             '/workout/create',
