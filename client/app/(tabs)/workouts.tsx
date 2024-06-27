@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 const WorkoutsPage = () => {
   return (
     <ThemedView style={styles.container}>
-      <ThemedText>Workouts page</ThemedText>
+      <ThemedText>Your workouts page</ThemedText>
     </ThemedView>
   );
 };
