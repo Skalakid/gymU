@@ -2,6 +2,7 @@ import fetchApi from '@/api/fetch';
 import ThemedText from '@/components/ThemedText';
 import ThemedView from '@/components/ThemedView';
 import Header from '@/components/navigation/Header';
+import TagSelector from '@/components/workouts/TagSelector';
 import WorkoutItem from '@/components/workouts/WorkoutItem';
 import { Colors } from '@/constants/Colors';
 import Icons from '@/constants/Icons';
@@ -42,10 +43,22 @@ const WorkoutsPage = () => {
     getAllWorkouts();
   }, []);
 
+  const tags = ['Biceps', 'Triceps', 'Chest', 'Back', 'Legs', 'Shoulders'];
+
+  const handleTagSelectionChange = (selectedTags: string[]) => {
+    console.log(selectedTags);
+  };
+
   return (
     <ThemedView style={styles.container}>
       <Header title="Workouts" rightIcon={Icons.circleAdd} rightIconSize={26} />
       <ThemedView style={[styles.content]}>
+        <TagSelector
+          style={styles.tagSelector}
+          tags={tags}
+          onSelectionChange={handleTagSelectionChange}
+        />
+
         <FlatList
           style={styles.workoutList}
           data={workouts}
@@ -80,6 +93,9 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     paddingHorizontal: 20,
+  },
+  tagSelector: {
+    marginBottom: 20,
   },
   workoutList: {
     gap: 10,

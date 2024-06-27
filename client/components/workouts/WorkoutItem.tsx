@@ -5,7 +5,7 @@ import Icon from '../common/Icon';
 import Icons from '@/constants/Icons';
 import { capitalize } from '@/utils/text.utils';
 import Tile from '../common/Tile';
-import Tag from './Tag';
+import Tag from '../common/tag/Tag';
 import useTheme from '@/hooks/useTheme';
 
 type WorkoutItemProp = {
