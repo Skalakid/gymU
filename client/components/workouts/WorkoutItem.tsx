@@ -6,6 +6,7 @@ import Icons from '@/constants/Icons';
 import { capitalize } from '@/utils/text.utils';
 import Tile from '../common/Tile';
 import Tag from './Tag';
+import useTheme from '@/hooks/useTheme';
 
 type WorkoutItemProp = {
   name: string;
@@ -14,22 +15,24 @@ type WorkoutItemProp = {
 };
 
 const WorkoutItem = ({ name, level, tags = [] }: WorkoutItemProp) => {
+  const theme = useTheme();
+
   return (
     <Tile style={styles.container}>
-      <ThemedText size="l" weight="medium">
+      <ThemedText size="m" weight="medium">
         {name}
       </ThemedText>
 
       <View style={styles.info}>
         <View style={styles.row}>
-          <Icon icon={Icons.flame} size={16} color="#D9D9D9" />
-          <ThemedText size="m" weight="medium" color="#D9D9D9">
+          <Icon icon={Icons.flame} size={16} color={theme.subTile} />
+          <ThemedText size="m" color={theme.subTile}>
             {capitalize(level)}
           </ThemedText>
         </View>
 
         <View style={styles.row}>
-          <Icon icon={Icons.hashtag} size={16} color="#D9D9D9" />
+          <Icon icon={Icons.hashtag} size={16} color={theme.subTile} />
           <View style={styles.tagList}>
             {tags.map((tag) => (
               <Tag value={capitalize(tag)} />
@@ -65,7 +68,6 @@ const styles = StyleSheet.create({
   },
   tagList: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
     alignItems: 'center',
     gap: 5,
   },

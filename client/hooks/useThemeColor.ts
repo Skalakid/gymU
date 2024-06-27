@@ -10,7 +10,7 @@ const useThemeColor = (
   props?: { light?: string; dark?: string } | null,
   colorName?: keyof typeof Colors.light & keyof typeof Colors.dark,
 ) => {
-  const theme = useColorScheme() ?? 'light';
+  const theme = useColorScheme() ?? 'dark';
   if (props) {
     const colorFromProps = props[theme];
 
