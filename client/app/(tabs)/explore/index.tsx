@@ -128,21 +128,4 @@ const styles = StyleSheet.create({
   workoutList: {
     gap: 10,
   },
-
-  addWorkoutTile: {
-    height: 100,
-
-    borderColor: 'white',
-    borderWidth: 2,
-    borderStyle: 'dashed',
-    borderRadius: 15,
-  },
-
-  addWorkoutButton: {
-    height: '100%',
-    width: '100%',
-
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
 });
