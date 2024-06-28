@@ -14,9 +14,15 @@ type WorkoutItemProp = {
   name: string;
   level: string;
   tags?: string[];
+  onPress?: () => void;
 };
 
-const WorkoutItem = ({ id, name, level, tags = [] }: WorkoutItemProp) => {
+const WorkoutItem = ({
+  name,
+  level,
+  tags = [],
+  onPress = () => {},
+}: WorkoutItemProp) => {
   const theme = useTheme();
   const router = useRouter();
 
@@ -25,7 +31,7 @@ const WorkoutItem = ({ id, name, level, tags = [] }: WorkoutItemProp) => {
   };
 
   return (
-    <TouchableOpacity onPress={handlePress}>
+    <TouchableOpacity onPress={onPress}>
       <Tile style={styles.container}>
         <ThemedText size="l" weight="medium">
           {name}

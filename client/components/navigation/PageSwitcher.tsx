@@ -1,39 +1,36 @@
 import { StyleSheet, View } from 'react-native';
 import ThemedText from '../ThemedText';
 import TextLink from '../common/TextLink';
-import { useRouter } from 'expo-router';
-
-export type PageSwitcherItem = {
-  name: string;
-  href: string;
-};
 
 type PageSwitcherProps = {
-  pages: PageSwitcherItem[];
-  currentRoute: string;
+  pages: string[];
+  activePageIndex: number;
+  onRouteChange: (index: number) => void;
 };
 
-const PageSwitcher = ({ pages, currentRoute }: PageSwitcherProps) => {
-  const router = useRouter();
-
+const PageSwitcher = ({
+  pages,
+  activePageIndex,
+  onRouteChange,
+}: PageSwitcherProps) => {
   return (
     <View style={styles.switcher}>
       {pages.map((page, index) => (
-        <>
+        <View key={`${page}${index}`} style={styles.switcher}>
           <TextLink
-            onPress={() => router.navigate(page.href)}
+            onPress={() => onRouteChange(index)}
             style={{
               textDecorationLine:
-                currentRoute === page.href ? 'underline' : 'none',
+                activePageIndex === index ? 'underline' : 'none',
             }}
             size="xl"
           >
-            {page.name}
+            {page}
           </TextLink>
           {index < pages.length - 1 && (
             <ThemedText style={styles.separator}>|</ThemedText>
           )}
-        </>
+        </View>
       ))}
     </View>
   );
