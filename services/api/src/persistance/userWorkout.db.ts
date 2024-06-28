@@ -9,10 +9,31 @@ async function addWorkoutToUserAccount(userId: number, workoutId: number) {
   });
 }
 
-async function getAllUserWorkouts(userId: number) {
+async function getAllUserWorkouts(
+  userId: number,
+  skip: number,
+  pageSize: number,
+  tagIds: number[] | null,
+) {
   return await prisma.user_workout.findMany({
+    skip: skip,
+    take: pageSize,
     where: {
       user_id: userId,
+      ...((tagIds && {
+        workout_template: {
+          workout_tags: {
+            some: {
+              tag: {
+                tag_id: {
+                  in: tagIds,
+                },
+              },
+            },
+          },
+        },
+      }) ||
+        undefined),
     },
     select: {
       workout_template: {

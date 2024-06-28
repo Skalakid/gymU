@@ -16,7 +16,7 @@ const PageSwitcher = ({
   return (
     <View style={styles.switcher}>
       {pages.map((page, index) => (
-        <>
+        <View key={`${page}${index}`} style={styles.switcher}>
           <TextLink
             onPress={() => onRouteChange(index)}
             style={{
@@ -29,7 +29,7 @@ const PageSwitcher = ({
           {index < pages.length - 1 && (
             <ThemedText style={styles.separator}>|</ThemedText>
           )}
-        </>
+        </View>
       ))}
     </View>
   );

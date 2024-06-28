@@ -13,9 +13,9 @@ async function getAllUserWorkouts(
   pageSize: number,
   tagIds: number[] | null,
 ) {
-  const workouts = (await UserWorkoutDB.getAllUserWorkouts(userId)).map(
-    (item) => item.workout_template,
-  );
+  const workouts = (
+    await UserWorkoutDB.getAllUserWorkouts(userId, skip, pageSize, tagIds)
+  ).map((item) => item.workout_template);
 
   const allWorkoutsCount = await UserWorkoutDB.countAllFilteredWorkouts(tagIds);
 
