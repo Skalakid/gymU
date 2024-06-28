@@ -4,13 +4,13 @@ import TextLink from '../common/TextLink';
 
 type PageSwitcherProps = {
   pages: string[];
-  currentRoute: string;
+  activePageIndex: number;
   onRouteChange: (index: number) => void;
 };
 
 const PageSwitcher = ({
   pages,
-  currentRoute,
+  activePageIndex,
   onRouteChange,
 }: PageSwitcherProps) => {
   return (
@@ -20,7 +20,8 @@ const PageSwitcher = ({
           <TextLink
             onPress={() => onRouteChange(index)}
             style={{
-              textDecorationLine: currentRoute === page ? 'underline' : 'none',
+              textDecorationLine:
+                activePageIndex === index ? 'underline' : 'none',
             }}
             size="xl"
           >

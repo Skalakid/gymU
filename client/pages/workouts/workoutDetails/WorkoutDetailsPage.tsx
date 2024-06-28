@@ -127,8 +127,8 @@ const WorkoutDetailsPage = ({
         >
           <View style={styles.switcher}>
             <PageSwitcher
-              currentRoute={pathName}
-              pages={[' General info', 'Exercises']}
+              activePageIndex={currentSubpage}
+              pages={['General info', 'Exercises']}
               onRouteChange={(index) => setCurrentSubpage(index)}
             />
           </View>
