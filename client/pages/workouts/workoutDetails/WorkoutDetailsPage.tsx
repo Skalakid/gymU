@@ -31,7 +31,6 @@ const WorkoutDetailsPage = ({
   const router = useRouter();
   const isFocused = useIsFocused();
   const segments = useSegments();
-  const pathName = usePathname();
   const { id } = useLocalSearchParams();
   const [currentSubpage, setCurrentSubpage] = useState(0);
   const [workoutDetails, setWorkoutDetails] = useState<Workout | null>(null);

@@ -6,6 +6,7 @@ import TagSelector from '@/components/workouts/TagSelector';
 import WorkoutItem from '@/components/workouts/WorkoutItem';
 import { Colors } from '@/constants/Colors';
 import Icons from '@/constants/Icons';
+import { useIsFocused } from '@react-navigation/native';
 import { useRouter, useSegments } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
@@ -31,6 +32,7 @@ const WorkoutListPage = ({
   const [areTagsLoaded, setAreTagsLoaded] = useState(false);
   const [tags, setTags] = useState<WorkoutType[]>([]);
   const segments = useSegments();
+  const isFocused = segments[segments.length - 1] === 'workouts';
 
   const getAllWorkouts = async (tagIds: number[] | null = null) => {
     try {
@@ -63,7 +65,7 @@ const WorkoutListPage = ({
     getAllWorkouts();
     getAllWorkoutTags();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isFocused]);
 
   const handleTagSelectionChange = (selectedTags: WorkoutType[]) => {
     getAllWorkouts(selectedTags.map((tag) => tag.tag_id));

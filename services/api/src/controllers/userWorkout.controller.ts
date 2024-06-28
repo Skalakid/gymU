@@ -12,7 +12,6 @@ async function addWorkoutToUserAccount(
   try {
     const userId = Number((req.user as ReturnUser).user_id) || 1;
     const workoutId = Number(req.body.workout_id);
-    console.log('userId', userId);
 
     if (!userId) {
       throw new ApiError(401, 'User not authenticated');
