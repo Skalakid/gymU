@@ -1,46 +1,55 @@
 import React from 'react';
 import ThemedText from '../ThemedText';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Icon from '../common/Icon';
 import Icons from '@/constants/Icons';
 import { capitalize } from '@/utils/text.utils';
 import Tile from '../common/Tile';
 import Tag from '../common/tag/Tag';
 import useTheme from '@/hooks/useTheme';
+import { useRouter } from 'expo-router';
 
 type WorkoutItemProp = {
+  id: number;
   name: string;
   level: string;
   tags?: string[];
 };
 
-const WorkoutItem = ({ name, level, tags = [] }: WorkoutItemProp) => {
+const WorkoutItem = ({ id, name, level, tags = [] }: WorkoutItemProp) => {
   const theme = useTheme();
+  const router = useRouter();
+
+  const handlePress = () => {
+    router.navigate(`/workouts/${id}`);
+  };
 
   return (
-    <Tile style={styles.container}>
-      <ThemedText size="m" weight="medium">
-        {name}
-      </ThemedText>
+    <TouchableOpacity onPress={handlePress}>
+      <Tile style={styles.container}>
+        <ThemedText size="l" weight="medium">
+          {name}
+        </ThemedText>
 
-      <View style={styles.info}>
-        <View style={styles.row}>
-          <Icon icon={Icons.flame} size={16} color={theme.subTile} />
-          <ThemedText size="m" color={theme.subTile}>
-            {capitalize(level)}
-          </ThemedText>
-        </View>
+        <View style={styles.info}>
+          <View style={styles.row}>
+            <Icon icon={Icons.flame} size={16} color={theme.subTile} />
+            <ThemedText size="m" color={theme.subTile}>
+              {capitalize(level)}
+            </ThemedText>
+          </View>
 
-        <View style={styles.row}>
-          <Icon icon={Icons.hashtag} size={16} color={theme.subTile} />
-          <View style={styles.tagList}>
-            {tags.map((tag, index) => (
-              <Tag key={`${name}${index}`} value={capitalize(tag)} />
-            ))}
+          <View style={styles.row}>
+            <Icon icon={Icons.hashtag} size={16} color={theme.subTile} />
+            <View style={styles.tagList}>
+              {tags.map((tag, index) => (
+                <Tag key={`${name}${index}`} value={capitalize(tag)} />
+              ))}
+            </View>
           </View>
         </View>
-      </View>
-    </Tile>
+      </Tile>
+    </TouchableOpacity>
   );
 };
 export default WorkoutItem;

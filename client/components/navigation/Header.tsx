@@ -39,7 +39,7 @@ const Header = ({
           size={leftIconSize}
         />
       )}
-      <View style={styles.text}>
+      <View style={[styles.text]}>
         <ThemedText weight="semiBold" size="h4">
           {title}
         </ThemedText>

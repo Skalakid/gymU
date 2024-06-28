@@ -2,7 +2,6 @@ import { Prisma } from '@prisma/client';
 import { prisma } from '../../src/config/db.server';
 import { NewWorkoutTemplate } from '../../src/types/workout';
 import { WorkoutTag } from '../../src/types/workout';
-import { NewExerciseTemplateItem } from '../../src/types/exercise';
 
 export default async function seedWorkouts() {
   const workoutTemplates = await prisma.workout_template.findMany();
@@ -28,14 +27,24 @@ export default async function seedWorkouts() {
   if (exerciseTemplateItems.length === 0) {
     await Promise.all(
       getExerciseTemplateItems().map(async (exerciseTemplateItem) => {
-        await prisma.exercise_template_item.create({
-          data: {
-            workout_template_id: exerciseTemplateItem.workout_template_id,
-            exercise_id: exerciseTemplateItem.exercise_id,
-            value: exerciseTemplateItem.value as Prisma.InputJsonValue,
-            order_index: exerciseTemplateItem.order_index,
+        const exercise = await prisma.exercise.findFirst({
+          where: {
+            name: exerciseTemplateItem.exercise_name,
+          },
+          select: {
+            exercise_id: true,
           },
         });
+        if (exercise) {
+          await prisma.exercise_template_item.create({
+            data: {
+              workout_template_id: exerciseTemplateItem.workout_template_id,
+              exercise_id: exercise.exercise_id,
+              value: exerciseTemplateItem.value as Prisma.InputJsonValue,
+              order_index: exerciseTemplateItem.order_index,
+            },
+          });
+        }
       }),
     );
     console.log('Exercise template items seeded');
@@ -79,12 +88,19 @@ function getWorkoutTemplates(): NewWorkoutTemplate[] {
   ];
 }
 
-function getExerciseTemplateItems(): NewExerciseTemplateItem[] {
+type NewExerciseTemplateItemSeed = {
+  workout_template_id: number;
+  exercise_name: string;
+  value: Prisma.JsonValue;
+  order_index: number;
+};
+
+function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
   return [
     // workout 1
     {
       workout_template_id: 1,
-      exercise_id: 1,
+      exercise_name: 'Push ups',
       value: JSON.stringify({
         series: 3,
         reps: 15,
@@ -94,18 +110,20 @@ function getExerciseTemplateItems(): NewExerciseTemplateItem[] {
     },
     {
       workout_template_id: 1,
-      exercise_id: 6,
+      exercise_name: 'Interval running',
       value: JSON.stringify({
-        break: 60,
+        time: 1000,
+        break: 120,
       }),
       order_index: 2,
     },
     {
       workout_template_id: 1,
-      exercise_id: 4,
+      exercise_name: 'Deadlifts',
       value: JSON.stringify({
         series: 3,
-        time: 120,
+        reps: 10,
+        weight: 80,
         break: 60,
       }),
       order_index: 3,
@@ -113,31 +131,29 @@ function getExerciseTemplateItems(): NewExerciseTemplateItem[] {
     // workout 2
     {
       workout_template_id: 2,
-      exercise_id: 1,
+      exercise_name: 'Pull ups',
       value: JSON.stringify({
-        series: 2,
-        reps: 15,
-        break: 30,
+        series: 4,
+        reps: 5,
+        break: 60,
       }),
       order_index: 1,
     },
     {
       workout_template_id: 2,
-      exercise_id: 2,
+      exercise_name: 'Squats',
       value: JSON.stringify({
-        series: 2,
-        reps: 15,
-        break: 30,
+        series: 3,
+        reps: 10,
+        break: 60,
       }),
       order_index: 2,
     },
     {
       workout_template_id: 2,
-      exercise_id: 3,
+      exercise_name: 'Rest',
       value: JSON.stringify({
-        series: 2,
-        reps: 15,
-        break: 30,
+        break: 240,
       }),
       order_index: 3,
     },

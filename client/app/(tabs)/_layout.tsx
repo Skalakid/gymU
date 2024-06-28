@@ -21,6 +21,7 @@ const TabLayout = () => {
         tabBarShowLabel: false,
         headerShown: false,
       }}
+      backBehavior="history"
     >
       <Tabs.Screen
         name="home"
