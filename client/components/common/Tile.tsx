@@ -1,4 +1,4 @@
-import { View, type ViewProps } from 'react-native';
+import { StyleSheet, View, type ViewProps } from 'react-native';
 
 import useThemeColor from '@/hooks/useThemeColor';
 
@@ -18,7 +18,19 @@ const Tile = ({
     'tile',
   );
 
-  return <View style={[{ backgroundColor }, style]} {...otherProps} />;
+  return (
+    <View
+      style={[{ backgroundColor }, styles.container, style]}
+      {...otherProps}
+    />
+  );
 };
 
 export default Tile;
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    borderRadius: 15,
+  },
+});

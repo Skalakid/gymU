@@ -73,6 +73,7 @@ const ExplorePage = () => {
           keyExtractor={(item) => item.workout_id.toString()}
           renderItem={({ item }) => (
             <WorkoutItem
+              id={item.workout_id}
               name={item.name}
               level={item.workout_level}
               tags={item.workout_tags}
