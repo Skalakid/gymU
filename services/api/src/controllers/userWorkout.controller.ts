@@ -63,4 +63,19 @@ async function getAllUserWorkouts(
   }
 }
 
-export { addWorkoutToUserAccount, getAllUserWorkouts };
+async function getAllWorkoutTags(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const workoutTags = await UserWorkoutService.getAllWorkoutTags();
+    res.status(201).send({
+      workout_tags: workoutTags,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export { addWorkoutToUserAccount, getAllUserWorkouts, getAllWorkoutTags };

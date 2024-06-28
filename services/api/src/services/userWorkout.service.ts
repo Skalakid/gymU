@@ -42,4 +42,21 @@ async function getAllUserWorkouts(
   return paginatedResponse;
 }
 
-export { addWorkoutToUserAccount, getAllUserWorkouts };
+async function getAllWorkoutTags() {
+  const tags = (await UserWorkoutDB.getAllWorkoutTags())
+    .map((tag) =>
+      tag.workout_template.workout_tags.map((workout_tag) => workout_tag.tag),
+    )
+    .flat(1);
+
+  const uniqueIds: number[] = [];
+  return tags.filter((tag) => {
+    if (uniqueIds.includes(tag.tag_id)) {
+      return false;
+    }
+    uniqueIds.push(tag.tag_id);
+    return true;
+  });
+}
+
+export { addWorkoutToUserAccount, getAllUserWorkouts, getAllWorkoutTags };

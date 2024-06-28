@@ -59,8 +59,25 @@ async function countAllFilteredWorkouts(tagIds: number[] | null) {
   });
 }
 
+async function getAllWorkoutTags() {
+  return await prisma.user_workout.findMany({
+    select: {
+      workout_template: {
+        select: {
+          workout_tags: {
+            select: {
+              tag: true,
+            },
+          },
+        },
+      },
+    },
+  });
+}
+
 export {
   addWorkoutToUserAccount,
   getAllUserWorkouts,
   countAllFilteredWorkouts,
+  getAllWorkoutTags,
 };

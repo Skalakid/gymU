@@ -5,7 +5,7 @@ const UserWorkoutsPage = () => {
     <WorkoutListPage
       title="Your Workouts"
       getAllWorkoutsEndpoint="/user/workout/all"
-      getAllWorkoutTagsEndpoint="/workout/tag/all"
+      getAllWorkoutTagsEndpoint="/user/workout/tag/all"
     />
   );
 };

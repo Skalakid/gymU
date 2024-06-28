@@ -18,5 +18,6 @@ router.get(
   authenticateToken,
   userWorkoutController.getAllUserWorkouts,
 );
+router.get('/workout/tag/all', userWorkoutController.getAllWorkoutTags);
 
 export = router;
