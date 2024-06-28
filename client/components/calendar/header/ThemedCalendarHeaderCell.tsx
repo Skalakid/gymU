@@ -10,7 +10,9 @@ const ThemedCalendarHeaderCell = ({
 }: ThemedCalendarHeaderCellProps) => {
   return (
     <View style={styles.container}>
-      <ThemedText>{content}</ThemedText>
+      <ThemedText weight="bold" size="xl">
+        {content}
+      </ThemedText>
     </View>
   );
 };

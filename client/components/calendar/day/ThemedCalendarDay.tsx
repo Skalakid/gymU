@@ -25,13 +25,18 @@ const ThemedCalendarDay = ({
       }}
       style={[
         styles.container,
-        cell.current ? styles.current : null,
-        cell.selected ? styles.selected : null,
+        cell.current ? styles.currentDate : null,
+        cell.selected ? styles.selectedDate : null,
       ]}
     >
       <ThemedText
+        weight="bold"
         textType="description"
-        style={[styles.text, currentMonth ? styles.currentMonth : null]}
+        style={[
+          styles.text,
+          currentMonth ? styles.currentMonth : null,
+          cell.selected ? styles.selectedDateText : null,
+        ]}
       >
         {date}
       </ThemedText>
@@ -54,12 +59,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     gap: 1,
   },
-  selected: {
-    backgroundColor: '#aaa4',
+  selectedDate: {
+    backgroundColor: '#fff',
   },
-  current: {
-    borderColor: 'white',
-    borderWidth: 1,
+  selectedDateText: {
+    color: '#494949',
+  },
+  currentDate: {
+    borderColor: '#777779',
+    borderWidth: 2,
   },
   text: {
     color: '#aaa',
