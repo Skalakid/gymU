@@ -1,4 +1,4 @@
-import WorkoutDetailsPage from '@/pages/workouts/workoutDetails/WorkoutDetails';
+import WorkoutDetailsPage from '@/pages/workouts/workoutDetails/WorkoutDetailsPage';
 
 const UserWorkoutDetails = () => {
   return <WorkoutDetailsPage />;

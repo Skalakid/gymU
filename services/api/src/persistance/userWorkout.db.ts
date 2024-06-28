@@ -17,10 +17,15 @@ async function getAllUserWorkouts(userId: number) {
     select: {
       workout_template: {
         select: {
+          workout_id: true,
           name: true,
           workout_tags: {
             select: {
-              tag: true,
+              tag: {
+                select: {
+                  name: true,
+                },
+              },
             },
           },
           workout_level: {
@@ -34,4 +39,28 @@ async function getAllUserWorkouts(userId: number) {
   });
 }
 
-export { addWorkoutToUserAccount, getAllUserWorkouts };
+async function countAllFilteredWorkouts(tagIds: number[] | null) {
+  return await prisma.user_workout.count({
+    where: tagIds
+      ? {
+          workout_template: {
+            workout_tags: {
+              some: {
+                tag: {
+                  tag_id: {
+                    in: tagIds,
+                  },
+                },
+              },
+            },
+          },
+        }
+      : undefined,
+  });
+}
+
+export {
+  addWorkoutToUserAccount,
+  getAllUserWorkouts,
+  countAllFilteredWorkouts,
+};

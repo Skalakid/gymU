@@ -1,25 +1,45 @@
 import * as UserWorkoutDB from '../persistance/userWorkout.db';
+import { PaginatedResponse } from '../types/api';
+import { GeneralWorkout } from '../types/workout';
 
 async function addWorkoutToUserAccount(userId: number, workoutId: number) {
   return await UserWorkoutDB.addWorkoutToUserAccount(userId, workoutId);
 }
 
-async function getAllUserWorkouts(userId: number) {
+async function getAllUserWorkouts(
+  userId: number,
+  skip: number,
+  page: number,
+  pageSize: number,
+  tagIds: number[] | null,
+) {
   const workouts = (await UserWorkoutDB.getAllUserWorkouts(userId)).map(
     (item) => item.workout_template,
   );
 
-  const workoutsWithTagName = workouts.map(({ workout_level, ...workout }) => {
+  const allWorkoutsCount = await UserWorkoutDB.countAllFilteredWorkouts(tagIds);
+
+  const workoutsWithTagName: GeneralWorkout[] = workouts.map((workout) => {
     return {
-      ...workout,
+      workout_id: workout.workout_id,
+      name: workout.name,
       workout_tags: workout.workout_tags.map(
-        (workout_tag) => workout_tag.tag.name,
+        (workout_tag) => workout_tag.tag.name || '',
       ),
-      workout_level: workout_level.name,
+      workout_level: workout.workout_level.name,
     };
   });
 
-  return workoutsWithTagName;
+  const paginatedResponse: PaginatedResponse<GeneralWorkout[]> = {
+    currentPage: page,
+    pages: Math.ceil(allWorkoutsCount / pageSize),
+    totalItems: allWorkoutsCount,
+    pageSize,
+    currentPageSize: workoutsWithTagName.length,
+    data: workoutsWithTagName,
+  };
+
+  return paginatedResponse;
 }
 
 export { addWorkoutToUserAccount, getAllUserWorkouts };

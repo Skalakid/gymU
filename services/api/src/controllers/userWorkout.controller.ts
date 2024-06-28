@@ -40,7 +40,23 @@ async function getAllUserWorkouts(
       throw new ApiError(401, 'User not authenticated');
     }
 
-    const workouts = await UserWorkoutService.getAllUserWorkouts(userId);
+    const page = Number(req.query.page) || 1;
+    const pageSize = Number(req.query.size) || 10;
+    const skip = (page - 1) * pageSize;
+    const tags = req.query.tag_ids?.toString();
+
+    let tagIds = null;
+    if (tags !== undefined) {
+      tagIds = tags.split(',').map((item) => Number(item));
+    }
+
+    const workouts = await UserWorkoutService.getAllUserWorkouts(
+      userId,
+      skip,
+      page,
+      pageSize,
+      tagIds,
+    );
     res.status(200).send(workouts);
   } catch (error) {
     next(error);

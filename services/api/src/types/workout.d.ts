@@ -7,6 +7,13 @@ type NewWorkoutTemplate = {
   workout_level_id: number;
 };
 
+type GeneralWorkout = {
+  workout_id: number;
+  name: string;
+  workout_tags: string[];
+  workout_level: string;
+};
+
 type NewUserWorkout = {
   user_id: number;
   workout_id: number;
@@ -24,4 +31,10 @@ type ExerciseWorkoutItem = {
   order_index: number;
 };
 
-export type { NewWorkoutTemplate, NewUserWorkout, WorkoutTag, ExerciseWorkoutItem };
+export type {
+  NewWorkoutTemplate,
+  GeneralWorkout,
+  NewUserWorkout,
+  WorkoutTag,
+  ExerciseWorkoutItem,
+};
