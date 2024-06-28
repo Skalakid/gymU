@@ -4,6 +4,7 @@ import ThemedView from '../ThemedView';
 import { useMemo } from 'react';
 import ThemedCalendarRow from './ThemedCalendarRow';
 import ThemedCalendarHeader from './header/ThemedCalendarHeader';
+import { prepareCalendar } from '@/utils/date.utils';
 
 export type CalendarEvent = {
   color?: string;
@@ -30,59 +31,6 @@ type ThemedCalendarDayProps = {
   events: CalendarEvents;
   selectedDate?: string;
   currentDate?: string;
-};
-
-const zerofill = (value: number, padding: number = 2) => {
-  return value.toString().padStart(padding, '0');
-};
-
-const getFormatedDate = (date: Date) =>
-  `${date.getFullYear()}-${zerofill(date.getMonth() + 1)}-${zerofill(date.getDate())}`;
-
-const prepareCalendar = (
-  month: number,
-  year: number,
-  events: CalendarEvents,
-  selected?: string,
-  current?: string,
-) => {
-  const firstDay = new Date(year, month - 1, 1, 1);
-
-  if (firstDay.getDay()) {
-    firstDay.setDate(firstDay.getDate() - firstDay.getDay() + 1);
-  } else {
-    firstDay.setDate(firstDay.getDate() - 6);
-  }
-
-  const result: CalendarCell[][] = [];
-
-  for (let i = 0; i < 6; i++) {
-    result.push(new Array(7));
-  }
-
-  for (let i = 0; i < result.length; i++) {
-    for (let j = 0; j < result[i].length; j++) {
-      const currentDate = getFormatedDate(firstDay);
-
-      result[i][j] = {
-        date: currentDate,
-        events: currentDate in events ? events[currentDate] : [],
-        currentMonth: firstDay.getMonth() + 1 === month,
-      };
-
-      if (currentDate === selected) {
-        result[i][j].selected = true;
-      }
-
-      if (currentDate === current) {
-        result[i][j].current = true;
-      }
-
-      firstDay.setDate(firstDay.getDate() + 1);
-    }
-  }
-
-  return result;
 };
 
 const ThemedCalendar = ({
