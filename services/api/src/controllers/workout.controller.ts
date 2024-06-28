@@ -2,6 +2,7 @@ import { NextFunction, Response } from 'express';
 import { AuthRequest } from '../middlewares/auth.middleware';
 import * as WorkoutService from '../services/workout.service';
 import ApiError from '../error/ApiError';
+import { ReturnUser } from './user.controller';
 
 async function getAllWorkouts(
   req: AuthRequest,
@@ -9,6 +10,7 @@ async function getAllWorkouts(
   next: NextFunction,
 ) {
   try {
+    const userId = Number((req.user as ReturnUser).user_id) || -1;
     const page = Number(req.query.page) || 1;
     const pageSize = Number(req.query.size) || 10;
     const skip = (page - 1) * pageSize;
@@ -24,6 +26,7 @@ async function getAllWorkouts(
       page,
       pageSize,
       tagIds,
+      userId,
     );
 
     res.status(201).send(allWorkoutsPaginated);
@@ -38,13 +41,16 @@ async function getWorkoutDetails(
   next: NextFunction,
 ) {
   try {
+    const userId = Number((req.user as ReturnUser).user_id) || -1;
     const workoutId = Number(req.params.id) || -1;
     if (Number.isNaN(workoutId) || workoutId <= 0) {
       throw new ApiError(400, 'Invalid workout id');
     }
 
-    const workoutWithTagName =
-      await WorkoutService.getWorkoutDetails(workoutId);
+    const workoutWithTagName = await WorkoutService.getWorkoutDetails(
+      workoutId,
+      userId,
+    );
     if (!workoutWithTagName) {
       throw new ApiError(404, 'Workout not found');
     }

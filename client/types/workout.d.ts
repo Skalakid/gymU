@@ -15,4 +15,6 @@ type Workout = {
     username: string;
   };
   workout_level: string;
+  exercises: ExerciseItem[];
+  isSavedByUser?: boolean;
 };
