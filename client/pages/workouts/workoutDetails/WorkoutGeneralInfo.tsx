@@ -12,7 +12,7 @@ type WorkoutGeneralInfoProps = {
   workoutDetails: Workout;
 };
 
-const WorkoutGeneralInfo = ({ workoutDetails }: Workout) => {
+const WorkoutGeneralInfo = ({ workoutDetails }: WorkoutGeneralInfoProps) => {
   const theme = useTheme();
 
   return (
