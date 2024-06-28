@@ -6,7 +6,6 @@ import TagSelector from '@/components/workouts/TagSelector';
 import WorkoutItem from '@/components/workouts/WorkoutItem';
 import { Colors } from '@/constants/Colors';
 import Icons from '@/constants/Icons';
-import { useIsFocused } from '@react-navigation/native';
 import { useRouter, useSegments } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
@@ -71,9 +70,18 @@ const WorkoutListPage = ({
     getAllWorkouts(selectedTags.map((tag) => tag.tag_id));
   };
 
+  const handleAddWorkout = () => {
+    router.navigate('/explore/add');
+  };
+
   return (
     <ThemedView style={styles.container}>
-      <Header title={title} rightIcon={Icons.circleAdd} rightIconSize={26} />
+      <Header
+        title={title}
+        rightIcon={Icons.circleAdd}
+        rightIconSize={26}
+        rightIconOnPress={handleAddWorkout}
+      />
       <ThemedView style={[styles.content]}>
         {areTagsLoaded && (
           <TagSelector
@@ -88,6 +96,7 @@ const WorkoutListPage = ({
           keyExtractor={(item) => item.workout_id.toString()}
           renderItem={({ item }) => (
             <WorkoutItem
+              id={item.workout_id}
               name={item.name}
               level={item.workout_level}
               tags={item.workout_tags}

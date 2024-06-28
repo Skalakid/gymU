@@ -10,21 +10,19 @@ import {
   FlatList,
   Alert,
 } from 'react-native';
-import SelectDropdown from 'react-native-select-dropdown';
 import fetchApi from '@/api/fetch';
 import { Colors } from '@/constants/Colors';
 import Icon from '../common/Icon';
 import Icons from '@/constants/Icons';
-import SelectableTag from '../common/tag/SelectableTag';
+import SelectDropdownInput from '../input/SelectDropdown';
+import { capitalize } from '@/utils/text.utils';
+import PrimaryButton from '../button/PrimaryButton';
+import { router } from 'expo-router';
 
-interface WorkoutFormProps {
-  closeForm: () => void;
-}
-
-interface DificultiesData {
+type DificultiesData = {
   label: string;
   level: number;
-}
+};
 
 const difficulties = ['beginner', 'easy', 'medium', 'hard', 'hardcore'];
 const pickerData: DificultiesData[] = [];
@@ -38,7 +36,7 @@ type WorkoutTagsRespone = {
   workout_tags: WorkoutType[];
 };
 
-const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
+const WorkoutForm = () => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme ?? 'light'];
   const primaryColor = theme.text;
@@ -48,7 +46,7 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
 
   const [workoutName, setWorkoutName] = useState('');
   const [description, setDescription] = useState('');
-  const [difficulty, setDifficulty] = useState(null);
+  const [difficulty, setDifficulty] = useState<DificultiesData | null>(null);
 
   // TODO: Code duplicate
   const getAllWorkoutTags = async () => {
@@ -61,167 +59,139 @@ const WorkoutForm = ({ closeForm }: WorkoutFormProps) => {
     }
   };
 
+  const handleAddWorkout = async () => {
+    try {
+      if (
+        workoutName === '' ||
+        description === '' ||
+        difficulty === null ||
+        chosenTags.length === 0
+      ) {
+        Alert.alert('Please fill in all fields');
+        return;
+      }
+
+      const reponse = await fetchApi(
+        '/workout/create',
+        'POST',
+        null,
+        {
+          name: workoutName,
+          description: description,
+          is_private: true,
+          workout_level_id: difficulty.level,
+          tag_ids: chosenTags.map((value) => value.tag_id),
+          exercises: [],
+        },
+        true,
+      );
+      if (reponse.ok) {
+        router.navigate('/explore');
+      } else {
+        Alert.alert('Something went wrong...');
+      }
+    } catch (error) {
+      Alert.alert('Something went wrong...');
+    }
+  };
+
   useEffect(() => {
     getAllWorkoutTags();
   }, []);
 
   return (
-    <ThemedView style={[styles.container, { backgroundColor: theme.tile }]}>
-      <ThemedText size="l">General info</ThemedText>
+    <ThemedView style={[styles.container]}>
+      <View style={styles.content}>
+        <ThemedText size="xl" weight="semiBold">
+          General info
+        </ThemedText>
+        <View style={styles.textInputs}>
+          <TextInput
+            label="Workout name"
+            placeholder="Enter workout name..."
+            onChangeText={(text) => setWorkoutName(text)}
+            value={workoutName}
+          />
 
-      <TextInput
-        label="Workout name"
-        placeholder="Enter workout name..."
-        onChangeText={(text) => setWorkoutName(text)}
-        value={workoutName}
-      />
+          <TextInput
+            label="Description"
+            placeholder="Enter workout description..."
+            onChangeText={(text) => setDescription(text)}
+            value={description}
+          />
+        </View>
 
-      <TextInput
-        label="Description"
-        placeholder="Enter workout description..."
-        onChangeText={(text) => setDescription(text)}
-        value={description}
-      />
+        <View style={styles.selectWrapper}>
+          <Icon icon={Icons.flame} size={26} color={theme.subTile} />
 
-      <View style={styles.selectWrapper}>
-        <Icon icon={Icons.flame} size={32} color={theme.subTile} />
-        <SelectDropdown
-          dropdownStyle={{ backgroundColor: theme.background }}
-          data={pickerData}
-          onSelect={(value, _) => setDifficulty(value.level)}
-          renderButton={(selectedItem, _isOpened) => {
-            return (
-              <ThemedView
-                style={[
-                  styles.button,
-                  {
-                    flex: 1,
-                    borderColor: primaryColor,
-                  },
-                ]}
-              >
-                <ThemedText>
-                  {(selectedItem && selectedItem.label) ||
-                    'Choose difficulty...'}
-                </ThemedText>
-              </ThemedView>
-            );
-          }}
-          renderItem={(item, _index, _isSelected) => {
-            return (
-              <ThemedView
-                style={[styles.selectItem, { backgroundColor: theme.tile }]}
-              >
-                <ThemedText style={{ color: primaryColor }}>
-                  {item.label}
-                </ThemedText>
-              </ThemedView>
-            );
-          }}
-        />
-      </View>
-
-      {/* TODO: Extract to separate component */}
-      <View style={styles.selectWrapper}>
-        <Icon icon={Icons.hashtag} size={32} color={theme.subTile} />
-        <SelectDropdown
-          dropdownStyle={{ backgroundColor: theme.background }}
-          data={allTags}
-          onSelect={(value, _) => {
-            if (chosenTags.includes(value)) {
-              return;
-            }
-
-            setChosenTags((prev) => [...prev, value]);
-          }}
-          renderButton={(_selectedItem, _isOpened) => {
-            return (
-              <ThemedView
-                style={[
-                  styles.button,
-                  {
-                    flex: 1,
-                    borderColor: primaryColor,
-                  },
-                ]}
-              >
-                <ThemedText>Add tag</ThemedText>
-              </ThemedView>
-            );
-          }}
-          renderItem={(item, _index, _isSelected) => {
-            return (
-              <ThemedView
-                style={[styles.selectItem, { backgroundColor: theme.tile }]}
-              >
-                <ThemedText style={{ color: primaryColor }}>
-                  {item.name}
-                </ThemedText>
-              </ThemedView>
-            );
-          }}
-        />
-      </View>
-
-      <FlatList
-        style={styles.list}
-        data={chosenTags}
-        renderItem={({ item, index }) => (
-          <TouchableOpacity
-            style={[styles.tag, { backgroundColor: theme.secondary }]}
-            onPress={() => {
-              const copy = [...chosenTags];
-              copy.splice(index, 1);
-              setChosenTags(copy);
+          <SelectDropdownInput
+            data={pickerData}
+            onSelect={(value) => setDifficulty(value)}
+            renderItem={(item) => {
+              return (
+                <ThemedView
+                  style={[styles.selectItem, { backgroundColor: theme.tile }]}
+                >
+                  <ThemedText style={{ color: primaryColor }}>
+                    {item.label}
+                  </ThemedText>
+                </ThemedView>
+              );
             }}
-          >
-            <ThemedText>{item.name}</ThemedText>
-          </TouchableOpacity>
-        )}
-        horizontal
-        ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
-        showsHorizontalScrollIndicator={false}
-      />
+            placeholder="Select difficulty level..."
+            selectedValue={capitalize(difficulty?.label)}
+          />
+        </View>
 
-      <TouchableOpacity
-        onPress={async () => {
-          if (
-            workoutName === '' ||
-            description === '' ||
-            difficulty === null ||
-            chosenTags.length === 0
-          ) {
-            Alert.alert('Please fill in all fields');
-            return;
-          }
-          // TODO: Handle response
-          await fetchApi(
-            '/workout/create',
-            'POST',
-            null,
-            {
-              name: workoutName,
-              description: description,
-              is_private: true,
-              workout_level_id: difficulty,
-              tag_ids: chosenTags.map((value) => value.tag_id),
-              exercises: [],
-            },
-            true,
-          );
+        {/* TODO: Extract to separate component */}
+        <View style={styles.selectWrapper}>
+          <Icon icon={Icons.hashtag} size={26} color={theme.subTile} />
+          <SelectDropdownInput
+            data={allTags}
+            onSelect={(value) => {
+              if (chosenTags.includes(value)) {
+                return;
+              }
 
-          closeForm();
-        }}
-        style={[
-          styles.button,
-          {
-            width: '100%',
-            borderColor: primaryColor,
-          },
-        ]}
-      >
-        <ThemedText>Add workout</ThemedText>
-      </TouchableOpacity>
+              setChosenTags((prev) => [...prev, value]);
+            }}
+            renderItem={(item) => {
+              return (
+                <ThemedView
+                  style={[styles.selectItem, { backgroundColor: theme.tile }]}
+                >
+                  <ThemedText style={{ color: primaryColor }}>
+                    {item.name}
+                  </ThemedText>
+                </ThemedView>
+              );
+            }}
+            placeholder="Add tags..."
+          />
+        </View>
+
+        <FlatList
+          style={styles.list}
+          data={chosenTags}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity
+              style={[styles.tag, { backgroundColor: theme.secondary }]}
+              onPress={() => {
+                const copy = [...chosenTags];
+                copy.splice(index, 1);
+                setChosenTags(copy);
+              }}
+            >
+              <ThemedText>{item.name}</ThemedText>
+            </TouchableOpacity>
+          )}
+          horizontal
+          ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+
+      <PrimaryButton onPress={handleAddWorkout} value="Add workout" />
     </ThemedView>
   );
 };
@@ -230,58 +200,48 @@ export default WorkoutForm;
 
 const styles = StyleSheet.create({
   container: {
-    top: '30%',
-    height: '65%',
-
+    flex: 1,
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-
-    padding: 10,
-
-    borderRadius: 15,
+    justifyContent: 'space-between',
   },
-
+  content: {
+    gap: 10,
+  },
   selectWrapper: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+    gap: 10,
   },
-
   selectItem: {
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-
     borderRadius: 10,
     padding: 2,
     margin: 2,
   },
-
   button: {
-    margin: 10,
-    marginBottom: 0,
+    flex: 1,
     padding: 16,
     borderRadius: 15,
     borderWidth: 2,
     fontFamily: 'Poppins',
-    justifyContent: 'space-around',
-    alignItems: 'center',
   },
-
   tag: {
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
 
-    height: '25%',
     padding: 5,
     borderRadius: 10,
   },
-
   list: {
     width: '100%',
-    margin: 10,
+  },
+  textInputs: {
+    marginBottom: 20,
+    gap: 10,
   },
 });
