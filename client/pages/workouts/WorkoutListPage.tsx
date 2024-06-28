@@ -6,7 +6,7 @@ import TagSelector from '@/components/workouts/TagSelector';
 import WorkoutItem from '@/components/workouts/WorkoutItem';
 import { Colors } from '@/constants/Colors';
 import Icons from '@/constants/Icons';
-import { useRouter } from 'expo-router';
+import { useRouter, useSegments } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 
@@ -30,6 +30,7 @@ const WorkoutListPage = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [areTagsLoaded, setAreTagsLoaded] = useState(false);
   const [tags, setTags] = useState<WorkoutType[]>([]);
+  const segments = useSegments();
 
   const getAllWorkouts = async (tagIds: number[] | null = null) => {
     try {
@@ -89,7 +90,9 @@ const WorkoutListPage = ({
               level={item.workout_level}
               tags={item.workout_tags}
               onPress={() => {
-                router.navigate(`/explore/${item.workout_id}`);
+                router.navigate(
+                  `/${segments[segments.length - 1]}/${item.workout_id}`,
+                );
               }}
             />
           )}

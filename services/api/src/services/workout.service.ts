@@ -1,3 +1,7 @@
+import {
+  getWorkoutIdsSavedByUser,
+  isWorkoutSavedByUser,
+} from '../persistance/userWorkout.db';
 import * as WorkoutDB from '../persistance/workout.db';
 import { PaginatedResponse } from '../types/api';
 import { ExerciseWorkoutItem, GeneralWorkout } from '../types/workout';
@@ -7,6 +11,7 @@ async function getAllWorkouts(
   page: number,
   pageSize: number,
   tagIds: number[] | null,
+  userId: number,
 ) {
   const workouts = await WorkoutDB.getAllWorkoutsPaginated(
     skip,
@@ -14,6 +19,9 @@ async function getAllWorkouts(
     tagIds,
   );
   const allWorkoutsCount = await WorkoutDB.countAllFilteredWorkouts(tagIds);
+  const workoutIdsSavedByUser = (await getWorkoutIdsSavedByUser(userId)).map(
+    (item) => item.workout_id,
+  );
 
   const workoutsWithTagName: GeneralWorkout[] = workouts.map(
     ({
@@ -29,6 +37,7 @@ async function getAllWorkouts(
           (workout_tag) => workout_tag.tag.name,
         ),
         workout_level: workout_level.name,
+        isSavedByUser: workoutIdsSavedByUser.includes(workout.workout_id),
       } as GeneralWorkout;
     },
   );
@@ -45,12 +54,14 @@ async function getAllWorkouts(
   return paginatedResponse;
 }
 
-async function getWorkoutDetails(workoutId: number) {
+async function getWorkoutDetails(workoutId: number, userId: number) {
   const workout = await WorkoutDB.getWorkoutDetails(workoutId);
 
   if (!workout) {
     throw null;
   }
+
+  const isSavedByUser = await isWorkoutSavedByUser(userId, workoutId);
 
   const exerciseItems = workout.exercise_template_item
     .map((item) => {
@@ -79,6 +90,7 @@ async function getWorkoutDetails(workoutId: number) {
     ),
     workout_level: workout.workout_level.name,
     exercises: exerciseItems,
+    isSavedByUser,
   };
 
   return workoutWithTagName;

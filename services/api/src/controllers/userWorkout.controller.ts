@@ -2,6 +2,7 @@ import { NextFunction, Response } from 'express';
 import * as UserWorkoutService from '../services/userWorkout.service';
 import { AuthRequest } from '../middlewares/auth.middleware';
 import ApiError from '../error/ApiError';
+import { ReturnUser } from './user.controller';
 
 async function addWorkoutToUserAccount(
   req: AuthRequest,
@@ -9,7 +10,7 @@ async function addWorkoutToUserAccount(
   next: NextFunction,
 ) {
   try {
-    const userId = Number(req.user) || 1;
+    const userId = Number((req.user as ReturnUser).user_id) || 1;
     const workoutId = Number(req.body.workout_id);
     console.log('userId', userId);
 
@@ -35,7 +36,7 @@ async function getAllUserWorkouts(
   next: NextFunction,
 ) {
   try {
-    const userId = Number(req.user) || 1;
+    const userId = Number((req.user as ReturnUser).user_id) || -1;
     if (!userId) {
       throw new ApiError(401, 'User not authenticated');
     }

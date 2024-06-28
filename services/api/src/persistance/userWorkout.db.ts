@@ -75,9 +75,38 @@ async function getAllWorkoutTags() {
   });
 }
 
+async function getWorkoutIdsSavedByUser(userId: number) {
+  return await prisma.user_workout.findMany({
+    where: {
+      user_id: userId || -1,
+    },
+    select: {
+      workout_id: true,
+    },
+  });
+}
+
+async function isWorkoutSavedByUser(userId: number, workoutId: number) {
+  return (
+    (
+      await prisma.user_workout.findFirst({
+        where: {
+          user_id: userId,
+          workout_id: workoutId,
+        },
+        select: {
+          workout_id: true,
+        },
+      })
+    )?.workout_id === workoutId
+  );
+}
+
 export {
   addWorkoutToUserAccount,
   getAllUserWorkouts,
   countAllFilteredWorkouts,
   getAllWorkoutTags,
+  getWorkoutIdsSavedByUser,
+  isWorkoutSavedByUser,
 };

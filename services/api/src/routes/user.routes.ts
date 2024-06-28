@@ -9,7 +9,7 @@ router.get('/current', authenticateToken, userController.getCurrentUser);
 router.get('/all', authenticateToken, userController.getAllUsers);
 
 router.post(
-  '/workout/add',
+  '/workout/save',
   authenticateToken,
   userWorkoutController.addWorkoutToUserAccount,
 );

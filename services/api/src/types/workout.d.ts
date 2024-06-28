@@ -12,6 +12,7 @@ type GeneralWorkout = {
   name: string;
   workout_tags: string[];
   workout_level: string;
+  isOwnedByUser?: boolean;
 };
 
 type NewUserWorkout = {

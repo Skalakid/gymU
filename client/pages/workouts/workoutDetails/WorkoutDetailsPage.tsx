@@ -20,7 +20,13 @@ import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated';
 import WorkoutGeneralInfo from './WorkoutGeneralInfo';
 import WorkoutExercises from './WorkoutExercises';
 
-const WorkoutDetailsPage = () => {
+type WorkoutDetailsPageProps = {
+  workoutType?: 'external' | 'user';
+};
+
+const WorkoutDetailsPage = ({
+  workoutType = 'external',
+}: WorkoutDetailsPageProps) => {
   const theme = useTheme();
   const router = useRouter();
   const isFocused = useIsFocused();
@@ -29,6 +35,7 @@ const WorkoutDetailsPage = () => {
   const { id } = useLocalSearchParams();
   const [currentSubpage, setCurrentSubpage] = useState(0);
   const [workoutDetails, setWorkoutDetails] = useState<Workout | null>(null);
+  const isExternal = workoutType === 'external';
 
   const getWorkoutDetails = useCallback(async () => {
     try {
@@ -37,7 +44,7 @@ const WorkoutDetailsPage = () => {
         console.error(response.statusText);
         return;
       }
-      const workoutDetails = await response.json();
+      const workoutDetails: Workout = await response.json();
       setWorkoutDetails(workoutDetails);
     } catch (error) {
       console.error(error);
@@ -61,6 +68,27 @@ const WorkoutDetailsPage = () => {
     }
   };
 
+  const handleGoBack = () => {
+    if (
+      segments[segments.length - 1] === 'exercises' &&
+      segments[segments.length - 2] === '[id]'
+    ) {
+      router.back();
+    }
+    router.back();
+  };
+
+  const handleSaveWorkout = async () => {
+    if (!workoutDetails || workoutDetails?.isSavedByUser || !isExternal) {
+      return;
+    }
+
+    await fetchApi(`/user/workout/save`, 'POST', null, {
+      workout_id: workoutDetails.workout_id,
+    });
+    await getWorkoutDetails();
+  };
+
   if (!isFocused) return null;
   return (
     <ThemedView style={{ flex: 1 }}>
@@ -81,15 +109,16 @@ const WorkoutDetailsPage = () => {
           style={styles.header}
           leftIcon={Icons.arrowLeft}
           leftIconSize={32}
-          leftIconOnPress={() => {
-            if (
-              segments[segments.length - 1] === 'exercises' &&
-              segments[segments.length - 2] === '[id]'
-            ) {
-              router.back();
-            }
-            router.back();
-          }}
+          leftIconOnPress={handleGoBack}
+          rightIcon={
+            !isExternal
+              ? undefined
+              : workoutDetails?.isSavedByUser
+                ? Icons.check
+                : Icons.save
+          }
+          rightIconOnPress={handleSaveWorkout}
+          rightIconSize={24}
         />
 
         <Animated.View
