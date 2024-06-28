@@ -9,8 +9,9 @@ async function addWorkoutToUserAccount(
   next: NextFunction,
 ) {
   try {
-    const userId = Number(req.user);
-    const workoutId = Number(req.params.workout);
+    const userId = Number(req.user) || 1;
+    const workoutId = Number(req.body.workout_id);
+    console.log('userId', userId);
 
     if (!userId) {
       throw new ApiError(401, 'User not authenticated');
@@ -28,4 +29,22 @@ async function addWorkoutToUserAccount(
   }
 }
 
-export { addWorkoutToUserAccount };
+async function getAllUserWorkouts(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const userId = Number(req.user) || 1;
+    if (!userId) {
+      throw new ApiError(401, 'User not authenticated');
+    }
+
+    const workouts = await UserWorkoutService.getAllUserWorkouts(userId);
+    res.status(200).send(workouts);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export { addWorkoutToUserAccount, getAllUserWorkouts };

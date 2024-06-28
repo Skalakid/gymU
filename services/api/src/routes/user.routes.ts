@@ -13,5 +13,10 @@ router.post(
   authenticateToken,
   userWorkoutController.addWorkoutToUserAccount,
 );
+router.get(
+  '/workouts',
+  authenticateToken,
+  userWorkoutController.getAllUserWorkouts,
+);
 
 export = router;
