@@ -1,16 +1,7 @@
-import { Stack } from 'expo-router';
+import { Slot } from 'expo-router';
 
 const WorkoutsLayout = () => {
-  return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name="index" />
-      <Stack.Screen name="[id]" options={{ freezeOnBlur: true }} />
-    </Stack>
-  );
+  return <Slot />;
 };
 
 export default WorkoutsLayout;

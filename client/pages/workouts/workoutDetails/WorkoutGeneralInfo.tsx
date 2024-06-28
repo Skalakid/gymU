@@ -1,4 +1,3 @@
-import fetchApi from '@/api/fetch';
 import ThemedText from '@/components/ThemedText';
 import Icon from '@/components/common/Icon';
 import LabeledText from '@/components/common/LabeledText';
@@ -7,32 +6,14 @@ import Tag from '@/components/common/tag/Tag';
 import Icons from '@/constants/Icons';
 import useTheme from '@/hooks/useTheme';
 import { capitalize } from '@/utils/text.utils';
-import { useLocalSearchParams } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
-const WorkoutDetailsPage = () => {
+type WorkoutGeneralInfoProps = {
+  workoutDetails: Workout;
+};
+
+const WorkoutGeneralInfo = ({ workoutDetails }: WorkoutGeneralInfoProps) => {
   const theme = useTheme();
-  const { id } = useLocalSearchParams();
-  const [workoutDetails, setWorkoutDetails] = useState<Workout | null>(null);
-
-  const getWorkoutDetails = useCallback(async () => {
-    try {
-      const response = await fetchApi(`/workout/${id}`, 'GET');
-      if (!response.ok) {
-        console.error(response.statusText);
-        return;
-      }
-      const workoutDetails = await response.json();
-      setWorkoutDetails(workoutDetails);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [id]);
-
-  useEffect(() => {
-    getWorkoutDetails();
-  }, [getWorkoutDetails]);
 
   return (
     <ScrollView>
@@ -72,7 +53,7 @@ const WorkoutDetailsPage = () => {
   );
 };
 
-export default WorkoutDetailsPage;
+export default WorkoutGeneralInfo;
 
 const styles = StyleSheet.create({
   content: {

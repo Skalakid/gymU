@@ -1,19 +1,13 @@
-import ThemedText from '@/components/ThemedText';
-import ThemedView from '@/components/ThemedView';
-import { StyleSheet } from 'react-native';
+import WorkoutListPage from '@/pages/workouts/WorkoutListPage';
 
-const WorkoutsPage = () => {
+const UserWorkoutsPage = () => {
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText>Your workouts page</ThemedText>
-    </ThemedView>
+    <WorkoutListPage
+      title="Your Workouts"
+      getAllWorkoutsEndpoint="/user/workout/all"
+      getAllWorkoutTagsEndpoint="/user/workout/tag/all"
+    />
   );
 };
 
-export default WorkoutsPage;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+export default UserWorkoutsPage;
