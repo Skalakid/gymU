@@ -1,24 +1,13 @@
 import fetchApi from '@/api/fetch';
-import ThemedView from '@/components/ThemedView';
-import Header from '@/components/navigation/Header';
 import PageSwitcher from '@/components/navigation/PageSwitcher';
 import Icons from '@/constants/Icons';
-import Images from '@/constants/Images';
-import useTheme from '@/hooks/useTheme';
 import { useIsFocused } from '@react-navigation/native';
-import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
-import {
-  useLocalSearchParams,
-  usePathname,
-  useRouter,
-  useSegments,
-} from 'expo-router';
+import { useLocalSearchParams, useRouter, useSegments } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated';
 import WorkoutGeneralInfo from './WorkoutGeneralInfo';
 import WorkoutExercises from './WorkoutExercises';
+import WorkoutModalPage from '../WorkoutModalPage';
 
 type WorkoutDetailsPageProps = {
   workoutType?: 'external' | 'user';
@@ -27,7 +16,6 @@ type WorkoutDetailsPageProps = {
 const WorkoutDetailsPage = ({
   workoutType = 'external',
 }: WorkoutDetailsPageProps) => {
-  const theme = useTheme();
   const router = useRouter();
   const isFocused = useIsFocused();
   const segments = useSegments();
@@ -90,52 +78,30 @@ const WorkoutDetailsPage = ({
 
   if (!isFocused) return null;
   return (
-    <ThemedView style={{ flex: 1 }}>
-      <Animated.View entering={FadeIn.delay(200).duration(500)}>
-        <Image
-          source={Images.workout_example_img}
-          contentFit="cover"
-          style={{ width: '100%', height: 200 }}
-        />
-        <LinearGradient
-          colors={[theme.background, 'transparent']}
-          style={styles.gradient}
-        />
-      </Animated.View>
-      <View style={styles.container}>
-        <Header
-          title={'Workout details'}
-          style={styles.header}
-          leftIcon={Icons.arrowLeft}
-          leftIconSize={32}
-          leftIconOnPress={handleGoBack}
-          rightIcon={
-            !isExternal
-              ? undefined
-              : workoutDetails?.isSavedByUser
-                ? Icons.check
-                : Icons.save
-          }
-          rightIconOnPress={handleSaveWorkout}
-          rightIconSize={24}
-        />
+    <WorkoutModalPage
+      title="Workout Details"
+      onGoBack={handleGoBack}
+      rightIcon={
+        !isExternal
+          ? undefined
+          : workoutDetails?.isSavedByUser
+            ? Icons.check
+            : Icons.save
+      }
+      rightIconOnPress={handleSaveWorkout}
+    >
+      <>
+        <View style={styles.switcher}>
+          <PageSwitcher
+            activePageIndex={currentSubpage}
+            pages={['General info', 'Exercises']}
+            onRouteChange={(index) => setCurrentSubpage(index)}
+          />
+        </View>
 
-        <Animated.View
-          style={[styles.modal, { backgroundColor: theme.background }]}
-          entering={SlideInDown}
-        >
-          <View style={styles.switcher}>
-            <PageSwitcher
-              activePageIndex={currentSubpage}
-              pages={['General info', 'Exercises']}
-              onRouteChange={(index) => setCurrentSubpage(index)}
-            />
-          </View>
-
-          {renderSubpage()}
-        </Animated.View>
-      </View>
-    </ThemedView>
+        {renderSubpage()}
+      </>
+    </WorkoutModalPage>
   );
 };
 
