@@ -31,7 +31,7 @@ def runLinterChecks(String checkName) {
     withChecks(name: checkName) {
         def eslintResultsFilename = 'eslint-results.xml'
         sh "ls -lsa "
-        sh "rm ${eslintResultsFilename}"
+        sh "rm -f ${eslintResultsFilename}"
         
         code = sh script:'yarn lint > ${eslintResultsFilename}', returnStatus: true 
         echo "${code}"
