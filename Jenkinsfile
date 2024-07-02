@@ -4,25 +4,38 @@ pipeline {
     }
     stages {
 
-        stage('Test v1') {
-            steps {
-                sh 'pwd'
+        stage("Mobile client") {
+            dir('client') {
 
-                sh 'node --version'
-                sh 'ls -lsa'
-                withChecks('injected name') {
-                    sh 'echo Hello World!'
-                }
-                
-                withChecks('Second check') {
-                    sh 'echo Hello World! v4'
-                }
-
-                
-                withChecks('Third check') {
-                    sh 'echo Hello World! v4'
-                }
             }
         }
+
+        stage ("Service\\API") {
+            dir('services/api') {
+                sh 'pwd'
+                sh 'ls -lsa'
+            }
+        }
+
+        // stage('Test v1') {
+        //     steps {
+        //         sh 'pwd'
+
+        //         sh 'node --version'
+        //         sh 'ls -lsa'
+        //         withChecks('injected name') {
+        //             sh 'echo Hello World!'
+        //         }
+                
+        //         withChecks('Second check') {
+        //             sh 'echo Hello World! v4'
+        //         }
+
+                
+        //         withChecks('Third check') {
+        //             sh 'echo Hello World! v4'
+        //         }
+        //     }
+        // }
     }
 }
