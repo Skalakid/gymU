@@ -1,4 +1,7 @@
 
+//// FUNCTIONS ////
+
+/// EXAMPLE WRAPPER WITH CHECKS CLOSURE ///
 def runWithChecks(String checkName, Closure body) {
     echo "Starting check: ${checkName}"
     sh "pwd"
@@ -15,6 +18,8 @@ def runWithChecks(String checkName, Closure body) {
     }
 }
 
+/// PUBLISHING ///
+
 def publishSuccess(String checkName, String summary = 'Successfully passed') {
     publishChecks name: checkName, summary: summary, title: checkName    
 }
@@ -23,35 +28,44 @@ def publishFailure(String checkName, String summary = 'Failed to pass') {
     publishChecks name: checkName, summary: summary, title: checkName, conclusion: 'FAILURE'    
 }
 
+/// CUSTOM CHECKS ///
+
 def runLinterChecks(String checkName) {
-    echo "Starting check: ${checkName}"
+    echo "Check started: `${checkName}`"
     
     def code
 
     withChecks(name: checkName) {
         def eslintResultsFilename = 'eslint-results.xml'
-        sh "ls -lsa "
+
+        /// Remove previous eslint output results ///
         sh "rm -f ${eslintResultsFilename}"
         
+        /// LINT ///
         code = sh script:"yarn lint > ${eslintResultsFilename}", returnStatus: true 
-        echo "${code}"
-        sh "ls -lsa"
+        echo "Execution code: ${code}"
+        
         if (code == 0) {
             echo "Check ${checkName} passed"
+            
+            /// PUBLISH ///
             publishSuccess(checkName)
         } else {
             echo "Check ${checkName} failed"
 
+            /// READ ESLINT RESULTS ///
             def workspace = pwd()
             def summary = readFile "${workspace}/${eslintResultsFilename}"
 
-
+            /// PUBLISH ///
             publishFailure(checkName, "See:\n```xml\n${summary}```")
         }
     }
 
     return code
 }
+
+//// MAIN PIPELINE ////
 
 pipeline {
     agent {
@@ -68,7 +82,7 @@ pipeline {
 
         stage("Run linters") {
             parallel {
-                stage("Mobile client") {
+                stage("Mobile Client / Lint") {
                     steps {
                         dir('client') {
                             runLinterChecks("Mobile Client / Lint")
@@ -76,7 +90,7 @@ pipeline {
                     }
                 }
 
-                stage ("Service / API") {
+                stage ("Services / API / Lint") {
                     steps {
                         dir('services/api') {
                             sh 'pwd'
