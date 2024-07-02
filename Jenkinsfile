@@ -18,6 +18,7 @@ pipeline {
         stage("Initialization") {
             steps {
                 sh 'yarn install'
+                echo "Environment initialized"
             }
         }
 
