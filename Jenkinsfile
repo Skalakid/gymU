@@ -20,8 +20,9 @@ def publishSuccess(String checkName, String summary) {
 
 def runLinterChecks(String checkName) {
     echo "Starting check: ${checkName}"
+    def code
     withChecks(name: checkName) {
-        def code = sh script:'yarn lint -f checkstyle > eslint-results.xml', returnStatus: true 
+        code = sh script:'yarn lint -f checkstyle > eslint-results.xml', returnStatus: true 
         echo "${code}"
         if (code == 0) {
             echo "Check ${checkName} passed"
