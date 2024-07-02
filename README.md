@@ -56,25 +56,84 @@ docker version
 
 #### Setup
 
-To run backend services, go to the `services` directory and run command:
+##### Development mode
+
+###### Via `yarn workspaces`
+
+To run backend services in dev mode, in the main directory run:
 
 ```bash
-docker compose up
+yarn services:dev:run
+```
+
+or in detached mode:
+
+```bash
+yarn services:dev:run -d
+```
+
+###### Manually
+
+To run backend services in `dev` mode, go to the `services` directory and run command:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up  --build
 ```
 
 or if you want to run services in background:
 
 ```bash
-docker compose up -d
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up  --build -d
 ```
 
-To shutdown and remove the containers of all services, in the same directory run:
+##### Production mode
+
+###### Via `yarn workspaces`
+
+To run backend services in prod mode, in the main directory run:
+
+```bash
+yarn services:prod:run
+```
+
+or in detached mode:
+
+```bash
+yarn services:prod:run -d
+```
+
+###### Manually
+
+To run backend services in `prod` mode, go to the `services` directory and run command:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up  --build
+```
+
+or if you want to run services in background:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up  --build -d
+```
+
+#### Shutting down
+
+To shutdown and remove the containers of all services, in the main directory run:
+
+```bash
+yarn services:down
+```
+or manually, in the `services` directory:
 
 ```bash
 docker compose down
 ```
 
 ### Client
+
+> [!IMPORTANT]  
+> If you're using VScode make sure that you have installed [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions.
+
 
 To start working with client app, go to the `client` directory and run:
 

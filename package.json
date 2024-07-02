@@ -1,0 +1,13 @@
+{
+    "private": true,
+    "workspaces" : [
+        "services/api",
+        "client",
+        "common"
+    ],
+    "scripts": {
+        "services:dev:run": "cd services && docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build",
+        "services:prod:run": "cd services && docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build",
+        "services:down": "cd services && docker compose down"
+    }
+}

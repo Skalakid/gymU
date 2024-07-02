@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet } from "react-native";
-import React from "react";
-import Icon from "../Icon";
-import Icons from "@/constants/Icons";
-import { Colors } from "@/constants/Colors";
+import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import Icon from '../common/Icon';
+import Icons from '@/constants/Icons';
+import { Colors } from '@/constants/Colors';
 
 type BottomTabIcon = {
   name: string;
@@ -11,23 +11,25 @@ type BottomTabIcon = {
   color?: string;
 };
 
-export default function BottomTabIcon({
+const BottomTabIcon = ({
   name,
   icon,
-  color = Colors.light.tabIconDefault,
-}: BottomTabIcon) {
+  color = Colors.light.icon,
+}: BottomTabIcon) => {
   return (
     <View style={styles.container}>
       <Icon icon={icon} size={24} color={color} />
       <Text style={[{ color: color }, styles.text]}>{name}</Text>
     </View>
   );
-}
+};
+
+export default BottomTabIcon;
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     gap: 2,
   },
   text: {
