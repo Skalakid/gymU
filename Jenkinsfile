@@ -30,6 +30,10 @@ pipeline {
                 dir('services/api') {
                     sh 'pwd'
                     sh 'ls -lsa'
+
+                    withChecks(name: "Lint", includeStage: true) {
+                        sh 'yarn lint -f checkstyle'
+                    }
                 }
             }
         }
