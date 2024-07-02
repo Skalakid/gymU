@@ -30,6 +30,7 @@ def runLinterChecks(String checkName) {
         } else {
             echo "Check ${checkName} failed"
             publishChecks name: checkName, summary: 'Failed to pass', title: checkName, conclusion: 'FAILURE'    
+            throw new Exception("Failed to execute check: ${checkName}")
         }
     }
 
