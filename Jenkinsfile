@@ -47,10 +47,7 @@ pipeline {
                 dir('client') {
                     sh 'pwd'
                     sh 'ls -lsa'
-
-                    runWithChecks("Mobile Client / Lint") {
-                        sh 'yarn lint'
-                    }
+                    runLinter("Mobile Client / Lint")
                 }
 
             }
