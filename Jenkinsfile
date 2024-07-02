@@ -3,6 +3,7 @@ def runWithChecks(String checkName, Closure body) {
     echo "Starting check: ${checkName}"
     withChecks(name: checkName) {
         def code = body()
+        echo code
         if (code == 0) {
             echo "Check ${checkName} passed"
             publishChecks name: checkName, summary: 'Successfully passed', title: checkName    
