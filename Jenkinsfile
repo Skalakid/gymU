@@ -48,7 +48,7 @@ pipeline {
                     sh 'ls -lsa'
 
                     runWithChecks("Services / API / Lint") {
-                        sh 'yarn lint -f checkstyle'
+                        sh 'yarn lint'
                     }
                 }
             }
