@@ -1,7 +1,7 @@
 import ThemedView from '@/components/ThemedView';
 import { Colors } from '@/constants/Colors';
 import { ActivityIndicator, StyleSheet } from 'react-native';
-import ThemedText from '@/components/ThemedText';
+
 const StartPage = () => {
   return (
     <ThemedView style={styles.container}>
