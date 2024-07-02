@@ -5,7 +5,9 @@ pipeline {
     stages {
 
         stage("Initialization") {
-            sh 'yarn install'
+            steps {
+                sh 'yarn install'
+            }
         }
 
         stage("Mobile client") {
