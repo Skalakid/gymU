@@ -33,7 +33,7 @@ def runLinterChecks(String checkName) {
         sh "ls -lsa "
         sh "rm -f ${eslintResultsFilename}"
         
-        code = sh script:'yarn lint > ${eslintResultsFilename}', returnStatus: true 
+        code = sh script:"yarn lint > ${eslintResultsFilename}", returnStatus: true 
         echo "${code}"
         sh "ls -lsa"
         if (code == 0) {
