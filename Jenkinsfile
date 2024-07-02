@@ -26,9 +26,9 @@ def runLinterChecks(String checkName) {
     echo "Starting check: ${checkName}"
     
     def code
-    def eslintResultsFilename = 'eslint-results.xml'
 
     withChecks(name: checkName) {
+        def eslintResultsFilename = 'eslint-results.xml'
         code = sh script:'yarn lint -f checkstyle > ${eslintResultsFilename}', returnStatus: true 
 
         if (code == 0) {
