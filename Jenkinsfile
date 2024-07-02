@@ -36,6 +36,11 @@ def runLinterChecks(String checkName) {
             publishSuccess name: checkName
         } else {
             echo "Check ${checkName} failed"
+
+            def workspace = pwd()
+            def version = readFile "${workspace}/{eslintResultsFilename}"
+
+
             def summary = "cat ${eslintResultsFilename}".execute()
             publishFailure name: checkName, summary: "See:\n\n```xml\n${summary}```"
             throw new Exception("Failed to execute check: ${checkName}")
