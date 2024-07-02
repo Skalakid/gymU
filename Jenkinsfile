@@ -5,8 +5,9 @@ pipeline {
     stages {
 
         stage('Test v1') {
-
             steps {
+                sh 'pwd'
+
                 sh 'node --version'
                 sh 'ls -lsa'
                 withChecks('injected name') {
