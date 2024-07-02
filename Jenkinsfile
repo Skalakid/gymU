@@ -16,8 +16,9 @@ pipeline {
                     sh 'pwd'
                     sh 'ls -lsa'
 
-                    withChecks("Mobile lint") {
+                    withChecks(name: "Mobile lint", includeStage: true) {
                         sh 'yarn lint'
+                        sh 'echo Mobile linting finished'
                     }
                 }
 
