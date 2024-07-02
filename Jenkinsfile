@@ -29,7 +29,7 @@ def runLinterChecks(String checkName) {
 
     withChecks(name: checkName) {
         def eslintResultsFilename = 'eslint-results.xml'
-        code = sh script:'yarn lint -f checkstyle > ${eslintResultsFilename}', returnStatus: true 
+        code = sh script:'yarn lint > ${eslintResultsFilename}', returnStatus: true 
         sh "ls -lsa"
         if (code == 0) {
             echo "Check ${checkName} passed"
