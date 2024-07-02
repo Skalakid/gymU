@@ -38,7 +38,7 @@ def runLinterChecks(String checkName) {
         sh "ls -lsa"
         if (code == 0) {
             echo "Check ${checkName} passed"
-            publishSuccess name: checkName
+            publishSuccess(checkName)
         } else {
             echo "Check ${checkName} failed"
 
