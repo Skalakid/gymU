@@ -14,22 +14,30 @@ def runWithChecks(String checkName, Closure body) {
     }
 }
 
-def publishSuccess(String checkName, String summary) {
+def publishSuccess(String checkName, String summary = 'Successfully passed') {
+    publishChecks name: checkName, summary: summary, title: checkName    
+}
 
+def publishFailure(String checkName, String summary = 'Failed to pass') {
+    publishChecks name: checkName, summary: summary, title: checkName, conclusion: 'FAILURE'    
 }
 
 def runLinterChecks(String checkName) {
     echo "Starting check: ${checkName}"
+    
     def code
+    def eslintResultsFilename = 'eslint-results.xml'
+
     withChecks(name: checkName) {
-        code = sh script:'yarn lint -f checkstyle > eslint-results.xml', returnStatus: true 
-        echo "${code}"
+        code = sh script:'yarn lint -f checkstyle > ${eslintResultsFilename}', returnStatus: true 
+
         if (code == 0) {
             echo "Check ${checkName} passed"
-            publishChecks name: checkName, summary: 'Successfully passed', title: checkName    
+            publishSuccess name: checkName
         } else {
             echo "Check ${checkName} failed"
-            publishChecks name: checkName, summary: 'Failed to pass', title: checkName, conclusion: 'FAILURE'    
+            def summary = "cat ${eslintResultsFilename}".execute()
+            publishFailure name: checkName, summary: "See:\n\n```xml\n${summary}```"
             throw new Exception("Failed to execute check: ${checkName}")
         }
     }
