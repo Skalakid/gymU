@@ -14,6 +14,20 @@ def runWithChecks(String checkName, Closure body) {
     }
 }
 
+def runLinter(String checkName) {
+    echo "Starting check: ${checkName}"
+    withChecks(name: checkName) {
+        def code = sh script:'yarn lint', returnStatus: true 
+        echo code
+        if (code == 0) {
+            echo "Check ${checkName} passed"
+            publishChecks name: checkName, summary: 'Successfully passed', title: checkName    
+        } else {
+            echo "Check ${checkName} failed"
+            publishChecks name: checkName, summary: 'Failed to pass', title: checkName, conclusion: 'FAILURE'    
+        }
+    }
+}
 
 pipeline {
     agent {
@@ -48,11 +62,12 @@ pipeline {
                     sh 'pwd'
                     sh 'ls -lsa'
 
-                    runWithChecks("Services / API / Lint") {
-                        def code = sh(script: 'yarn lint', returnStatus: true)
+                    runLinter("Services / API / Lint")
+                    // runWithChecks("Services / API / Lint") {
+                    //     def code = sh(script: 'yarn lint', returnStatus: true)
 
-                        return code
-                    }
+                    //     return code
+                    // }
                 }
             }
         }
