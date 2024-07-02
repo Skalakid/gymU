@@ -31,6 +31,7 @@ def runLinterChecks(String checkName) {
     withChecks(name: checkName) {
         def eslintResultsFilename = 'eslint-results.xml'
         code = sh script:'yarn lint > ${eslintResultsFilename}', returnStatus: true 
+        echo "${code}"
         sh "ls -lsa"
         if (code == 0) {
             echo "Check ${checkName} passed"
@@ -42,7 +43,7 @@ def runLinterChecks(String checkName) {
             def summary = readFile "${workspace}/${eslintResultsFilename}"
 
 
-            publishFailure(checkName)
+            publishFailure(checkName, "See:\n```xml\n${summary}```")
         }
     }
 
