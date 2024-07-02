@@ -49,7 +49,9 @@ pipeline {
                     sh 'ls -lsa'
 
                     runWithChecks("Services / API / Lint") {
-                        sh 'yarn lint'
+                        def code = sh 'yarn lint'
+
+                        return code
                     }
                 }
             }
