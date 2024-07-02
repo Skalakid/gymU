@@ -1,3 +1,14 @@
+
+def runWithChecks(String checkName, Closure body) {
+    echo "Starting check: ${checkName}"
+    withChecks(name: checkName) {
+        body()
+        echo "Check ${checkName} passed"
+        publishChecks name: checkName, summary: 'Successfully passed', title: checkName
+    }
+}
+
+
 pipeline {
     agent {
         docker { image 'node:20.11.1-alpine3.19' }
@@ -16,7 +27,7 @@ pipeline {
                     sh 'pwd'
                     sh 'ls -lsa'
 
-                    withChecks(name: "Lint", includeStage: true) {
+                    runWithChecks("Lint") {
                         sh 'yarn lint -f checkstyle'
                         echo 'Mobile linting finished'
                     }
