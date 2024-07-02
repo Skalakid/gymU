@@ -14,10 +14,14 @@ def runWithChecks(String checkName, Closure body) {
     }
 }
 
+def publishSuccess(String checkName, String summary) {
+
+}
+
 def runLinterChecks(String checkName) {
     echo "Starting check: ${checkName}"
     withChecks(name: checkName) {
-        def code = sh script:'yarn lint', returnStatus: true 
+        def code = sh script:'yarn lint -f checkstyle > eslint-results.xml', returnStatus: true 
         echo "${code}"
         if (code == 0) {
             echo "Check ${checkName} passed"
@@ -42,23 +46,28 @@ pipeline {
             }
         }
 
-        stage("Mobile client") {
-            steps {
-                dir('client') {
-                    runLinterChecks("Mobile Client / Lint")
+        stage("Run linters") {
+            parallel {
+                stage("Mobile client") {
+                    steps {
+                        dir('client') {
+                            runLinterChecks("Mobile Client / Lint")
+                        }
+                    }
+                }
+
+                stage ("Service / API") {
+                    steps {
+                        dir('services/api') {
+                            sh 'pwd'
+                            sh 'ls -lsa'
+
+                            runLinterChecks("Services / API / Lint")
+                        }
+                    }
                 }
             }
         }
 
-        stage ("Service / API") {
-            steps {
-                dir('services/api') {
-                    sh 'pwd'
-                    sh 'ls -lsa'
-
-                    runLinterChecks("Services / API / Lint")
-                }
-            }
-        }
     }
 }
