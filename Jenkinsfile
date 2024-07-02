@@ -31,6 +31,8 @@ def runLinterChecks(String checkName) {
             publishChecks name: checkName, summary: 'Failed to pass', title: checkName, conclusion: 'FAILURE'    
         }
     }
+
+    return code
 }
 
 pipeline {
