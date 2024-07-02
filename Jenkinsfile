@@ -42,7 +42,7 @@ def runLinterChecks(String checkName) {
             def summary = readFile "${workspace}/${eslintResultsFilename}"
 
 
-            publishFailure(checkName, "See:\n```xml\n${summary}```")
+            publishFailure(checkName)
         }
     }
 
