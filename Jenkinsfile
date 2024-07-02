@@ -18,6 +18,7 @@ pipeline {
 
                     withChecks(name: "Lint", includeStage: true) {
                         sh 'yarn lint -f checkstyle'
+                        sh 'asdasdasd'
                         sh 'echo Mobile linting finished'
                     }
                 }
