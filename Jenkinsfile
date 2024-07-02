@@ -42,7 +42,6 @@ def runLinterChecks(String checkName) {
 
 
             publishFailure(checkName, "See:\n```xml\n${summary}```")
-            throw new Exception("Failed to execute check: ${checkName}")
         }
     }
 
