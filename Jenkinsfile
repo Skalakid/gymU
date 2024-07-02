@@ -4,6 +4,10 @@ pipeline {
     }
     stages {
 
+        stage("Initialization") {
+            sh 'yarn install'
+        }
+
         stage("Mobile client") {
             steps {
                 dir('client') {
