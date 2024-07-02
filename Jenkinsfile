@@ -33,7 +33,7 @@ pipeline {
                     sh 'pwd'
                     sh 'ls -lsa'
 
-                    runWithChecks("Lint") {
+                    runWithChecks("Mobile Client / Lint") {
                         sh 'yarn lint'
                     }
                 }
@@ -41,13 +41,13 @@ pipeline {
             }
         }
 
-        stage ("Service\\API") {
+        stage ("Service / API") {
             steps {
                 dir('services/api') {
                     sh 'pwd'
                     sh 'ls -lsa'
 
-                    withChecks(name: "Lint", includeStage: true) {
+                    runWithChecks("Services / API / Lint") {
                         sh 'yarn lint -f checkstyle'
                     }
                 }
