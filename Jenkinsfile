@@ -1,6 +1,7 @@
 
 def runWithChecks(String checkName, Closure body) {
     echo "Starting check: ${checkName}"
+    sh "pwd"
     withChecks(name: checkName) {
         def code = body()
         echo code
