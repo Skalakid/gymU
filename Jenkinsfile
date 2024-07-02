@@ -38,7 +38,7 @@ def runLinterChecks(String checkName) {
             echo "Check ${checkName} failed"
 
             def workspace = pwd()
-            def version = readFile "${workspace}/{eslintResultsFilename}"
+            def version = readFile "${workspace}/${eslintResultsFilename}"
 
 
             def summary = "cat ${eslintResultsFilename}".execute()
