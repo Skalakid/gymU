@@ -5,15 +5,21 @@ pipeline {
     stages {
 
         stage("Mobile client") {
-            dir('client') {
+            steps {
+                dir('client') {
+                    sh 'pwd'
+                    sh 'ls -lsa'
+                }
 
             }
         }
 
         stage ("Service\\API") {
-            dir('services/api') {
-                sh 'pwd'
-                sh 'ls -lsa'
+            steps {
+                dir('services/api') {
+                    sh 'pwd'
+                    sh 'ls -lsa'
+                }
             }
         }
 
