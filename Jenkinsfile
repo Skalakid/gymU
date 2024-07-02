@@ -9,6 +9,10 @@ pipeline {
                 dir('client') {
                     sh 'pwd'
                     sh 'ls -lsa'
+
+                    withChecks("Mobile lint") {
+                        sh 'yarn lint'
+                    }
                 }
 
             }
