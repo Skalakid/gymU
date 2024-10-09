@@ -68,24 +68,17 @@ const InitialLayout = () => {
 const RootLayout = () => {
   const colorScheme = useColorScheme();
   const [fontsLoaded, fontError] = useFonts({
-    Poppins_100Thin,
-    Poppins_100Thin_Italic,
-    Poppins_200ExtraLight,
-    Poppins_200ExtraLight_Italic,
-    Poppins_300Light,
-    Poppins_300Light_Italic,
-    Poppins_400Regular,
-    Poppins_400Regular_Italic,
-    Poppins_500Medium,
-    Poppins_500Medium_Italic,
-    Poppins_600SemiBold,
-    Poppins_600SemiBold_Italic,
-    Poppins_700Bold,
-    Poppins_700Bold_Italic,
-    Poppins_800ExtraBold,
-    Poppins_800ExtraBold_Italic,
-    Poppins_900Black,
-    Poppins_900Black_Italic,
+    Poppins_300: Poppins_300Light,
+    Poppins_300_italic: Poppins_300Light_Italic,
+    Poppins_400: Poppins_400Regular,
+    Poppins_400_italic: Poppins_400Regular_Italic,
+    Poppins_500: Poppins_500Medium,
+    Poppins_500_italic: Poppins_500Medium_Italic,
+    Poppins_600: Poppins_600SemiBold,
+    Poppins_600_italic: Poppins_600SemiBold_Italic,
+    Poppins_700: Poppins_700Bold,
+    Poppins_700_italic: Poppins_700Bold_Italic,
+    Poppins: Poppins_400Regular,
   });
 
   useEffect(() => {
