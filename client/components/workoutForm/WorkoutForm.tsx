@@ -12,9 +12,8 @@ import {
 } from 'react-native';
 import fetchApi from '@/api/fetch';
 import { Colors } from '@/constants/Colors';
-import Icon from '../common/Icon';
 import Icons from '@/constants/Icons';
-import SelectDropdownInput from '../input/SelectDropdown';
+import SelectDropdownInput from '../input/SelectDropdownInput';
 import { capitalize } from '@/utils/text.utils';
 import PrimaryButton from '../button/PrimaryButton';
 import { router } from 'expo-router';
@@ -121,54 +120,50 @@ const WorkoutForm = () => {
           />
         </View>
 
-        <View style={styles.selectWrapper}>
-          <Icon icon={Icons.flame} size={26} color={theme.subTile} />
+        <SelectDropdownInput
+          data={pickerData}
+          onSelect={(value) => setDifficulty(value)}
+          renderItem={(item) => {
+            return (
+              <ThemedView
+                style={[styles.selectItem, { backgroundColor: theme.tile }]}
+              >
+                <ThemedText style={{ color: primaryColor }}>
+                  {item.label}
+                </ThemedText>
+              </ThemedView>
+            );
+          }}
+          placeholder="Select difficulty level..."
+          selectedValue={capitalize(difficulty?.label)}
+          icon={Icons.flame}
+          iconColor={theme.subTile}
+        />
 
-          <SelectDropdownInput
-            data={pickerData}
-            onSelect={(value) => setDifficulty(value)}
-            renderItem={(item) => {
-              return (
-                <ThemedView
-                  style={[styles.selectItem, { backgroundColor: theme.tile }]}
-                >
-                  <ThemedText style={{ color: primaryColor }}>
-                    {item.label}
-                  </ThemedText>
-                </ThemedView>
-              );
-            }}
-            placeholder="Select difficulty level..."
-            selectedValue={capitalize(difficulty?.label)}
-          />
-        </View>
+        <SelectDropdownInput
+          data={allTags}
+          onSelect={(value) => {
+            if (chosenTags.includes(value)) {
+              return;
+            }
 
-        {/* TODO: Extract to separate component */}
-        <View style={styles.selectWrapper}>
-          <Icon icon={Icons.hashtag} size={26} color={theme.subTile} />
-          <SelectDropdownInput
-            data={allTags}
-            onSelect={(value) => {
-              if (chosenTags.includes(value)) {
-                return;
-              }
-
-              setChosenTags((prev) => [...prev, value]);
-            }}
-            renderItem={(item) => {
-              return (
-                <ThemedView
-                  style={[styles.selectItem, { backgroundColor: theme.tile }]}
-                >
-                  <ThemedText style={{ color: primaryColor }}>
-                    {item.name}
-                  </ThemedText>
-                </ThemedView>
-              );
-            }}
-            placeholder="Add tags..."
-          />
-        </View>
+            setChosenTags((prev) => [...prev, value]);
+          }}
+          renderItem={(item) => {
+            return (
+              <ThemedView
+                style={[styles.selectItem, { backgroundColor: theme.tile }]}
+              >
+                <ThemedText style={{ color: primaryColor }}>
+                  {item.name}
+                </ThemedText>
+              </ThemedView>
+            );
+          }}
+          placeholder="Add tags..."
+          icon={Icons.hashtag}
+          iconColor={theme.subTile}
+        />
 
         <FlatList
           style={styles.list}
@@ -205,13 +200,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   content: {
-    gap: 10,
-  },
-  selectWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
     gap: 10,
   },
   selectItem: {

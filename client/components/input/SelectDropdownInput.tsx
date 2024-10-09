@@ -5,16 +5,19 @@ import ThemedText from '../ThemedText';
 import useTheme from '@/hooks/useTheme';
 import SelectDropdown from 'react-native-select-dropdown';
 import ThemedView from '../ThemedView';
-import Icon from '../common/Icon';
+import Icon, { IconType } from '../common/Icon';
 import Icons from '@/constants/Icons';
 
-type TextInputProps = {
+type SelectDropdownInputProps = {
   label?: string;
   placeholder: string;
   renderItem: (item: any) => JSX.Element;
   onSelect: (value: any) => void;
   data: any[];
   selectedValue?: string;
+  icon?: IconType;
+  iconColor?: string;
+  iconSize?: number;
 };
 
 const SelectDropdownInput = ({
@@ -24,7 +27,10 @@ const SelectDropdownInput = ({
   data,
   onSelect,
   selectedValue = '',
-}: TextInputProps) => {
+  icon,
+  iconColor,
+  iconSize = 26,
+}: SelectDropdownInputProps) => {
   const theme = useTheme();
   const colorScheme = useColorScheme();
   const primaryColor = Colors[colorScheme ?? 'light'].text;
@@ -36,7 +42,8 @@ const SelectDropdownInput = ({
           {label}
         </ThemedText>
       )}
-      <View>
+      <View style={styles.selectWrapper}>
+        {icon && <Icon icon={icon} size={iconSize} color={iconColor} />}
         <SelectDropdown
           dropdownStyle={{ backgroundColor: theme.background }}
           data={data}
@@ -72,11 +79,18 @@ const SelectDropdownInput = ({
 };
 
 export default SelectDropdownInput;
+export type { SelectDropdownInputProps };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     gap: 5,
+  },
+  selectWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    gap: 10,
   },
   textInput: {
     padding: 16,
@@ -92,5 +106,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
+    flex: 1,
   },
 });
