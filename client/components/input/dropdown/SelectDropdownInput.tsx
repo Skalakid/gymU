@@ -7,6 +7,7 @@ import SelectDropdown from 'react-native-select-dropdown';
 import ThemedView from '../../ThemedView';
 import Icon, { IconType } from '../../common/Icon';
 import Icons from '@/constants/Icons';
+import { useState } from 'react';
 
 type SelectDropdownInputProps = {
   label?: string;
@@ -34,6 +35,7 @@ const SelectDropdownInput = ({
   const theme = useTheme();
   const colorScheme = useColorScheme();
   const primaryColor = Colors[colorScheme ?? 'light'].text;
+  const [isActive, setIsActive] = useState(false);
 
   const renderButton = () => {
     return (
@@ -52,7 +54,11 @@ const SelectDropdownInput = ({
         >
           {selectedValue || placeholder}
         </ThemedText>
-        <Icon icon={Icons.arrowBottom} size={20} color={primaryColor} />
+        <Icon
+          icon={isActive ? Icons.arrowTop : Icons.arrowBottom}
+          size={20}
+          color={primaryColor}
+        />
       </ThemedView>
     );
   };
@@ -67,11 +73,16 @@ const SelectDropdownInput = ({
       <View style={styles.selectWrapper}>
         {icon && <Icon icon={icon} size={iconSize} color={iconColor} />}
         <SelectDropdown
-          dropdownStyle={{ backgroundColor: theme.background }}
+          dropdownStyle={{
+            ...styles.dropdownMenuStyle,
+            backgroundColor: theme.background,
+          }}
           data={data}
           onSelect={onSelect}
           renderButton={renderButton}
           renderItem={renderItem}
+          onFocus={() => setIsActive(true)}
+          onBlur={() => setIsActive(false)}
         />
       </View>
     </View>
@@ -107,5 +118,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     flex: 1,
+  },
+  dropdownMenuStyle: {
+    height: 180,
+    paddingBottom: 10,
+    paddingHorizontal: 10,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
   },
 });

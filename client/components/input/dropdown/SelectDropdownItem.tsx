@@ -11,7 +11,9 @@ const SelectDropdownItem = ({ value }: SelectDropdownItemProps) => {
   const theme = useTheme();
   return (
     <ThemedView style={[styles.selectItem, { backgroundColor: theme.tile }]}>
-      <ThemedText style={{ color: theme.text }}>{value}</ThemedText>
+      <ThemedText style={{ color: theme.text }} weight="semiBold">
+        {value}
+      </ThemedText>
     </ThemedView>
   );
 };
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     borderRadius: 10,
-    padding: 2,
-    margin: 2,
+    padding: 16,
+    marginTop: 8,
   },
 });

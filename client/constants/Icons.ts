@@ -20,6 +20,7 @@ import repeat from '../assets/icons/repeat.svg';
 import save from '../assets/icons/save.svg';
 import safari from '../assets/icons/safari.svg';
 import time from '../assets/icons/time.svg';
+import arrowTop from '../assets/icons/top.svg';
 import weight from '../assets/icons/weight.svg';
 
 export default {
@@ -45,5 +46,6 @@ export default {
   safari,
   save,
   time,
+  arrowTop,
   weight,
 };
