@@ -42,7 +42,7 @@ const InitialLayout = () => {
     if (authState.authenticated && !isTabsGroup) {
       router.replace('/home');
     } else if (!authState.authenticated) {
-      router.replace('(auth)');
+      router.replace('/(auth)');
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

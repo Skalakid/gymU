@@ -10,6 +10,7 @@
     "web": "expo start --web",
     "test": "jest --watchAll",
     "lint": "eslint . --ext .ts,.tsx",
+    "type-check": "tsc --noEmit",
     "prettier": "prettier --write ."
   },
   "jest": {
