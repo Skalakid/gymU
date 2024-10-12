@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Colors } from '@/constants/Colors';
 import { StyleSheet, View, useColorScheme } from 'react-native';
-import ThemedText from '../ThemedText';
+import ThemedText from '../../ThemedText';
 import useTheme from '@/hooks/useTheme';
 import SelectDropdown from 'react-native-select-dropdown';
-import ThemedView from '../ThemedView';
-import Icon, { IconType } from '../common/Icon';
+import ThemedView from '../../ThemedView';
+import Icon, { IconType } from '../../common/Icon';
 import Icons from '@/constants/Icons';
 
 type SelectDropdownInputProps = {
@@ -35,6 +35,28 @@ const SelectDropdownInput = ({
   const colorScheme = useColorScheme();
   const primaryColor = Colors[colorScheme ?? 'light'].text;
 
+  const renderButton = () => {
+    return (
+      <ThemedView
+        style={[
+          styles.button,
+          {
+            borderColor: primaryColor,
+          },
+        ]}
+      >
+        <ThemedText
+          size="m"
+          weight="semiBold"
+          color={!selectedValue ? '#545355' : undefined}
+        >
+          {selectedValue || placeholder}
+        </ThemedText>
+        <Icon icon={Icons.arrowBottom} size={20} color={primaryColor} />
+      </ThemedView>
+    );
+  };
+
   return (
     <View style={styles.container}>
       {label && (
@@ -48,29 +70,7 @@ const SelectDropdownInput = ({
           dropdownStyle={{ backgroundColor: theme.background }}
           data={data}
           onSelect={onSelect}
-          renderButton={() => {
-            return (
-              <ThemedView
-                style={[
-                  styles.button,
-                  {
-                    borderColor: primaryColor,
-                  },
-                ]}
-              >
-                {}
-                <ThemedText
-                  size="m"
-                  weight="semiBold"
-                  color={!selectedValue ? '#545355' : undefined}
-                >
-                  {selectedValue || placeholder}
-                </ThemedText>
-
-                <Icon icon={Icons.arrowBottom} size={20} color={primaryColor} />
-              </ThemedView>
-            );
-          }}
+          renderButton={renderButton}
           renderItem={renderItem}
         />
       </View>

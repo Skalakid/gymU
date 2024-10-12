@@ -13,10 +13,11 @@ import {
 import fetchApi from '@/api/fetch';
 import { Colors } from '@/constants/Colors';
 import Icons from '@/constants/Icons';
-import SelectDropdownInput from '../input/SelectDropdownInput';
 import { capitalize } from '@/utils/text.utils';
 import PrimaryButton from '../button/PrimaryButton';
 import { router } from 'expo-router';
+import SelectDropdownInput from '@/components/input/dropdown/SelectDropdownInput';
+import SelectDropdownItem from '@/components/input/dropdown/SelectDropdownItem';
 
 type DificultiesData = {
   label: string;
@@ -38,7 +39,6 @@ type WorkoutTagsRespone = {
 const WorkoutForm = () => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme ?? 'light'];
-  const primaryColor = theme.text;
 
   const [allTags, setAllTags] = useState<WorkoutType[]>([]);
   const [chosenTags, setChosenTags] = useState<WorkoutType[]>([]);
@@ -94,6 +94,14 @@ const WorkoutForm = () => {
     }
   };
 
+  const renderItem = (value: string) => {
+    return (
+      <>
+        <SelectDropdownItem value={capitalize(value)} />
+      </>
+    );
+  };
+
   useEffect(() => {
     getAllWorkoutTags();
   }, []);
@@ -123,17 +131,7 @@ const WorkoutForm = () => {
         <SelectDropdownInput
           data={pickerData}
           onSelect={(value) => setDifficulty(value)}
-          renderItem={(item) => {
-            return (
-              <ThemedView
-                style={[styles.selectItem, { backgroundColor: theme.tile }]}
-              >
-                <ThemedText style={{ color: primaryColor }}>
-                  {item.label}
-                </ThemedText>
-              </ThemedView>
-            );
-          }}
+          renderItem={(item) => renderItem(item.label)}
           placeholder="Select difficulty level..."
           selectedValue={capitalize(difficulty?.label)}
           icon={Icons.flame}
@@ -149,17 +147,7 @@ const WorkoutForm = () => {
 
             setChosenTags((prev) => [...prev, value]);
           }}
-          renderItem={(item) => {
-            return (
-              <ThemedView
-                style={[styles.selectItem, { backgroundColor: theme.tile }]}
-              >
-                <ThemedText style={{ color: primaryColor }}>
-                  {item.name}
-                </ThemedText>
-              </ThemedView>
-            );
-          }}
+          renderItem={(item) => renderItem(item.name)}
           placeholder="Add tags..."
           icon={Icons.hashtag}
           iconColor={theme.subTile}
