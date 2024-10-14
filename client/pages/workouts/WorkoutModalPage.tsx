@@ -17,6 +17,7 @@ type WorkoutDetailsPageProps = {
   rightIcon?: IconType;
   rightIconOnPress?: () => void;
   image?: ImageSourcePropType;
+  shouldFillFullHeight?: boolean;
 };
 
 const WorkoutModalPage = ({
@@ -26,26 +27,36 @@ const WorkoutModalPage = ({
   rightIcon,
   rightIconOnPress,
   image,
+  shouldFillFullHeight = false,
 }: WorkoutDetailsPageProps) => {
   const theme = useTheme();
 
   return (
     <ThemedView style={{ flex: 1 }}>
-      <Animated.View entering={FadeIn.delay(200).duration(500)}>
-        <Image
-          source={image || Images.workout_example_img}
-          contentFit="cover"
-          style={{ width: '100%', height: 200 }}
-        />
-        <LinearGradient
-          colors={[theme.background, 'transparent']}
-          style={styles.gradient}
-        />
-      </Animated.View>
+      {!shouldFillFullHeight && (
+        <Animated.View entering={FadeIn.delay(200).duration(500)}>
+          <Image
+            source={image || Images.workout_example_img}
+            contentFit="cover"
+            style={{ width: '100%', height: 200 }}
+          />
+          <LinearGradient
+            colors={[theme.background, 'transparent']}
+            style={styles.gradient}
+          />
+        </Animated.View>
+      )}
+
       <View style={styles.container}>
         <Header
           title={title}
-          style={styles.header}
+          style={[
+            styles.header,
+            {
+              marginBottom: shouldFillFullHeight ? 0 : 120,
+              paddingBottom: shouldFillFullHeight ? -20 : 0,
+            },
+          ]}
           leftIcon={Icons.arrowLeft}
           leftIconSize={32}
           leftIconOnPress={onGoBack}
@@ -82,7 +93,6 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: 'transparent',
-    marginBottom: 120,
     paddingLeft: 10,
   },
   modal: {

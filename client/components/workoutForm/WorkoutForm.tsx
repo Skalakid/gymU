@@ -15,7 +15,6 @@ import { Colors } from '@/constants/Colors';
 import Icons from '@/constants/Icons';
 import { capitalize } from '@/utils/text.utils';
 import PrimaryButton from '../button/PrimaryButton';
-import { router } from 'expo-router';
 import SelectDropdownInput from '@/components/input/dropdown/SelectDropdownInput';
 import SelectDropdownItem from '@/components/input/dropdown/SelectDropdownItem';
 
@@ -70,25 +69,25 @@ const WorkoutForm = () => {
         return;
       }
 
-      const reponse = await fetchApi(
-        '/workout/create',
-        'POST',
-        null,
-        {
-          name: workoutName,
-          description: description,
-          is_private: true,
-          workout_level_id: difficulty.level,
-          tag_ids: chosenTags.map((value) => value.tag_id),
-          exercises: [],
-        },
-        true,
-      );
-      if (reponse.ok) {
-        router.navigate('/explore');
-      } else {
-        Alert.alert('Something went wrong...');
-      }
+      // const reponse = await fetchApi(
+      //   '/workout/create',
+      //   'POST',
+      //   null,
+      //   {
+      //     name: workoutName,
+      //     description: description,
+      //     is_private: true,
+      //     workout_level_id: difficulty.level,
+      //     tag_ids: chosenTags.map((value) => value.tag_id),
+      //     exercises: [],
+      //   },
+      //   true,
+      // );
+      // if (reponse.ok) {
+      //   router.navigate('/explore');
+      // } else {
+      //   Alert.alert('Something went wrong...');
+      // }
     } catch (error) {
       Alert.alert('Something went wrong...');
     }
@@ -174,7 +173,7 @@ const WorkoutForm = () => {
         />
       </View>
 
-      <PrimaryButton onPress={handleAddWorkout} value="Add workout" />
+      <PrimaryButton onPress={handleAddWorkout} value="Add exercises" />
     </ThemedView>
   );
 };

@@ -16,6 +16,7 @@ import heart from '../assets/icons/heart.svg';
 import homeFill from '../assets/icons/home-fill.svg';
 import home from '../assets/icons/home.svg';
 import open from '../assets/icons/open.svg';
+import plus from '../assets/icons/plus.svg';
 import repeat from '../assets/icons/repeat.svg';
 import save from '../assets/icons/save.svg';
 import safari from '../assets/icons/safari.svg';
@@ -42,6 +43,7 @@ export default {
   homeFill,
   home,
   open,
+  plus,
   repeat,
   safari,
   save,
