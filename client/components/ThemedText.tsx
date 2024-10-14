@@ -1,4 +1,4 @@
-import { Text, type TextProps, StyleSheet } from 'react-native';
+import { Text, type TextProps, StyleSheet, TextStyle } from 'react-native';
 import useThemeColor from '@/hooks/useThemeColor';
 import { SizePresets, WeightPresets } from '@/constants/Typography';
 
@@ -31,8 +31,10 @@ const ThemedText = ({
     <Text
       style={[
         SizePresets[size],
-        WeightPresets[weight],
-        { color: textColor },
+        {
+          color: textColor,
+          fontFamily: `Poppins_${WeightPresets[weight].fontWeight}${(style as TextStyle)?.fontStyle === 'italic' ? '_italic' : ''}`,
+        },
         styles.default,
         style,
       ]}
