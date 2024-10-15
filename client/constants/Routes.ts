@@ -1,3 +1,5 @@
+import { Href } from 'expo-router';
+
 const ROUTES = {
   startPage: '/',
   login: '/login',
@@ -7,6 +9,6 @@ const ROUTES = {
   workouts: '/workouts',
   explore: '/explore',
   statistics: '/statistics',
-};
+} as Record<string, Href>;
 
 export default ROUTES;

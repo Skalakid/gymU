@@ -2,7 +2,7 @@ import fetchApi from '@/api/fetch';
 import PageSwitcher from '@/components/navigation/PageSwitcher';
 import Icons from '@/constants/Icons';
 import { useIsFocused } from '@react-navigation/native';
-import { useLocalSearchParams, useRouter, useSegments } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import WorkoutGeneralInfo from './WorkoutGeneralInfo';
@@ -18,7 +18,6 @@ const WorkoutDetailsPage = ({
 }: WorkoutDetailsPageProps) => {
   const router = useRouter();
   const isFocused = useIsFocused();
-  const segments = useSegments();
   const { id } = useLocalSearchParams();
   const [currentSubpage, setCurrentSubpage] = useState(0);
   const [workoutDetails, setWorkoutDetails] = useState<Workout | null>(null);
@@ -56,12 +55,6 @@ const WorkoutDetailsPage = ({
   };
 
   const handleGoBack = () => {
-    if (
-      segments[segments.length - 1] === 'exercises' &&
-      segments[segments.length - 2] === '[id]'
-    ) {
-      router.back();
-    }
     router.back();
   };
 

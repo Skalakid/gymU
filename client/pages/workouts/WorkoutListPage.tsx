@@ -101,9 +101,11 @@ const WorkoutListPage = ({
               level={item.workout_level}
               tags={item.workout_tags}
               onPress={() => {
-                router.navigate(
-                  `/${segments[segments.length - 1]}/${item.workout_id}`,
-                );
+                if (segments[segments.length - 1] === 'workouts') {
+                  router.navigate(`/workouts/${item.workout_id}`);
+                } else if (segments[segments.length - 1] === 'explore') {
+                  router.navigate(`/explore/${item.workout_id}`);
+                }
               }}
             />
           )}
