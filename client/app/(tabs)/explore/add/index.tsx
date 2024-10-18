@@ -5,7 +5,7 @@ import WorkoutModalPage from '@/pages/workouts/WorkoutModalPage';
 import { useState } from 'react';
 
 const AddWorkoutPage = () => {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(1);
 
   const handleNextStep = () => {
     setCurrentStep((prevStep) => prevStep + 1);

@@ -14,6 +14,7 @@ type ExerciseItemProp = {
   style?: ViewStyle;
   bodyParts?: string[];
   description: string;
+  onPress?: () => void;
 };
 
 const BasicExerciseItem = ({
@@ -22,6 +23,7 @@ const BasicExerciseItem = ({
   style,
   bodyParts,
   description,
+  onPress,
 }: ExerciseItemProp) => {
   const theme = useTheme();
 
@@ -39,7 +41,7 @@ const BasicExerciseItem = ({
   }, [type]);
 
   return (
-    <TouchableOpacity style={style}>
+    <TouchableOpacity style={style} onPress={onPress}>
       <Tile style={styles.container}>
         <View style={styles.title}>
           <Icon icon={exerciseTypeIcon} size={14} color={theme.text} />

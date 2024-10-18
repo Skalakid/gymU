@@ -17,8 +17,8 @@ type OrderedBasicExercise = BasicExercise & {
 type CreateWorkoutContext = {
   workoutGeneralInfo: WorkoutGeneralInfo | null;
   selectedExercises: OrderedBasicExercise[];
-  updateWorkoutGeneralInfo: (generalInfo: WorkoutGeneralInfo) => void;
-  addExercise: (exercise: BasicExercise, orderIndex: number) => void;
+  updateWorkoutGeneralInfo: (generalInfo: WorkoutGeneralInfo | null) => void;
+  addExercise: (exercise: BasicExercise, orderIndex?: number) => void;
   updateExerciseOrderIndex: (exerciseId: number, orderIndex: number) => void;
   clearExercises: () => void;
 };
@@ -42,19 +42,19 @@ function CreateWorkoutContextProvider({
   >([]);
 
   const updateWorkoutGeneralInfo = useCallback(
-    (generalInfo: WorkoutGeneralInfo) => {
+    (generalInfo: WorkoutGeneralInfo | null) => {
       setWorkoutGeneralInfo(generalInfo);
     },
     [],
   );
 
   const addExercise = useCallback(
-    (exercise: BasicExercise, orderIndex: number) => {
+    (exercise: BasicExercise, orderIndex?: number) => {
       setSelectedExercises((prev) => [
         ...prev,
         {
           ...exercise,
-          orderIndex,
+          orderIndex: orderIndex ?? prev.length,
         },
       ]);
     },

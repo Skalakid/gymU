@@ -1,4 +1,5 @@
 import fetchApi from '@/api/fetch';
+import ThemedText from '@/components/ThemedText';
 import ThemedView from '@/components/ThemedView';
 import BasicExerciseItem from '@/components/exercises/BasicExerciseItem';
 import Header from '@/components/navigation/Header';
@@ -9,7 +10,11 @@ import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 
-const ExerciseListPage = () => {
+type ExerciseListPageProps = {
+  onItemSelected: (exercise: BasicExercise) => void;
+};
+
+const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
   const router = useRouter();
   const [tags, setTags] = useState<WorkoutType[]>([]);
   const [exercises, setExercises] = useState<BasicExercise[]>([]);
@@ -53,6 +58,11 @@ const ExerciseListPage = () => {
     router.back();
   };
 
+  const handleItemPress = (exercise: BasicExercise) => {
+    onItemSelected(exercise);
+    router.back();
+  };
+
   useEffect(() => {
     loadExerciseTags();
     getExercises();
@@ -69,6 +79,9 @@ const ExerciseListPage = () => {
         rightIconSize={24}
       />
       <View style={styles.content}>
+        <ThemedText weight="semiBold" size="m">
+          Choose an exercise to your workout
+        </ThemedText>
         {areTagsLoaded && (
           <TagSelector
             style={styles.tagSelector}
@@ -87,6 +100,7 @@ const ExerciseListPage = () => {
               style={{ marginBottom: 20 }}
               bodyParts={item.body_parts}
               description={item.shortDescription}
+              onPress={() => handleItemPress(item)}
             />
           )}
         />
@@ -107,11 +121,12 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     paddingHorizontal: 20,
-  },
-  tagSelector: {
-    marginBottom: 20,
+    gap: 10,
   },
   exerciseList: {
     gap: 10,
+  },
+  tagSelector: {
+    marginBottom: 5,
   },
 });

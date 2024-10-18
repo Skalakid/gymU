@@ -75,28 +75,6 @@ const WorkoutForm = ({ onSubmit }: WorkoutFormProps) => {
         return;
       }
 
-      // TODO: move to Exercise picker
-
-      // const reponse = await fetchApi(
-      //   '/workout/create',
-      //   'POST',
-      //   null,
-      //   {
-      //     name: workoutName,
-      //     description: description,
-      //     is_private: true,
-      //     workout_level_id: difficulty.level,
-      //     tag_ids: chosenTags.map((value) => value.tag_id),
-      //     exercises: [],
-      //   },
-      //   true,
-      // );
-      // if (reponse.ok) {
-      //   router.navigate('/explore');
-      // } else {
-      //   Alert.alert('Something went wrong...');
-      // }
-
       updateWorkoutGeneralInfo({
         name: workoutName,
         description: description,

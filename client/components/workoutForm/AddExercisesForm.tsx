@@ -1,17 +1,63 @@
-import { StyleSheet, View } from 'react-native';
+import { Alert, FlatList, StyleSheet, View } from 'react-native';
 import ThemedText from '../ThemedText';
 import Icon from '../common/Icon';
 import Icons from '@/constants/Icons';
 import { useState } from 'react';
 import AddExerciseItemButton from '../exercises/AddExerciseItemButton';
 import { useRouter } from 'expo-router';
+import { useCreateWorkoutContext } from '@/contexts/CreateWorkoutContext';
+import BasicExerciseItem from '../exercises/BasicExerciseItem';
+import PrimaryButton from '../button/PrimaryButton';
+import fetchApi from '@/api/fetch';
 
 const AddExercisesForm = () => {
+  const {
+    selectedExercises,
+    workoutGeneralInfo,
+    clearExercises,
+    updateWorkoutGeneralInfo,
+  } = useCreateWorkoutContext();
   const router = useRouter();
   const [time, setTime] = useState(0);
 
   const handleExerciseAddButtonPress = () => {
     router.navigate('/explore/add/exercise');
+  };
+
+  const handleSaveWorkout = async () => {
+    if (selectedExercises.length === 0) {
+      Alert.alert('Please add exercises to your workout');
+      return;
+    }
+
+    if (!workoutGeneralInfo) {
+      Alert.alert('Please fill the workout general info');
+      return;
+    }
+
+    // const reponse = await fetchApi(
+    //   '/workout/create',
+    //   'POST',
+    //   null,
+    //   {
+    //     name: workoutGeneralInfo.name,
+    //     description: workoutGeneralInfo.description,
+    //     is_private: workoutGeneralInfo.isPrivate,
+    //     workout_level_id: workoutGeneralInfo.dificultyLevel,
+    //     tag_ids: workoutGeneralInfo.tagsIds,
+    //     exercises: [],
+    //   },
+    //   true,
+    // );
+    // if (reponse.ok) {
+    //   router.navigate('/explore');
+    // } else {
+    //   Alert.alert('Something went wrong...');
+    // }
+
+    clearExercises();
+    updateWorkoutGeneralInfo(null);
+    router.navigate('/explore');
   };
 
   return (
@@ -20,23 +66,37 @@ const AddExercisesForm = () => {
         <ThemedText weight="semiBold" size="l">
           Choose exercises
         </ThemedText>
-        <View style={styles.timeCounter}>
-          <ThemedText weight="semiBold" size="l">
-            {time > 0 ? time : '~ time'}
-          </ThemedText>
-          <Icon icon={Icons.time} size={24} />
-        </View>
       </View>
 
       <View style={styles.content}>
-        <ThemedText size="s" style={styles.infoText}>
-          Let's cook the perfect workout plan! 🔥
-        </ThemedText>
-        <AddExerciseItemButton
-          style={styles.addExerciseItemButton}
-          onPress={handleExerciseAddButtonPress}
-        />
+        {selectedExercises && (
+          <FlatList
+            style={styles.exerciseList}
+            data={selectedExercises ?? []}
+            renderItem={({ item }) => (
+              <BasicExerciseItem
+                name={item.name}
+                type={item.exercise_type}
+                style={{ marginBottom: 20 }}
+                bodyParts={item.body_parts}
+                description={item.shortDescription}
+              />
+            )}
+            ListEmptyComponent={() => (
+              <ThemedText size="s" style={styles.infoText}>
+                Let's cook the perfect workout plan! 🔥
+              </ThemedText>
+            )}
+            ListFooterComponent={() => (
+              <AddExerciseItemButton
+                style={styles.addExerciseItemButton}
+                onPress={handleExerciseAddButtonPress}
+              />
+            )}
+          />
+        )}
       </View>
+      <PrimaryButton onPress={handleSaveWorkout} value="Save workout" />
     </View>
   );
 };
@@ -53,6 +113,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginBottom: 10,
   },
   timeCounter: {
     display: 'flex',
@@ -61,16 +122,15 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    alignItems: 'center',
-    paddingVertical: 20,
-
-    gap: 10,
   },
   infoText: {
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 20,
   },
   addExerciseItemButton: {
     width: '100%',
+  },
+  exerciseList: {
+    marginBottom: 20,
   },
 });
