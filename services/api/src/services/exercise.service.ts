@@ -5,6 +5,8 @@ async function getAllExercises() {
     exercise_id: exercise.exercise_id,
     name: exercise.name,
     exercise_type: exercise.exercise_type.name,
+    shortDescription: exercise.description?.substring(0, 40) + '...',
+    body_parts: exercise.exercises_body_parts.map((bp) => bp.body_part.name),
   }));
 
   return exercises;

@@ -4,9 +4,15 @@ import Icon from '../common/Icon';
 import Icons from '@/constants/Icons';
 import { useState } from 'react';
 import AddExerciseItemButton from '../exercises/AddExerciseItemButton';
+import { useRouter } from 'expo-router';
 
 const AddExercisesForm = () => {
+  const router = useRouter();
   const [time, setTime] = useState(0);
+
+  const handleExerciseAddButtonPress = () => {
+    router.navigate('/explore/add/exercise');
+  };
 
   return (
     <View style={styles.container}>
@@ -26,7 +32,10 @@ const AddExercisesForm = () => {
         <ThemedText size="s" style={styles.infoText}>
           Let's cook the perfect workout plan! 🔥
         </ThemedText>
-        <AddExerciseItemButton style={styles.addExerciseItemButton} />
+        <AddExerciseItemButton
+          style={styles.addExerciseItemButton}
+          onPress={handleExerciseAddButtonPress}
+        />
       </View>
     </View>
   );

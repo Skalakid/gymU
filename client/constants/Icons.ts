@@ -1,5 +1,6 @@
 import arrowLeft from '../assets/icons/arrow-left.svg';
 import arrowBottom from '../assets/icons/arrow-bottom.svg';
+import battery from '../assets/icons/battery.svg';
 import bell from '../assets/icons/bell.svg';
 import bolt from '../assets/icons/bolt.svg';
 import calendar from '../assets/icons/calendar.svg';
@@ -27,6 +28,7 @@ import weight from '../assets/icons/weight.svg';
 export default {
   arrowLeft,
   arrowBottom,
+  battery,
   bell,
   bolt,
   calendar,

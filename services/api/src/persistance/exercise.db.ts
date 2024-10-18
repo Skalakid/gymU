@@ -5,9 +5,19 @@ async function getAllExercises() {
     select: {
       exercise_id: true,
       name: true,
+      description: true,
       exercise_type: {
         select: {
           name: true,
+        },
+      },
+      exercises_body_parts: {
+        select: {
+          body_part: {
+            select: {
+              name: true,
+            },
+          },
         },
       },
     },
