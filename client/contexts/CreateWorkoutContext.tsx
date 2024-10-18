@@ -1,0 +1,106 @@
+import React, { useCallback, useState } from 'react';
+
+type CreateWorkoutContextProviderProps = { children: React.ReactNode };
+
+type WorkoutGeneralInfo = {
+  name: string;
+  description: string;
+  dificultyLevel: number;
+  isPrivate: boolean;
+  tagsIds: number[];
+};
+
+type OrderedBasicExercise = BasicExercise & {
+  orderIndex: number;
+};
+
+type CreateWorkoutContext = {
+  workoutGeneralInfo: WorkoutGeneralInfo | null;
+  selectedExercises: OrderedBasicExercise[];
+  updateWorkoutGeneralInfo: (generalInfo: WorkoutGeneralInfo) => void;
+  addExercise: (exercise: BasicExercise, orderIndex: number) => void;
+  updateExerciseOrderIndex: (exerciseId: number, orderIndex: number) => void;
+  clearExercises: () => void;
+};
+
+const CreateWorkoutContext = React.createContext<CreateWorkoutContext>({
+  workoutGeneralInfo: null,
+  selectedExercises: [],
+  updateWorkoutGeneralInfo: () => null,
+  addExercise: () => null,
+  updateExerciseOrderIndex: () => null,
+  clearExercises: () => null,
+});
+
+function CreateWorkoutContextProvider({
+  children,
+}: CreateWorkoutContextProviderProps) {
+  const [workoutGeneralInfo, setWorkoutGeneralInfo] =
+    useState<WorkoutGeneralInfo | null>(null);
+  const [selectedExercises, setSelectedExercises] = useState<
+    OrderedBasicExercise[]
+  >([]);
+
+  const updateWorkoutGeneralInfo = useCallback(
+    (generalInfo: WorkoutGeneralInfo) => {
+      setWorkoutGeneralInfo(generalInfo);
+    },
+    [],
+  );
+
+  const addExercise = useCallback(
+    (exercise: BasicExercise, orderIndex: number) => {
+      setSelectedExercises((prev) => [
+        ...prev,
+        {
+          ...exercise,
+          orderIndex,
+        },
+      ]);
+    },
+    [],
+  );
+
+  const updateExerciseOrderIndex = useCallback(
+    (exerciseId: number, orderIndex: number) => {
+      setSelectedExercises((prev) =>
+        prev.map((exercise) =>
+          exercise.exercise_id === exerciseId
+            ? { ...exercise, orderIndex }
+            : exercise,
+        ),
+      );
+    },
+    [],
+  );
+
+  const clearExercises = useCallback(() => {
+    setSelectedExercises([]);
+  }, []);
+
+  const value = {
+    workoutGeneralInfo,
+    selectedExercises,
+    updateWorkoutGeneralInfo,
+    addExercise,
+    updateExerciseOrderIndex,
+    clearExercises,
+  };
+  return (
+    <CreateWorkoutContext.Provider value={value}>
+      {children}
+    </CreateWorkoutContext.Provider>
+  );
+}
+
+function useCreateWorkoutContext() {
+  const context = React.useContext(CreateWorkoutContext);
+  if (context === undefined) {
+    throw new Error(
+      'useCreateWorkoutContext must be used within a CreateWorkoutContextProvider',
+    );
+  }
+  return context;
+}
+
+export { CreateWorkoutContextProvider, useCreateWorkoutContext };

@@ -1,5 +1,4 @@
 import fetchApi from '@/api/fetch';
-import ThemedText from '@/components/ThemedText';
 import ThemedView from '@/components/ThemedView';
 import BasicExerciseItem from '@/components/exercises/BasicExerciseItem';
 import Header from '@/components/navigation/Header';

@@ -17,6 +17,7 @@ import { capitalize } from '@/utils/text.utils';
 import PrimaryButton from '../button/PrimaryButton';
 import SelectDropdownInput from '@/components/input/dropdown/SelectDropdownInput';
 import SelectDropdownItem from '@/components/input/dropdown/SelectDropdownItem';
+import { useCreateWorkoutContext } from '@/contexts/CreateWorkoutContext';
 
 type DificultiesData = {
   label: string;
@@ -35,7 +36,12 @@ type WorkoutTagsRespone = {
   workout_tags: WorkoutType[];
 };
 
-const WorkoutForm = () => {
+type WorkoutFormProps = {
+  onSubmit: () => void;
+};
+
+const WorkoutForm = ({ onSubmit }: WorkoutFormProps) => {
+  const { updateWorkoutGeneralInfo } = useCreateWorkoutContext();
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme ?? 'light'];
 
@@ -69,6 +75,8 @@ const WorkoutForm = () => {
         return;
       }
 
+      // TODO: move to Exercise picker
+
       // const reponse = await fetchApi(
       //   '/workout/create',
       //   'POST',
@@ -88,6 +96,15 @@ const WorkoutForm = () => {
       // } else {
       //   Alert.alert('Something went wrong...');
       // }
+
+      updateWorkoutGeneralInfo({
+        name: workoutName,
+        description: description,
+        dificultyLevel: difficulty.level,
+        isPrivate: true,
+        tagsIds: chosenTags.map((value) => value.tag_id),
+      });
+      onSubmit();
     } catch (error) {
       Alert.alert('Something went wrong...');
     }
