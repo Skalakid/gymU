@@ -20,6 +20,7 @@ type CreateWorkoutContext = {
   updateWorkoutGeneralInfo: (generalInfo: WorkoutGeneralInfo | null) => void;
   addExercise: (exercise: BasicExercise, orderIndex?: number) => void;
   updateExerciseOrderIndex: (exerciseId: number, orderIndex: number) => void;
+  removeExercise: (index: number) => void;
   clearExercises: () => void;
 };
 
@@ -29,6 +30,7 @@ const CreateWorkoutContext = React.createContext<CreateWorkoutContext>({
   updateWorkoutGeneralInfo: () => null,
   addExercise: () => null,
   updateExerciseOrderIndex: () => null,
+  removeExercise: () => null,
   clearExercises: () => null,
 });
 
@@ -74,6 +76,10 @@ function CreateWorkoutContextProvider({
     [],
   );
 
+  const removeExercise = useCallback((index: number) => {
+    setSelectedExercises((prev) => prev.filter((_, i) => i !== index));
+  }, []);
+
   const clearExercises = useCallback(() => {
     setSelectedExercises([]);
   }, []);
@@ -84,6 +90,7 @@ function CreateWorkoutContextProvider({
     updateWorkoutGeneralInfo,
     addExercise,
     updateExerciseOrderIndex,
+    removeExercise,
     clearExercises,
   };
   return (

@@ -93,8 +93,9 @@ const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
         <FlatList
           style={styles.exerciseList}
           data={exercises ?? []}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <BasicExerciseItem
+              key={`exercise${item.name}${index}`}
               name={item.name}
               type={item.exercise_type}
               style={{ marginBottom: 20 }}

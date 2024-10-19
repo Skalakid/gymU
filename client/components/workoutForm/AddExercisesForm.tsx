@@ -1,12 +1,12 @@
 import { Alert, FlatList, StyleSheet, View } from 'react-native';
 import ThemedText from '../ThemedText';
-import { useState } from 'react';
 import AddExerciseItemButton from '../exercises/AddExerciseItemButton';
 import { useRouter } from 'expo-router';
 import { useCreateWorkoutContext } from '@/contexts/CreateWorkoutContext';
 import BasicExerciseItem from '../exercises/BasicExerciseItem';
 import PrimaryButton from '../button/PrimaryButton';
 import DeleteAndEditSwipeable from '../common/swipeable/DeleteAndEditSwipeable';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const AddExercisesForm = () => {
   const {
@@ -14,6 +14,7 @@ const AddExercisesForm = () => {
     workoutGeneralInfo,
     clearExercises,
     updateWorkoutGeneralInfo,
+    removeExercise,
   } = useCreateWorkoutContext();
   const router = useRouter();
 
@@ -57,6 +58,10 @@ const AddExercisesForm = () => {
     router.navigate('/explore');
   };
 
+  const handleRemoveExercise = (index: number) => {
+    removeExercise(index);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -67,37 +72,42 @@ const AddExercisesForm = () => {
 
       <View style={styles.content}>
         {selectedExercises && (
-          <FlatList
-            style={styles.exerciseList}
-            data={selectedExercises ?? []}
-            renderItem={({ item }) => (
-              <DeleteAndEditSwipeable
-                rightActionContainerStyle={styles.actionContainerStyle}
-                leftActionContainerStyle={styles.actionContainerStyle}
-                rightThreshold={100}
-                style={styles.swipeableContainer}
-              >
-                <BasicExerciseItem
-                  name={item.name}
-                  type={item.exercise_type}
-                  bodyParts={item.body_parts}
-                  description={item.shortDescription}
-                  activeOpacity={1}
+          <GestureHandlerRootView>
+            <FlatList
+              style={styles.exerciseList}
+              data={selectedExercises ?? []}
+              renderItem={({ item, index }) => (
+                <DeleteAndEditSwipeable
+                  key={`${item.name} + ${index} + ${item.orderIndex}`}
+                  rightActionContainerStyle={styles.actionContainerStyle}
+                  leftActionContainerStyle={styles.actionContainerStyle}
+                  rightThreshold={100}
+                  leftThreshold={100}
+                  style={styles.swipeableContainer}
+                  onSwipeRight={() => handleRemoveExercise(index)}
+                >
+                  <BasicExerciseItem
+                    name={item.name}
+                    type={item.exercise_type}
+                    bodyParts={item.body_parts}
+                    description={item.shortDescription}
+                    activeOpacity={1}
+                  />
+                </DeleteAndEditSwipeable>
+              )}
+              ListEmptyComponent={() => (
+                <ThemedText size="s" style={styles.infoText}>
+                  Let's cook the perfect workout plan! 🔥
+                </ThemedText>
+              )}
+              ListFooterComponent={() => (
+                <AddExerciseItemButton
+                  style={styles.addExerciseItemButton}
+                  onPress={handleExerciseAddButtonPress}
                 />
-              </DeleteAndEditSwipeable>
-            )}
-            ListEmptyComponent={() => (
-              <ThemedText size="s" style={styles.infoText}>
-                Let's cook the perfect workout plan! 🔥
-              </ThemedText>
-            )}
-            ListFooterComponent={() => (
-              <AddExerciseItemButton
-                style={styles.addExerciseItemButton}
-                onPress={handleExerciseAddButtonPress}
-              />
-            )}
-          />
+              )}
+            />
+          </GestureHandlerRootView>
         )}
       </View>
       <PrimaryButton onPress={handleSaveWorkout} value="Save workout" />

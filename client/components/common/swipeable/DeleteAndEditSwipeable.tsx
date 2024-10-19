@@ -1,9 +1,6 @@
 import { useRef } from 'react';
 import { I18nManager, StyleSheet, ViewStyle } from 'react-native';
-import {
-  GestureHandlerRootView,
-  RectButton,
-} from 'react-native-gesture-handler';
+import { RectButton } from 'react-native-gesture-handler';
 import Swipeable, {
   SwipeableMethods,
 } from 'react-native-gesture-handler/ReanimatedSwipeable';
@@ -92,40 +89,38 @@ const DeleteAndEditSwipeable = ({
 }: DeleteAndEditSwipeableProps) => {
   const swipeableRow = useRef<SwipeableMethods>(null);
   return (
-    <GestureHandlerRootView>
-      <Swipeable
-        ref={swipeableRow}
-        friction={friction}
-        enableTrackpadTwoFingerGesture
-        rightThreshold={rightThreshold}
-        onSwipeableWillOpen={(direction) => {
-          if (direction === 'left') {
-            onSwipeLeft?.();
-          } else {
-            onSwipeRight?.();
-          }
-        }}
-        onSwipeableOpen={() => swipeableRow.current!.close()}
-        renderRightActions={(_, progress) => (
-          <RightAction
-            dragX={progress}
-            swipeableRef={swipeableRow}
-            style={rightActionContainerStyle}
-          />
-        )}
-        leftThreshold={leftThreshold}
-        renderLeftActions={(_, progress) => (
-          <LeftAction
-            dragX={progress}
-            swipeableRef={swipeableRow}
-            style={leftActionContainerStyle}
-          />
-        )}
-        containerStyle={style}
-      >
-        {children}
-      </Swipeable>
-    </GestureHandlerRootView>
+    <Swipeable
+      ref={swipeableRow}
+      friction={friction}
+      enableTrackpadTwoFingerGesture
+      rightThreshold={rightThreshold}
+      onSwipeableWillOpen={(direction) => {
+        if (direction === 'left') {
+          onSwipeLeft?.();
+        } else {
+          onSwipeRight?.();
+        }
+      }}
+      onSwipeableOpen={() => swipeableRow.current!.close()}
+      renderRightActions={(_, progress) => (
+        <RightAction
+          dragX={progress}
+          swipeableRef={swipeableRow}
+          style={rightActionContainerStyle}
+        />
+      )}
+      leftThreshold={leftThreshold}
+      renderLeftActions={(_, progress) => (
+        <LeftAction
+          dragX={progress}
+          swipeableRef={swipeableRow}
+          style={leftActionContainerStyle}
+        />
+      )}
+      containerStyle={style}
+    >
+      {children}
+    </Swipeable>
   );
 };
 
