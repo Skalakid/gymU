@@ -1,14 +1,12 @@
 import { Alert, FlatList, StyleSheet, View } from 'react-native';
 import ThemedText from '../ThemedText';
-import Icon from '../common/Icon';
-import Icons from '@/constants/Icons';
 import { useState } from 'react';
 import AddExerciseItemButton from '../exercises/AddExerciseItemButton';
 import { useRouter } from 'expo-router';
 import { useCreateWorkoutContext } from '@/contexts/CreateWorkoutContext';
 import BasicExerciseItem from '../exercises/BasicExerciseItem';
 import PrimaryButton from '../button/PrimaryButton';
-import fetchApi from '@/api/fetch';
+import DeleteAndEditSwipeable from '../common/swipeable/DeleteAndEditSwipeable';
 
 const AddExercisesForm = () => {
   const {
@@ -18,7 +16,6 @@ const AddExercisesForm = () => {
     updateWorkoutGeneralInfo,
   } = useCreateWorkoutContext();
   const router = useRouter();
-  const [time, setTime] = useState(0);
 
   const handleExerciseAddButtonPress = () => {
     router.navigate('/explore/add/exercise');
@@ -74,13 +71,20 @@ const AddExercisesForm = () => {
             style={styles.exerciseList}
             data={selectedExercises ?? []}
             renderItem={({ item }) => (
-              <BasicExerciseItem
-                name={item.name}
-                type={item.exercise_type}
-                style={{ marginBottom: 20 }}
-                bodyParts={item.body_parts}
-                description={item.shortDescription}
-              />
+              <DeleteAndEditSwipeable
+                rightActionContainerStyle={styles.actionContainerStyle}
+                leftActionContainerStyle={styles.actionContainerStyle}
+                rightThreshold={100}
+                style={styles.swipeableContainer}
+              >
+                <BasicExerciseItem
+                  name={item.name}
+                  type={item.exercise_type}
+                  bodyParts={item.body_parts}
+                  description={item.shortDescription}
+                  activeOpacity={1}
+                />
+              </DeleteAndEditSwipeable>
             )}
             ListEmptyComponent={() => (
               <ThemedText size="s" style={styles.infoText}>
@@ -131,6 +135,12 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   exerciseList: {
+    marginBottom: 20,
+  },
+  actionContainerStyle: {
+    borderRadius: 15,
+  },
+  swipeableContainer: {
     marginBottom: 20,
   },
 });
