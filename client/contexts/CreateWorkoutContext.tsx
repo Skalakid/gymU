@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 
 type CreateWorkoutContextProviderProps = { children: React.ReactNode };
 
@@ -93,17 +93,30 @@ function CreateWorkoutContextProvider({
     setSelectedExercises([]);
   }, []);
 
-  const value = {
-    workoutGeneralInfo,
-    selectedExercises,
-    selectedExercise,
-    updateSelectedExercise,
-    updateWorkoutGeneralInfo,
-    addExercise,
-    updateExerciseOrderIndex,
-    removeExercise,
-    clearExercises,
-  };
+  const value = useMemo(
+    () => ({
+      workoutGeneralInfo,
+      selectedExercises,
+      selectedExercise,
+      updateSelectedExercise,
+      updateWorkoutGeneralInfo,
+      addExercise,
+      updateExerciseOrderIndex,
+      removeExercise,
+      clearExercises,
+    }),
+    [
+      addExercise,
+      clearExercises,
+      removeExercise,
+      selectedExercises,
+      updateExerciseOrderIndex,
+      updateSelectedExercise,
+      updateWorkoutGeneralInfo,
+      workoutGeneralInfo,
+    ],
+  );
+
   return (
     <CreateWorkoutContext.Provider value={value}>
       {children}

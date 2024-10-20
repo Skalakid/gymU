@@ -16,6 +16,7 @@ type TextInputProps = {
   onValueChange?: (value: number) => void;
   label?: string;
   style?: ViewStyle;
+  unit?: string;
 };
 
 const NumericValueInput = ({

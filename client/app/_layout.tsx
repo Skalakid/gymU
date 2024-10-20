@@ -26,6 +26,7 @@ import { StyleSheet } from 'react-native';
 import { Colors } from '@/constants/Colors';
 import { AuthContextProvider, useAuthContext } from '@/contexts/AuthContext';
 import { CreateWorkoutContextProvider } from '@/contexts/CreateWorkoutContext';
+import { ExerciseContextProvider } from '@/contexts/ExerciseContext';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -86,22 +87,24 @@ const RootLayout = () => {
 
   return (
     <AuthContextProvider>
-      <CreateWorkoutContextProvider>
-        <ThemeProvider
-          value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-        >
-          <SafeAreaView
-            style={[
-              styles.container,
-              {
-                backgroundColor: Colors[colorScheme ?? 'light'].background,
-              },
-            ]}
+      <ExerciseContextProvider>
+        <CreateWorkoutContextProvider>
+          <ThemeProvider
+            value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
           >
-            <InitialLayout />
-          </SafeAreaView>
-        </ThemeProvider>
-      </CreateWorkoutContextProvider>
+            <SafeAreaView
+              style={[
+                styles.container,
+                {
+                  backgroundColor: Colors[colorScheme ?? 'light'].background,
+                },
+              ]}
+            >
+              <InitialLayout />
+            </SafeAreaView>
+          </ThemeProvider>
+        </CreateWorkoutContextProvider>
+      </ExerciseContextProvider>
     </AuthContextProvider>
   );
 };
