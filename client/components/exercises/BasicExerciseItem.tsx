@@ -1,12 +1,12 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import ThemedText from '../ThemedText';
 import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 import Tile from '../common/Tile';
 import useTheme from '@/hooks/useTheme';
 import Icon from '../common/Icon';
-import Icons from '@/constants/Icons';
 import Tag from '../common/tag/Tag';
 import { capitalize } from '@/utils/text.utils';
+import { useExerciseContext } from '@/contexts/ExerciseContext';
 
 type ExerciseItemProp = {
   name: string;
@@ -27,20 +27,8 @@ const BasicExerciseItem = ({
   onPress,
   activeOpacity,
 }: ExerciseItemProp) => {
+  const { getExerciseTypeIcon } = useExerciseContext();
   const theme = useTheme();
-
-  const exerciseTypeIcon = useMemo(() => {
-    switch (type) {
-      case 'reps':
-        return Icons.repeat;
-      case 'time':
-        return Icons.time;
-      case 'break':
-        return Icons.battery;
-      default:
-        return Icons.bolt;
-    }
-  }, [type]);
 
   return (
     <TouchableOpacity
@@ -50,7 +38,7 @@ const BasicExerciseItem = ({
     >
       <Tile style={styles.container}>
         <View style={styles.title}>
-          <Icon icon={exerciseTypeIcon} size={14} color={theme.text} />
+          <Icon icon={getExerciseTypeIcon(type)} size={14} color={theme.text} />
           <ThemedText size="l" weight="medium">
             {name}
           </ThemedText>
@@ -78,7 +66,6 @@ export default BasicExerciseItem;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 10,
     borderRadius: 15,
     minHeight: 100,

@@ -6,6 +6,14 @@ type BasicExercise = {
   shortDescription: string;
 };
 
+type DetailedExercise = {
+  exercise_id: number;
+  name: string;
+  exercise_type: string;
+  body_parts: string[];
+  description: string;
+};
+
 type ExerciseItem = {
   exercise_id: number;
   exercise_name: string;

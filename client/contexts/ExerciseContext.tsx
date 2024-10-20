@@ -1,16 +1,20 @@
 import fetchApi from '@/api/fetch';
+import Icons from '@/constants/Icons';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { SvgProps } from 'react-native-svg';
 
 type ExerciseContextProviderProps = { children: React.ReactNode };
 
 type ExerciseContextType = {
   exerciseTypes: ExerciseType[];
   getExerciseType: (name: string) => ExerciseType | undefined;
+  getExerciseTypeIcon: (type: string) => React.FC<SvgProps>;
 };
 
 const ExerciseContext = React.createContext<ExerciseContextType>({
   exerciseTypes: [],
   getExerciseType: () => undefined,
+  getExerciseTypeIcon: () => Icons.bolt,
 });
 
 function ExerciseContextProvider({ children }: ExerciseContextProviderProps) {
@@ -39,12 +43,26 @@ function ExerciseContextProvider({ children }: ExerciseContextProviderProps) {
     [exerciseTypes],
   );
 
+  const getExerciseTypeIcon = useCallback((type: string) => {
+    switch (type) {
+      case 'reps':
+        return Icons.repeat;
+      case 'time':
+        return Icons.time;
+      case 'break':
+        return Icons.battery;
+      default:
+        return Icons.bolt;
+    }
+  }, []);
+
   const value = useMemo(
     () => ({
       exerciseTypes,
       getExerciseType,
+      getExerciseTypeIcon,
     }),
-    [exerciseTypes, getExerciseType],
+    [exerciseTypes, getExerciseType, getExerciseTypeIcon],
   );
   return (
     <ExerciseContext.Provider value={value}>
