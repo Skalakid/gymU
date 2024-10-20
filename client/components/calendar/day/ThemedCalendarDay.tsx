@@ -20,7 +20,7 @@ const ThemedCalendarDay = ({
 
   return (
     <TouchableOpacity
-      onPress={(event) => {
+      onPress={() => {
         if (onPress) onPress(cell.date);
       }}
       style={[

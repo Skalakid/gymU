@@ -3,8 +3,6 @@ import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import ThemedCalendarHeaderCell from './ThemedCalendarHeaderCell';
 
-type ThemedCalendarHeaderProps = {};
-
 /// TODO: Add local translations
 const weekDaysMap = new Map(
   Object.entries({
@@ -28,7 +26,7 @@ const weekDays = [
   { key: 'sun' },
 ];
 
-const ThemedCalendarHeader = (props: ThemedCalendarHeaderProps) => {
+const ThemedCalendarHeader = () => {
   const cells = useMemo(
     () =>
       weekDays

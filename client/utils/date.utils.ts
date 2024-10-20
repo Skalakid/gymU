@@ -72,7 +72,6 @@ const getParsedValue = (date: string, type: 'year' | 'month' | 'day') => {
 };
 
 const areMonthsEqual = (dateA: string, dateB: string) => {
-  console.log(dateA.substring(0, 7), dateB.substring(0, 7));
   return dateA.substring(0, 7) === dateB.substring(0, 7);
 };
 

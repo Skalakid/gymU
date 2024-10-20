@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import ThemedView from '../ThemedView';
 import ThemedCalendarDay from './day/ThemedCalendarDay';
 import { CalendarCell } from './ThemedCalendar';
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 type ThemedCalendarRowProps = {
   children: CalendarCell[];
@@ -23,7 +23,7 @@ const ThemedCalendarRow = ({
           onPress={onDayPress}
         />
       )),
-    [children],
+    [children, onDayPress],
   );
 
   return <ThemedView style={styles.container}>{cells}</ThemedView>;

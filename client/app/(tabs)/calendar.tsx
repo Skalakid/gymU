@@ -1,4 +1,3 @@
-import ThemedText from '@/components/ThemedText';
 import ThemedView from '@/components/ThemedView';
 import ThemedCalendar from '@/components/calendar/ThemedCalendar';
 import ThemedCalendarNavigation from '@/components/calendar/navigation/ThemedCalendarNavigation';
@@ -13,6 +12,7 @@ import {
 } from '@/utils/date.utils';
 
 const CalendarPage = () => {
+  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
   const [currentDate, setCurrentDate] = useState(getFormatedDate(new Date()));
   const [selectedDate, setSelectedDate] = useState(currentDate);
 

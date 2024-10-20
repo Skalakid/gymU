@@ -65,6 +65,7 @@ const LoginPage = () => {
 
       <TextLink
         style={styles.forgotPasswordLink}
+        // eslint-disable-next-line no-console
         onPress={() => console.log('Forgot password')}
         size="m"
       >
