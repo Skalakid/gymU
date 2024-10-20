@@ -18,6 +18,7 @@ import heartFill from '../assets/icons/heart-fill.svg';
 import heart from '../assets/icons/heart.svg';
 import homeFill from '../assets/icons/home-fill.svg';
 import home from '../assets/icons/home.svg';
+import minus from '../assets/icons/minus.svg';
 import open from '../assets/icons/open.svg';
 import plus from '../assets/icons/plus.svg';
 import repeat from '../assets/icons/repeat.svg';
@@ -48,6 +49,7 @@ export default {
   heart,
   homeFill,
   home,
+  minus,
   open,
   plus,
   repeat,

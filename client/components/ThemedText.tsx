@@ -26,7 +26,6 @@ const ThemedText = ({
     textType,
   );
   const textColor = color || themeColor;
-
   return (
     <Text
       style={[
@@ -35,6 +34,7 @@ const ThemedText = ({
           color: textColor,
           fontFamily: `Poppins_${WeightPresets[weight].fontWeight}${(style as TextStyle)?.fontStyle === 'italic' ? '_italic' : ''}`,
         },
+        WeightPresets[weight],
         styles.default,
         style,
       ]}

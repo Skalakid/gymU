@@ -5,6 +5,7 @@ import {
   View,
   TextInput as RNTextInput,
   useColorScheme,
+  ViewStyle,
 } from 'react-native';
 import ThemedText from '../ThemedText';
 
@@ -14,6 +15,8 @@ type TextInputProps = {
   placeholder?: string;
   onChangeText?: (text: string) => void;
   type?: 'password' | 'text';
+  keyboardType?: 'default' | 'numeric' | 'email-address' | 'phone-pad';
+  style?: ViewStyle;
 };
 
 const TextInput = ({
@@ -22,15 +25,19 @@ const TextInput = ({
   placeholder,
   onChangeText,
   type = 'text',
+  keyboardType = 'default',
+  style,
 }: TextInputProps) => {
   const colorScheme = useColorScheme();
   const primaryColor = Colors[colorScheme ?? 'light'].text;
 
   return (
-    <View style={styles.container}>
-      <ThemedText size="m" weight="medium">
-        {label}
-      </ThemedText>
+    <View style={[styles.container, style]}>
+      {label && (
+        <ThemedText size="m" weight="medium">
+          {label}
+        </ThemedText>
+      )}
 
       <RNTextInput
         style={[
@@ -47,6 +54,7 @@ const TextInput = ({
         onChangeText={onChangeText}
         secureTextEntry={type === 'password'}
         autoCapitalize="none"
+        keyboardType={keyboardType}
       />
     </View>
   );

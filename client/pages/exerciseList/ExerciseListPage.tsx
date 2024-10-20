@@ -60,7 +60,6 @@ const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
 
   const handleItemPress = (exercise: BasicExercise) => {
     onItemSelected(exercise);
-    router.back();
   };
 
   useEffect(() => {

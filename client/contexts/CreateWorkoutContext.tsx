@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 type CreateWorkoutContextProviderProps = { children: React.ReactNode };
 
@@ -22,6 +22,8 @@ type CreateWorkoutContext = {
   updateExerciseOrderIndex: (exerciseId: number, orderIndex: number) => void;
   removeExercise: (index: number) => void;
   clearExercises: () => void;
+  selectedExercise: React.MutableRefObject<BasicExercise | null>;
+  updateSelectedExercise: (exercise: BasicExercise) => void;
 };
 
 const CreateWorkoutContext = React.createContext<CreateWorkoutContext>({
@@ -32,6 +34,8 @@ const CreateWorkoutContext = React.createContext<CreateWorkoutContext>({
   updateExerciseOrderIndex: () => null,
   removeExercise: () => null,
   clearExercises: () => null,
+  selectedExercise: { current: null },
+  updateSelectedExercise: () => null,
 });
 
 function CreateWorkoutContextProvider({
@@ -42,6 +46,11 @@ function CreateWorkoutContextProvider({
   const [selectedExercises, setSelectedExercises] = useState<
     OrderedBasicExercise[]
   >([]);
+  const selectedExercise = useRef<BasicExercise | null>(null);
+
+  const updateSelectedExercise = useCallback((exercise: BasicExercise) => {
+    selectedExercise.current = exercise;
+  }, []);
 
   const updateWorkoutGeneralInfo = useCallback(
     (generalInfo: WorkoutGeneralInfo | null) => {
@@ -87,6 +96,8 @@ function CreateWorkoutContextProvider({
   const value = {
     workoutGeneralInfo,
     selectedExercises,
+    selectedExercise,
+    updateSelectedExercise,
     updateWorkoutGeneralInfo,
     addExercise,
     updateExerciseOrderIndex,

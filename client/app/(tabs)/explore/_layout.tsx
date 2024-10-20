@@ -8,6 +8,15 @@ const WorkoutsLayout = () => {
       }}
     >
       <Stack.Screen name="index" />
+      <Stack.Screen
+        name="add/exercise/details"
+        options={{
+          presentation: 'modal',
+          contentStyle: {
+            backgroundColor: 'transparent',
+          },
+        }}
+      />
     </Stack>
   );
 };
