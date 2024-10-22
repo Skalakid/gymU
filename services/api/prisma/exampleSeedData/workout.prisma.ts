@@ -102,7 +102,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
       workout_template_id: 1,
       exercise_name: 'Push ups',
       value: JSON.stringify({
-        series: 3,
+        sets: 3,
         reps: 15,
         break: 60,
       }),
@@ -121,7 +121,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
       workout_template_id: 1,
       exercise_name: 'Deadlifts',
       value: JSON.stringify({
-        series: 3,
+        sets: 3,
         reps: 10,
         weight: 80,
         break: 60,
@@ -133,7 +133,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
       workout_template_id: 2,
       exercise_name: 'Pull ups',
       value: JSON.stringify({
-        series: 4,
+        sets: 4,
         reps: 5,
         break: 60,
       }),
@@ -143,7 +143,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
       workout_template_id: 2,
       exercise_name: 'Squats',
       value: JSON.stringify({
-        series: 3,
+        sets: 3,
         reps: 10,
         break: 60,
       }),
