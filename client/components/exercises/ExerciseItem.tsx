@@ -9,7 +9,7 @@ type ExerciseItemProp = {
 };
 
 const ExerciseItem = ({ exercise }: ExerciseItemProp) => {
-  const value: ExerciseValue | null = exercise.value
+  const value: ExerciseDetails | null = exercise.value
     ? JSON.parse(exercise.value)
     : null;
 
@@ -24,7 +24,7 @@ const ExerciseItem = ({ exercise }: ExerciseItemProp) => {
         <View style={styles.info}>
           {value && (
             <ExerciseDetailsList
-              sets={value.series}
+              sets={value.sets}
               reps={value.reps}
               time={value.time}
               weight={value.weight}

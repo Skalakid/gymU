@@ -6,7 +6,7 @@ import NumericValueInput from './NumericValueInput';
 
 type RowTextInputProps = {
   value: number;
-  onChageText: (text: string) => void;
+  onChageText: (text: number) => void;
   style?: ViewStyle;
   icon?: IconType;
   label: string;
@@ -31,7 +31,7 @@ const RowTextInput = ({
       </View>
       <NumericValueInput
         value={value}
-        onValueChange={(value) => onChageText(value.toString())}
+        onValueChange={(value) => onChageText(value)}
         style={{ flex: 1 }}
       />
     </View>

@@ -37,6 +37,7 @@ type ExerciseDetails = {
   weight: number | null;
   time: number | null;
   isBreak?: boolean;
+  break?: number | null;
 };
 
 type DetailedExerciseItem = DetailedExercise & {
