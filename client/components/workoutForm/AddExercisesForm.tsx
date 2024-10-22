@@ -1,4 +1,4 @@
-import { Alert, FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import ThemedText from '../ThemedText';
 import AddExerciseItemButton from '../exercises/AddExerciseItemButton';
 import { useRouter } from 'expo-router';
@@ -9,13 +9,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import DetailedExerciseItem from '../exercises/DetailedExerciseItem';
 
 const AddExercisesForm = () => {
-  const {
-    selectedExercises,
-    workoutGeneralInfo,
-    clearExercises,
-    updateWorkoutGeneralInfo,
-    removeExercise,
-  } = useCreateWorkoutContext();
+  const { selectedExercises, removeExercise } = useCreateWorkoutContext();
   const router = useRouter();
 
   const handleExerciseAddButtonPress = () => {
@@ -24,39 +18,6 @@ const AddExercisesForm = () => {
 
   const handleSaveWorkout = async () => {
     router.navigate('/explore/add/summary');
-    // if (selectedExercises.length === 0) {
-    //   Alert.alert('Please add exercises to your workout');
-    //   return;
-    // }
-
-    // if (!workoutGeneralInfo) {
-    //   Alert.alert('Please fill the workout general info');
-    //   return;
-    // }
-
-    // const reponse = await fetchApi(
-    //   '/workout/create',
-    //   'POST',
-    //   null,
-    //   {
-    //     name: workoutGeneralInfo.name,
-    //     description: workoutGeneralInfo.description,
-    //     is_private: workoutGeneralInfo.isPrivate,
-    //     workout_level_id: workoutGeneralInfo.dificultyLevel,
-    //     tag_ids: workoutGeneralInfo.tagsIds,
-    //     exercises: [],
-    //   },
-    //   true,
-    // );
-    // if (reponse.ok) {
-    //   router.navigate('/explore');
-    // } else {
-    //   Alert.alert('Something went wrong...');
-    // }
-
-    // clearExercises();
-    // updateWorkoutGeneralInfo(null);
-    // router.navigate('/explore');
   };
 
   const handleRemoveExercise = (index: number) => {

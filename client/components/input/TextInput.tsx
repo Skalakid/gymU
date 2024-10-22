@@ -17,6 +17,7 @@ type TextInputProps = {
   type?: 'password' | 'text';
   keyboardType?: 'default' | 'numeric' | 'email-address' | 'phone-pad';
   style?: ViewStyle;
+  disabled?: boolean;
 };
 
 const TextInput = ({
@@ -27,6 +28,7 @@ const TextInput = ({
   type = 'text',
   keyboardType = 'default',
   style,
+  disabled,
 }: TextInputProps) => {
   const colorScheme = useColorScheme();
   const primaryColor = Colors[colorScheme ?? 'light'].text;
@@ -55,6 +57,7 @@ const TextInput = ({
         secureTextEntry={type === 'password'}
         autoCapitalize="none"
         keyboardType={keyboardType}
+        editable={!disabled}
       />
     </View>
   );

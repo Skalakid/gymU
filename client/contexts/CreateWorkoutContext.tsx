@@ -1,13 +1,16 @@
+import fetchApi from '@/api/fetch';
+import { DificultiesData } from '@/components/workoutForm/WorkoutForm';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { Alert } from 'react-native';
 
 type CreateWorkoutContextProviderProps = { children: React.ReactNode };
 
 type WorkoutGeneralInfo = {
   name: string;
   description: string;
-  dificultyLevel: number;
+  dificulty: DificultiesData;
   isPrivate: boolean;
-  tagsIds: number[];
+  tags: WorkoutType[];
 };
 
 type OrderedExerciseItem = DetailedExerciseItem & {
@@ -24,6 +27,7 @@ type CreateWorkoutContext = {
   clearExercises: () => void;
   currentExercise: React.MutableRefObject<BasicExercise | null>;
   updateCurrentExercise: (exercise: BasicExercise) => void;
+  saveWorkout: () => Promise<boolean>;
 };
 
 const CreateWorkoutContext = React.createContext<CreateWorkoutContext>({
@@ -36,13 +40,26 @@ const CreateWorkoutContext = React.createContext<CreateWorkoutContext>({
   clearExercises: () => null,
   currentExercise: { current: null },
   updateCurrentExercise: () => null,
+  saveWorkout: async () => false,
 });
 
 function CreateWorkoutContextProvider({
   children,
 }: CreateWorkoutContextProviderProps) {
   const [workoutGeneralInfo, setWorkoutGeneralInfo] =
-    useState<WorkoutGeneralInfo | null>(null);
+    useState<WorkoutGeneralInfo | null>({
+      description: 'dupa dupa',
+      dificulty: { label: 'medium', level: 2 },
+      isPrivate: true,
+      name: 'Test',
+      tags: [
+        { name: 'Legs', tag_id: 3 },
+        { name: 'Lower body', tag_id: 4 },
+        { name: 'Endurance', tag_id: 5 },
+        { name: 'Arms', tag_id: 2 },
+        { name: 'Back', tag_id: 1 },
+      ],
+    });
   const [selectedExercises, setSelectedExercises] = useState<
     OrderedExerciseItem[]
   >([]);
@@ -93,6 +110,46 @@ function CreateWorkoutContextProvider({
     setSelectedExercises([]);
   }, []);
 
+  const saveWorkout = useCallback(async () => {
+    if (selectedExercises.length === 0) {
+      Alert.alert('Please add exercises to your workout');
+      return false;
+    }
+
+    if (!workoutGeneralInfo) {
+      Alert.alert('Please fill the workout general info');
+      return false;
+    }
+
+    const reponse = await fetchApi(
+      '/workout/create',
+      'POST',
+      null,
+      {
+        name: workoutGeneralInfo.name,
+        description: workoutGeneralInfo.description,
+        is_private: workoutGeneralInfo.isPrivate,
+        workout_level_id: workoutGeneralInfo.dificulty.level,
+        tag_ids: workoutGeneralInfo.tags.map((tag) => tag.tag_id),
+        exercises: [],
+      },
+      true,
+    );
+    if (!reponse.ok) {
+      Alert.alert('Something went wrong...');
+      return false;
+    }
+
+    clearExercises();
+    updateWorkoutGeneralInfo(null);
+    return true;
+  }, [
+    clearExercises,
+    selectedExercises.length,
+    updateWorkoutGeneralInfo,
+    workoutGeneralInfo,
+  ]);
+
   const value = useMemo(
     () => ({
       workoutGeneralInfo,
@@ -104,6 +161,7 @@ function CreateWorkoutContextProvider({
       updateExerciseOrderIndex,
       removeExercise,
       clearExercises,
+      saveWorkout,
     }),
     [
       workoutGeneralInfo,
@@ -114,6 +172,7 @@ function CreateWorkoutContextProvider({
       updateExerciseOrderIndex,
       removeExercise,
       clearExercises,
+      saveWorkout,
     ],
   );
 

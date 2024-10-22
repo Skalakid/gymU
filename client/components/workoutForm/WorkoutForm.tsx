@@ -19,12 +19,12 @@ import SelectDropdownInput from '@/components/input/dropdown/SelectDropdownInput
 import SelectDropdownItem from '@/components/input/dropdown/SelectDropdownItem';
 import { useCreateWorkoutContext } from '@/contexts/CreateWorkoutContext';
 
-type DificultiesData = {
+export type DificultiesData = {
   label: string;
   level: number;
 };
 
-const difficulties = ['beginner', 'easy', 'medium', 'hard', 'hardcore'];
+export const difficulties = ['beginner', 'easy', 'medium', 'hard', 'hardcore'];
 const pickerData: DificultiesData[] = [];
 
 for (let i = 0; i < difficulties.length; ++i) {
@@ -78,9 +78,9 @@ const WorkoutForm = ({ onSubmit }: WorkoutFormProps) => {
       updateWorkoutGeneralInfo({
         name: workoutName,
         description: description,
-        dificultyLevel: difficulty.level,
+        dificulty: difficulty,
         isPrivate: true,
-        tagsIds: chosenTags.map((value) => value.tag_id),
+        tags: chosenTags,
       });
       onSubmit();
     } catch (error) {

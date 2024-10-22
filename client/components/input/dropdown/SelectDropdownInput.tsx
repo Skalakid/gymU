@@ -13,12 +13,13 @@ type SelectDropdownInputProps = {
   label?: string;
   placeholder: string;
   renderItem: (item: any) => JSX.Element;
-  onSelect: (value: any) => void;
+  onSelect?: (value: any) => void;
   data: any[];
   selectedValue?: string;
   icon?: IconType;
   iconColor?: string;
   iconSize?: number;
+  disabled?: boolean;
 };
 
 const SelectDropdownInput = ({
@@ -31,6 +32,7 @@ const SelectDropdownInput = ({
   icon,
   iconColor,
   iconSize = 26,
+  disabled,
 }: SelectDropdownInputProps) => {
   const theme = useTheme();
   const colorScheme = useColorScheme();
@@ -58,6 +60,7 @@ const SelectDropdownInput = ({
           icon={isActive ? Icons.arrowTop : Icons.arrowBottom}
           size={20}
           color={primaryColor}
+          style={{ opacity: disabled ? 0.5 : 1 }}
         />
       </ThemedView>
     );
@@ -78,11 +81,14 @@ const SelectDropdownInput = ({
             backgroundColor: theme.background,
           }}
           data={data}
-          onSelect={onSelect}
+          onSelect={(e) => {
+            onSelect?.(e);
+          }}
           renderButton={renderButton}
           renderItem={renderItem}
           onFocus={() => setIsActive(true)}
           onBlur={() => setIsActive(false)}
+          disabled={disabled}
         />
       </View>
     </View>
