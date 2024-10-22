@@ -3,10 +3,10 @@ import ExerciseListPage from '@/pages/exerciseList/ExerciseListPage';
 import { useRouter } from 'expo-router';
 
 const WorkoutExercisePickerPage = () => {
-  const { updateSelectedExercise } = useCreateWorkoutContext();
+  const { updateCurrentExercise } = useCreateWorkoutContext();
   const router = useRouter();
   const handleSelectItem = (exercise: BasicExercise) => {
-    updateSelectedExercise(exercise);
+    updateCurrentExercise(exercise);
     router.navigate('/(tabs)/explore/add/exercise/details');
   };
 

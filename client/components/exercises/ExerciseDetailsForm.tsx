@@ -1,27 +1,26 @@
-import { StyleSheet, View, ViewStyle } from 'react-native';
-import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import Icons from '@/constants/Icons';
 import RowTextInput from '../input/RowTextInput';
 import { useExerciseContext } from '@/contexts/ExerciseContext';
-import PrimaryButton from '../button/PrimaryButton';
 
 type ExerciseDetailsFormProps = {
   type: string;
-  onSubmit: (data: any) => void;
-  submitButtonStyle?: ViewStyle;
+  onFormUpdate: (details: ExerciseDetails) => void;
 };
 
 const ExerciseDetailsForm = ({
   type,
-  onSubmit,
-  submitButtonStyle,
+  onFormUpdate,
 }: ExerciseDetailsFormProps) => {
   const { getExerciseType } = useExerciseContext();
   const [exerciseType] = useState<ExerciseType | null>(
     getExerciseType(type) || null,
   );
-  const [sets, setSets] = useState<number>(0);
-  const [reps, setReps] = useState<number>(0);
+  const [sets, setSets] = useState<number>(3);
+  const [reps, setReps] = useState<number>(10);
+  const [weight, setWeight] = useState<number>(30);
+  const [time, setTime] = useState<number>(60);
 
   const handleNumericChange = (
     value: number,
@@ -31,49 +30,49 @@ const ExerciseDetailsForm = ({
     callback(Math.min(Math.max(value, 0), maxValue));
   };
 
+  useEffect(() => {
+    onFormUpdate({
+      sets: exerciseType?.has_series ? sets : null,
+      reps: exerciseType?.has_reps ? reps : null,
+      weight: exerciseType?.has_weights ? weight : null,
+      time: exerciseType?.has_time ? time : null,
+    });
+  }, [exerciseType, onFormUpdate, reps, sets, time, weight]);
+
   return (
     <View style={styles.container}>
-      <View style={styles.inputFields}>
-        {exerciseType?.has_series && (
-          <RowTextInput
-            value={sets}
-            onChageText={(value) => handleNumericChange(value, setSets)}
-            label="Sets"
-            icon={Icons.repeat}
-          />
-        )}
-        {exerciseType?.has_reps && (
-          <RowTextInput
-            value={reps}
-            onChageText={(value) => handleNumericChange(value, setReps)}
-            label="Reps"
-            icon={Icons.flame}
-          />
-        )}
-        {exerciseType?.has_weights && (
-          <RowTextInput
-            value={reps}
-            onChageText={(value) => handleNumericChange(value, setReps, 1000)}
-            label="Weight"
-            icon={Icons.weight}
-          />
-        )}
-        {exerciseType?.has_time && (
-          <RowTextInput
-            value={reps}
-            onChageText={(value) => handleNumericChange(value, setReps)}
-            label={exerciseType?.is_break ? 'Break time' : 'Time'}
-            icon={Icons.time}
-          />
-        )}
-      </View>
-      <PrimaryButton
-        value="Add"
-        onPress={() => {
-          onSubmit({ sets, reps });
-        }}
-        style={submitButtonStyle}
-      />
+      {exerciseType?.has_series && (
+        <RowTextInput
+          value={sets}
+          onChageText={(value) => handleNumericChange(value, setSets)}
+          label="Sets"
+          icon={Icons.repeat}
+        />
+      )}
+      {exerciseType?.has_reps && (
+        <RowTextInput
+          value={reps}
+          onChageText={(value) => handleNumericChange(value, setReps)}
+          label="Reps"
+          icon={Icons.flame}
+        />
+      )}
+      {exerciseType?.has_weights && (
+        <RowTextInput
+          value={weight}
+          onChageText={(value) => handleNumericChange(value, setWeight, 1000)}
+          label="Weight"
+          icon={Icons.weight}
+        />
+      )}
+      {exerciseType?.has_time && (
+        <RowTextInput
+          value={time}
+          onChageText={(value) => handleNumericChange(value, setTime)}
+          label={exerciseType?.is_break ? 'Break time' : 'Time'}
+          icon={Icons.time}
+        />
+      )}
     </View>
   );
 };
@@ -82,12 +81,6 @@ export default ExerciseDetailsForm;
 
 const styles = StyleSheet.create({
   container: {
-    gap: 20,
-    flex: 1,
-    justifyContent: 'space-between',
-    paddingBottom: 20,
-  },
-  inputFields: {
     gap: 10,
   },
 });

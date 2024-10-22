@@ -3,10 +3,10 @@ import ThemedText from '../ThemedText';
 import AddExerciseItemButton from '../exercises/AddExerciseItemButton';
 import { useRouter } from 'expo-router';
 import { useCreateWorkoutContext } from '@/contexts/CreateWorkoutContext';
-import BasicExerciseItem from '../exercises/BasicExerciseItem';
 import PrimaryButton from '../button/PrimaryButton';
 import DeleteAndEditSwipeable from '../common/swipeable/DeleteAndEditSwipeable';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import DetailedExerciseItem from '../exercises/DetailedExerciseItem';
 
 const AddExercisesForm = () => {
   const {
@@ -23,15 +23,16 @@ const AddExercisesForm = () => {
   };
 
   const handleSaveWorkout = async () => {
-    if (selectedExercises.length === 0) {
-      Alert.alert('Please add exercises to your workout');
-      return;
-    }
+    router.navigate('/explore/add/summary');
+    // if (selectedExercises.length === 0) {
+    //   Alert.alert('Please add exercises to your workout');
+    //   return;
+    // }
 
-    if (!workoutGeneralInfo) {
-      Alert.alert('Please fill the workout general info');
-      return;
-    }
+    // if (!workoutGeneralInfo) {
+    //   Alert.alert('Please fill the workout general info');
+    //   return;
+    // }
 
     // const reponse = await fetchApi(
     //   '/workout/create',
@@ -53,9 +54,9 @@ const AddExercisesForm = () => {
     //   Alert.alert('Something went wrong...');
     // }
 
-    clearExercises();
-    updateWorkoutGeneralInfo(null);
-    router.navigate('/explore');
+    // clearExercises();
+    // updateWorkoutGeneralInfo(null);
+    // router.navigate('/explore');
   };
 
   const handleRemoveExercise = (index: number) => {
@@ -86,12 +87,13 @@ const AddExercisesForm = () => {
                   style={styles.swipeableContainer}
                   onSwipeRight={() => handleRemoveExercise(index)}
                 >
-                  <BasicExerciseItem
+                  <DetailedExerciseItem
                     name={item.name}
                     type={item.exercise_type}
                     bodyParts={item.body_parts}
-                    description={item.shortDescription}
+                    description={item.description}
                     activeOpacity={1}
+                    exerciseDetails={item.value}
                   />
                 </DeleteAndEditSwipeable>
               )}

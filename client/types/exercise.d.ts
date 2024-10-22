@@ -30,3 +30,15 @@ type ExerciseType = {
   is_break: boolean;
   name: string;
 };
+
+type ExerciseDetails = {
+  sets: number | null;
+  reps: number | null;
+  weight: number | null;
+  time: number | null;
+  isBreak?: boolean;
+};
+
+type DetailedExerciseItem = DetailedExercise & {
+  value: ExerciseDetails;
+};
