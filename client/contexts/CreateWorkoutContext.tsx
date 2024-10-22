@@ -1,5 +1,6 @@
 import fetchApi from '@/api/fetch';
 import { DificultiesData } from '@/components/workoutForm/WorkoutForm';
+import { filterNonNull } from '@/utils/object.utils';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Alert } from 'react-native';
 
@@ -47,19 +48,7 @@ function CreateWorkoutContextProvider({
   children,
 }: CreateWorkoutContextProviderProps) {
   const [workoutGeneralInfo, setWorkoutGeneralInfo] =
-    useState<WorkoutGeneralInfo | null>({
-      description: 'dupa dupa',
-      dificulty: { label: 'medium', level: 2 },
-      isPrivate: true,
-      name: 'Test',
-      tags: [
-        { name: 'Legs', tag_id: 3 },
-        { name: 'Lower body', tag_id: 4 },
-        { name: 'Endurance', tag_id: 5 },
-        { name: 'Arms', tag_id: 2 },
-        { name: 'Back', tag_id: 1 },
-      ],
-    });
+    useState<WorkoutGeneralInfo | null>(null);
   const [selectedExercises, setSelectedExercises] = useState<
     OrderedExerciseItem[]
   >([]);
@@ -121,31 +110,40 @@ function CreateWorkoutContextProvider({
       return false;
     }
 
-    const reponse = await fetchApi(
-      '/workout/create',
-      'POST',
-      null,
-      {
-        name: workoutGeneralInfo.name,
-        description: workoutGeneralInfo.description,
-        is_private: workoutGeneralInfo.isPrivate,
-        workout_level_id: workoutGeneralInfo.dificulty.level,
-        tag_ids: workoutGeneralInfo.tags.map((tag) => tag.tag_id),
-        exercises: [],
-      },
-      true,
-    );
-    if (!reponse.ok) {
-      Alert.alert('Something went wrong...');
+    try {
+      const reponse = await fetchApi(
+        '/workout/create',
+        'POST',
+        null,
+        {
+          name: workoutGeneralInfo.name,
+          description: workoutGeneralInfo.description,
+          is_private: workoutGeneralInfo.isPrivate,
+          workout_level_id: workoutGeneralInfo.dificulty.level,
+          tag_ids: workoutGeneralInfo.tags.map((tag) => tag.tag_id),
+          exercises: selectedExercises.map((exercise, index) => ({
+            exercise_id: exercise.exercise_id,
+            value: JSON.stringify(filterNonNull(exercise.value)),
+            order_index: index,
+          })),
+        },
+        true,
+      );
+      if (!reponse.ok) {
+        Alert.alert('Something went wrong...');
+        return false;
+      }
+
+      clearExercises();
+      updateWorkoutGeneralInfo(null);
+      return true;
+    } catch (error) {
+      Alert.alert('Something went wrong...', 'Please try again later');
       return false;
     }
-
-    clearExercises();
-    updateWorkoutGeneralInfo(null);
-    return true;
   }, [
     clearExercises,
-    selectedExercises.length,
+    selectedExercises,
     updateWorkoutGeneralInfo,
     workoutGeneralInfo,
   ]);

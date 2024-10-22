@@ -13,11 +13,20 @@ import SelectDropdownItem from '@/components/input/dropdown/SelectDropdownItem';
 import Icon from '@/components/common/Icon';
 import PrimaryButton from '@/components/button/PrimaryButton';
 import DetailedExerciseItem from '@/components/exercises/DetailedExerciseItem';
+import { useRouter } from 'expo-router';
 
 const SummaryPage = () => {
   const { saveWorkout, workoutGeneralInfo, selectedExercises } =
     useCreateWorkoutContext();
+  const router = useRouter();
   const theme = useTheme();
+
+  const handleSaveWorkout = async () => {
+    const success = await saveWorkout();
+    if (success) {
+      router.navigate('/explore');
+    }
+  };
 
   const renderItem = (value: string) => {
     return (
@@ -99,7 +108,7 @@ const SummaryPage = () => {
 
       <PrimaryButton
         value="Save Workout"
-        onPress={saveWorkout}
+        onPress={handleSaveWorkout}
         style={styles.spearator}
       />
     </PageWithGoBackHeader>
