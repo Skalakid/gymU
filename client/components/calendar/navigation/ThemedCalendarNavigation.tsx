@@ -1,24 +1,10 @@
 import ThemedText from '@/components/ThemedText';
 import IconButton from '@/components/button/IconButton';
+import { months } from '@/constants/Text';
 import Icons from '@/constants/Icons';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 
 const commonSize = 26;
-
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
 
 type ThemedCalendarNavigationProps = {
   month: number;

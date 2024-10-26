@@ -12,12 +12,22 @@ import {
 } from '@/utils/date.utils';
 
 const CalendarPage = () => {
-  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-  const [currentDate, setCurrentDate] = useState(getFormatedDate(new Date()));
+  const [currentDate] = useState(getFormatedDate(new Date()));
   const [selectedDate, setSelectedDate] = useState(currentDate);
 
   const [month, setMonth] = useState(new Date(currentDate).getMonth() + 1);
   const [year, setYear] = useState(new Date(currentDate).getFullYear());
+
+  const updateCalendarDate = useCallback(
+    (currentMonth: number, currentYear: number) => {
+      setMonth(currentMonth);
+      setYear(currentYear);
+      setSelectedDate(
+        getFormatedDate(new Date(`${currentYear}-${currentMonth}-01`)),
+      );
+    },
+    [setMonth, setYear],
+  );
 
   const setNavigation = useCallback(
     (date: string) => {
@@ -41,12 +51,8 @@ const CalendarPage = () => {
       currentMonth++;
     }
 
-    setMonth(currentMonth);
-    setYear(currentYear);
-    setSelectedDate(
-      getFormatedDate(new Date(`${currentYear}-${currentMonth}-01`)),
-    );
-  }, [setMonth, setYear, month, year]);
+    updateCalendarDate(currentMonth, currentYear);
+  }, [updateCalendarDate, month, year]);
 
   const onPrevPress = useCallback(() => {
     let currentMonth = month;
@@ -58,12 +64,8 @@ const CalendarPage = () => {
       currentMonth--;
     }
 
-    setMonth(currentMonth);
-    setYear(currentYear);
-    setSelectedDate(
-      getFormatedDate(new Date(`${currentYear}-${currentMonth}-01`)),
-    );
-  }, [setMonth, setYear, month, year]);
+    updateCalendarDate(currentMonth, currentYear);
+  }, [updateCalendarDate, month, year]);
 
   const onDayPress = useCallback(
     async (date: string) => {
