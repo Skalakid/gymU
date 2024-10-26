@@ -94,7 +94,10 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
 
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
+    gap: 10,
+    padding: 10,
+
+    position: 'absolute',
+    bottom: 0,
   },
 });

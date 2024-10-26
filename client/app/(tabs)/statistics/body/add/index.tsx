@@ -5,12 +5,12 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import CustomMeasurementsPrompt from './CustomMeasurementPrompt';
 import { StyleSheet } from 'react-native';
-import MeasurementStep from './Step';
+import MeasurementStep from './MeasurementStep';
 
 const AddMeasurement = () => {
   const router = useRouter();
 
-  const [step, setStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(1);
   const [measurements, setMeasurements] = useState<Record<string, unknown>[]>(
     [],
   );
@@ -24,7 +24,7 @@ const AddMeasurement = () => {
     setMeasurements(newMeasurements);
 
     const nextStep = shouldRepeatStep ? -1 : 1;
-    setStep((prev) => prev + nextStep);
+    setCurrentStep((prev) => prev + nextStep);
   };
 
   return (
@@ -36,63 +36,63 @@ const AddMeasurement = () => {
         title={'Add measurements'}
       />
 
-      {step === 1 && (
+      {currentStep === 1 && (
         <MeasurementStep
           img={null}
           title={'weight'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
-      {step === 2 && (
+      {currentStep === 2 && (
         <MeasurementStep
           img={null}
           title={'biceps'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
-      {step === 3 && (
+      {currentStep === 3 && (
         <MeasurementStep
           img={null}
           title={'chest'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
-      {step === 4 && (
+      {currentStep === 4 && (
         <MeasurementStep
           img={null}
           title={'waist'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
-      {step === 5 && (
+      {currentStep === 5 && (
         <MeasurementStep
           img={null}
           title={'hips'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
-      {step === 6 && (
+      {currentStep === 6 && (
         <MeasurementStep
           img={null}
           title={'thigh'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
-      {step === 7 && (
+      {currentStep === 7 && (
         <MeasurementStep
           img={null}
           title={'calf'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
-      {step === 8 && (
+      {currentStep === 8 && (
         <CustomMeasurementsPrompt
           stepUpdater={() => {
-            setStep((prev) => prev + 1);
+            setCurrentStep((prev) => prev + 1);
           }}
         />
       )}
-      {step === 9 && (
+      {currentStep === 9 && (
         <MeasurementStep
           img={null}
           title={null}
@@ -108,5 +108,5 @@ const AddMeasurement = () => {
 export default AddMeasurement;
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: { flex: 1, alignItems: 'center' },
 });
