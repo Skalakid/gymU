@@ -36,8 +36,9 @@ type DetailedExercise = {
   name: string;
   exercise_type: string;
   body_parts: string[];
-  value: ExerciseDetails;
-  order_index: number;
+  value?: ExerciseDetails;
+  description?: string;
+  order_index?: number;
 };
 
 type NewExerciseTemplateItem = {

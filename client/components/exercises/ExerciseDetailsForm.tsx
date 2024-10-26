@@ -78,7 +78,7 @@ const ExerciseDetailsForm = ({
 
       {exerciseType?.has_sets && sets > 1 && (
         <RowTextInput
-          value={time}
+          value={breakTime}
           onChageText={(value) => handleNumericChange(value, setBreakTime)}
           label="Break"
           icon={Icons.battery}

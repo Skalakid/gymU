@@ -1,5 +1,5 @@
 import * as ExerciseDB from '../persistance/exercise.db';
-import { BasicExercise } from '../types/exercise';
+import { BasicExercise, DetailedExercise } from '../types/exercise';
 
 async function getAllExercises(): Promise<BasicExercise[]> {
   const exercises = (await ExerciseDB.getAllExercises()).map((exercise) => ({
@@ -13,7 +13,9 @@ async function getAllExercises(): Promise<BasicExercise[]> {
   return exercises;
 }
 
-async function getExerciseDetails(exercise_id: number): Promise<BasicExercise> {
+async function getExerciseDetails(
+  exercise_id: number,
+): Promise<DetailedExercise> {
   const exercise = await ExerciseDB.getExerciseDetails(exercise_id);
   if (!exercise) {
     throw new Error('Exercise not found');
@@ -22,7 +24,7 @@ async function getExerciseDetails(exercise_id: number): Promise<BasicExercise> {
   return {
     exercise_id: exercise?.exercise_id,
     name: exercise?.name,
-    shortDescription: exercise?.description ?? '',
+    description: exercise?.description ?? '',
     exercise_type: exercise?.exercise_type.name,
     body_parts: exercise?.exercises_body_parts.map((bp) => bp.body_part.name),
   };
