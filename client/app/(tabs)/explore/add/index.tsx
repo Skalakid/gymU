@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const AddWorkoutPage = () => {
   const router = useRouter();
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
 
   const handleNextStep = () => {
     setCurrentStep((prevStep) => prevStep + 1);
