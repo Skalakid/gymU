@@ -2,45 +2,28 @@ import Header from '@/components/navigation/Header';
 import ThemedView from '@/components/ThemedView';
 import Icons from '@/constants/Icons';
 import { useRouter } from 'expo-router';
-import { useCallback, useState } from 'react';
-import { Button, Modal, StyleSheet, TextInput, View, Text } from 'react-native';
-
-type StepProps = {
-  img: any;
-  title: string;
-  updater: (measurementResult: string) => void;
-};
-
-const Step = ({ img, title, updater }: StepProps) => {
-  return (
-    <View style={{ width: '100%', height: '80%' }}>
-      <Text>{title}</Text>
-      <Button
-        title={'submit'}
-        onPress={() => {
-          updater('test');
-        }}
-      />
-    </View>
-  );
-};
+import { useState } from 'react';
+import { CustomMeasurementsPrompt } from './CustomMeasurementPrompt';
+import { StyleSheet } from 'react-native';
+import { Step } from './Step';
 
 const AddMeasurement = () => {
   const router = useRouter();
 
   const [step, setStep] = useState(1);
-  const [biceps, setBiceps] = useState();
-  const [waist, setWaist] = useState();
 
-  const updateMeasurement = (
-    stateUpdater: (newState: any) => void,
-    measruement: string,
-  ) => {
-    stateUpdater(measruement);
-    setStep((prev) => prev + 1);
+  const [measurements, setMeasurements] = useState<{}>([]);
+
+  const updateMeasurement = (measurement: {}, shouldRepeatStep = false) => {
+    const newMeasurements = [...measurements];
+    newMeasurements.push(measurement);
+    setMeasurements(newMeasurements);
+
+    const nextStep = shouldRepeatStep ? -1 : 1;
+    setStep((prev) => prev + nextStep);
   };
 
-  console.log(biceps, waist);
+  console.log(measurements);
 
   return (
     <ThemedView style={styles.container}>
@@ -55,14 +38,30 @@ const AddMeasurement = () => {
         <Step
           img={null}
           title={'biceps'}
-          updater={(result: string) => updateMeasurement(setBiceps, result)}
+          updater={(result) => updateMeasurement(result)}
         />
       )}
       {step === 2 && (
         <Step
           img={null}
           title={'waist'}
-          updater={(result: string) => updateMeasurement(setWaist, result)}
+          updater={(result) => updateMeasurement(result)}
+        />
+      )}
+      {step === 3 && (
+        <CustomMeasurementsPrompt
+          stepUpdater={() => {
+            setStep((prev) => prev + 1);
+          }}
+        />
+      )}
+      {step === 4 && (
+        <Step
+          img={null}
+          title={null}
+          updater={(result, shouldRepeatStep) =>
+            updateMeasurement(result, shouldRepeatStep)
+          }
         />
       )}
     </ThemedView>
