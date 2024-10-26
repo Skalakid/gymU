@@ -91,6 +91,15 @@ async function getWorkoutDetails(workoutId: number) {
                   name: true,
                 },
               },
+              exercises_body_parts: {
+                select: {
+                  body_part: {
+                    select: {
+                      name: true,
+                    },
+                  },
+                },
+              },
             },
           },
           value: true,

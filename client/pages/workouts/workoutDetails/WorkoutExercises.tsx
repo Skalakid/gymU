@@ -1,4 +1,4 @@
-import ExerciseItem from '@/components/exercises/ExerciseItem';
+import DetailedExerciseItem from '@/components/exercises/DetailedExerciseItem';
 import { FlatList, StyleSheet, View } from 'react-native';
 
 type WorkoutExercisesProps = {
@@ -10,7 +10,15 @@ const WorkoutExercises = ({ workoutDetails }: WorkoutExercisesProps) => {
     <FlatList
       style={styles.exerciseList}
       data={workoutDetails.exercises || []}
-      renderItem={({ item }) => <ExerciseItem exercise={item} />}
+      renderItem={({ item }) => (
+        <DetailedExerciseItem
+          name={item.name}
+          type={item.exercise_type}
+          bodyParts={item.body_parts}
+          activeOpacity={1}
+          exerciseDetails={item.value}
+        />
+      )}
       ItemSeparatorComponent={() => <View style={{ height: 15 }} />}
     />
   );

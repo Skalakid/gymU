@@ -14,7 +14,7 @@ type ExerciseItemProp = {
   type: string;
   style?: ViewStyle;
   bodyParts?: string[];
-  description: string;
+  description?: string;
   onPress?: () => void;
   activeOpacity?: number;
   exerciseDetails: ExerciseDetails;
