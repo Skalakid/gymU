@@ -23,7 +23,6 @@ function WorkoutContextProvider({ children }: WorkoutContextProviderProps) {
         throw new Error('Error fetching difficulties');
       }
       const data = await response.json();
-      console.log(data);
       setDifficulties(data);
     } catch (error) {
       console.error('Error fetching difficulties', error);
