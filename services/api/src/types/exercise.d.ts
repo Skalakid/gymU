@@ -1,7 +1,7 @@
 type NewExerciseType = {
   name: string;
   has_reps: boolean;
-  has_series: boolean;
+  has_sets: boolean;
   has_weights: boolean;
   has_time: boolean;
   is_break: boolean;

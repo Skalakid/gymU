@@ -60,7 +60,7 @@ async function getAllExersiceTypes() {
     select: {
       name: true,
       has_reps: true,
-      has_series: true,
+      has_sets: true,
       has_weights: true,
       has_time: true,
       is_break: true,

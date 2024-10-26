@@ -104,7 +104,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
       value: JSON.stringify({
         sets: 3,
         reps: 15,
-        break: 60,
+        breakTime: 60,
       }),
       order_index: 1,
     },
@@ -113,7 +113,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
       exercise_name: 'Interval running',
       value: JSON.stringify({
         time: 1000,
-        break: 120,
+        breakTime: 120,
       }),
       order_index: 2,
     },
@@ -124,7 +124,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
         sets: 3,
         reps: 10,
         weight: 80,
-        break: 60,
+        breakTime: 60,
       }),
       order_index: 3,
     },
@@ -135,7 +135,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
       value: JSON.stringify({
         sets: 4,
         reps: 5,
-        break: 60,
+        breakTime: 60,
       }),
       order_index: 1,
     },
@@ -145,7 +145,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
       value: JSON.stringify({
         sets: 3,
         reps: 10,
-        break: 60,
+        breakTime: 60,
       }),
       order_index: 2,
     },
@@ -153,7 +153,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
       workout_template_id: 2,
       exercise_name: 'Rest',
       value: JSON.stringify({
-        break: 240,
+        breakTime: 240,
       }),
       order_index: 3,
     },
