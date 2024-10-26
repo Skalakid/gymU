@@ -1,5 +1,6 @@
 import ThemedText from '@/components/ThemedText';
 import PrimaryButton from '@/components/button/PrimaryButton';
+import ModalBar from '@/components/common/ModalBar';
 import ExerciseDetailsForm from '@/components/exercises/ExerciseDetailsForm';
 import ExerciseDetailsInfo from '@/components/exercises/ExerciseDetailsInfo';
 import { useCreateWorkoutContext } from '@/contexts/CreateWorkoutContext';
@@ -48,9 +49,7 @@ const DetailsPage = () => {
     >
       <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }}>
         <View style={styles.container}>
-          <View style={styles.header}>
-            <View style={[styles.bar, { backgroundColor: theme.text }]} />
-          </View>
+          <ModalBar />
 
           <ScrollView style={styles.scrollView}>
             <ThemedText
@@ -87,16 +86,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 15,
   },
-  header: {
-    width: '100%',
-    alignItems: 'center',
-    padding: 15,
-  },
-  bar: {
-    width: 64,
-    height: 5,
-    borderRadius: 5,
-  },
+
   scrollView: {
     gap: 20,
   },

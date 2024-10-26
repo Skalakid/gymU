@@ -3,7 +3,7 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from '@react-navigation/native';
-import { Slot, useRouter, useSegments } from 'expo-router';
+import { Stack, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
@@ -56,7 +56,16 @@ const InitialLayout = () => {
     }
   }, [isLoaded]);
 
-  return <Slot />;
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen
+        name="(live_training)/index"
+        options={{
+          presentation: 'modal',
+        }}
+      />
+    </Stack>
+  );
 };
 
 const RootLayout = () => {

@@ -1,7 +1,6 @@
 import fetchApi from '@/api/fetch';
 import PageSwitcher from '@/components/navigation/PageSwitcher';
 import Icons from '@/constants/Icons';
-import { useIsFocused } from '@react-navigation/native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -21,7 +20,6 @@ const WorkoutDetailsPage = ({
   rightIcon,
 }: WorkoutDetailsPageProps) => {
   const router = useRouter();
-  const isFocused = useIsFocused();
   const { id } = useLocalSearchParams();
   const [currentSubpage, setCurrentSubpage] = useState(0);
   const [workoutDetails, setWorkoutDetails] = useState<Workout | null>(null);
@@ -69,7 +67,6 @@ const WorkoutDetailsPage = ({
     router.back();
   };
 
-  if (!isFocused) return null;
   return (
     <WorkoutModalPage
       title="Workout Details"
