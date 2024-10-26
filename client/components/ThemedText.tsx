@@ -21,6 +21,7 @@ const ThemedText = ({
 }: ThemedTextProps) => {
   const theme = useTheme();
   const textColor = color || theme?.[textType] || theme.text;
+
   return (
     <Text
       style={[

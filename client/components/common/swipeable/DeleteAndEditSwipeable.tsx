@@ -26,13 +26,13 @@ type DeleteAndEditSwipeableProps = {
   style?: ViewStyle;
 };
 
-type RightActionProps = {
+type ActionProps = {
   dragX: SharedValue<number>;
   swipeableRef: React.RefObject<SwipeableMethods>;
   style?: ViewStyle;
 };
 
-const LeftAction = ({ dragX, swipeableRef, style }: RightActionProps) => {
+const LeftAction = ({ dragX, swipeableRef, style }: ActionProps) => {
   const theme = useTheme();
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [
@@ -54,7 +54,7 @@ const LeftAction = ({ dragX, swipeableRef, style }: RightActionProps) => {
   );
 };
 
-const RightAction = ({ dragX, swipeableRef, style }: RightActionProps) => {
+const RightAction = ({ dragX, swipeableRef, style }: ActionProps) => {
   const theme = useTheme();
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [

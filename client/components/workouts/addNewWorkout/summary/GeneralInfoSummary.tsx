@@ -20,14 +20,6 @@ const GeneralInfoSummary = ({
   const { difficulties } = useWorkoutContext();
   const theme = useTheme();
 
-  const renderItem = (value: string) => {
-    return (
-      <>
-        <SelectDropdownItem value={capitalize(value)} />
-      </>
-    );
-  };
-
   return (
     <View style={styles.content}>
       <ThemedText size="xl" weight="semiBold">
@@ -49,7 +41,9 @@ const GeneralInfoSummary = ({
 
       <SelectDropdownInput
         data={difficulties}
-        renderItem={(item) => renderItem(item.label)}
+        renderItem={(value: string) => (
+          <SelectDropdownItem value={capitalize(value)} />
+        )}
         placeholder="Select difficulty level..."
         selectedValue={capitalize(workoutGeneralInfo?.dificulty.label || '')}
         icon={Icons.flame}

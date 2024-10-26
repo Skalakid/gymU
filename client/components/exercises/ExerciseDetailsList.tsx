@@ -37,9 +37,7 @@ const ExerciseDetailsList = ({
       {(time || isBreak) && (
         <View style={styles.row}>
           <Icon icon={Icons.time} size={14} color={theme.text} />
-          <ThemedText size="s">
-            {time || (isBreak && isBreak) || '~'} seconds
-          </ThemedText>
+          <ThemedText size="s">{time || isBreak || '~'} seconds</ThemedText>
         </View>
       )}
     </View>
