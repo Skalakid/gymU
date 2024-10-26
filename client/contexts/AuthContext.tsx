@@ -57,12 +57,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
 
     const data: LoginResponse = await response.json();
-    setisAuthenticated(true);
-    setUser({
-      user_id: data.user_id,
-      email: data.email,
-      username: data.username,
-    });
+
     await SecureStore.setItemAsync(
       SECURE_STORE_KEYS.ACCESS_TOKEN,
       data.accessToken,
@@ -71,6 +66,12 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
       SECURE_STORE_KEYS.REFRESH_TOKEN,
       data.refreshToken,
     );
+    setUser({
+      user_id: data.user_id,
+      email: data.email,
+      username: data.username,
+    });
+    setisAuthenticated(true);
   }, []);
 
   const register = useCallback(
@@ -115,7 +116,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
 
     await deleteTokens();
-    setisAuthenticated(true);
+    setisAuthenticated(false);
     setUser(null);
   }, [deleteTokens]);
 
