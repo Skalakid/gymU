@@ -135,4 +135,15 @@ async function getAllWorkoutTags() {
   });
 }
 
-export { getAllWorkouts, getWorkoutDetails, createWorkout, getAllWorkoutTags };
+async function getWorkoutDifficulties() {
+  const difficulties = await WorkoutDB.getWorkoutDifficulties();
+  return difficulties.sort((a, b) => a.level_id - b.level_id);
+}
+
+export {
+  getAllWorkouts,
+  getWorkoutDetails,
+  createWorkout,
+  getAllWorkoutTags,
+  getWorkoutDifficulties,
+};

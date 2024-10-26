@@ -18,3 +18,8 @@ type Workout = {
   exercises: DetailedExerciseItem[];
   isSavedByUser?: boolean;
 };
+
+type Difficulty = {
+  level_id: number;
+  name: string;
+};

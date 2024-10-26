@@ -6,7 +6,6 @@ import TextInput from '@/components/input/TextInput';
 import { useCreateWorkoutContext } from '@/contexts/CreateWorkoutContext';
 import SelectDropdownInput from '@/components/input/dropdown/SelectDropdownInput';
 import { capitalize } from '@/utils/text.utils';
-import { difficulties } from '@/components/workoutForm/WorkoutForm';
 import Icons from '@/constants/Icons';
 import useTheme from '@/hooks/useTheme';
 import SelectDropdownItem from '@/components/input/dropdown/SelectDropdownItem';
@@ -14,10 +13,12 @@ import Icon from '@/components/common/Icon';
 import PrimaryButton from '@/components/button/PrimaryButton';
 import DetailedExerciseItem from '@/components/exercises/DetailedExerciseItem';
 import { useRouter } from 'expo-router';
+import { useWorkoutContext } from '@/contexts/WorkoutContext';
 
 const SummaryPage = () => {
   const { saveWorkout, workoutGeneralInfo, selectedExercises } =
     useCreateWorkoutContext();
+  const { difficulties } = useWorkoutContext();
   const router = useRouter();
   const theme = useTheme();
 

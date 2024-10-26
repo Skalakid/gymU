@@ -169,10 +169,15 @@ async function getAllWorkoutTags() {
   });
 }
 
+async function getWorkoutDifficulties() {
+  return await prisma.workout_level.findMany();
+}
+
 export {
   getAllWorkoutsPaginated,
   countAllFilteredWorkouts,
   getWorkoutDetails,
   createWorkout,
   getAllWorkoutTags,
+  getWorkoutDifficulties,
 };

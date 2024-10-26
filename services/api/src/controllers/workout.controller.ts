@@ -121,4 +121,23 @@ async function getAllWorkoutTags(
   }
 }
 
-export { getAllWorkouts, getWorkoutDetails, createWorkout, getAllWorkoutTags };
+async function getWorkoutDifficulties(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const difficulties = await WorkoutService.getWorkoutDifficulties();
+    res.status(201).send(difficulties);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export {
+  getAllWorkouts,
+  getWorkoutDetails,
+  createWorkout,
+  getAllWorkoutTags,
+  getWorkoutDifficulties,
+};

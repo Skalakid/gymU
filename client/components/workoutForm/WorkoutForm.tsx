@@ -18,18 +18,12 @@ import PrimaryButton from '../button/PrimaryButton';
 import SelectDropdownInput from '@/components/input/dropdown/SelectDropdownInput';
 import SelectDropdownItem from '@/components/input/dropdown/SelectDropdownItem';
 import { useCreateWorkoutContext } from '@/contexts/CreateWorkoutContext';
+import { useWorkoutContext } from '@/contexts/WorkoutContext';
 
 export type DificultiesData = {
   label: string;
   level: number;
 };
-
-export const difficulties = ['beginner', 'easy', 'medium', 'hard', 'hardcore'];
-const pickerData: DificultiesData[] = [];
-
-for (let i = 0; i < difficulties.length; ++i) {
-  pickerData.push({ label: difficulties[i], level: i });
-}
 
 // TODO: Code duplicate
 type WorkoutTagsRespone = {
@@ -41,6 +35,7 @@ type WorkoutFormProps = {
 };
 
 const WorkoutForm = ({ onSubmit }: WorkoutFormProps) => {
+  const { difficulties } = useWorkoutContext();
   const { updateWorkoutGeneralInfo } = useCreateWorkoutContext();
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme ?? 'light'];
@@ -50,6 +45,8 @@ const WorkoutForm = ({ onSubmit }: WorkoutFormProps) => {
 
   const [workoutName, setWorkoutName] = useState('');
   const [description, setDescription] = useState('');
+
+  const [pickerData, setPickerData] = useState<DificultiesData[]>([]);
   const [difficulty, setDifficulty] = useState<DificultiesData | null>(null);
 
   // TODO: Code duplicate
@@ -98,7 +95,13 @@ const WorkoutForm = ({ onSubmit }: WorkoutFormProps) => {
 
   useEffect(() => {
     getAllWorkoutTags();
-  }, []);
+    setPickerData(
+      difficulties.map((difficulty) => ({
+        label: capitalize(difficulty.name),
+        level: difficulty.level_id,
+      })),
+    );
+  }, [difficulties]);
 
   return (
     <ThemedView style={[styles.container]}>
