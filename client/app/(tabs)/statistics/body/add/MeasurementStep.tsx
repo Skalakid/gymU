@@ -69,8 +69,6 @@ const MeasurementStep = ({ img, title, updater }: MeasurementStepProps) => {
             return;
           }
 
-          console.log(validateForm());
-
           const measurement = {};
           // @ts-ignore works for now
           measurement[isCustomMeasurement ? customMeasurementName : title] =

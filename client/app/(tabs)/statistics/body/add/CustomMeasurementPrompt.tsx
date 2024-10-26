@@ -1,7 +1,7 @@
 import SecondaryButton from '@/components/button/SecondaryButton';
 import ThemedText from '@/components/ThemedText';
 import { useRouter } from 'expo-router';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 const CustomMeasurementsPrompt = ({
   stepUpdater,
@@ -10,7 +10,7 @@ const CustomMeasurementsPrompt = ({
 }) => {
   const router = useRouter();
   return (
-    <View>
+    <View style={styles.container}>
       <ThemedText size="xl" weight="semiBold">
         Are there any custom measurements?
       </ThemedText>
@@ -26,3 +26,10 @@ const CustomMeasurementsPrompt = ({
 };
 
 export default CustomMeasurementsPrompt;
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    gap: 10,
+  },
+});
