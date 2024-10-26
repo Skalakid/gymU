@@ -13,7 +13,7 @@ const ExerciseItem = ({ exercise }: ExerciseItemProp) => {
     ? JSON.parse(exercise.value)
     : null;
 
-  const isBreak = Object.values(value || {}).length === 1 && !!value?.break;
+  const isBreak = Object.values(value || {}).length === 1 && !!value?.breakTime;
 
   return (
     <TouchableOpacity>
@@ -29,6 +29,7 @@ const ExerciseItem = ({ exercise }: ExerciseItemProp) => {
               time={value.time}
               weight={value.weight}
               isBreak={isBreak}
+              breakTime={value.breakTime}
             />
           )}
         </View>

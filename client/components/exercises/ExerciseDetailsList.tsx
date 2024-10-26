@@ -10,6 +10,7 @@ const ExerciseDetailsList = ({
   reps,
   time,
   weight,
+  breakTime,
   isBreak,
 }: ExerciseDetails) => {
   const theme = useTheme();
@@ -20,7 +21,8 @@ const ExerciseDetailsList = ({
         <View style={styles.row}>
           <Icon icon={Icons.repeat} size={14} color={theme.text} />
           <ThemedText size="s">
-            {sets} sets {reps && `• ${reps} reps`}
+            {sets} sets {reps && `• ${reps} reps`}{' '}
+            {breakTime && `• ${breakTime}s break`}
           </ThemedText>
         </View>
       )}

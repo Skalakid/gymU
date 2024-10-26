@@ -64,6 +64,7 @@ const DetailedExerciseItem = ({
             reps={exerciseDetails?.reps}
             weight={exerciseDetails?.weight}
             time={exerciseDetails?.time}
+            breakTime={exerciseDetails?.breakTime}
           />
         </View>
       </Tile>

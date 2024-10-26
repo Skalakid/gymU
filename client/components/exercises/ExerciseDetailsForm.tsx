@@ -21,6 +21,7 @@ const ExerciseDetailsForm = ({
   const [reps, setReps] = useState<number>(10);
   const [weight, setWeight] = useState<number>(30);
   const [time, setTime] = useState<number>(60);
+  const [breakTime, setBreakTime] = useState<number>(60);
 
   const handleNumericChange = (
     value: number,
@@ -32,16 +33,17 @@ const ExerciseDetailsForm = ({
 
   useEffect(() => {
     onFormUpdate({
-      sets: exerciseType?.has_series ? sets : null,
+      sets: exerciseType?.has_sets ? sets : null,
       reps: exerciseType?.has_reps ? reps : null,
       weight: exerciseType?.has_weights ? weight : null,
       time: exerciseType?.has_time ? time : null,
+      breakTime: exerciseType?.has_sets && sets > 1 ? breakTime : null,
     });
-  }, [exerciseType, onFormUpdate, reps, sets, time, weight]);
+  }, [breakTime, exerciseType, onFormUpdate, reps, sets, time, weight]);
 
   return (
     <View style={styles.container}>
-      {exerciseType?.has_series && (
+      {exerciseType?.has_sets && (
         <RowTextInput
           value={sets}
           onChageText={(value) => handleNumericChange(value, setSets)}
@@ -69,8 +71,17 @@ const ExerciseDetailsForm = ({
         <RowTextInput
           value={time}
           onChageText={(value) => handleNumericChange(value, setTime)}
-          label={exerciseType?.is_break ? 'Break time' : 'Time'}
+          label="Time"
           icon={Icons.time}
+        />
+      )}
+
+      {exerciseType?.has_sets && sets > 1 && (
+        <RowTextInput
+          value={time}
+          onChageText={(value) => handleNumericChange(value, setBreakTime)}
+          label="Break"
+          icon={Icons.battery}
         />
       )}
     </View>

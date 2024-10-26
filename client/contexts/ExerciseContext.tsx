@@ -2,6 +2,7 @@ import fetchApi from '@/api/fetch';
 import Icons from '@/constants/Icons';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { SvgProps } from 'react-native-svg';
+import { useAuthContext } from './AuthContext';
 
 type ExerciseContextProviderProps = { children: React.ReactNode };
 
@@ -19,6 +20,7 @@ const ExerciseContext = React.createContext<ExerciseContextType>({
 
 function ExerciseContextProvider({ children }: ExerciseContextProviderProps) {
   const [exerciseTypes, setExerciseTypes] = useState<ExerciseType[]>([]);
+  const { isLoaded } = useAuthContext();
 
   const fetchExerciseTypes = async () => {
     const response = await fetchApi('/exercise/types', 'GET', null);
@@ -31,10 +33,12 @@ function ExerciseContextProvider({ children }: ExerciseContextProviderProps) {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log('ExerciseContext - Fetching initial data');
-    fetchExerciseTypes();
-  }, []);
+    if (isLoaded) {
+      // eslint-disable-next-line no-console
+      console.log('ExerciseContext - Fetching initial data');
+      fetchExerciseTypes();
+    }
+  }, [isLoaded]);
 
   const getExerciseType = useCallback(
     (name: string) => {

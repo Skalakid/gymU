@@ -24,7 +24,7 @@ type ExerciseItem = {
 
 type ExerciseType = {
   has_reps: boolean;
-  has_series: boolean;
+  has_sets: boolean;
   has_time: boolean;
   has_weights: boolean;
   is_break: boolean;
@@ -36,8 +36,8 @@ type ExerciseDetails = {
   reps: number | null;
   weight: number | null;
   time: number | null;
+  breakTime?: number | null;
   isBreak?: boolean;
-  break?: number | null;
 };
 
 type DetailedExerciseItem = DetailedExercise & {
