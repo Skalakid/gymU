@@ -1,7 +1,7 @@
 import Header from '@/components/navigation/Header';
 import ThemedView from '@/components/ThemedView';
 import { useRouter } from 'expo-router';
-import { Button, Text, View, StyleSheet } from 'react-native';
+import { Button, StyleSheet } from 'react-native';
 
 const StatisticsPage = () => {
   const router = useRouter();

@@ -11,7 +11,6 @@ const AddMeasurement = () => {
   const router = useRouter();
 
   const [step, setStep] = useState(1);
-
   const [measurements, setMeasurements] = useState<{}>([]);
 
   const updateMeasurement = (measurement: {}, shouldRepeatStep = false) => {
@@ -37,25 +36,60 @@ const AddMeasurement = () => {
       {step === 1 && (
         <Step
           img={null}
-          title={'biceps'}
+          title={'weight'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
       {step === 2 && (
         <Step
           img={null}
-          title={'waist'}
+          title={'biceps'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
       {step === 3 && (
+        <Step
+          img={null}
+          title={'chest'}
+          updater={(result) => updateMeasurement(result)}
+        />
+      )}
+      {step === 4 && (
+        <Step
+          img={null}
+          title={'waist'}
+          updater={(result) => updateMeasurement(result)}
+        />
+      )}
+      {step === 5 && (
+        <Step
+          img={null}
+          title={'hips'}
+          updater={(result) => updateMeasurement(result)}
+        />
+      )}
+      {step === 6 && (
+        <Step
+          img={null}
+          title={'thigh'}
+          updater={(result) => updateMeasurement(result)}
+        />
+      )}
+      {step === 7 && (
+        <Step
+          img={null}
+          title={'calf'}
+          updater={(result) => updateMeasurement(result)}
+        />
+      )}
+      {step === 8 && (
         <CustomMeasurementsPrompt
           stepUpdater={() => {
             setStep((prev) => prev + 1);
           }}
         />
       )}
-      {step === 4 && (
+      {step === 9 && (
         <Step
           img={null}
           title={null}
