@@ -85,7 +85,9 @@ const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
           <TagSelector
             style={styles.tagSelector}
             tags={tags}
-            onSelectionChange={() => {}}
+            onSelectionChange={() => {
+              // TODO: Add pagination for exercises
+            }}
           />
         )}
 

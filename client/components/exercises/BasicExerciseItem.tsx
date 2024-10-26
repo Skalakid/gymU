@@ -48,6 +48,7 @@ const BasicExerciseItem = ({
           <View style={styles.tags}>
             {bodyParts?.map((part) => (
               <Tag
+                key={`tag${part}`}
                 value={capitalize(part.replace('_', ' '))}
                 size="s"
                 style={{
