@@ -23,3 +23,11 @@ type Difficulty = {
   level_id: number;
   name: string;
 };
+
+type WorkoutGeneralInfo = {
+  name: string;
+  description: string;
+  dificulty: DificultiesData;
+  isPrivate: boolean;
+  tags: WorkoutType[];
+};

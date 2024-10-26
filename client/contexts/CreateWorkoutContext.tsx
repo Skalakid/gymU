@@ -1,22 +1,9 @@
 import fetchApi from '@/api/fetch';
-import { DificultiesData } from '@/components/workoutForm/WorkoutForm';
 import { filterNonNull } from '@/utils/object.utils';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Alert } from 'react-native';
 
 type CreateWorkoutContextProviderProps = { children: React.ReactNode };
-
-type WorkoutGeneralInfo = {
-  name: string;
-  description: string;
-  dificulty: DificultiesData;
-  isPrivate: boolean;
-  tags: WorkoutType[];
-};
-
-type OrderedExerciseItem = DetailedExerciseItem & {
-  orderIndex: number;
-};
 
 type CreateWorkoutContext = {
   workoutGeneralInfo: WorkoutGeneralInfo | null;
