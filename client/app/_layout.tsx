@@ -32,7 +32,7 @@ import { ExerciseContextProvider } from '@/contexts/ExerciseContext';
 SplashScreen.preventAutoHideAsync();
 
 const InitialLayout = () => {
-  const { authState, isLoaded } = useAuthContext();
+  const { isAuthenticated, isLoaded } = useAuthContext();
   const segments = useSegments();
   const router = useRouter();
 
@@ -41,14 +41,14 @@ const InitialLayout = () => {
       return;
     }
     const isTabsGroup = segments[0] === '(tabs)';
-    if (authState.authenticated && !isTabsGroup) {
+    if (isAuthenticated && !isTabsGroup) {
       router.replace('/home');
-    } else if (!authState.authenticated) {
+    } else if (!isAuthenticated) {
       router.replace('/(auth)');
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authState, isLoaded]);
+  }, [isAuthenticated, isLoaded]);
 
   useEffect(() => {
     if (isLoaded) {
