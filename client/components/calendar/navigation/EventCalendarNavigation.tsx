@@ -6,7 +6,7 @@ import { View, StyleSheet, ViewStyle } from 'react-native';
 
 const commonSize = 26;
 
-type ThemedCalendarNavigationProps = {
+type EventCalendarNavigationProps = {
   month: number;
   year: number;
   onNextPress?: () => void;
@@ -14,13 +14,13 @@ type ThemedCalendarNavigationProps = {
   style?: ViewStyle;
 };
 
-const ThemedCalendarNavigation = ({
+const EventCalendarNavigation = ({
   month,
   year,
   onPrevPress,
   onNextPress,
   style,
-}: ThemedCalendarNavigationProps) => {
+}: EventCalendarNavigationProps) => {
   return (
     <View style={[styles.container, style]}>
       <View style={styles.left}>
@@ -72,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ThemedCalendarNavigation;
+export default EventCalendarNavigation;

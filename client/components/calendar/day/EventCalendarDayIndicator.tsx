@@ -1,19 +1,19 @@
 import { View, StyleSheet } from 'react-native';
-import { CalendarEvent } from '../ThemedCalendar';
+import { CalendarEvent } from '../EventCalendar';
 import { useMemo } from 'react';
-import ThemedCalendarDayDot from './ThemedCalendarDayDot';
+import EventCalendarDayDot from './EventCalendarDayDot';
 
-type ThemedCalendarDayIndicatorProps = {
+type EventCalendarDayIndicatorProps = {
   events: CalendarEvent[];
 };
 
-const ThemedCalendarDayIndicator = ({
+const EventCalendarDayIndicator = ({
   events,
-}: ThemedCalendarDayIndicatorProps) => {
+}: EventCalendarDayIndicatorProps) => {
   const dots = useMemo(
     () =>
       events.map((event, index) => (
-        <ThemedCalendarDayDot event={event} key={index} />
+        <EventCalendarDayDot event={event} key={index} />
       )),
     [events],
   );
@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ThemedCalendarDayIndicator;
+export default EventCalendarDayIndicator;

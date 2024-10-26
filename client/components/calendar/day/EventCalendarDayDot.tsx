@@ -1,6 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 
-const ThemedCalendarDayDot = () => {
+const EventCalendarDayDot = () => {
   return <View style={styles.container}></View>;
 };
 
@@ -14,4 +14,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ThemedCalendarDayDot;
+export default EventCalendarDayDot;

@@ -1,22 +1,19 @@
 import { useMemo } from 'react';
 import ThemedView from '../ThemedView';
-import ThemedCalendarDay from './day/ThemedCalendarDay';
-import { CalendarCell } from './ThemedCalendar';
+import EventCalendarDay from './day/EventCalendarDay';
+import { CalendarCell } from './EventCalendar';
 import { StyleSheet } from 'react-native';
 
-type ThemedCalendarRowProps = {
+type EventCalendarRowProps = {
   children: CalendarCell[];
   onDayPress?: (day: string) => void;
 };
 
-const ThemedCalendarRow = ({
-  children,
-  onDayPress,
-}: ThemedCalendarRowProps) => {
+const EventCalendarRow = ({ children, onDayPress }: EventCalendarRowProps) => {
   const cells = useMemo(
     () =>
       children.map((cell, index) => (
-        <ThemedCalendarDay
+        <EventCalendarDay
           cell={cell}
           currentMonth={cell.currentMonth}
           key={index}
@@ -41,4 +38,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ThemedCalendarRow;
+export default EventCalendarRow;

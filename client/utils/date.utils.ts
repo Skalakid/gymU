@@ -1,7 +1,7 @@
 import {
   CalendarCell,
   CalendarEvents,
-} from '@/components/calendar/ThemedCalendar';
+} from '@/components/calendar/EventCalendar';
 
 const zerofill = (value: number, padding: number = 2) => {
   return value.toString().padStart(padding, '0');

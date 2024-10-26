@@ -1,6 +1,6 @@
 import ThemedView from '@/components/ThemedView';
-import ThemedCalendar from '@/components/calendar/ThemedCalendar';
-import ThemedCalendarNavigation from '@/components/calendar/navigation/ThemedCalendarNavigation';
+import EventCalendar from '@/components/calendar/EventCalendar';
+import EventCalendarNavigation from '@/components/calendar/navigation/EventCalendarNavigation';
 import Icons from '@/constants/Icons';
 import { useCallback, useState } from 'react';
 import { StyleSheet } from 'react-native';
@@ -87,14 +87,14 @@ const CalendarPage = () => {
         rightIconSize={26}
       />
 
-      <ThemedCalendarNavigation
+      <EventCalendarNavigation
         month={month}
         year={year}
         onPrevPress={onPrevPress}
         onNextPress={onNextPress}
         style={styles.navigation}
       />
-      <ThemedCalendar
+      <EventCalendar
         onDayPress={onDayPress}
         month={month}
         year={year}
@@ -114,7 +114,7 @@ const CalendarPage = () => {
         }}
         selectedDate={selectedDate}
         currentDate={currentDate}
-      ></ThemedCalendar>
+      ></EventCalendar>
     </ThemedView>
   );
 };

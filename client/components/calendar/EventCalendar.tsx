@@ -2,8 +2,8 @@ import { ViewStyle, StyleSheet } from 'react-native';
 
 import ThemedView from '../ThemedView';
 import { useMemo } from 'react';
-import ThemedCalendarRow from './ThemedCalendarRow';
-import ThemedCalendarHeader from './header/ThemedCalendarHeader';
+import EventCalendarRow from './EventCalendarRow';
+import EventCalendarHeader from './header/EventCalendarHeader';
 import { prepareCalendar } from '@/utils/date.utils';
 
 export type CalendarEvent = {
@@ -23,7 +23,7 @@ export type CalendarEvents = {
   [date: string]: CalendarEvent[];
 };
 
-type ThemedCalendarDayProps = {
+type EventCalendarDayProps = {
   onDayPress: (day: string) => void;
   style?: ViewStyle;
   month: number;
@@ -33,7 +33,7 @@ type ThemedCalendarDayProps = {
   currentDate?: string;
 };
 
-const ThemedCalendar = ({
+const EventCalendar = ({
   month,
   year,
   events,
@@ -41,19 +41,19 @@ const ThemedCalendar = ({
   selectedDate,
   currentDate,
   onDayPress,
-}: ThemedCalendarDayProps) => {
+}: EventCalendarDayProps) => {
   const currentCalendar = useMemo(
     () => prepareCalendar(month, year, events ?? {}, selectedDate, currentDate),
     [month, year, events, selectedDate, currentDate],
   );
 
   const calendar = currentCalendar.map((row, index) => (
-    <ThemedCalendarRow children={row} key={index} onDayPress={onDayPress} />
+    <EventCalendarRow children={row} key={index} onDayPress={onDayPress} />
   ));
 
   return (
     <ThemedView style={[style]}>
-      <ThemedCalendarHeader />
+      <EventCalendarHeader />
       <ThemedView style={styles.calendar}>{calendar}</ThemedView>
     </ThemedView>
   );
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
   calendar: { gap: 5 },
 });
 
-export default ThemedCalendar;
+export default EventCalendar;

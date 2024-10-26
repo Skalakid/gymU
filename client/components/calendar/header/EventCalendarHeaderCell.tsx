@@ -1,13 +1,11 @@
 import ThemedText from '@/components/ThemedText';
 import { View, StyleSheet } from 'react-native';
 
-type ThemedCalendarHeaderCellProps = {
+type EventCalendarHeaderCellProps = {
   content: string;
 };
 
-const ThemedCalendarHeaderCell = ({
-  content,
-}: ThemedCalendarHeaderCellProps) => {
+const EventCalendarHeaderCell = ({ content }: EventCalendarHeaderCellProps) => {
   return (
     <View style={styles.container}>
       <ThemedText weight="bold" size="xl">
@@ -33,4 +31,4 @@ const styles = StyleSheet.create({
     color: '#aaa',
   },
 });
-export default ThemedCalendarHeaderCell;
+export default EventCalendarHeaderCell;

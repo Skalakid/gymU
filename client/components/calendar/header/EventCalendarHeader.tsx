@@ -2,15 +2,15 @@ import { weekDays, weekDaysMap } from '@/constants/Text';
 import ThemedView from '@/components/ThemedView';
 import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import ThemedCalendarHeaderCell from './ThemedCalendarHeaderCell';
+import EventCalendarHeaderCell from './EventCalendarHeaderCell';
 
-const ThemedCalendarHeader = () => {
+const EventCalendarHeader = () => {
   const cells = useMemo(
     () =>
       weekDays
         .map(({ key }) => weekDaysMap.get(key)?.aberration)
         .map((aberration, index) => (
-          <ThemedCalendarHeaderCell content={aberration ?? ''} key={index} />
+          <EventCalendarHeaderCell content={aberration ?? ''} key={index} />
         )),
     [],
   );
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ThemedCalendarHeader;
+export default EventCalendarHeader;

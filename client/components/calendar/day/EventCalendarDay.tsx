@@ -1,21 +1,21 @@
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import ThemedText from '../../ThemedText';
 
-import { CalendarCell } from '../ThemedCalendar';
+import { CalendarCell } from '../EventCalendar';
 import { useMemo } from 'react';
-import ThemedCalendarDayIndicator from './ThemedCalendarDayIndicator';
+import EventCalendarDayIndicator from './EventCalendarDayIndicator';
 
-type ThemedCalendarDayProps = {
+type EventCalendarDayProps = {
   cell: CalendarCell;
   currentMonth: boolean;
   onPress?: (day: string) => void;
 };
 
-const ThemedCalendarDay = ({
+const EventCalendarDay = ({
   cell,
   onPress,
   currentMonth,
-}: ThemedCalendarDayProps) => {
+}: EventCalendarDayProps) => {
   const date = useMemo(() => new Date(cell.date).getDate(), [cell]);
 
   return (
@@ -40,7 +40,7 @@ const ThemedCalendarDay = ({
       >
         {date}
       </ThemedText>
-      <ThemedCalendarDayIndicator events={cell.events} />
+      <EventCalendarDayIndicator events={cell.events} />
     </TouchableOpacity>
   );
 };
@@ -77,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ThemedCalendarDay;
+export default EventCalendarDay;
