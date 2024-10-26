@@ -3,7 +3,7 @@ import ThemedText from '@/components/ThemedText';
 import { useRouter } from 'expo-router';
 import { View } from 'react-native';
 
-export const CustomMeasurementsPrompt = ({
+const CustomMeasurementsPrompt = ({
   stepUpdater,
 }: {
   stepUpdater: () => void;
@@ -24,3 +24,5 @@ export const CustomMeasurementsPrompt = ({
     </View>
   );
 };
+
+export default CustomMeasurementsPrompt;

@@ -8,13 +8,13 @@ import { useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
 
-type StepProps = {
+type MeasurementStepProps = {
   img: any;
   title: string | null;
   updater: (measurementResult: {}, shouldRepeatStep?: boolean) => void;
 };
 
-export const Step = ({ img, title, updater }: StepProps) => {
+const MeasurementStep = ({ img, title, updater }: MeasurementStepProps) => {
   const [customMeasurementName, setCustomMeasurementName] = useState('');
   const [measurementValue, setMeasurementValue] = useState('');
   const backgroundColor = useThemeColor({}, 'tile');
@@ -22,8 +22,6 @@ export const Step = ({ img, title, updater }: StepProps) => {
   const validateForm = () => isNaN(parseFloat(measurementValue));
 
   const isCustomMeasurement = title === null;
-
-  console.log(Images);
 
   return (
     <View style={[styles.container, { backgroundColor }]}>
@@ -84,6 +82,8 @@ export const Step = ({ img, title, updater }: StepProps) => {
     </View>
   );
 };
+
+export default MeasurementStep;
 
 const styles = StyleSheet.create({
   container: {

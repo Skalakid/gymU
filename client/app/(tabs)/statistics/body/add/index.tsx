@@ -3,9 +3,9 @@ import ThemedView from '@/components/ThemedView';
 import Icons from '@/constants/Icons';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { CustomMeasurementsPrompt } from './CustomMeasurementPrompt';
+import CustomMeasurementsPrompt from './CustomMeasurementPrompt';
 import { StyleSheet } from 'react-native';
-import { Step } from './Step';
+import MeasurementStep from './Step';
 
 const AddMeasurement = () => {
   const router = useRouter();
@@ -22,8 +22,6 @@ const AddMeasurement = () => {
     setStep((prev) => prev + nextStep);
   };
 
-  console.log(measurements);
-
   return (
     <ThemedView style={styles.container}>
       <Header
@@ -34,49 +32,49 @@ const AddMeasurement = () => {
       />
 
       {step === 1 && (
-        <Step
+        <MeasurementStep
           img={null}
           title={'weight'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
       {step === 2 && (
-        <Step
+        <MeasurementStep
           img={null}
           title={'biceps'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
       {step === 3 && (
-        <Step
+        <MeasurementStep
           img={null}
           title={'chest'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
       {step === 4 && (
-        <Step
+        <MeasurementStep
           img={null}
           title={'waist'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
       {step === 5 && (
-        <Step
+        <MeasurementStep
           img={null}
           title={'hips'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
       {step === 6 && (
-        <Step
+        <MeasurementStep
           img={null}
           title={'thigh'}
           updater={(result) => updateMeasurement(result)}
         />
       )}
       {step === 7 && (
-        <Step
+        <MeasurementStep
           img={null}
           title={'calf'}
           updater={(result) => updateMeasurement(result)}
@@ -90,7 +88,7 @@ const AddMeasurement = () => {
         />
       )}
       {step === 9 && (
-        <Step
+        <MeasurementStep
           img={null}
           title={null}
           updater={(result, shouldRepeatStep) =>
