@@ -11,9 +11,14 @@ const AddMeasurement = () => {
   const router = useRouter();
 
   const [step, setStep] = useState(1);
-  const [measurements, setMeasurements] = useState<{}>([]);
+  const [measurements, setMeasurements] = useState<Record<string, unknown>[]>(
+    [],
+  );
 
-  const updateMeasurement = (measurement: {}, shouldRepeatStep = false) => {
+  const updateMeasurement = (
+    measurement: Record<string, unknown>,
+    shouldRepeatStep = false,
+  ) => {
     const newMeasurements = [...measurements];
     newMeasurements.push(measurement);
     setMeasurements(newMeasurements);
