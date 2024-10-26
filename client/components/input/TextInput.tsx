@@ -1,13 +1,12 @@
-import { Colors } from '@/constants/Colors';
 import { SizePresets, WeightPresets } from '@/constants/Typography';
 import {
   StyleSheet,
   View,
   TextInput as RNTextInput,
-  useColorScheme,
   ViewStyle,
 } from 'react-native';
 import ThemedText from '../ThemedText';
+import useTheme from '@/hooks/useTheme';
 
 type TextInputProps = {
   value?: string;
@@ -30,8 +29,8 @@ const TextInput = ({
   style,
   disabled,
 }: TextInputProps) => {
-  const colorScheme = useColorScheme();
-  const primaryColor = Colors[colorScheme ?? 'light'].text;
+  const theme = useTheme();
+  const primaryColor = theme.text;
 
   return (
     <View style={[styles.container, style]}>
@@ -58,6 +57,7 @@ const TextInput = ({
         autoCapitalize="none"
         keyboardType={keyboardType}
         editable={!disabled}
+        placeholderTextColor={primaryColor}
       />
     </View>
   );
