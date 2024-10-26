@@ -20,7 +20,7 @@ const ExerciseContext = React.createContext<ExerciseContextType>({
 
 function ExerciseContextProvider({ children }: ExerciseContextProviderProps) {
   const [exerciseTypes, setExerciseTypes] = useState<ExerciseType[]>([]);
-  const { isLoaded } = useAuthContext();
+  const { isAuthenticated } = useAuthContext();
 
   const fetchExerciseTypes = async () => {
     const response = await fetchApi('/exercise/types', 'GET', null);
@@ -33,12 +33,13 @@ function ExerciseContextProvider({ children }: ExerciseContextProviderProps) {
   };
 
   useEffect(() => {
-    if (isLoaded) {
-      // eslint-disable-next-line no-console
-      console.log('ExerciseContext - Fetching initial data');
-      fetchExerciseTypes();
+    if (!isAuthenticated) {
+      return;
     }
-  }, [isLoaded]);
+    // eslint-disable-next-line no-console
+    console.log('ExerciseContext - Fetching initial data');
+    fetchExerciseTypes();
+  }, [isAuthenticated]);
 
   const getExerciseType = useCallback(
     (name: string) => {

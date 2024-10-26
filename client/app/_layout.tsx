@@ -27,12 +27,13 @@ import { Colors } from '@/constants/Colors';
 import { AuthContextProvider, useAuthContext } from '@/contexts/AuthContext';
 import { CreateWorkoutContextProvider } from '@/contexts/CreateWorkoutContext';
 import { ExerciseContextProvider } from '@/contexts/ExerciseContext';
+import { WorkoutContextProvider } from '@/contexts/WorkoutContext';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 const InitialLayout = () => {
-  const { authState, isLoaded } = useAuthContext();
+  const { isAuthenticated, isLoaded } = useAuthContext();
   const segments = useSegments();
   const router = useRouter();
 
@@ -41,14 +42,14 @@ const InitialLayout = () => {
       return;
     }
     const isTabsGroup = segments[0] === '(tabs)';
-    if (authState.authenticated && !isTabsGroup) {
+    if (isAuthenticated && !isTabsGroup) {
       router.replace('/home');
-    } else if (!authState.authenticated) {
+    } else if (!isAuthenticated) {
       router.replace('/(auth)');
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authState, isLoaded]);
+  }, [isAuthenticated, isLoaded]);
 
   useEffect(() => {
     if (isLoaded) {
@@ -96,24 +97,26 @@ const RootLayout = () => {
 
   return (
     <AuthContextProvider>
-      <ExerciseContextProvider>
-        <CreateWorkoutContextProvider>
-          <ThemeProvider
-            value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-          >
-            <SafeAreaView
-              style={[
-                styles.container,
-                {
-                  backgroundColor: Colors[colorScheme ?? 'light'].background,
-                },
-              ]}
+      <WorkoutContextProvider>
+        <ExerciseContextProvider>
+          <CreateWorkoutContextProvider>
+            <ThemeProvider
+              value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
             >
-              <InitialLayout />
-            </SafeAreaView>
-          </ThemeProvider>
-        </CreateWorkoutContextProvider>
-      </ExerciseContextProvider>
+              <SafeAreaView
+                style={[
+                  styles.container,
+                  {
+                    backgroundColor: Colors[colorScheme ?? 'light'].background,
+                  },
+                ]}
+              >
+                <InitialLayout />
+              </SafeAreaView>
+            </ThemeProvider>
+          </CreateWorkoutContextProvider>
+        </ExerciseContextProvider>
+      </WorkoutContextProvider>
     </AuthContextProvider>
   );
 };

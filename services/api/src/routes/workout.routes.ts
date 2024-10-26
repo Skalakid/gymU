@@ -8,5 +8,10 @@ router.get('/all', authenticateToken, workoutController.getAllWorkouts);
 router.get('/:id', authenticateToken, workoutController.getWorkoutDetails);
 router.post('/create', authenticateToken, workoutController.createWorkout);
 router.get('/tag/all', authenticateToken, workoutController.getAllWorkoutTags);
+router.get(
+  '/difficulty/all',
+  authenticateToken,
+  workoutController.getWorkoutDifficulties,
+);
 
 export = router;

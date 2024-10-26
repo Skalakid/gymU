@@ -5,16 +5,11 @@ import SECURE_STORE_KEYS from '../constants/SecureStoreKeys';
 
 type AuthContextProviderProps = { children: React.ReactNode };
 
-type AuthState = {
-  token: string | null;
-  authenticated: boolean;
-};
-
 type AuthContext = {
   login: (email: string, password: string) => void;
   register: (email: string, username: string, password: string) => void;
   logout: () => void;
-  authState: AuthState;
+  isAuthenticated: boolean;
   user: User | null;
   isLoaded: boolean;
 };
@@ -23,10 +18,7 @@ const AuthContext = React.createContext<AuthContext>({
   login: () => null,
   register: () => null,
   logout: () => null,
-  authState: {
-    token: null,
-    authenticated: false,
-  },
+  isAuthenticated: false,
   user: null,
   isLoaded: false,
 });
@@ -38,10 +30,7 @@ type LoginResponse = {
 
 function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [authState, setAuthState] = useState<AuthState>({
-    token: null,
-    authenticated: false,
-  });
+  const [isAuthenticated, setisAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
 
   const login = useCallback(async (email: string, password: string) => {
@@ -68,7 +57,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
 
     const data: LoginResponse = await response.json();
-    setAuthState({ token: data.accessToken, authenticated: true });
+    setisAuthenticated(true);
     setUser({
       user_id: data.user_id,
       email: data.email,
@@ -126,16 +115,12 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
 
     await deleteTokens();
-    setAuthState({ token: null, authenticated: false });
+    setisAuthenticated(true);
     setUser(null);
   }, [deleteTokens]);
 
   useEffect(() => {
     const loadToken = async () => {
-      const token = await SecureStore.getItemAsync(
-        SECURE_STORE_KEYS.ACCESS_TOKEN,
-      );
-
       try {
         const response = await fetchApi(
           '/user/current',
@@ -154,11 +139,11 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
           email: data.email,
           username: data.username,
         });
-        setAuthState({ token, authenticated: true });
+        setisAuthenticated(true);
       } catch (error) {
         await deleteTokens();
         setUser(null);
-        setAuthState({ token: null, authenticated: false });
+        setisAuthenticated(false);
       }
 
       setIsLoaded(true);
@@ -167,8 +152,8 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
   }, [deleteTokens]);
 
   const value = React.useMemo(
-    () => ({ authState, user, isLoaded, login, register, logout }),
-    [authState, user, isLoaded, login, register, logout],
+    () => ({ isAuthenticated, user, isLoaded, login, register, logout }),
+    [isAuthenticated, user, isLoaded, login, register, logout],
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
