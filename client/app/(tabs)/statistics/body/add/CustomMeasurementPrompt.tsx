@@ -3,24 +3,23 @@ import ThemedText from '@/components/ThemedText';
 import { useRouter } from 'expo-router';
 import { View, StyleSheet } from 'react-native';
 
+type CustomMeasurementsPromptProps = {
+  stepUpdater: () => void;
+  addMeasurement: () => Promise<void>;
+};
+
 const CustomMeasurementsPrompt = ({
   stepUpdater,
-}: {
-  stepUpdater: () => void;
-}) => {
+  addMeasurement,
+}: CustomMeasurementsPromptProps) => {
   const router = useRouter();
   return (
     <View style={styles.container}>
       <ThemedText size="xl" weight="semiBold">
         Are there any custom measurements?
       </ThemedText>
-      <SecondaryButton
-        value={'yes'}
-        onPress={() => {
-          stepUpdater();
-        }}
-      />
-      <SecondaryButton value={'no'} onPress={() => router.back()} />
+      <SecondaryButton value={'yes'} onPress={stepUpdater} />
+      <SecondaryButton value={'no'} onPress={addMeasurement} />
     </View>
   );
 };

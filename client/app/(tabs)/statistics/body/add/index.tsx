@@ -4,19 +4,48 @@ import Icons from '@/constants/Icons';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import CustomMeasurementsPrompt from './CustomMeasurementPrompt';
-import { StyleSheet } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 import MeasurementStep from './MeasurementStep';
+import fetchApi from '@/api/fetch';
 
 const AddMeasurement = () => {
   const router = useRouter();
 
   const [currentStep, setCurrentStep] = useState(1);
-  const [measurements, setMeasurements] = useState<Record<string, unknown>[]>(
+  const [measurements, setMeasurements] = useState<Record<string, number>[]>(
     [],
   );
 
+  const handleAddMeasurement = async () => {
+    try {
+      let data = { user_id: -1 };
+
+      for (const measurement of measurements) {
+        data = { ...data, ...measurement };
+      }
+
+      const response = await fetchApi(
+        '/measurement/create',
+        'POST',
+        null,
+        data,
+        true,
+      );
+
+      console.log(response);
+
+      if (response.ok) {
+        router.navigate('/statistics/body');
+      } else {
+        Alert.alert('Something went wrong...');
+      }
+    } catch {
+      Alert.alert('Something went wrong...');
+    }
+  };
+
   const updateMeasurement = (
-    measurement: Record<string, unknown>,
+    measurement: Record<string, number>,
     shouldRepeatStep = false,
   ) => {
     const newMeasurements = [...measurements];
@@ -90,6 +119,7 @@ const AddMeasurement = () => {
           stepUpdater={() => {
             setCurrentStep((prev) => prev + 1);
           }}
+          addMeasurement={handleAddMeasurement}
         />
       )}
       {currentStep === 9 && (
