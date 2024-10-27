@@ -1,0 +1,13 @@
+import express from 'express';
+import * as measurementController from '../controllers/measurements.controller';
+import { authenticateToken } from '../middlewares/auth.middleware';
+
+const router = express.Router();
+
+router.post(
+  '/create',
+  authenticateToken,
+  measurementController.createMeasurement,
+);
+
+export = router;

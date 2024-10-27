@@ -135,3 +135,14 @@ model workout_template {
   app_user               app_user                 @relation(fields: [author_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
   workout_level          workout_level            @relation(fields: [workout_level_id], references: [level_id])
 }
+
+model measurement {
+  measurement_id Int   @id @default(autoincrement())
+  user_id        Int
+  weight         Float
+  biceps         Float
+  chest          Float
+  hips           Float
+  thigh          Float
+  calf           Float
+}
