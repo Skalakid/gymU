@@ -48,7 +48,7 @@ const MeasurementStep = ({ img, title, updater }: MeasurementStepProps) => {
       <Image
         source={img ?? Images.custom_measurement}
         contentFit="cover"
-        style={{ width: '100%', height: 200 }}
+        style={{ width: '100%', height: 200, borderRadius: 15 }}
       />
 
       {!title && (
