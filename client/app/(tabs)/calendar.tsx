@@ -69,7 +69,7 @@ const CalendarPage = () => {
   const onPrevPress = useCallback(() => {
     let currentMonth = month;
     let currentYear = year;
-    if (month <= 1) {
+    if (month === 1) {
       currentMonth = 12;
       currentYear--;
     } else {
