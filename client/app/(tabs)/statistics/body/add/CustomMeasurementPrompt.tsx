@@ -1,7 +1,7 @@
 import SecondaryButton from '@/components/button/SecondaryButton';
 import ThemedText from '@/components/ThemedText';
-import { useRouter } from 'expo-router';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 type CustomMeasurementsPromptProps = {
   stepUpdater: () => void;
@@ -12,15 +12,14 @@ const CustomMeasurementsPrompt = ({
   stepUpdater,
   addMeasurement,
 }: CustomMeasurementsPromptProps) => {
-  const router = useRouter();
   return (
-    <View style={styles.container}>
+    <Animated.View style={styles.container} entering={FadeIn} exiting={FadeOut}>
       <ThemedText size="xl" weight="semiBold">
         Are there any custom measurements?
       </ThemedText>
       <SecondaryButton value={'yes'} onPress={stepUpdater} />
       <SecondaryButton value={'no'} onPress={addMeasurement} />
-    </View>
+    </Animated.View>
   );
 };
 
