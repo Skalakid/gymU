@@ -5,8 +5,9 @@ import ThemedText from '@/components/ThemedText';
 import Images from '@/constants/Images';
 import useThemeColor from '@/hooks/useThemeColor';
 import { useState } from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 type MeasurementStepProps = {
   img: any;
@@ -19,12 +20,16 @@ const MeasurementStep = ({ img, title, updater }: MeasurementStepProps) => {
   const [measurementValue, setMeasurementValue] = useState('');
   const backgroundColor = useThemeColor({}, 'tile');
 
-  const validateForm = () => isNaN(parseFloat(measurementValue));
+  const validateForm = () => !isNaN(parseFloat(measurementValue));
 
   const isCustomMeasurement = title === null;
 
   return (
-    <View style={[styles.container, { backgroundColor }]}>
+    <Animated.View
+      style={[styles.container, { backgroundColor }]}
+      entering={FadeIn}
+      exiting={FadeOut}
+    >
       <Header
         title={title ?? 'Custom'}
         style={{
@@ -69,6 +74,11 @@ const MeasurementStep = ({ img, title, updater }: MeasurementStepProps) => {
             return;
           }
 
+          if (!validateForm()) {
+            Alert.alert('Please provide numeric value');
+            return;
+          }
+
           const measurement = {};
           // @ts-ignore works for now
           measurement[isCustomMeasurement ? customMeasurementName : title] =
@@ -77,7 +87,7 @@ const MeasurementStep = ({ img, title, updater }: MeasurementStepProps) => {
           updater(measurement, isCustomMeasurement);
         }}
       />
-    </View>
+    </Animated.View>
   );
 };
 
