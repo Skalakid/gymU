@@ -20,9 +20,7 @@ const EventCalendarDay = ({
 
   return (
     <TouchableOpacity
-      onPress={() => {
-        if (onPress) onPress(cell.date);
-      }}
+      onPress={() => onPress?.(cell.date)}
       style={[
         styles.container,
         cell.current ? styles.currentDate : null,

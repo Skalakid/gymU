@@ -1,7 +1,12 @@
 import { View, StyleSheet } from 'react-native';
+import { CalendarEvent } from '../EventCalendar';
 
-const EventCalendarDayDot = () => {
-  return <View style={styles.container}></View>;
+type EventCalendarDayDotProps = {
+  event: CalendarEvent;
+};
+
+const EventCalendarDayDot = (props: EventCalendarDayDotProps) => {
+  return <View style={styles.container} />;
 };
 
 const styles = StyleSheet.create({

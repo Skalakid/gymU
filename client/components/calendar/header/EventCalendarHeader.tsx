@@ -8,9 +8,9 @@ const EventCalendarHeader = () => {
   const cells = useMemo(
     () =>
       weekDays
-        .map(({ key }) => weekDaysMap.get(key)?.aberration)
-        .map((aberration, index) => (
-          <EventCalendarHeaderCell content={aberration ?? ''} key={index} />
+        .map(({ key }) => weekDaysMap.get(key)?.abbreviation)
+        .map((abbreviation, index) => (
+          <EventCalendarHeaderCell content={abbreviation ?? ''} key={index} />
         )),
     [],
   );

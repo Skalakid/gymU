@@ -1,13 +1,13 @@
 /// TODO: Add local translations
 export const weekDaysMap = new Map(
   Object.entries({
-    monday: { id: 1, aberration: 'Mon' },
-    tuesday: { id: 2, aberration: 'Tue' },
-    wednesday: { id: 3, aberration: 'Wed' },
-    thursday: { id: 4, aberration: 'Thu' },
-    friday: { id: 5, aberration: 'Fri' },
-    saturday: { id: 6, aberration: 'Sat' },
-    sun: { id: 0, aberration: 'Sun' },
+    monday: { id: 1, abbreviation: 'Mon' },
+    tuesday: { id: 2, abbreviation: 'Tue' },
+    wednesday: { id: 3, abbreviation: 'Wed' },
+    thursday: { id: 4, abbreviation: 'Thu' },
+    friday: { id: 5, abbreviation: 'Fri' },
+    saturday: { id: 6, abbreviation: 'Sat' },
+    sunday: { id: 0, abbreviation: 'Sun' },
   }),
 );
 
@@ -18,7 +18,7 @@ export const weekDays = [
   { key: 'thursday' },
   { key: 'friday' },
   { key: 'saturday' },
-  { key: 'sun' },
+  { key: 'sunday' },
 ];
 
 export const months = [

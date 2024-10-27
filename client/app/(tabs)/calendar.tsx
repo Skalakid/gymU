@@ -11,6 +11,21 @@ import {
   getParsedValue,
 } from '@/utils/date.utils';
 
+const hardcodedEvents = {
+  '2024-10-21': [{ color: 'white', name: 'test1' }],
+  '2024-10-22': [{ color: 'gray', name: 'test2' }],
+  '2024-10-25': [{ color: 'red', name: 'test3' }],
+  '2024-10-26': [
+    { color: 'blue', name: 'test4' },
+    { color: 'gray', name: 'test5' },
+  ],
+  '2024-10-28': [
+    { color: 'blue', name: 'test6' },
+    { color: 'gray', name: 'test7' },
+    { color: 'gray', name: 'test8' },
+  ],
+};
+
 const CalendarPage = () => {
   const [currentDate] = useState(getFormatedDate(new Date()));
   const [selectedDate, setSelectedDate] = useState(currentDate);
@@ -26,19 +41,16 @@ const CalendarPage = () => {
         getFormatedDate(new Date(`${currentYear}-${currentMonth}-01`)),
       );
     },
-    [setMonth, setYear],
+    [],
   );
 
-  const setNavigation = useCallback(
-    (date: string) => {
-      const currentYear = getParsedValue(date, 'year');
-      const currentMonth = getParsedValue(date, 'month');
+  const setNavigation = useCallback((date: string) => {
+    const currentYear = getParsedValue(date, 'year');
+    const currentMonth = getParsedValue(date, 'month');
 
-      setYear(currentYear);
-      setMonth(currentMonth);
-    },
-    [setYear, setMonth],
-  );
+    setYear(currentYear);
+    setMonth(currentMonth);
+  }, []);
 
   const onNextPress = useCallback(() => {
     let currentMonth = month;
@@ -76,7 +88,7 @@ const CalendarPage = () => {
         setNavigation(date);
       }
     },
-    [setSelectedDate, selectedDate, setNavigation],
+    [selectedDate, setNavigation],
   );
 
   return (
@@ -98,20 +110,7 @@ const CalendarPage = () => {
         onDayPress={onDayPress}
         month={month}
         year={year}
-        events={{
-          '2024-06-21': [{ color: 'white', name: 'test1' }],
-          '2024-06-22': [{ color: 'gray', name: 'test2' }],
-          '2024-06-25': [{ color: 'red', name: 'test3' }],
-          '2024-06-26': [
-            { color: 'blue', name: 'test4' },
-            { color: 'gray', name: 'test5' },
-          ],
-          '2024-06-28': [
-            { color: 'blue', name: 'test6' },
-            { color: 'gray', name: 'test7' },
-            { color: 'gray', name: 'test8' },
-          ],
-        }}
+        events={hardcodedEvents}
         selectedDate={selectedDate}
         currentDate={currentDate}
       ></EventCalendar>

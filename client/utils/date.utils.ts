@@ -3,7 +3,7 @@ import {
   CalendarEvents,
 } from '@/components/calendar/EventCalendar';
 
-const zerofill = (value: number, padding: number = 2) => {
+const zerofill = (value: number, padding = 2) => {
   return value.toString().padStart(padding, '0');
 };
 
@@ -18,12 +18,11 @@ const prepareCalendar = (
   current?: string,
 ) => {
   const firstDay = new Date(year, month - 1, 1, 1);
+  const firstWeekDay = firstDay.getDay();
+  const firstWeekDate = firstDay.getDate();
 
-  if (firstDay.getDay()) {
-    firstDay.setDate(firstDay.getDate() - firstDay.getDay() + 1);
-  } else {
-    firstDay.setDate(firstDay.getDate() - 6);
-  }
+  const offset = firstWeekDay === 0 ? -6 : -firstWeekDay + 1;
+  firstDay.setDate(firstWeekDate + offset);
 
   const result: CalendarCell[][] = [];
 
@@ -37,7 +36,7 @@ const prepareCalendar = (
 
       result[i][j] = {
         date: currentDate,
-        events: currentDate in events ? events[currentDate] : [],
+        events: events[currentDate] ?? [],
         currentMonth: firstDay.getMonth() + 1 === month,
       };
 
@@ -66,7 +65,9 @@ const dateMap = new Map(
   }),
 );
 
-const getParsedValue = (date: string, type: 'year' | 'month' | 'day') => {
+type DatePart = 'year' | 'month' | 'day';
+
+const getParsedValue = (date: string, type: DatePart) => {
   const splitted = date.split('-');
   return parseInt(splitted[dateMap.get(type)!]);
 };

@@ -60,7 +60,6 @@ const EventCalendar = ({
 };
 
 const styles = StyleSheet.create({
-  container: {},
   calendar: { gap: 5 },
 });
 
