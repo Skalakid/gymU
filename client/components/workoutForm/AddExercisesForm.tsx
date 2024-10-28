@@ -9,7 +9,8 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import DetailedExerciseItem from '../exercises/DetailedExerciseItem';
 
 const AddExercisesForm = () => {
-  const { selectedExercises, removeExercise } = useCreateWorkoutContext();
+  const { selectedExercises, removeExercise, updateCurrentExercise } =
+    useCreateWorkoutContext();
   const router = useRouter();
 
   const handleExerciseAddButtonPress = () => {
@@ -22,6 +23,14 @@ const AddExercisesForm = () => {
 
   const handleRemoveExercise = (index: number) => {
     removeExercise(index);
+  };
+
+  const handleEditExercise = (index: number) => {
+    updateCurrentExercise(selectedExercises[index]);
+    router.push({
+      pathname: '/explore/add/exercise/details',
+      params: { type: 'edit' },
+    });
   };
 
   return (
@@ -47,6 +56,7 @@ const AddExercisesForm = () => {
                   leftThreshold={100}
                   style={styles.swipeableContainer}
                   onSwipeRight={() => handleRemoveExercise(index)}
+                  onSwipeLeft={() => handleEditExercise(index)}
                 >
                   <DetailedExerciseItem
                     name={item.name}

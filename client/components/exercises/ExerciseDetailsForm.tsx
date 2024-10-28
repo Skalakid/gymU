@@ -7,21 +7,31 @@ import { useExerciseContext } from '@/contexts/ExerciseContext';
 type ExerciseDetailsFormProps = {
   type: string;
   onFormUpdate: (details: ExerciseDetails) => void;
+  defaultSets?: number;
+  defaultReps?: number;
+  defaultWeight?: number;
+  defaultTime?: number;
+  defaultBreakTime?: number;
 };
 
 const ExerciseDetailsForm = ({
   type,
   onFormUpdate,
+  defaultSets = 3,
+  defaultReps = 10,
+  defaultWeight = 30,
+  defaultTime = 60,
+  defaultBreakTime = 60,
 }: ExerciseDetailsFormProps) => {
   const { getExerciseType } = useExerciseContext();
   const [exerciseType] = useState<ExerciseType | null>(
     getExerciseType(type) || null,
   );
-  const [sets, setSets] = useState<number>(3);
-  const [reps, setReps] = useState<number>(10);
-  const [weight, setWeight] = useState<number>(30);
-  const [time, setTime] = useState<number>(60);
-  const [breakTime, setBreakTime] = useState<number>(60);
+  const [sets, setSets] = useState<number>(defaultSets);
+  const [reps, setReps] = useState<number>(defaultReps);
+  const [weight, setWeight] = useState<number>(defaultWeight);
+  const [time, setTime] = useState<number>(defaultTime);
+  const [breakTime, setBreakTime] = useState<number>(defaultBreakTime);
 
   const handleNumericChange = (
     value: number,
