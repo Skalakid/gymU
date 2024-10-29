@@ -19,8 +19,10 @@ import heart from '../assets/icons/heart.svg';
 import homeFill from '../assets/icons/home-fill.svg';
 import home from '../assets/icons/home.svg';
 import minus from '../assets/icons/minus.svg';
+import next from '../assets/icons/next.svg';
 import open from '../assets/icons/open.svg';
 import play from '../assets/icons/play.svg';
+import previous from '../assets/icons/previous.svg';
 import plus from '../assets/icons/plus.svg';
 import repeat from '../assets/icons/repeat.svg';
 import save from '../assets/icons/save.svg';
@@ -51,8 +53,10 @@ export default {
   homeFill,
   home,
   minus,
+  next,
   open,
   play,
+  previous,
   plus,
   repeat,
   safari,
