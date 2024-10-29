@@ -4,7 +4,7 @@ import ThemedText from '@/components/ThemedText';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
 import ModalBar from '@/components/common/ModalBar';
 import useTheme from '@/hooks/useTheme';
-import ExercisePlayer from '@/components/live_training/Player/ExercisePlayer';
+import ExercisePlayer from '@/components/liveTraining/exercisePlayer/ExercisePlayer';
 import { useLiveTrainingContext } from '@/contexts/LiveTrainingContext';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
