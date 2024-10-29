@@ -1,33 +1,24 @@
 import fetchApi from '@/api/fetch';
-import { DificultiesData } from '@/components/workoutForm/WorkoutForm';
 import { filterNonNull } from '@/utils/object.utils';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Alert } from 'react-native';
 
 type CreateWorkoutContextProviderProps = { children: React.ReactNode };
 
-type WorkoutGeneralInfo = {
-  name: string;
-  description: string;
-  dificulty: DificultiesData;
-  isPrivate: boolean;
-  tags: WorkoutType[];
-};
-
-type OrderedExerciseItem = DetailedExerciseItem & {
-  orderIndex: number;
-};
-
 type CreateWorkoutContext = {
   workoutGeneralInfo: WorkoutGeneralInfo | null;
   selectedExercises: OrderedExerciseItem[];
   updateWorkoutGeneralInfo: (generalInfo: WorkoutGeneralInfo | null) => void;
-  addExercise: (exercise: DetailedExerciseItem, orderIndex?: number) => void;
+  addExercise: (exercise: DetailedExerciseItem) => void;
+  updateExercise: (
+    orderIndex: number,
+    newExerciseData: DetailedExerciseItem,
+  ) => void;
   updateExerciseOrderIndex: (exerciseId: number, orderIndex: number) => void;
   removeExercise: (index: number) => void;
   clearExercises: () => void;
-  currentExercise: React.MutableRefObject<BasicExercise | null>;
-  updateCurrentExercise: (exercise: BasicExercise) => void;
+  currentExercise: React.MutableRefObject<OrderedExerciseItem | null>;
+  updateCurrentExercise: (exercise: OrderedExerciseItem) => void;
   saveWorkout: () => Promise<boolean>;
 };
 
@@ -36,6 +27,7 @@ const CreateWorkoutContext = React.createContext<CreateWorkoutContext>({
   selectedExercises: [],
   updateWorkoutGeneralInfo: () => null,
   addExercise: () => null,
+  updateExercise: () => null,
   updateExerciseOrderIndex: () => null,
   removeExercise: () => null,
   clearExercises: () => null,
@@ -52,9 +44,9 @@ function CreateWorkoutContextProvider({
   const [selectedExercises, setSelectedExercises] = useState<
     OrderedExerciseItem[]
   >([]);
-  const currentExercise = useRef<BasicExercise | null>(null);
+  const currentExercise = useRef<OrderedExerciseItem | null>(null);
 
-  const updateCurrentExercise = useCallback((exercise: BasicExercise) => {
+  const updateCurrentExercise = useCallback((exercise: OrderedExerciseItem) => {
     currentExercise.current = exercise;
   }, []);
 
@@ -65,17 +57,27 @@ function CreateWorkoutContextProvider({
     [],
   );
 
-  const addExercise = useCallback(
-    (exercise: DetailedExerciseItem, orderIndex?: number) => {
-      setSelectedExercises((prev) => [
-        ...prev,
-        {
-          ...exercise,
-          orderIndex: orderIndex ?? prev.length,
-        },
+  const addExercise = useCallback((exercise: DetailedExerciseItem) => {
+    setSelectedExercises((prev) => [
+      ...prev,
+      {
+        ...exercise,
+        orderIndex: prev.length,
+      },
+    ]);
+  }, []);
+
+  const updateExercise = useCallback(
+    (orderIndex: number, newExerciseData: DetailedExerciseItem) => {
+      const before = selectedExercises.slice(0, orderIndex);
+      const after = selectedExercises.slice(orderIndex + 1);
+      setSelectedExercises([
+        ...before,
+        { ...newExerciseData, orderIndex },
+        ...after,
       ]);
     },
-    [],
+    [selectedExercises],
   );
 
   const updateExerciseOrderIndex = useCallback(
@@ -156,6 +158,7 @@ function CreateWorkoutContextProvider({
       updateCurrentExercise,
       updateWorkoutGeneralInfo,
       addExercise,
+      updateExercise,
       updateExerciseOrderIndex,
       removeExercise,
       clearExercises,
@@ -167,6 +170,7 @@ function CreateWorkoutContextProvider({
       updateCurrentExercise,
       updateWorkoutGeneralInfo,
       addExercise,
+      updateExercise,
       updateExerciseOrderIndex,
       removeExercise,
       clearExercises,

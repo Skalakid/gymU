@@ -5,7 +5,7 @@ import ExerciseDetailsForm from '@/components/exercises/ExerciseDetailsForm';
 import ExerciseDetailsInfo from '@/components/exercises/ExerciseDetailsInfo';
 import { useCreateWorkoutContext } from '@/contexts/CreateWorkoutContext';
 import useTheme from '@/hooks/useTheme';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useRef } from 'react';
 import {
   KeyboardAvoidingView,
@@ -17,7 +17,9 @@ import {
 } from 'react-native';
 
 const DetailsPage = () => {
-  const { currentExercise, addExercise } = useCreateWorkoutContext();
+  const { type } = useLocalSearchParams();
+  const { currentExercise, addExercise, updateExercise } =
+    useCreateWorkoutContext();
   const router = useRouter();
   const theme = useTheme();
   const exerciseDetails = useRef<ExerciseDetails>({
@@ -28,13 +30,21 @@ const DetailsPage = () => {
   });
 
   const handleAdd = () => {
+    if (!currentExercise.current) {
+      return;
+    }
+
     const detailedExercise: DetailedExerciseItem = {
-      ...currentExercise.current!,
+      ...currentExercise.current,
       value: exerciseDetails.current,
-      description: currentExercise.current!.shortDescription,
     };
 
-    addExercise(detailedExercise);
+    if (type === 'edit') {
+      updateExercise(currentExercise.current.orderIndex, detailedExercise);
+    } else {
+      addExercise(detailedExercise);
+    }
+
     router.navigate('/(tabs)/explore/add');
   };
 
@@ -68,6 +78,11 @@ const DetailsPage = () => {
             <ExerciseDetailsForm
               type={currentExercise.current!.exercise_type}
               onFormUpdate={handleFormUpdate}
+              defaultSets={currentExercise.current!.value.sets || 3}
+              defaultReps={currentExercise.current!.value.reps || 10}
+              defaultWeight={currentExercise.current!.value.weight || 30}
+              defaultTime={currentExercise.current!.value.time || 60}
+              defaultBreakTime={currentExercise.current!.value.breakTime || 60}
             />
           </ScrollView>
 
