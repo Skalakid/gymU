@@ -18,6 +18,7 @@ import heartFill from '../assets/icons/heart-fill.svg';
 import heart from '../assets/icons/heart.svg';
 import homeFill from '../assets/icons/home-fill.svg';
 import home from '../assets/icons/home.svg';
+import image from '../assets/icons/image.svg';
 import minus from '../assets/icons/minus.svg';
 import next from '../assets/icons/next.svg';
 import open from '../assets/icons/open.svg';
@@ -52,6 +53,7 @@ export default {
   heart,
   homeFill,
   home,
+  image,
   minus,
   next,
   open,
