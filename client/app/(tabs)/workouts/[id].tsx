@@ -5,8 +5,11 @@ import { useRouter } from 'expo-router';
 const UserWorkoutDetails = () => {
   const router = useRouter();
 
-  const handleRightIconPress = () => {
-    router.push('/(live_training)');
+  const handleRightIconPress = (workoutDetails: Workout) => {
+    router.push({
+      pathname: '/(live_training)',
+      params: { workoutID: workoutDetails.workout_id },
+    });
   };
 
   return (
