@@ -7,13 +7,13 @@ import useTheme from '@/hooks/useTheme';
 import ExercisePlayer from '@/components/liveTraining/exercisePlayer/ExercisePlayer';
 import { useLiveTrainingContext } from '@/contexts/LiveTrainingContext';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import Card from '@/components/liveTraining/cardSwitcher/Card';
+import CardSwitcher from '@/components/liveTraining/cardSwitcher/CardSwitcher';
 
 const LiveTrainingPage = () => {
   const theme = useTheme();
   const router = useRouter();
   const { workoutID } = useLocalSearchParams();
-  const { startLiveTraining } = useLiveTrainingContext();
+  const { startLiveTraining, trainingItems } = useLiveTrainingContext();
 
   const handleStartLiveTraining = useCallback(() => {
     if (Number.isNaN(workoutID)) {
@@ -48,7 +48,7 @@ const LiveTrainingPage = () => {
             </ThemedText>
           </View>
           <View style={styles.player}>
-            <Card />
+            <CardSwitcher data={trainingItems} />
             <ExercisePlayer />
           </View>
         </View>

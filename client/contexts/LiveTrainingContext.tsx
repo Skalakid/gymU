@@ -19,18 +19,6 @@ const LiveTrainingContext = React.createContext<LiveTrainingContext>({
   currentExerciseIndex: 0,
 });
 
-type TrainingItem = {
-  exerciseID: number;
-  name: string;
-  value: {
-    sets: number;
-    reps: number;
-    weight: number;
-    time: number;
-    isBreak: boolean;
-  };
-};
-
 function LiveTrainingContextProvider({
   children,
 }: LiveTrainingContextProviderProps) {
