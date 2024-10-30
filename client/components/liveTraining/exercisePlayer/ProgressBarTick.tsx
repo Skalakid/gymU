@@ -5,12 +5,13 @@ import Animated, {
   measure,
   useAnimatedRef,
   useAnimatedStyle,
+  withTiming,
 } from 'react-native-reanimated';
 
 type ProgressBarTickProps = {
   currentProgress: SharedValue<number>;
-  activeColor?: string;
-  inactiveColor?: string;
+  activeColor: string;
+  inactiveColor: string;
   isTransparent?: boolean;
 };
 
@@ -24,10 +25,11 @@ const ProgressBarTick = ({
   const tickStyle = useAnimatedStyle(() => {
     const mesurement = measure(ref);
     return {
-      backgroundColor:
+      backgroundColor: withTiming(
         mesurement && currentProgress.value > mesurement.x
           ? activeColor
           : inactiveColor,
+      ),
     };
   });
 

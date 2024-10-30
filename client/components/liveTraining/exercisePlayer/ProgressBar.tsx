@@ -2,10 +2,10 @@ import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Animated, {
   clamp,
-  interpolate,
   useAnimatedRef,
   useAnimatedStyle,
   useSharedValue,
+  withTiming,
 } from 'react-native-reanimated';
 import ProgressBarTick from './ProgressBarTick';
 import useTheme from '@/hooks/useTheme';
@@ -27,11 +27,11 @@ const ProgressBar = ({ ticks = 10, progress = 0 }: ProgressBarProps) => {
   };
 
   const progressBarStyle: ViewStyle = useAnimatedStyle(() => ({
-    width: `${interpolate(x.value, [0, sliderWidth], [0, 100], 'clamp')}%`,
+    width: withTiming(x.value, { duration: 100 }),
   }));
 
   useEffect(() => {
-    const ticksArray = Array.from({ length: ticks + 1 }, (_, index) => index);
+    const ticksArray = Array.from({ length: ticks }, (_, index) => index);
     setTickPositions(ticksArray);
   }, [sliderRef, sliderWidth, ticks]);
 

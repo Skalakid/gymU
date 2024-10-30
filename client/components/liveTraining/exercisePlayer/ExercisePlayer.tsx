@@ -8,19 +8,21 @@ import ProgressBar from './ProgressBar';
 type ExercisePlayerProps = {
   onNext?: () => void;
   onPrevious?: () => void;
+  progress: number;
 };
 
-const ExercisePlayer = ({ onNext, onPrevious }: ExercisePlayerProps) => {
+const ExercisePlayer = ({
+  onNext,
+  onPrevious,
+  progress,
+}: ExercisePlayerProps) => {
   const theme = useTheme();
-  const [progress, setProgress] = React.useState(0);
 
   const handleNext = () => {
-    setProgress(Math.min(progress + 10, 100));
     onNext?.();
   };
 
   const handlePrevious = () => {
-    setProgress(Math.max(progress - 10, 0));
     onPrevious?.();
   };
 

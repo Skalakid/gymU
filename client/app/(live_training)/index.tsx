@@ -8,12 +8,19 @@ import ExercisePlayer from '@/components/liveTraining/exercisePlayer/ExercisePla
 import { useLiveTrainingContext } from '@/contexts/LiveTrainingContext';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import CardSwitcher from '@/components/liveTraining/cardSwitcher/CardSwitcher';
+import { interpolate } from 'react-native-reanimated';
 
 const LiveTrainingPage = () => {
   const theme = useTheme();
   const router = useRouter();
   const { workoutID } = useLocalSearchParams();
-  const { startLiveTraining, trainingItems } = useLiveTrainingContext();
+  const {
+    startLiveTraining,
+    trainingItems,
+    currentExerciseIndex,
+    nextItem,
+    peviousItem,
+  } = useLiveTrainingContext();
 
   const handleStartLiveTraining = useCallback(() => {
     if (Number.isNaN(workoutID)) {
@@ -27,6 +34,14 @@ const LiveTrainingPage = () => {
       router.back();
     }
   }, [router, startLiveTraining, workoutID]);
+
+  const handleNextItem = useCallback(() => {
+    nextItem();
+  }, [nextItem]);
+
+  const handlePreviousItem = useCallback(() => {
+    peviousItem();
+  }, [peviousItem]);
 
   useEffect(() => {
     handleStartLiveTraining();
@@ -48,8 +63,21 @@ const LiveTrainingPage = () => {
             </ThemedText>
           </View>
           <View style={styles.player}>
-            <CardSwitcher data={trainingItems} />
-            <ExercisePlayer />
+            <CardSwitcher
+              data={trainingItems}
+              currentIndex={currentExerciseIndex}
+              onSwipe={handleNextItem}
+            />
+            <ExercisePlayer
+              onNext={handleNextItem}
+              onPrevious={handlePreviousItem}
+              progress={interpolate(
+                currentExerciseIndex,
+                [0, trainingItems.length],
+                [0, 100],
+                'clamp',
+              )}
+            />
           </View>
         </View>
       </PageWithGoBackHeader>

@@ -6,15 +6,20 @@ import SwipeableCard from './SwipeableCard';
 
 type CardSwitcherProps = {
   data: TrainingItem[];
+  currentIndex: number;
+  onSwipe: (index: number) => void;
 };
 
-const CardSwitcher = ({ data }: CardSwitcherProps) => {
+const CardSwitcher = ({
+  data,
+  onSwipe,
+  currentIndex = 0,
+}: CardSwitcherProps) => {
   const MAX = 2;
   const animatedValue = useSharedValue(0);
-  const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const handleOnSwipe = (index: number) => {
-    setCurrentIndex(index);
+    onSwipe(index);
   };
 
   return (
