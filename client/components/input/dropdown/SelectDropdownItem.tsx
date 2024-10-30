@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
-import ThemedView from './ThemedView';
-import ThemedText from './ThemedText';
 import useTheme from '@/hooks/useTheme';
+import ThemedView from '@/components/ThemedView';
+import ThemedText from '@/components/ThemedText';
 
 type SelectDropdownItemProps = {
   value: string;
@@ -11,7 +11,9 @@ const SelectDropdownItem = ({ value }: SelectDropdownItemProps) => {
   const theme = useTheme();
   return (
     <ThemedView style={[styles.selectItem, { backgroundColor: theme.tile }]}>
-      <ThemedText style={{ color: theme.primary }}>{value}</ThemedText>
+      <ThemedText style={{ color: theme.text }} weight="semiBold">
+        {value}
+      </ThemedText>
     </ThemedView>
   );
 };
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     borderRadius: 10,
-    padding: 2,
-    margin: 2,
+    padding: 16,
+    marginTop: 8,
   },
 });

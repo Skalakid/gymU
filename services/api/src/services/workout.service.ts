@@ -4,6 +4,7 @@ import {
 } from '../persistance/userWorkout.db';
 import * as WorkoutDB from '../persistance/workout.db';
 import { PaginatedResponse } from '../types/api';
+import { DetailedExercise } from '../types/exercise';
 import { ExerciseWorkoutItem, GeneralWorkout } from '../types/workout';
 
 async function getAllWorkouts(
@@ -63,14 +64,17 @@ async function getWorkoutDetails(workoutId: number, userId: number) {
 
   const isSavedByUser = await isWorkoutSavedByUser(userId, workoutId);
 
-  const exerciseItems = workout.exercise_template_item
+  const exerciseItems: DetailedExercise[] = workout.exercise_template_item
     .map((item) => {
       return {
         exercise_id: item.exercise_id,
-        exercise_name: item.exercise.name,
+        name: item.exercise.name,
         exercise_type: item.exercise.exercise_type.name,
-        value: item.value,
+        value: JSON.parse(item.value as string),
         order_index: item.order_index,
+        body_parts: item.exercise.exercises_body_parts.map(
+          (item) => item.body_part.name,
+        ),
       };
     })
     .sort((a, b) => a.order_index - b.order_index);
@@ -131,4 +135,15 @@ async function getAllWorkoutTags() {
   });
 }
 
-export { getAllWorkouts, getWorkoutDetails, createWorkout, getAllWorkoutTags };
+async function getWorkoutDifficulties() {
+  const difficulties = await WorkoutDB.getWorkoutDifficulties();
+  return difficulties.sort((a, b) => a.level_id - b.level_id);
+}
+
+export {
+  getAllWorkouts,
+  getWorkoutDetails,
+  createWorkout,
+  getAllWorkoutTags,
+  getWorkoutDifficulties,
+};

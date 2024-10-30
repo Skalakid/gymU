@@ -1,12 +1,12 @@
-import { Colors } from '@/constants/Colors';
 import { SizePresets, WeightPresets } from '@/constants/Typography';
 import {
   StyleSheet,
   View,
   TextInput as RNTextInput,
-  useColorScheme,
+  ViewStyle,
 } from 'react-native';
 import ThemedText from '../ThemedText';
+import useTheme from '@/hooks/useTheme';
 
 type TextInputProps = {
   value?: string;
@@ -14,6 +14,9 @@ type TextInputProps = {
   placeholder?: string;
   onChangeText?: (text: string) => void;
   type?: 'password' | 'text';
+  keyboardType?: 'default' | 'numeric' | 'email-address' | 'phone-pad';
+  style?: ViewStyle;
+  disabled?: boolean;
 };
 
 const TextInput = ({
@@ -22,15 +25,20 @@ const TextInput = ({
   placeholder,
   onChangeText,
   type = 'text',
+  keyboardType = 'default',
+  style,
+  disabled,
 }: TextInputProps) => {
-  const colorScheme = useColorScheme();
-  const primaryColor = Colors[colorScheme ?? 'light'].text;
+  const theme = useTheme();
+  const primaryColor = theme.text;
 
   return (
-    <View style={styles.container}>
-      <ThemedText size="m" weight="medium">
-        {label}
-      </ThemedText>
+    <View style={[styles.container, style]}>
+      {label && (
+        <ThemedText size="m" weight="medium">
+          {label}
+        </ThemedText>
+      )}
 
       <RNTextInput
         style={[
@@ -47,6 +55,9 @@ const TextInput = ({
         onChangeText={onChangeText}
         secureTextEntry={type === 'password'}
         autoCapitalize="none"
+        keyboardType={keyboardType}
+        editable={!disabled}
+        placeholderTextColor={primaryColor}
       />
     </View>
   );

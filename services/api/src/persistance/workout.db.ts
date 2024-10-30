@@ -91,6 +91,15 @@ async function getWorkoutDetails(workoutId: number) {
                   name: true,
                 },
               },
+              exercises_body_parts: {
+                select: {
+                  body_part: {
+                    select: {
+                      name: true,
+                    },
+                  },
+                },
+              },
             },
           },
           value: true,
@@ -160,10 +169,15 @@ async function getAllWorkoutTags() {
   });
 }
 
+async function getWorkoutDifficulties() {
+  return await prisma.workout_level.findMany();
+}
+
 export {
   getAllWorkoutsPaginated,
   countAllFilteredWorkouts,
   getWorkoutDetails,
   createWorkout,
   getAllWorkoutTags,
+  getWorkoutDifficulties,
 };

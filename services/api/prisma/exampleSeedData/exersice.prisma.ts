@@ -24,7 +24,7 @@ export default async function seedExercises() {
           data: {
             name: exerciseType.name,
             has_reps: exerciseType.has_reps,
-            has_series: exerciseType.has_series,
+            has_sets: exerciseType.has_sets,
             has_weights: exerciseType.has_weights,
             has_time: exerciseType.has_time,
             is_break: exerciseType.is_break,
@@ -93,7 +93,7 @@ function getExerciseTypes(): NewExerciseType[] {
     {
       name: 'reps',
       has_reps: true,
-      has_series: true,
+      has_sets: true,
       has_weights: false,
       has_time: false,
       is_break: false,
@@ -101,7 +101,7 @@ function getExerciseTypes(): NewExerciseType[] {
     {
       name: 'time',
       has_reps: false,
-      has_series: true,
+      has_sets: true,
       has_weights: false,
       has_time: true,
       is_break: false,
@@ -109,7 +109,7 @@ function getExerciseTypes(): NewExerciseType[] {
     {
       name: 'break',
       has_reps: false,
-      has_series: false,
+      has_sets: false,
       has_weights: false,
       has_time: false,
       is_break: true,
