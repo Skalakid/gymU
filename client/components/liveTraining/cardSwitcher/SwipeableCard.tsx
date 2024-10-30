@@ -1,5 +1,5 @@
 import { StyleSheet, useWindowDimensions } from 'react-native';
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Tile from '@/components/common/Tile';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
@@ -21,6 +21,7 @@ type CardProps = {
   maxVisibleItems: number;
   onSwipe: (index: number) => void;
   nextCardName: string;
+  isHidden: boolean;
 };
 
 const SwipeableCard = ({
@@ -32,12 +33,22 @@ const SwipeableCard = ({
   maxVisibleItems,
   onSwipe,
   nextCardName,
+  isHidden,
 }: CardProps) => {
   const { width } = useWindowDimensions();
   const translateX = useSharedValue(0);
   const direction = useSharedValue(0);
+  const isManuallySwiped = useSharedValue(false);
+
+  const recenterCard = useCallback(() => {
+    translateX.value = withTiming(0, { duration: 500 });
+    animatedValue.value = withTiming(index, { duration: 500 });
+  }, [animatedValue, index, translateX]);
 
   const pan = Gesture.Pan()
+    .onStart(() => {
+      isManuallySwiped.value = true;
+    })
     .onUpdate((e) => {
       if (currentIndex !== index) {
         return;
@@ -66,13 +77,14 @@ const SwipeableCard = ({
         );
         animatedValue.value = withTiming(currentIndex + 1);
       } else {
-        translateX.value = withTiming(0, { duration: 500 });
-        animatedValue.value = withTiming(index, { duration: 500 });
+        runOnJS(recenterCard)();
       }
+      isManuallySwiped.value = false;
     });
 
   const animatedStyle = useAnimatedStyle(() => {
     const currentItem = currentIndex === index;
+
     const rotateZ = interpolate(
       Math.abs(translateX.value),
       [0, width],
@@ -110,6 +122,16 @@ const SwipeableCard = ({
       ],
     };
   });
+
+  useEffect(() => {
+    if (currentIndex === index && !isManuallySwiped.value) {
+      recenterCard();
+    }
+  }, [currentIndex, index, isHidden, isManuallySwiped.value, recenterCard]);
+
+  if (isHidden) {
+    return null;
+  }
 
   return (
     <GestureDetector gesture={pan}>

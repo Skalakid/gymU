@@ -25,7 +25,7 @@ const CardSwitcher = ({
   return (
     <GestureHandlerRootView style={styles.container}>
       {data.map((item, index) => {
-        if (index > currentIndex + MAX || index < currentIndex) return null;
+        if (index > currentIndex + MAX) return null;
         return (
           <SwipeableCard
             key={`card${index}`}
@@ -37,6 +37,7 @@ const CardSwitcher = ({
             maxVisibleItems={MAX}
             onSwipe={handleOnSwipe}
             nextCardName={data[index + 1]?.name}
+            isHidden={index < currentIndex}
           />
         );
       })}
