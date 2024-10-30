@@ -1,11 +1,6 @@
-import { StyleSheet, View, useWindowDimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 import React from 'react';
 import Tile from '@/components/common/Tile';
-import ThemedText from '@/components/ThemedText';
-import Icon from '@/components/common/Icon';
-import Icons from '@/constants/Icons';
-import useTheme from '@/hooks/useTheme';
-import NoImage from '@/components/common/NoImage';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
   SharedValue,
@@ -15,6 +10,7 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import CardContent from './CardContent';
 
 type CardProps = {
   trainingItem: TrainingItem;
@@ -26,9 +22,9 @@ type CardProps = {
   onSwipe: (index: number) => void;
 };
 
-const Card = ({
-  index,
+const SwipeableCard = ({
   trainingItem,
+  index,
   dataLength,
   currentIndex,
   animatedValue,
@@ -36,7 +32,6 @@ const Card = ({
   onSwipe,
 }: CardProps) => {
   const { width } = useWindowDimensions();
-  const theme = useTheme();
   const translateX = useSharedValue(0);
   const direction = useSharedValue(0);
 
@@ -70,6 +65,7 @@ const Card = ({
         animatedValue.value = withTiming(currentIndex + 1);
       } else {
         translateX.value = withTiming(0, { duration: 500 });
+        animatedValue.value = withTiming(index, { duration: 500 });
       }
     });
 
@@ -112,100 +108,24 @@ const Card = ({
       ],
     };
   });
+
   return (
     <GestureDetector gesture={pan}>
       <Tile animated style={[styles.container, animatedStyle]}>
-        <View style={styles.header}>
-          <View style={styles.row}>
-            <Icon icon={Icons.dumbell} size={20} />
-            <ThemedText size="m" weight="medium">
-              Exercise: 0/10
-            </ThemedText>
-          </View>
-
-          <View style={styles.row}>
-            <ThemedText size="m" weight="medium">
-              Sets: 0
-            </ThemedText>
-            <Icon icon={Icons.repeat} size={20} />
-          </View>
-        </View>
-        <View style={styles.content}>
-          <NoImage iconSize={150} style={styles.imageContainer} />
-
-          <View style={styles.exerciseInfo}>
-            <ThemedText size="l" weight="semiBold">
-              Exercise Name
-            </ThemedText>
-            <ThemedText size="m" weight="medium">
-              Your goal
-            </ThemedText>
-            <ThemedText
-              size="x4l"
-              weight="bold"
-              style={{ textAlign: 'center' }}
-            >
-              15 reps
-            </ThemedText>
-          </View>
-        </View>
-
-        <View style={styles.footer}>
-          <Icon icon={Icons.image} size={44} />
-          <View style={styles.nextExercisePreview}>
-            <ThemedText size="m">Coming up next...</ThemedText>
-            <ThemedText size="s" color={theme.description}>
-              New exercise name
-            </ThemedText>
-          </View>
-        </View>
+        <CardContent trainingItem={trainingItem} />
       </Tile>
     </GestureDetector>
   );
 };
 
-export default Card;
+export default SwipeableCard;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    gap: 10,
     paddingVertical: 0,
     paddingTop: 15,
     paddingBottom: 10,
     position: 'absolute',
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-  content: {
-    flex: 1,
-    gap: 10,
-  },
-  imageContainer: {
-    borderRadius: 15,
-    width: '100%',
-    aspectRatio: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  exerciseInfo: {
-    gap: 2,
-  },
-  footer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5,
-  },
-  nextExercisePreview: {
-    alignItems: 'flex-start',
-    justifyContent: 'center',
   },
 });

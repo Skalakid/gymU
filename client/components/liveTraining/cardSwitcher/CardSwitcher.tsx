@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 import React from 'react';
-import Card from './Card';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useSharedValue } from 'react-native-reanimated';
+import SwipeableCard from './SwipeableCard';
 
 type CardSwitcherProps = {
   data: TrainingItem[];
@@ -22,7 +22,7 @@ const CardSwitcher = ({ data }: CardSwitcherProps) => {
       {data.map((item, index) => {
         if (index > currentIndex + MAX || index < currentIndex) return null;
         return (
-          <Card
+          <SwipeableCard
             key={`card${index}`}
             index={index}
             trainingItem={item}
@@ -44,5 +44,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 10,
+    gap: 10,
+    paddingVertical: 0,
+    paddingTop: 15,
+    paddingBottom: 10,
   },
 });
