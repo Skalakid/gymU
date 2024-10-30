@@ -16,7 +16,7 @@ type CardProps = {
   trainingItem: TrainingItem;
   index: number;
   dataLength: number;
-  currentIndex: number;
+  currentIndex: SharedValue<number>;
   animatedValue: SharedValue<number>;
   maxVisibleItems: number;
   onSwipe: (index: number) => void;
@@ -45,8 +45,8 @@ const SwipeableCard = ({
   const isManuallySwiped = useSharedValue(false);
 
   const recenterCard = useCallback(() => {
-    translateX.value = withTiming(0, { duration: 500 });
-    animatedValue.value = withTiming(index, { duration: 500 });
+    translateX.value = withTiming(0);
+    animatedValue.value = withTiming(index);
   }, [animatedValue, index, translateX]);
 
   const moveCard = useCallback(
@@ -69,7 +69,7 @@ const SwipeableCard = ({
       isManuallySwiped.value = true;
     })
     .onUpdate((e) => {
-      if (currentIndex !== index) {
+      if (currentIndex.value !== index) {
         return;
       }
       const isSwipeRight = e.translationX > 0;
@@ -82,12 +82,12 @@ const SwipeableCard = ({
       );
     })
     .onEnd((e) => {
-      if (currentIndex !== index) {
+      if (currentIndex.value !== index) {
         return;
       }
 
       if (Math.abs(e.translationX) > 150 || Math.abs(e.velocityX) > 1000) {
-        runOnJS(moveCard)(currentIndex + 1, direction.value, onSwipe);
+        runOnJS(moveCard)(currentIndex.value + 1, direction.value, onSwipe);
       } else {
         runOnJS(recenterCard)();
       }
@@ -95,7 +95,7 @@ const SwipeableCard = ({
     });
 
   const animatedStyle = useAnimatedStyle(() => {
-    const currentItem = currentIndex === index;
+    const currentItem = currentIndex.value === index;
 
     const rotateZ = interpolate(
       Math.abs(translateX.value),
@@ -123,7 +123,7 @@ const SwipeableCard = ({
 
     return {
       zIndex: dataLength - index,
-      opacity: index < currentIndex + maxVisibleItems ? 1 : opacity,
+      opacity: index < currentIndex.value + maxVisibleItems ? 1 : opacity,
       transform: [
         {
           scale: currentItem ? 1 : scale,
@@ -137,7 +137,7 @@ const SwipeableCard = ({
 
   useEffect(() => {
     if (!isManuallySwiped.value) {
-      const diff = nextIndex - currentIndex;
+      const diff = nextIndex - currentIndex.value;
 
       if (diff > 0 && index === nextIndex - 1) {
         moveCard(nextIndex, 1, onAutoSwipe);
@@ -147,11 +147,8 @@ const SwipeableCard = ({
       }
     }
   }, [
-    animatedValue,
-    animatedValue.value,
-    currentIndex,
+    currentIndex.value,
     index,
-    isHidden,
     isManuallySwiped.value,
     moveCard,
     nextIndex,
