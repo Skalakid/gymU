@@ -126,7 +126,7 @@ const SwipeableCard = ({
       opacity: index < currentIndex.value + maxVisibleItems ? 1 : opacity,
       transform: [
         {
-          scale: currentItem ? 1 : scale,
+          scale: Math.min(1, currentItem ? 1 : scale),
         },
         { translateY: currentItem ? 0 : translateY },
         { translateX: translateX.value },
