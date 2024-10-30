@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useSharedValue } from 'react-native-reanimated';
 import SwipeableCard from './SwipeableCard';
@@ -17,9 +17,14 @@ const CardSwitcher = ({
 }: CardSwitcherProps) => {
   const MAX = 2;
   const animatedValue = useSharedValue(0);
+  const [cardIndex, setCardIndex] = useState(currentIndex);
 
   const handleOnSwipe = (index: number) => {
     onSwipe(index);
+  };
+
+  const handleOnAutoSwipe = (index: number) => {
+    setCardIndex(index);
   };
 
   return (
@@ -32,12 +37,14 @@ const CardSwitcher = ({
             index={index}
             trainingItem={item}
             dataLength={data.length}
-            currentIndex={currentIndex}
+            currentIndex={cardIndex}
+            nextIndex={currentIndex}
+            onAutoSwipe={handleOnAutoSwipe}
             animatedValue={animatedValue}
             maxVisibleItems={MAX}
             onSwipe={handleOnSwipe}
             nextCardName={data[index + 1]?.name}
-            isHidden={index < currentIndex}
+            isHidden={index < currentIndex - 1}
           />
         );
       })}

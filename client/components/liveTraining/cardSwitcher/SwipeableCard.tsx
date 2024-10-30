@@ -22,6 +22,8 @@ type CardProps = {
   onSwipe: (index: number) => void;
   nextCardName: string;
   isHidden: boolean;
+  nextIndex: number;
+  onAutoSwipe: (index: number) => void;
 };
 
 const SwipeableCard = ({
@@ -34,6 +36,8 @@ const SwipeableCard = ({
   onSwipe,
   nextCardName,
   isHidden,
+  nextIndex,
+  onAutoSwipe,
 }: CardProps) => {
   const { width } = useWindowDimensions();
   const translateX = useSharedValue(0);
@@ -44,6 +48,21 @@ const SwipeableCard = ({
     translateX.value = withTiming(0, { duration: 500 });
     animatedValue.value = withTiming(index, { duration: 500 });
   }, [animatedValue, index, translateX]);
+
+  const moveCard = useCallback(
+    (
+      newIndex: number,
+      swipeDirection: number,
+      callback: (i: number) => void,
+    ) => {
+      direction.value = swipeDirection;
+      translateX.value = withTiming(swipeDirection * (width + 100), {}, () => {
+        runOnJS(callback)(newIndex);
+      });
+      animatedValue.value = withTiming(newIndex);
+    },
+    [animatedValue, direction, translateX, width],
+  );
 
   const pan = Gesture.Pan()
     .onStart(() => {
@@ -68,14 +87,7 @@ const SwipeableCard = ({
       }
 
       if (Math.abs(e.translationX) > 150 || Math.abs(e.velocityX) > 1000) {
-        translateX.value = withTiming(
-          direction.value * (width + 100),
-          {},
-          () => {
-            runOnJS(onSwipe)(currentIndex + 1);
-          },
-        );
-        animatedValue.value = withTiming(currentIndex + 1);
+        runOnJS(moveCard)(currentIndex + 1, direction.value, onSwipe);
       } else {
         runOnJS(recenterCard)();
       }
@@ -124,10 +136,28 @@ const SwipeableCard = ({
   });
 
   useEffect(() => {
-    if (currentIndex === index && !isManuallySwiped.value) {
-      recenterCard();
+    if (!isManuallySwiped.value) {
+      const diff = nextIndex - currentIndex;
+
+      if (diff > 0 && index === nextIndex - 1) {
+        moveCard(nextIndex, 1, onAutoSwipe);
+      } else if (diff < 0 && index === nextIndex) {
+        recenterCard();
+        onAutoSwipe(nextIndex);
+      }
     }
-  }, [currentIndex, index, isHidden, isManuallySwiped.value, recenterCard]);
+  }, [
+    animatedValue,
+    animatedValue.value,
+    currentIndex,
+    index,
+    isHidden,
+    isManuallySwiped.value,
+    moveCard,
+    nextIndex,
+    onAutoSwipe,
+    recenterCard,
+  ]);
 
   if (isHidden) {
     return null;
