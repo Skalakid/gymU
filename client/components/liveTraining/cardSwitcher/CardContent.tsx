@@ -5,27 +5,37 @@ import Icon from '@/components/common/Icon';
 import Icons from '@/constants/Icons';
 import useTheme from '@/hooks/useTheme';
 import NoImage from '@/components/common/NoImage';
+import { useExerciseContext } from '@/contexts/ExerciseContext';
 
 type CardContentProps = {
   trainingItem: TrainingItem;
+  index: number;
+  dataLength: number;
+  nextCardName: string;
 };
 
-const CardContent = ({ trainingItem }: CardContentProps) => {
+const CardContent = ({
+  trainingItem,
+  index = 0,
+  dataLength = 0,
+  nextCardName,
+}: CardContentProps) => {
+  const { getExerciseTypeIcon } = useExerciseContext();
   const theme = useTheme();
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.row}>
-          <Icon icon={Icons.dumbell} size={20} />
+          <Icon icon={getExerciseTypeIcon(trainingItem.type)} size={20} />
           <ThemedText size="m" weight="medium">
-            Exercise: 0/10
+            Exercise: {index}/{dataLength}
           </ThemedText>
         </View>
 
         <View style={styles.row}>
           <ThemedText size="m" weight="medium">
-            Sets: 0
+            Set: {trainingItem.value.sets}
           </ThemedText>
           <Icon icon={Icons.repeat} size={20} />
         </View>
@@ -35,7 +45,7 @@ const CardContent = ({ trainingItem }: CardContentProps) => {
 
         <View style={styles.exerciseInfo}>
           <ThemedText size="l" weight="semiBold">
-            Exercise Name
+            {trainingItem.name}
           </ThemedText>
           <ThemedText size="m" weight="medium">
             Your goal
@@ -46,15 +56,17 @@ const CardContent = ({ trainingItem }: CardContentProps) => {
         </View>
       </View>
 
-      <View style={styles.footer}>
-        <Icon icon={Icons.image} size={44} />
-        <View style={styles.nextExercisePreview}>
-          <ThemedText size="m">Coming up next...</ThemedText>
-          <ThemedText size="s" color={theme.description}>
-            New exercise name
-          </ThemedText>
+      {nextCardName && (
+        <View style={styles.footer}>
+          <Icon icon={Icons.image} size={44} />
+          <View style={styles.nextExercisePreview}>
+            <ThemedText size="m">Coming up next...</ThemedText>
+            <ThemedText size="s" color={theme.description}>
+              {nextCardName}
+            </ThemedText>
+          </View>
         </View>
-      </View>
+      )}
     </View>
   );
 };

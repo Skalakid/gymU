@@ -31,6 +31,7 @@ const CardSwitcher = ({ data }: CardSwitcherProps) => {
             animatedValue={animatedValue}
             maxVisibleItems={MAX}
             onSwipe={handleOnSwipe}
+            nextCardName={data[index + 1]?.name}
           />
         );
       })}
@@ -45,8 +46,5 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 10,
     gap: 10,
-    paddingVertical: 0,
-    paddingTop: 15,
-    paddingBottom: 10,
   },
 });

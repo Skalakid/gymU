@@ -20,6 +20,7 @@ type CardProps = {
   animatedValue: SharedValue<number>;
   maxVisibleItems: number;
   onSwipe: (index: number) => void;
+  nextCardName: string;
 };
 
 const SwipeableCard = ({
@@ -30,6 +31,7 @@ const SwipeableCard = ({
   animatedValue,
   maxVisibleItems,
   onSwipe,
+  nextCardName,
 }: CardProps) => {
   const { width } = useWindowDimensions();
   const translateX = useSharedValue(0);
@@ -112,7 +114,12 @@ const SwipeableCard = ({
   return (
     <GestureDetector gesture={pan}>
       <Tile animated style={[styles.container, animatedStyle]}>
-        <CardContent trainingItem={trainingItem} />
+        <CardContent
+          trainingItem={trainingItem}
+          index={index}
+          dataLength={dataLength}
+          nextCardName={nextCardName}
+        />
       </Tile>
     </GestureDetector>
   );
@@ -127,5 +134,6 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingBottom: 10,
     position: 'absolute',
+    height: '100%',
   },
 });

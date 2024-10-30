@@ -8,4 +8,5 @@ type TrainingItem = {
     time: number;
     isBreak: boolean;
   };
+  type: string;
 };
