@@ -12,40 +12,41 @@ import {
 } from 'react-native';
 import fetchApi from '@/api/fetch';
 import { Colors } from '@/constants/Colors';
-import Icon from '../common/Icon';
 import Icons from '@/constants/Icons';
-import SelectDropdownInput from '../input/SelectDropdown';
 import { capitalize } from '@/utils/text.utils';
 import PrimaryButton from '../button/PrimaryButton';
-import { router } from 'expo-router';
+import SelectDropdownInput from '@/components/input/dropdown/SelectDropdownInput';
+import SelectDropdownItem from '@/components/input/dropdown/SelectDropdownItem';
+import { useCreateWorkoutContext } from '@/contexts/CreateWorkoutContext';
+import { useWorkoutContext } from '@/contexts/WorkoutContext';
 
-type DificultiesData = {
+export type DificultiesData = {
   label: string;
   level: number;
 };
-
-const difficulties = ['beginner', 'easy', 'medium', 'hard', 'hardcore'];
-const pickerData: DificultiesData[] = [];
-
-for (let i = 0; i < difficulties.length; ++i) {
-  pickerData.push({ label: difficulties[i], level: i });
-}
 
 // TODO: Code duplicate
 type WorkoutTagsRespone = {
   workout_tags: WorkoutType[];
 };
 
-const WorkoutForm = () => {
+type WorkoutFormProps = {
+  onSubmit: () => void;
+};
+
+const WorkoutForm = ({ onSubmit }: WorkoutFormProps) => {
+  const { difficulties } = useWorkoutContext();
+  const { updateWorkoutGeneralInfo } = useCreateWorkoutContext();
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme ?? 'light'];
-  const primaryColor = theme.text;
 
   const [allTags, setAllTags] = useState<WorkoutType[]>([]);
   const [chosenTags, setChosenTags] = useState<WorkoutType[]>([]);
 
   const [workoutName, setWorkoutName] = useState('');
   const [description, setDescription] = useState('');
+
+  const [pickerData, setPickerData] = useState<DificultiesData[]>([]);
   const [difficulty, setDifficulty] = useState<DificultiesData | null>(null);
 
   // TODO: Code duplicate
@@ -71,33 +72,36 @@ const WorkoutForm = () => {
         return;
       }
 
-      const reponse = await fetchApi(
-        '/workout/create',
-        'POST',
-        null,
-        {
-          name: workoutName,
-          description: description,
-          is_private: true,
-          workout_level_id: difficulty.level,
-          tag_ids: chosenTags.map((value) => value.tag_id),
-          exercises: [],
-        },
-        true,
-      );
-      if (reponse.ok) {
-        router.navigate('/explore');
-      } else {
-        Alert.alert('Something went wrong...');
-      }
+      updateWorkoutGeneralInfo({
+        name: workoutName,
+        description: description,
+        dificulty: difficulty,
+        isPrivate: true,
+        tags: chosenTags,
+      });
+      onSubmit();
     } catch (error) {
       Alert.alert('Something went wrong...');
     }
   };
 
+  const renderItem = (value: string) => {
+    return (
+      <>
+        <SelectDropdownItem value={capitalize(value)} />
+      </>
+    );
+  };
+
   useEffect(() => {
     getAllWorkoutTags();
-  }, []);
+    setPickerData(
+      difficulties.map((difficulty) => ({
+        label: capitalize(difficulty.name),
+        level: difficulty.level_id,
+      })),
+    );
+  }, [difficulties]);
 
   return (
     <ThemedView style={[styles.container]}>
@@ -121,54 +125,30 @@ const WorkoutForm = () => {
           />
         </View>
 
-        <View style={styles.selectWrapper}>
-          <Icon icon={Icons.flame} size={26} color={theme.subTile} />
+        <SelectDropdownInput
+          data={pickerData}
+          onSelect={(value) => setDifficulty(value)}
+          renderItem={(item) => renderItem(item.label)}
+          placeholder="Select difficulty level..."
+          selectedValue={capitalize(difficulty?.label)}
+          icon={Icons.flame}
+          iconColor={theme.subTile}
+        />
 
-          <SelectDropdownInput
-            data={pickerData}
-            onSelect={(value) => setDifficulty(value)}
-            renderItem={(item) => {
-              return (
-                <ThemedView
-                  style={[styles.selectItem, { backgroundColor: theme.tile }]}
-                >
-                  <ThemedText style={{ color: primaryColor }}>
-                    {item.label}
-                  </ThemedText>
-                </ThemedView>
-              );
-            }}
-            placeholder="Select difficulty level..."
-            selectedValue={capitalize(difficulty?.label)}
-          />
-        </View>
+        <SelectDropdownInput
+          data={allTags}
+          onSelect={(value) => {
+            if (chosenTags.includes(value)) {
+              return;
+            }
 
-        {/* TODO: Extract to separate component */}
-        <View style={styles.selectWrapper}>
-          <Icon icon={Icons.hashtag} size={26} color={theme.subTile} />
-          <SelectDropdownInput
-            data={allTags}
-            onSelect={(value) => {
-              if (chosenTags.includes(value)) {
-                return;
-              }
-
-              setChosenTags((prev) => [...prev, value]);
-            }}
-            renderItem={(item) => {
-              return (
-                <ThemedView
-                  style={[styles.selectItem, { backgroundColor: theme.tile }]}
-                >
-                  <ThemedText style={{ color: primaryColor }}>
-                    {item.name}
-                  </ThemedText>
-                </ThemedView>
-              );
-            }}
-            placeholder="Add tags..."
-          />
-        </View>
+            setChosenTags((prev) => [...prev, value]);
+          }}
+          renderItem={(item) => renderItem(item.name)}
+          placeholder="Add tags..."
+          icon={Icons.hashtag}
+          iconColor={theme.subTile}
+        />
 
         <FlatList
           style={styles.list}
@@ -191,7 +171,7 @@ const WorkoutForm = () => {
         />
       </View>
 
-      <PrimaryButton onPress={handleAddWorkout} value="Add workout" />
+      <PrimaryButton onPress={handleAddWorkout} value="Add exercises" />
     </ThemedView>
   );
 };
@@ -205,13 +185,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   content: {
-    gap: 10,
-  },
-  selectWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
     gap: 10,
   },
   selectItem: {

@@ -56,6 +56,7 @@ const TagSelector = ({ tags, onSelectionChange, style }: TagProps) => {
         data={selectableTags}
         renderItem={({ item, index }) => (
           <SelectableTag
+            key={`tag${item.name}${index}`}
             orderIndex={index}
             value={item.name}
             size="l"

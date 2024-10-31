@@ -5,9 +5,19 @@ async function getAllExercises() {
     select: {
       exercise_id: true,
       name: true,
+      description: true,
       exercise_type: {
         select: {
           name: true,
+        },
+      },
+      exercises_body_parts: {
+        select: {
+          body_part: {
+            select: {
+              name: true,
+            },
+          },
         },
       },
     },
@@ -50,7 +60,7 @@ async function getAllExersiceTypes() {
     select: {
       name: true,
       has_reps: true,
-      has_series: true,
+      has_sets: true,
       has_weights: true,
       has_time: true,
       is_break: true,

@@ -28,7 +28,7 @@ type WorkoutTag = {
 
 type ExerciseWorkoutItem = {
   exercise_id: number;
-  value: number;
+  value: JsonNull | InputJsonValue;
   order_index: number;
 };
 

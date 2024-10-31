@@ -6,7 +6,7 @@ import Tag from '@/components/common/tag/Tag';
 import Icons from '@/constants/Icons';
 import useTheme from '@/hooks/useTheme';
 import { capitalize } from '@/utils/text.utils';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
 
 type WorkoutGeneralInfoProps = {
   workoutDetails: Workout;
@@ -41,11 +41,16 @@ const WorkoutGeneralInfo = ({ workoutDetails }: WorkoutGeneralInfoProps) => {
 
           <View style={styles.row}>
             <Icon icon={Icons.hashtag} size={20} color={theme.text} />
-            <View style={styles.tagList}>
-              {(workoutDetails?.workout_tags || []).map((tag, index) => (
-                <Tag key={`tag${index}`} value={capitalize(tag)} size="l" />
-              ))}
-            </View>
+            <FlatList
+              data={workoutDetails?.workout_tags}
+              renderItem={({ item, index }) => (
+                <Tag key={`tag${index}`} value={capitalize(item)} size="l" />
+              )}
+              horizontal
+              ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
+              showsHorizontalScrollIndicator={false}
+              style={styles.tagList}
+            />
           </View>
         </Tile>
       </View>

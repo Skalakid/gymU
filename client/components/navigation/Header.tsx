@@ -14,7 +14,7 @@ export type HeaderProps = {
   rightIconOnPress?: () => void;
   rightIconColor?: string;
   rightIconSize?: number;
-  style?: ViewStyle;
+  style?: ViewStyle | ViewStyle[];
 };
 
 const Header = ({

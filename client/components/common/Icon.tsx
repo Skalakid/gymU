@@ -29,7 +29,7 @@ const Icon = ({
   return (
     <Image
       source={icon as ImageSourcePropType}
-      style={[{ width: size, aspectRatio: 1 }, style]}
+      style={[size ? { width: size, aspectRatio: 1 } : {}, style]}
       contentFit={contentFit}
       tintColor={color}
     />
