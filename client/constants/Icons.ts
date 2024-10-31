@@ -1,5 +1,6 @@
 import arrowBottom from '../assets/icons/arrow-bottom.svg';
 import arrowLeft from '../assets/icons/arrow-left.svg';
+import arrowRight from '../assets/icons/arrow-right.svg';
 import arrowTop from '../assets/icons/top.svg';
 import battery from '../assets/icons/battery.svg';
 import bell from '../assets/icons/bell.svg';
@@ -31,6 +32,7 @@ import weight from '../assets/icons/weight.svg';
 export default {
   arrowBottom,
   arrowLeft,
+  arrowRight,
   arrowTop,
   battery,
   bell,
