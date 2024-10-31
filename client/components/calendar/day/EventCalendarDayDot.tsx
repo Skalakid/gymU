@@ -5,6 +5,7 @@ type EventCalendarDayDotProps = {
   event: CalendarEvent;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const EventCalendarDayDot = (props: EventCalendarDayDotProps) => {
   return <View style={styles.container} />;
 };
