@@ -16,7 +16,7 @@ import SecondaryButton from '@/components/button/SecondaryButton';
 import { Mesaurements } from '@/types/measurement';
 
 type MeasurementStepProps = {
-  img: any;
+  img: string | null;
   title: Mesaurements;
   updater: (measurement: Mesaurements, mesaurmentValue: number) => void;
   goBackAction?: () => void;

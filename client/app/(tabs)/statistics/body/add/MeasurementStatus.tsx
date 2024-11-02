@@ -47,7 +47,7 @@ const MeasurementStatus = ({
 
   const handleAddMeasurement = async () => {
     try {
-      let data = { user_id: auth.user?.user_id, ...measurements };
+      const data = { user_id: auth.user?.user_id, ...measurements };
 
       const response = await fetchApi(
         '/measurement/create',

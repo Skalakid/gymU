@@ -2,12 +2,10 @@ import Header from '@/components/navigation/Header';
 import ThemedView from '@/components/ThemedView';
 import Icons from '@/constants/Icons';
 import { useRouter } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { Alert, StyleSheet, Text } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet } from 'react-native';
 import MeasurementStep from './MeasurementStep';
-import fetchApi from '@/api/fetch';
 import { Mesaurements } from '@/types/measurement';
-import { useSharedValue } from 'react-native-reanimated';
 import MeasurementStatus from './MeasurementStatus';
 
 const EMPTY_MEASUREMENT: Record<Mesaurements, number> = {
