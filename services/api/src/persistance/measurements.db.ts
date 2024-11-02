@@ -26,4 +26,24 @@ async function createMesaurement(
   return newMeasurement;
 }
 
-export { createMesaurement };
+async function getMeasurements(user_id: number) {
+  const measurements = await prisma.measurement.findMany({
+    select: {
+      user_id: true,
+      weight: true,
+      biceps: true,
+      chest: true,
+      waist: true,
+      hips: true,
+      thigh: true,
+      calf: true,
+    },
+    where: {
+      user_id: user_id,
+    },
+  });
+
+  return measurements;
+}
+
+export { createMesaurement, getMeasurements };

@@ -37,7 +37,7 @@ function createMeasurement(
     );
 
     if (!newMeasurement) {
-      throw new ApiError(500, 'Failed to create workout');
+      throw new ApiError(500, 'Failed to create measurement');
     }
 
     res.status(201).send(newMeasurement);
@@ -46,4 +46,28 @@ function createMeasurement(
   }
 }
 
-export { createMeasurement };
+async function getMeasurements(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const user_id = Number(req.params.id) || -1;
+
+    if (!user_id || user_id <= 0) {
+      throw new ApiError(400, 'Invalid user id');
+    }
+
+    const measurements = await MeasurementService.getMeasurements(user_id);
+
+    if (!measurements) {
+      throw new ApiError(500, 'Failed to get measurements');
+    }
+
+    res.status(201).send(measurements);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export { createMeasurement, getMeasurements };

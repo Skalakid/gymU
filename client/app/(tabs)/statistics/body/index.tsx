@@ -2,10 +2,11 @@ import Header from '@/components/navigation/Header';
 import ThemedView from '@/components/ThemedView';
 import Icons from '@/constants/Icons';
 import { useRouter } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const BodyMeasurements = () => {
   const router = useRouter();
+
   return (
     <ThemedView style={styles.container}>
       <Header

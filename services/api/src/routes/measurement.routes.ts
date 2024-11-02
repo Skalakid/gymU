@@ -9,5 +9,6 @@ router.post(
   authenticateToken,
   measurementController.createMeasurement,
 );
+router.get('/:id', authenticateToken, measurementController.getMeasurements);
 
 export = router;

@@ -22,4 +22,8 @@ async function createMeasurement(
   );
 }
 
-export { createMeasurement };
+async function getMeasurements(user_id: number) {
+  return await MesaurementDB.getMeasurements(user_id);
+}
+
+export { createMeasurement, getMeasurements };
