@@ -1,9 +1,7 @@
-import { Alert, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 import React, { useCallback, useEffect } from 'react';
 import ThemedText from '@/components/ThemedText';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
-import ModalBar from '@/components/common/ModalBar';
-import useTheme from '@/hooks/useTheme';
 import ExercisePlayer from '@/components/liveTraining/exercisePlayer/ExercisePlayer';
 import { useLiveTrainingContext } from '@/contexts/LiveTrainingContext';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -11,7 +9,6 @@ import CardSwitcher from '@/components/liveTraining/cardSwitcher/CardSwitcher';
 import { interpolate } from 'react-native-reanimated';
 
 const LiveTrainingPage = () => {
-  const theme = useTheme();
   const router = useRouter();
   const { workoutID } = useLocalSearchParams();
   const {
@@ -37,7 +34,11 @@ const LiveTrainingPage = () => {
 
   const handleNextItem = useCallback(() => {
     nextItem();
-  }, [nextItem]);
+
+    if (currentExerciseIndex + 1 >= trainingItems.length) {
+      router.navigate('/live_training/summary');
+    }
+  }, [currentExerciseIndex, nextItem, router, trainingItems.length]);
 
   const handlePreviousItem = useCallback(() => {
     peviousItem();
@@ -45,51 +46,46 @@ const LiveTrainingPage = () => {
 
   useEffect(() => {
     handleStartLiveTraining();
-  }, [handleStartLiveTraining, workoutID]);
+    router.navigate('/live_training/summary');
+  }, [handleStartLiveTraining, router, workoutID]);
 
   return (
-    <SafeAreaView
-      style={[styles.container, { backgroundColor: theme.background }]}
+    <PageWithGoBackHeader
+      title="Live Training"
+      headerStyle={{ paddingBottom: 5 }}
     >
-      <ModalBar />
-      <PageWithGoBackHeader
-        title="Live Training"
-        headerStyle={{ paddingBottom: 5 }}
-      >
-        <View style={styles.content}>
-          <View style={styles.title}>
-            <ThemedText size="l" weight="medium">
-              Workout name
-            </ThemedText>
-          </View>
-          <View style={styles.player}>
-            <CardSwitcher
-              data={trainingItems}
-              desiredCardIndex={currentExerciseIndex}
-              onSwipe={handleNextItem}
-            />
-            <ExercisePlayer
-              onNext={handleNextItem}
-              onPrevious={handlePreviousItem}
-              progress={interpolate(
-                currentExerciseIndex,
-                [0, trainingItems.length],
-                [0, 100],
-                'clamp',
-              )}
-              ticks={trainingItems.length}
-            />
-          </View>
+      <View style={styles.content}>
+        <View style={styles.title}>
+          <ThemedText size="l" weight="medium">
+            Workout name
+          </ThemedText>
         </View>
-      </PageWithGoBackHeader>
-    </SafeAreaView>
+        <View style={styles.player}>
+          <CardSwitcher
+            data={trainingItems}
+            desiredCardIndex={currentExerciseIndex}
+            onSwipe={handleNextItem}
+          />
+          <ExercisePlayer
+            onNext={handleNextItem}
+            onPrevious={handlePreviousItem}
+            progress={interpolate(
+              currentExerciseIndex,
+              [0, trainingItems.length],
+              [0, 100],
+              'clamp',
+            )}
+            ticks={trainingItems.length}
+          />
+        </View>
+      </View>
+    </PageWithGoBackHeader>
   );
 };
 
 export default LiveTrainingPage;
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
   content: {
     gap: 10,
     flex: 1,
