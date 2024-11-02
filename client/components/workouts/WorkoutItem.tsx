@@ -42,9 +42,12 @@ const WorkoutItem = ({
           <View style={styles.row}>
             <Icon icon={Icons.hashtag} size={16} color={theme.subTile} />
             <View style={styles.tagList}>
-              {tags.map((tag, index) => (
+              {tags.slice(0, 3).map((tag, index) => (
                 <Tag key={`${name}${index}`} value={capitalize(tag)} />
               ))}
+              <ThemedText size="m" color={theme.subTile}>
+                {tags.length > 3 ? `+${tags.length - 3}` : ''}
+              </ThemedText>
             </View>
           </View>
         </View>
@@ -79,5 +82,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5,
+    maxWidth: '90%',
+    overflow: 'hidden',
   },
 });
