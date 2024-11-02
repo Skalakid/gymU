@@ -4,6 +4,7 @@ type Measurement = {
   weight: number;
   biceps: number;
   chest: number;
+  waist: number;
   hips: number;
   thigh: number;
   calf: number;

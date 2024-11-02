@@ -9,13 +9,15 @@ function createMeasurement(
   next: NextFunction,
 ) {
   try {
-    const { user_id, weight, biceps, chest, hips, thigh, calf } = req.body;
+    const { user_id, weight, biceps, chest, waist, hips, thigh, calf } =
+      req.body;
 
     if (
       user_id === undefined ||
       weight === undefined ||
       biceps === undefined ||
       chest === undefined ||
+      waist === undefined ||
       hips === undefined ||
       thigh === undefined ||
       calf === undefined
@@ -28,6 +30,7 @@ function createMeasurement(
       weight,
       biceps,
       chest,
+      waist,
       hips,
       thigh,
       calf,
@@ -36,6 +39,8 @@ function createMeasurement(
     if (!newMeasurement) {
       throw new ApiError(500, 'Failed to create workout');
     }
+
+    console.log(newMeasurement);
 
     res.status(201).send(newMeasurement);
   } catch (error) {

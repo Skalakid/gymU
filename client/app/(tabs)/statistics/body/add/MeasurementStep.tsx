@@ -8,21 +8,26 @@ import { useState } from 'react';
 import { Alert, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import SecondaryButton from '@/components/button/SecondaryButton';
+import { Mesaurements } from '@/types/measurement';
 
 type MeasurementStepProps = {
   img: any;
-  title: string | null;
-  updater: (measurementResult: {}, shouldRepeatStep?: boolean) => void;
+  title: Mesaurements;
+  updater: (measurement: Mesaurements, mesaurmentValue: number) => void;
+  goBackAction?: () => void;
 };
 
-const MeasurementStep = ({ img, title, updater }: MeasurementStepProps) => {
-  const [customMeasurementName, setCustomMeasurementName] = useState('');
+const MeasurementStep = ({
+  img,
+  title,
+  updater,
+  goBackAction,
+}: MeasurementStepProps) => {
   const [measurementValue, setMeasurementValue] = useState('');
   const backgroundColor = useThemeColor({}, 'tile');
 
   const validateForm = () => !isNaN(parseFloat(measurementValue));
-
-  const isCustomMeasurement = title === null;
 
   return (
     <Animated.View
@@ -31,7 +36,7 @@ const MeasurementStep = ({ img, title, updater }: MeasurementStepProps) => {
       exiting={FadeOut}
     >
       <Header
-        title={title ?? 'Custom'}
+        title={title}
         style={{
           backgroundColor,
           borderTopLeftRadius: 20,
@@ -39,11 +44,9 @@ const MeasurementStep = ({ img, title, updater }: MeasurementStepProps) => {
         }}
       />
 
-      {title && (
-        <ThemedText size="xl" weight="semiBold">
-          How to measure?
-        </ThemedText>
-      )}
+      <ThemedText size="xl" weight="semiBold">
+        How to measure?
+      </ThemedText>
 
       <Image
         source={img ?? Images.custom_measurement}
@@ -51,12 +54,6 @@ const MeasurementStep = ({ img, title, updater }: MeasurementStepProps) => {
         style={{ width: '100%', height: 200, borderRadius: 15 }}
       />
 
-      {!title && (
-        <>
-          <ThemedText>What do you measure?</ThemedText>
-          <TextInput onChangeText={setCustomMeasurementName} />
-        </>
-      )}
       <ThemedText>Your measurement</ThemedText>
       <TextInput
         onChangeText={setMeasurementValue}
@@ -66,27 +63,18 @@ const MeasurementStep = ({ img, title, updater }: MeasurementStepProps) => {
       <PrimaryButton
         value={'Next'}
         onPress={() => {
-          if (
-            (isCustomMeasurement && customMeasurementName === '') ||
-            measurementValue === ''
-          ) {
-            Alert.alert('Fill in required data');
-            return;
-          }
-
           if (!validateForm()) {
             Alert.alert('Please provide numeric value');
             return;
           }
 
-          const measurement = {};
-          // @ts-ignore works for now
-          measurement[isCustomMeasurement ? customMeasurementName : title] =
-            parseFloat(measurementValue);
-
-          updater(measurement, isCustomMeasurement);
+          updater(title, parseFloat(measurementValue));
         }}
       />
+
+      {goBackAction !== undefined && (
+        <SecondaryButton value={'Go back'} onPress={goBackAction} />
+      )}
     </Animated.View>
   );
 };

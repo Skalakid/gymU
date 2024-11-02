@@ -142,6 +142,7 @@ model measurement {
   weight         Float
   biceps         Float
   chest          Float
+  waist          Float
   hips           Float
   thigh          Float
   calf           Float

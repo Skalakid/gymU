@@ -2,59 +2,76 @@ import Header from '@/components/navigation/Header';
 import ThemedView from '@/components/ThemedView';
 import Icons from '@/constants/Icons';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
-import CustomMeasurementsPrompt from './CustomMeasurementPrompt';
-import { Alert, StyleSheet } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Alert, StyleSheet, Text } from 'react-native';
 import MeasurementStep from './MeasurementStep';
 import fetchApi from '@/api/fetch';
+import { Mesaurements } from '@/types/measurement';
+import { useSharedValue } from 'react-native-reanimated';
+import MeasurementStatus from './MeasurementStatus';
+
+const EMPTY_MEASUREMENT: Record<Mesaurements, number> = {
+  weight: 0,
+  biceps: 0,
+  chest: 0,
+  waist: 0,
+  hips: 0,
+  thigh: 0,
+  calf: 0,
+};
 
 const AddMeasurement = () => {
   const router = useRouter();
 
   const [currentStep, setCurrentStep] = useState(1);
-  const [measurements, setMeasurements] = useState<Record<string, number>[]>(
-    [],
-  );
+  const [measurements, setMeasurements] =
+    useState<Record<Mesaurements, number>>(EMPTY_MEASUREMENT);
 
   const handleAddMeasurement = async () => {
-    try {
-      let data = { user_id: -1 };
+    console.log(measurements);
+    // try {
+    //   let data = { user_id: -1 };
 
-      for (const measurement of measurements) {
-        data = { ...data, ...measurement };
-      }
+    //   for (const measurement of measurements) {
+    //     data = { ...data, ...measurement };
+    //   }
 
-      const response = await fetchApi(
-        '/measurement/create',
-        'POST',
-        null,
-        data,
-        true,
-      );
+    //   const response = await fetchApi(
+    //     '/measurement/create',
+    //     'POST',
+    //     null,
+    //     data,
+    //     true,
+    //   );
 
-      console.log(response);
+    //   console.log(response);
 
-      if (response.ok) {
-        router.navigate('/statistics/body');
-      } else {
-        Alert.alert('Something went wrong...');
-      }
-    } catch {
-      Alert.alert('Something went wrong...');
-    }
+    //   if (response.ok) {
+    //     router.navigate('/statistics/body');
+    //   } else {
+    //     Alert.alert('Something went wrong...');
+    //   }
+    // } catch {
+    //   Alert.alert('Something went wrong...');
+    // }
+  };
+
+  const handleStartAgain = () => {
+    setMeasurements(EMPTY_MEASUREMENT);
+    setCurrentStep(1);
   };
 
   const updateMeasurement = (
-    measurement: Record<string, number>,
-    shouldRepeatStep = false,
+    measurement: Mesaurements,
+    measurementValue: number,
   ) => {
-    const newMeasurements = [...measurements];
-    newMeasurements.push(measurement);
+    const newMeasurements = { ...measurements };
+    newMeasurements[measurement] = measurementValue;
     setMeasurements(newMeasurements);
-
-    const nextStep = shouldRepeatStep ? -1 : 1;
-    setCurrentStep((prev) => prev + nextStep);
+    setCurrentStep((prev) => prev + 1);
   };
+
+  const goBackAction = () => setCurrentStep((prev) => prev - 1);
 
   return (
     <ThemedView style={styles.container}>
@@ -69,66 +86,75 @@ const AddMeasurement = () => {
         <MeasurementStep
           img={null}
           title={'weight'}
-          updater={(result) => updateMeasurement(result)}
+          updater={(mesaurment, mesaurmentValue) =>
+            updateMeasurement(mesaurment, mesaurmentValue)
+          }
         />
       )}
       {currentStep === 2 && (
         <MeasurementStep
           img={null}
           title={'biceps'}
-          updater={(result) => updateMeasurement(result)}
+          updater={(mesaurment, mesaurmentValue) =>
+            updateMeasurement(mesaurment, mesaurmentValue)
+          }
+          goBackAction={goBackAction}
         />
       )}
       {currentStep === 3 && (
         <MeasurementStep
           img={null}
           title={'chest'}
-          updater={(result) => updateMeasurement(result)}
+          updater={(mesaurment, mesaurmentValue) =>
+            updateMeasurement(mesaurment, mesaurmentValue)
+          }
+          goBackAction={goBackAction}
         />
       )}
       {currentStep === 4 && (
         <MeasurementStep
           img={null}
           title={'waist'}
-          updater={(result) => updateMeasurement(result)}
+          updater={(mesaurment, mesaurmentValue) =>
+            updateMeasurement(mesaurment, mesaurmentValue)
+          }
+          goBackAction={goBackAction}
         />
       )}
       {currentStep === 5 && (
         <MeasurementStep
           img={null}
           title={'hips'}
-          updater={(result) => updateMeasurement(result)}
+          updater={(mesaurment, mesaurmentValue) =>
+            updateMeasurement(mesaurment, mesaurmentValue)
+          }
+          goBackAction={goBackAction}
         />
       )}
       {currentStep === 6 && (
         <MeasurementStep
           img={null}
           title={'thigh'}
-          updater={(result) => updateMeasurement(result)}
+          updater={(mesaurment, mesaurmentValue) =>
+            updateMeasurement(mesaurment, mesaurmentValue)
+          }
+          goBackAction={goBackAction}
         />
       )}
       {currentStep === 7 && (
         <MeasurementStep
           img={null}
           title={'calf'}
-          updater={(result) => updateMeasurement(result)}
+          updater={(mesaurment, mesaurmentValue) =>
+            updateMeasurement(mesaurment, mesaurmentValue)
+          }
+          goBackAction={goBackAction}
         />
       )}
       {currentStep === 8 && (
-        <CustomMeasurementsPrompt
-          stepUpdater={() => {
-            setCurrentStep((prev) => prev + 1);
-          }}
-          addMeasurement={handleAddMeasurement}
-        />
-      )}
-      {currentStep === 9 && (
-        <MeasurementStep
-          img={null}
-          title={null}
-          updater={(result, shouldRepeatStep) =>
-            updateMeasurement(result, shouldRepeatStep)
-          }
+        <MeasurementStatus
+          measurements={measurements}
+          startAgainAction={handleStartAgain}
         />
       )}
     </ThemedView>
