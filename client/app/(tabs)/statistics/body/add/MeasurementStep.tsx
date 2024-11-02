@@ -14,6 +14,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import SecondaryButton from '@/components/button/SecondaryButton';
 import { Mesaurements } from '@/types/measurement';
+import NumericValueInput from '@/components/input/NumericValueInput';
 
 type MeasurementStepProps = {
   img: string | null;
@@ -28,10 +29,8 @@ const MeasurementStep = ({
   updater,
   goBackAction,
 }: MeasurementStepProps) => {
-  const [measurementValue, setMeasurementValue] = useState('');
+  const [measurementValue, setMeasurementValue] = useState(0);
   const backgroundColor = useThemeColor({}, 'tile');
-
-  const validateForm = () => !isNaN(parseFloat(measurementValue));
 
   const isFirstStep = goBackAction === undefined;
 
@@ -60,21 +59,16 @@ const MeasurementStep = ({
         style={{ width: '100%', height: 200, borderRadius: 15 }}
       />
 
-      <TextInput
+      <NumericValueInput
         label="Your measurement"
-        onChangeText={setMeasurementValue}
-        placeholder="Measured value..."
+        onValueChange={setMeasurementValue}
+        value={measurementValue}
       />
 
       <PrimaryButton
         value={'Next'}
         onPress={() => {
-          if (!validateForm()) {
-            Alert.alert('Please provide numeric value');
-            return;
-          }
-
-          updater(title, parseFloat(measurementValue));
+          updater(title, measurementValue);
         }}
       />
 
