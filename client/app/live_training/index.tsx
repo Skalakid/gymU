@@ -37,15 +37,35 @@ const LiveTrainingPage = () => {
   const handleModalClose = useCallback(() => {
     setIsModalVisible(false);
 
-    if (currentExerciseIndex + 1 >= trainingItems.length) {
+    if (currentExerciseIndex >= trainingItems.length) {
       router.navigate('/live_training/summary');
     }
   }, [currentExerciseIndex, router, trainingItems.length]);
 
+  const showModal = useCallback(
+    (index: number) => {
+      const currentExerciseID = trainingItems[index]?.exerciseID;
+      const previousExerciseID = trainingItems[index - 1]?.exerciseID;
+
+      if (
+        index >= trainingItems.length ||
+        (currentExerciseID &&
+          currentExerciseID >= 0 &&
+          previousExerciseID &&
+          previousExerciseID >= 0 &&
+          currentExerciseID !== previousExerciseID)
+      ) {
+        setIsModalVisible(true);
+      } else {
+        handleModalClose();
+      }
+    },
+    [handleModalClose, trainingItems],
+  );
+
   const handleNextItem = useCallback(() => {
-    nextItem();
-    setIsModalVisible(true);
-  }, [nextItem]);
+    showModal(nextItem());
+  }, [nextItem, showModal]);
 
   const handlePreviousItem = useCallback(() => {
     peviousItem();
@@ -75,7 +95,7 @@ const LiveTrainingPage = () => {
             data={trainingItems}
             desiredCardIndex={currentExerciseIndex}
             onSwipe={handleNextItem}
-            onAutoSwipe={() => setIsModalVisible(true)}
+            onAutoSwipe={showModal}
           />
           <ExercisePlayer
             onNext={nextItem}

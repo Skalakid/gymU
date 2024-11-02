@@ -9,8 +9,8 @@ type LiveTrainingContext = {
   currentWorkout: Workout | null;
   trainingItems: TrainingItem[];
   currentExerciseIndex: number;
-  nextItem: () => void;
-  peviousItem: () => void;
+  nextItem: () => number;
+  peviousItem: () => number;
 };
 
 const LiveTrainingContext = React.createContext<LiveTrainingContext>({
@@ -19,8 +19,8 @@ const LiveTrainingContext = React.createContext<LiveTrainingContext>({
   currentWorkout: null,
   trainingItems: [],
   currentExerciseIndex: 0,
-  nextItem: () => null,
-  peviousItem: () => null,
+  nextItem: () => 0,
+  peviousItem: () => 0,
 });
 
 function LiveTrainingContextProvider({
@@ -138,12 +138,19 @@ function LiveTrainingContextProvider({
   );
 
   const nextItem = useCallback(() => {
-    setCurrentExerciseIndex((prev) => Math.min(prev + 1, trainingItems.length));
-  }, [trainingItems.length]);
+    const nextIndex = Math.min(
+      currentExerciseIndex + 1,
+      trainingItems.length + 1,
+    );
+    setCurrentExerciseIndex(nextIndex);
+    return nextIndex;
+  }, [currentExerciseIndex, trainingItems.length]);
 
   const peviousItem = useCallback(() => {
-    setCurrentExerciseIndex((prev) => Math.max(prev - 1, 0));
-  }, []);
+    const prevIndex = Math.max(currentExerciseIndex - 1, 0);
+    setCurrentExerciseIndex(prevIndex);
+    return prevIndex;
+  }, [currentExerciseIndex]);
 
   const value = useMemo(
     () => ({
