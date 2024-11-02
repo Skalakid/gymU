@@ -77,6 +77,7 @@ export default CardContent;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: '100%',
     gap: 10,
   },
   header: {
@@ -90,12 +91,12 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   content: {
+    flex: 1,
     gap: 10,
   },
   imageContainer: {
+    flex: 1,
     borderRadius: 15,
-    width: '100%',
-    aspectRatio: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -103,7 +104,6 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   footer: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5,

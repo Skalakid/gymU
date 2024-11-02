@@ -184,11 +184,11 @@ export default SwipeableCard;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     paddingVertical: 0,
     paddingTop: 15,
-    paddingBottom: 20,
+    paddingBottom: 10,
     position: 'absolute',
     height: '100%',
+    width: '100%',
   },
 });
