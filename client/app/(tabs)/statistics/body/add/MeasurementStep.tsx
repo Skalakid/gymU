@@ -1,11 +1,10 @@
 import PrimaryButton from '@/components/button/PrimaryButton';
-import TextInput from '@/components/input/TextInput';
 import Header from '@/components/navigation/Header';
 import ThemedText from '@/components/ThemedText';
 import Images from '@/constants/Images';
 import useThemeColor from '@/hooks/useThemeColor';
 import { useState } from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import Animated, {
   FadeIn,
