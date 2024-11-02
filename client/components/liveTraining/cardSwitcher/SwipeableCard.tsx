@@ -138,9 +138,12 @@ const SwipeableCard = ({
   useEffect(() => {
     if (!isManuallySwiped.value) {
       const diff = nextIndex - currentIndex.value;
-
       if (diff > 0 && index === nextIndex - 1) {
-        moveCard(nextIndex, 1, onAutoSwipe);
+        moveCard(
+          nextIndex,
+          direction.value === 0 ? 1 : direction.value,
+          onAutoSwipe,
+        );
       } else if (diff < 0 && index === nextIndex) {
         recenterCard();
         onAutoSwipe(nextIndex);
@@ -148,6 +151,7 @@ const SwipeableCard = ({
     }
   }, [
     currentIndex.value,
+    direction.value,
     index,
     isManuallySwiped.value,
     moveCard,
