@@ -40,8 +40,6 @@ function createMeasurement(
       throw new ApiError(500, 'Failed to create workout');
     }
 
-    console.log(newMeasurement);
-
     res.status(201).send(newMeasurement);
   } catch (error) {
     next(error);

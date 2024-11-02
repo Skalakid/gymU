@@ -2,6 +2,7 @@ import fetchApi from '@/api/fetch';
 import PrimaryButton from '@/components/button/PrimaryButton';
 import SecondaryButton from '@/components/button/SecondaryButton';
 import ThemedText from '@/components/ThemedText';
+import { useAuthContext } from '@/contexts/AuthContext';
 import useThemeColor from '@/hooks/useThemeColor';
 import { Mesaurements } from '@/types/measurement';
 import { useRouter } from 'expo-router';
@@ -36,10 +37,11 @@ const MeasurementStatus = ({
 }: MeasurementStatusProps) => {
   const router = useRouter();
   const backgroundColor = useThemeColor({}, 'tile');
+  const auth = useAuthContext();
 
   const handleAddMeasurement = async () => {
     try {
-      let data = { user_id: -1, ...measurements };
+      let data = { user_id: auth.user?.user_id, ...measurements };
 
       const response = await fetchApi(
         '/measurement/create',
@@ -48,8 +50,6 @@ const MeasurementStatus = ({
         data,
         true,
       );
-
-      console.log(response);
 
       if (response.ok) {
         router.navigate('/statistics/body');
@@ -72,12 +72,15 @@ const MeasurementStatus = ({
       </ThemedText>
 
       <View style={styles.subTilesContainer}>
-        {Object.entries(measurements).map(([measurement, measurementValue]) => (
-          <MeasurementTile
-            measurement={measurement as Mesaurements}
-            measurementValue={measurementValue}
-          />
-        ))}
+        {Object.entries(measurements).map(
+          ([measurement, measurementValue], index) => (
+            <MeasurementTile
+              key={index}
+              measurement={measurement as Mesaurements}
+              measurementValue={measurementValue}
+            />
+          ),
+        )}
       </View>
 
       <PrimaryButton value="Save measurements" onPress={handleAddMeasurement} />
