@@ -1,10 +1,10 @@
-import { StyleSheet } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { LayoutChangeEvent, StyleSheet } from 'react-native';
+import React from 'react';
 import Animated, {
   SharedValue,
-  measure,
   useAnimatedRef,
   useAnimatedStyle,
+  useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 
@@ -22,27 +22,26 @@ const ProgressBarTick = ({
   isTransparent,
 }: ProgressBarTickProps) => {
   const ref = useAnimatedRef();
-  const [isRendered, setIsRendered] = useState(false);
+  const x = useSharedValue(0);
+
+  const handleOnLayout = (e: LayoutChangeEvent) => {
+    x.value = e.nativeEvent.layout.x;
+  };
 
   const tickStyle = useAnimatedStyle(() => {
-    const mesurement = isRendered && measure(ref);
     return {
       backgroundColor: withTiming(
-        mesurement && currentProgress.value > mesurement.x
-          ? activeColor
-          : inactiveColor,
+        currentProgress.value > x.value ? activeColor : inactiveColor,
       ),
     };
   });
-
-  useEffect(() => {
-    setIsRendered(true);
-  }, []);
 
   return (
     <Animated.View
       ref={ref}
       style={[styles.tick, !isTransparent && tickStyle]}
+      collapsable={false}
+      onLayout={handleOnLayout}
     />
   );
 };
