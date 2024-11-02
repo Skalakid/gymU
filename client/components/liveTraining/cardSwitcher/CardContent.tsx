@@ -23,6 +23,29 @@ const CardContent = ({
   const { getExerciseTypeIcon } = useExerciseContext();
   const theme = useTheme();
 
+  const renderGoal = () => {
+    let text = '';
+
+    switch (trainingItem.type) {
+      case 'time':
+      case 'break':
+        text = `${trainingItem.value.time} s`;
+        break;
+      case 'reps':
+        text = `${trainingItem.value.reps} reps`;
+        break;
+      default:
+        text = `${trainingItem.value.reps} reps`;
+        break;
+    }
+
+    if (trainingItem.value.weight) {
+      text += ` • ${trainingItem.value.weight} kg`;
+    }
+
+    return text;
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -33,12 +56,14 @@ const CardContent = ({
           </ThemedText>
         </View>
 
-        <View style={styles.row}>
-          <ThemedText size="m" weight="medium">
-            Set: {trainingItem.value.sets}
-          </ThemedText>
-          <Icon icon={Icons.repeat} size={20} />
-        </View>
+        {trainingItem.value.sets > 0 && (
+          <View style={styles.row}>
+            <ThemedText size="m" weight="medium">
+              Set: {trainingItem.value.sets}
+            </ThemedText>
+            <Icon icon={Icons.repeat} size={20} />
+          </View>
+        )}
       </View>
 
       <View style={styles.content}>
@@ -52,7 +77,7 @@ const CardContent = ({
             Your goal
           </ThemedText>
           <ThemedText size="x4l" weight="bold" style={{ textAlign: 'center' }}>
-            15 reps
+            {renderGoal()}
           </ThemedText>
         </View>
       </View>
