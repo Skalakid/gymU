@@ -6,46 +6,46 @@ import SwipeableCard from './SwipeableCard';
 
 type CardSwitcherProps = {
   data: TrainingItem[];
-  currentIndex: number;
+  desiredCardIndex: number;
   onSwipe: (index: number) => void;
 };
 
 const CardSwitcher = ({
   data,
   onSwipe,
-  currentIndex = 0,
+  desiredCardIndex = 0,
 }: CardSwitcherProps) => {
   const MAX = 2;
   const animatedValue = useSharedValue(0);
-  const cardIndex = useSharedValue(0);
+  const currentCardIndex = useSharedValue(0);
 
   const handleOnSwipe = (index: number) => {
-    cardIndex.value = index;
+    currentCardIndex.value = index;
     onSwipe(index);
   };
 
   const handleOnAutoSwipe = (index: number) => {
-    cardIndex.value = index;
+    currentCardIndex.value = index;
   };
 
   return (
     <GestureHandlerRootView style={styles.container}>
       {data.map((item, index) => {
-        if (index > currentIndex + MAX) return null;
+        if (index > desiredCardIndex + MAX) return null;
         return (
           <SwipeableCard
             key={`card${index}`}
             index={index}
             trainingItem={item}
             dataLength={data.length}
-            currentIndex={cardIndex}
-            nextIndex={currentIndex}
+            currentIndex={currentCardIndex}
+            nextIndex={desiredCardIndex}
             onAutoSwipe={handleOnAutoSwipe}
             animatedValue={animatedValue}
             maxVisibleItems={MAX}
             onSwipe={handleOnSwipe}
             nextCardName={data[index + 1]?.name}
-            isHidden={index < currentIndex - 1}
+            isHidden={index < desiredCardIndex - 1}
           />
         );
       })}

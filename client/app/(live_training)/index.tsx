@@ -65,7 +65,7 @@ const LiveTrainingPage = () => {
           <View style={styles.player}>
             <CardSwitcher
               data={trainingItems}
-              currentIndex={currentExerciseIndex}
+              desiredCardIndex={currentExerciseIndex}
               onSwipe={handleNextItem}
             />
             <ExercisePlayer
@@ -99,5 +99,6 @@ const styles = StyleSheet.create({
   player: {
     flex: 1,
     gap: 20,
+    paddingBottom: 10,
   },
 });
