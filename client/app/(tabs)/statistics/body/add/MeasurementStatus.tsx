@@ -1,18 +1,13 @@
 import fetchApi from '@/api/fetch';
 import PrimaryButton from '@/components/button/PrimaryButton';
 import SecondaryButton from '@/components/button/SecondaryButton';
-import Header from '@/components/navigation/Header';
 import ThemedText from '@/components/ThemedText';
 import { useAuthContext } from '@/contexts/AuthContext';
 import useThemeColor from '@/hooks/useThemeColor';
 import { Mesaurements } from '@/types/measurement';
 import { useRouter } from 'expo-router';
 import { Alert, StyleSheet, View } from 'react-native';
-import Animated, {
-  FadeIn,
-  FadeOut,
-  SlideInDown,
-} from 'react-native-reanimated';
+import Animated, { FadeOut, SlideInDown } from 'react-native-reanimated';
 
 type MeasurementStatusProps = {
   measurements: Record<Mesaurements, number>;
