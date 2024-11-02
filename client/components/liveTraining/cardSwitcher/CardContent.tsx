@@ -40,6 +40,7 @@ const CardContent = ({
           <Icon icon={Icons.repeat} size={20} />
         </View>
       </View>
+
       <View style={styles.content}>
         <NoImage iconSize={150} style={styles.imageContainer} />
 
@@ -89,7 +90,6 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   content: {
-    flex: 1,
     gap: 10,
   },
   imageContainer: {
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   footer: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5,

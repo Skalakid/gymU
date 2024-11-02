@@ -46,8 +46,10 @@ const SwipeableCard = ({
 
   const recenterCard = useCallback(() => {
     translateX.value = withTiming(0);
-    animatedValue.value = withTiming(index);
-  }, [animatedValue, index, translateX]);
+    animatedValue.value = withTiming(index, {}, () => {
+      direction.value = 0; // Reset direction
+    });
+  }, [animatedValue, direction, index, translateX]);
 
   const moveCard = useCallback(
     (
@@ -185,7 +187,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 0,
     paddingTop: 15,
-    paddingBottom: 10,
+    paddingBottom: 20,
     position: 'absolute',
     height: '100%',
   },
