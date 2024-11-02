@@ -27,35 +27,6 @@ const AddMeasurement = () => {
   const [measurements, setMeasurements] =
     useState<Record<Mesaurements, number>>(EMPTY_MEASUREMENT);
 
-  const handleAddMeasurement = async () => {
-    console.log(measurements);
-    // try {
-    //   let data = { user_id: -1 };
-
-    //   for (const measurement of measurements) {
-    //     data = { ...data, ...measurement };
-    //   }
-
-    //   const response = await fetchApi(
-    //     '/measurement/create',
-    //     'POST',
-    //     null,
-    //     data,
-    //     true,
-    //   );
-
-    //   console.log(response);
-
-    //   if (response.ok) {
-    //     router.navigate('/statistics/body');
-    //   } else {
-    //     Alert.alert('Something went wrong...');
-    //   }
-    // } catch {
-    //   Alert.alert('Something went wrong...');
-    // }
-  };
-
   const handleStartAgain = () => {
     setMeasurements(EMPTY_MEASUREMENT);
     setCurrentStep(1);
