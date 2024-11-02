@@ -7,7 +7,11 @@ import useThemeColor from '@/hooks/useThemeColor';
 import { useState } from 'react';
 import { Alert, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
-import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import Animated, {
+  FadeIn,
+  FadeOut,
+  SlideInDown,
+} from 'react-native-reanimated';
 import SecondaryButton from '@/components/button/SecondaryButton';
 import { Mesaurements } from '@/types/measurement';
 
@@ -29,10 +33,12 @@ const MeasurementStep = ({
 
   const validateForm = () => !isNaN(parseFloat(measurementValue));
 
+  const isFirstStep = goBackAction === undefined;
+
   return (
     <Animated.View
       style={[styles.container, { backgroundColor }]}
-      entering={FadeIn}
+      entering={isFirstStep ? SlideInDown : FadeIn}
       exiting={FadeOut}
     >
       <Header
@@ -54,8 +60,8 @@ const MeasurementStep = ({
         style={{ width: '100%', height: 200, borderRadius: 15 }}
       />
 
-      <ThemedText>Your measurement</ThemedText>
       <TextInput
+        label="Your measurement"
         onChangeText={setMeasurementValue}
         placeholder="Measured value..."
       />
@@ -72,9 +78,12 @@ const MeasurementStep = ({
         }}
       />
 
-      {goBackAction !== undefined && (
-        <SecondaryButton value={'Go back'} onPress={goBackAction} />
-      )}
+      <SecondaryButton
+        value={'Go back'}
+        onPress={goBackAction}
+        disabled={isFirstStep}
+        style={{ opacity: isFirstStep ? 0.7 : 1 }}
+      />
     </Animated.View>
   );
 };
@@ -84,9 +93,8 @@ export default MeasurementStep;
 const styles = StyleSheet.create({
   container: {
     width: '90%',
-    height: '80%',
+    height: '78%',
 
-    borderWidth: 2,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
 

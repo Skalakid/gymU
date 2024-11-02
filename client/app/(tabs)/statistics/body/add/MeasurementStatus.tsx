@@ -1,13 +1,18 @@
 import fetchApi from '@/api/fetch';
 import PrimaryButton from '@/components/button/PrimaryButton';
 import SecondaryButton from '@/components/button/SecondaryButton';
+import Header from '@/components/navigation/Header';
 import ThemedText from '@/components/ThemedText';
 import { useAuthContext } from '@/contexts/AuthContext';
 import useThemeColor from '@/hooks/useThemeColor';
 import { Mesaurements } from '@/types/measurement';
 import { useRouter } from 'expo-router';
 import { Alert, StyleSheet, View } from 'react-native';
-import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import Animated, {
+  FadeIn,
+  FadeOut,
+  SlideInDown,
+} from 'react-native-reanimated';
 
 type MeasurementStatusProps = {
   measurements: Record<Mesaurements, number>;
@@ -25,8 +30,14 @@ const MeasurementTile = ({
 }: MeasurementTileProps) => {
   return (
     <View style={[styles.subTile]}>
-      <ThemedText style={styles.subTileText}> {measurement} </ThemedText>
-      <ThemedText style={styles.subTileText}> {measurementValue} </ThemedText>
+      <ThemedText size="xl" weight="semiBold" style={styles.subTileText}>
+        {' '}
+        {measurement}{' '}
+      </ThemedText>
+      <ThemedText size="xl" weight="semiBold" style={styles.subTileText}>
+        {' '}
+        {measurementValue}{' '}
+      </ThemedText>
     </View>
   );
 };
@@ -64,11 +75,11 @@ const MeasurementStatus = ({
   return (
     <Animated.View
       style={[styles.container, { backgroundColor }]}
-      entering={FadeIn}
+      entering={SlideInDown}
       exiting={FadeOut}
     >
-      <ThemedText size="xl" weight="semiBold">
-        Here are your measurements:
+      <ThemedText size="xxl" weight="semiBold">
+        Your measurements:
       </ThemedText>
 
       <View style={styles.subTilesContainer}>
@@ -94,7 +105,7 @@ export default MeasurementStatus;
 const styles = StyleSheet.create({
   container: {
     width: '90%',
-    height: '80%',
+    height: '57%',
 
     borderWidth: 2,
     borderTopLeftRadius: 20,
@@ -114,9 +125,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
 
     width: '80%',
-
-    borderWidth: 2,
-    borderRadius: 15,
 
     gap: 5,
   },
