@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 15,
   },
-
   scrollView: {
     gap: 20,
   },
