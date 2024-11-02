@@ -1,9 +1,12 @@
 import { Modal, StyleSheet, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Tile from '@/components/common/Tile';
 import OpinionForm from '../opinion/OpinionForm';
 import SecondaryButton from '@/components/button/SecondaryButton';
 import ThemedText from '@/components/ThemedText';
+import DetailedExerciseItem from '@/components/exercises/DetailedExerciseItem';
+import { useLiveTrainingContext } from '@/contexts/LiveTrainingContext';
+import useTheme from '@/hooks/useTheme';
 
 type ExerciseOpinionModalProps = {
   visible: boolean;
@@ -14,7 +17,10 @@ const ExerciseOpinionModal = ({
   visible,
   onClose,
 }: ExerciseOpinionModalProps) => {
+  const theme = useTheme();
   const [value, setValue] = useState<number | null>(null);
+  const [exercise, setExercise] = useState<DetailedExerciseItem | null>(null);
+  const { currentExerciseIndex, getWorkoutExercise } = useLiveTrainingContext();
 
   const handleSelection = (value: number) => {
     setValue(value);
@@ -29,6 +35,13 @@ const ExerciseOpinionModal = ({
     onClose(currentValue);
   };
 
+  useEffect(() => {
+    if (!visible) {
+      return;
+    }
+    setExercise(getWorkoutExercise(currentExerciseIndex - 1));
+  }, [currentExerciseIndex, getWorkoutExercise, visible]);
+
   return (
     <Modal visible={visible} transparent animationType="fade">
       <View style={styles.container}>
@@ -36,6 +49,17 @@ const ExerciseOpinionModal = ({
           <ThemedText size="l" weight="semiBold">
             How was it?
           </ThemedText>
+
+          {exercise && (
+            <DetailedExerciseItem
+              name={exercise.name}
+              type={exercise.exercise_type}
+              bodyParts={exercise.body_parts}
+              exerciseDetails={exercise.value}
+              tileStyle={{ backgroundColor: theme.background }}
+            />
+          )}
+
           <OpinionForm onSelection={handleSelection} />
 
           <SecondaryButton

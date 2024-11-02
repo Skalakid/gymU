@@ -11,6 +11,9 @@ type LiveTrainingContext = {
   currentExerciseIndex: number;
   nextItem: () => number;
   peviousItem: () => number;
+  getWorkoutExercise: (
+    trainingItemIndex: number,
+  ) => DetailedExerciseItem | null;
 };
 
 const LiveTrainingContext = React.createContext<LiveTrainingContext>({
@@ -21,6 +24,7 @@ const LiveTrainingContext = React.createContext<LiveTrainingContext>({
   currentExerciseIndex: 0,
   nextItem: () => 0,
   peviousItem: () => 0,
+  getWorkoutExercise: () => null,
 });
 
 function LiveTrainingContextProvider({
@@ -152,6 +156,23 @@ function LiveTrainingContextProvider({
     return prevIndex;
   }, [currentExerciseIndex]);
 
+  const getWorkoutExercise = useCallback(
+    (trainingItemIndex: number) => {
+      const trainingItem = trainingItems[trainingItemIndex];
+      if (!trainingItem) {
+        return null;
+      }
+
+      const exercise =
+        currentWorkout?.exercises.find(
+          (exercise) => exercise.exercise_id === trainingItem.exerciseID,
+        ) || null;
+
+      return exercise;
+    },
+    [currentWorkout?.exercises, trainingItems],
+  );
+
   const value = useMemo(
     () => ({
       isLoading,
@@ -161,6 +182,7 @@ function LiveTrainingContextProvider({
       startLiveTraining,
       nextItem,
       peviousItem,
+      getWorkoutExercise,
     }),
     [
       currentExerciseIndex,
@@ -170,6 +192,7 @@ function LiveTrainingContextProvider({
       isLoading,
       startLiveTraining,
       trainingItems,
+      getWorkoutExercise,
     ],
   );
 
