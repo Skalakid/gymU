@@ -29,10 +29,7 @@ const formData = [
   },
 ];
 
-const WorkoutOpinionForm = ({
-  onSelection,
-  style,
-}: WorkoutOpinionFormProps) => {
+const OpinionForm = ({ onSelection, style }: WorkoutOpinionFormProps) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const handleSelection = (index: number) => {
@@ -56,7 +53,7 @@ const WorkoutOpinionForm = ({
   );
 };
 
-export default WorkoutOpinionForm;
+export default OpinionForm;
 
 const styles = StyleSheet.create({
   container: {

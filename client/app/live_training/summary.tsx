@@ -2,7 +2,7 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
 import ThemedText from '@/components/ThemedText';
-import WorkoutOpinionForm from '@/components/liveTraining/workoutOpinionForm/WorkoutOpinionForm';
+import WorkoutOpinionForm from '@/components/liveTraining/opinion/OpinionForm';
 import PrimaryButton from '@/components/button/PrimaryButton';
 import { useLiveTrainingContext } from '@/contexts/LiveTrainingContext';
 import DetailedExerciseItem from '@/components/exercises/DetailedExerciseItem';

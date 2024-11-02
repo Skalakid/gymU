@@ -1,5 +1,5 @@
 import { Alert, StyleSheet, View } from 'react-native';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import ThemedText from '@/components/ThemedText';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
 import ExercisePlayer from '@/components/liveTraining/exercisePlayer/ExercisePlayer';
@@ -7,8 +7,10 @@ import { useLiveTrainingContext } from '@/contexts/LiveTrainingContext';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import CardSwitcher from '@/components/liveTraining/cardSwitcher/CardSwitcher';
 import { interpolate } from 'react-native-reanimated';
+import ExerciseOpinionModal from '@/components/liveTraining/modal/ExerciseOpinionModal';
 
 const LiveTrainingPage = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const router = useRouter();
   const { workoutID } = useLocalSearchParams();
   const {
@@ -32,13 +34,18 @@ const LiveTrainingPage = () => {
     }
   }, [router, startLiveTraining, workoutID]);
 
-  const handleNextItem = useCallback(() => {
-    nextItem();
+  const handleModalClose = useCallback(() => {
+    setIsModalVisible(false);
 
     if (currentExerciseIndex + 1 >= trainingItems.length) {
       router.navigate('/live_training/summary');
     }
-  }, [currentExerciseIndex, nextItem, router, trainingItems.length]);
+  }, [currentExerciseIndex, router, trainingItems.length]);
+
+  const handleNextItem = useCallback(() => {
+    nextItem();
+    setIsModalVisible(true);
+  }, [nextItem]);
 
   const handlePreviousItem = useCallback(() => {
     peviousItem();
@@ -46,14 +53,17 @@ const LiveTrainingPage = () => {
 
   useEffect(() => {
     handleStartLiveTraining();
-    router.navigate('/live_training/summary');
-  }, [handleStartLiveTraining, router, workoutID]);
+  }, [handleStartLiveTraining, workoutID]);
 
   return (
     <PageWithGoBackHeader
       title="Live Training"
       headerStyle={{ paddingBottom: 5 }}
     >
+      <ExerciseOpinionModal
+        visible={isModalVisible}
+        onClose={handleModalClose}
+      />
       <View style={styles.content}>
         <View style={styles.title}>
           <ThemedText size="l" weight="medium">
@@ -65,9 +75,10 @@ const LiveTrainingPage = () => {
             data={trainingItems}
             desiredCardIndex={currentExerciseIndex}
             onSwipe={handleNextItem}
+            onAutoSwipe={() => setIsModalVisible(true)}
           />
           <ExercisePlayer
-            onNext={handleNextItem}
+            onNext={nextItem}
             onPrevious={handlePreviousItem}
             progress={interpolate(
               currentExerciseIndex,
