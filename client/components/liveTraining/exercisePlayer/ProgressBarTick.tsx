@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Animated, {
   SharedValue,
   measure,
@@ -22,8 +22,10 @@ const ProgressBarTick = ({
   isTransparent,
 }: ProgressBarTickProps) => {
   const ref = useAnimatedRef();
+  const [isRendered, setIsRendered] = useState(false);
+
   const tickStyle = useAnimatedStyle(() => {
-    const mesurement = measure(ref);
+    const mesurement = isRendered && measure(ref);
     return {
       backgroundColor: withTiming(
         mesurement && currentProgress.value > mesurement.x
@@ -32,6 +34,10 @@ const ProgressBarTick = ({
       ),
     };
   });
+
+  useEffect(() => {
+    setIsRendered(true);
+  }, []);
 
   return (
     <Animated.View
