@@ -24,11 +24,7 @@ const CalendarWorkoutPickerPage = () => {
   };
 
   const handleSelectItem = (item: Workout | null) => {
-    if (item === null || item === undefined) {
-      updateSelectedWorkout(null);
-    } else {
-      updateSelectedWorkout(item);
-    }
+    updateSelectedWorkout(item ?? null);
     onGoBack();
   };
 
