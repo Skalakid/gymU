@@ -9,12 +9,14 @@ type ExercisePlayerProps = {
   onNext?: () => void;
   onPrevious?: () => void;
   progress: number;
+  ticks: number;
 };
 
 const ExercisePlayer = ({
   onNext,
   onPrevious,
   progress,
+  ticks,
 }: ExercisePlayerProps) => {
   const theme = useTheme();
 
@@ -28,7 +30,7 @@ const ExercisePlayer = ({
 
   return (
     <View style={styles.container}>
-      <ProgressBar progress={progress} />
+      <ProgressBar progress={progress} ticks={ticks} />
       <View style={styles.buttonController}>
         <IconButton
           icon={Icons.previous}

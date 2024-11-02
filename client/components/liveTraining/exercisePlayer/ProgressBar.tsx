@@ -12,10 +12,10 @@ import useTheme from '@/hooks/useTheme';
 
 type ProgressBarProps = {
   progress: number;
-  ticks?: number;
+  ticks: number;
 };
 
-const ProgressBar = ({ ticks = 10, progress = 0 }: ProgressBarProps) => {
+const ProgressBar = ({ ticks, progress }: ProgressBarProps) => {
   const theme = useTheme();
   const [tickPositions, setTickPositions] = useState<number[]>([]);
   const x = useSharedValue(0);
@@ -31,13 +31,15 @@ const ProgressBar = ({ ticks = 10, progress = 0 }: ProgressBarProps) => {
   }));
 
   useEffect(() => {
-    const ticksArray = Array.from({ length: ticks }, (_, index) => index);
+    const ticksArray = Array.from({ length: ticks + 1 }, (_, index) => index);
     setTickPositions(ticksArray);
   }, [sliderRef, sliderWidth, ticks]);
 
   useEffect(() => {
-    x.value = (clamp(progress, 0, 100) / 100) * sliderWidth;
-  }, [progress, sliderWidth, x]);
+    x.value =
+      (clamp(progress, 0, 100) / 100) * sliderWidth +
+      (ticks > 0 ? sliderWidth / 2 / Math.max(1, ticks) : 0);
+  }, [progress, sliderWidth, ticks, x]);
 
   return (
     <View style={styles.container}>

@@ -77,6 +77,7 @@ const LiveTrainingPage = () => {
                 [0, 100],
                 'clamp',
               )}
+              ticks={trainingItems.length}
             />
           </View>
         </View>
