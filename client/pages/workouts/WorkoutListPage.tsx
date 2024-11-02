@@ -16,10 +16,6 @@ type WorkoutListProps = {
   getAllWorkoutTagsEndpoint: string;
 };
 
-type WorkoutTagsRespone = {
-  workout_tags: WorkoutType[];
-};
-
 const WorkoutListPage = ({
   title,
   getAllWorkoutsEndpoint,

@@ -10,7 +10,7 @@ type DateInputProps = {
   label?: string;
   style?: ViewStyle;
   placeholder?: string;
-  onValueChange: (date: Date) => any;
+  onValueChange: (date: Date) => void;
   type: 'date' | 'time';
 };
 
