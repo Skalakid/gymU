@@ -42,6 +42,16 @@ const AddMeasurement = () => {
 
   const goBackAction = () => setCurrentStep((prev) => prev - 1);
 
+  const formSteps = [
+    { step: 1, img: null, title: 'weight' },
+    { step: 2, img: null, title: 'biceps', goBackAction },
+    { step: 3, img: null, title: 'chest', goBackAction },
+    { step: 4, img: null, title: 'waist', goBackAction },
+    { step: 5, img: null, title: 'hips', goBackAction },
+    { step: 6, img: null, title: 'thigh', goBackAction },
+    { step: 7, img: null, title: 'calf', goBackAction },
+  ];
+
   return (
     <ThemedView style={styles.container}>
       <Header
@@ -51,75 +61,21 @@ const AddMeasurement = () => {
         title={'Add measurements'}
       />
 
-      {currentStep === 1 && (
-        <MeasurementStep
-          img={null}
-          title={'weight'}
-          updater={(mesaurment, mesaurmentValue) =>
-            updateMeasurement(mesaurment, mesaurmentValue)
-          }
-        />
+      {formSteps.map(
+        (stepData, index) =>
+          currentStep === stepData.step && (
+            <MeasurementStep
+              key={index}
+              img={stepData.img}
+              title={stepData.title as Mesaurement}
+              updater={(mesaurment, mesaurmentValue) =>
+                updateMeasurement(mesaurment, mesaurmentValue)
+              }
+              goBackAction={stepData.goBackAction}
+            />
+          ),
       )}
-      {currentStep === 2 && (
-        <MeasurementStep
-          img={null}
-          title={'biceps'}
-          updater={(mesaurment, mesaurmentValue) =>
-            updateMeasurement(mesaurment, mesaurmentValue)
-          }
-          goBackAction={goBackAction}
-        />
-      )}
-      {currentStep === 3 && (
-        <MeasurementStep
-          img={null}
-          title={'chest'}
-          updater={(mesaurment, mesaurmentValue) =>
-            updateMeasurement(mesaurment, mesaurmentValue)
-          }
-          goBackAction={goBackAction}
-        />
-      )}
-      {currentStep === 4 && (
-        <MeasurementStep
-          img={null}
-          title={'waist'}
-          updater={(mesaurment, mesaurmentValue) =>
-            updateMeasurement(mesaurment, mesaurmentValue)
-          }
-          goBackAction={goBackAction}
-        />
-      )}
-      {currentStep === 5 && (
-        <MeasurementStep
-          img={null}
-          title={'hips'}
-          updater={(mesaurment, mesaurmentValue) =>
-            updateMeasurement(mesaurment, mesaurmentValue)
-          }
-          goBackAction={goBackAction}
-        />
-      )}
-      {currentStep === 6 && (
-        <MeasurementStep
-          img={null}
-          title={'thigh'}
-          updater={(mesaurment, mesaurmentValue) =>
-            updateMeasurement(mesaurment, mesaurmentValue)
-          }
-          goBackAction={goBackAction}
-        />
-      )}
-      {currentStep === 7 && (
-        <MeasurementStep
-          img={null}
-          title={'calf'}
-          updater={(mesaurment, mesaurmentValue) =>
-            updateMeasurement(mesaurment, mesaurmentValue)
-          }
-          goBackAction={goBackAction}
-        />
-      )}
+
       {currentStep === 8 && (
         <MeasurementStatus
           measurements={measurements}
