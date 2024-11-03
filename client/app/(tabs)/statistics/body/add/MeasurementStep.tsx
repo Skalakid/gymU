@@ -12,13 +12,13 @@ import Animated, {
   SlideInDown,
 } from 'react-native-reanimated';
 import SecondaryButton from '@/components/button/SecondaryButton';
-import { Mesaurements } from '@/types/measurement';
+import { Mesaurement } from '@/types/measurement';
 import NumericValueInput from '@/components/input/NumericValueInput';
 
 type MeasurementStepProps = {
   img: string | null;
-  title: Mesaurements;
-  updater: (measurement: Mesaurements, mesaurmentValue: number) => void;
+  title: Mesaurement;
+  updater: (measurement: Mesaurement, mesaurmentValue: number) => void;
   goBackAction?: () => void;
 };
 

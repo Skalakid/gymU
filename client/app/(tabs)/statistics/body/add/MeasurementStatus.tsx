@@ -4,18 +4,18 @@ import SecondaryButton from '@/components/button/SecondaryButton';
 import ThemedText from '@/components/ThemedText';
 import { useAuthContext } from '@/contexts/AuthContext';
 import useThemeColor from '@/hooks/useThemeColor';
-import { Mesaurements } from '@/types/measurement';
+import { Mesaurement } from '@/types/measurement';
 import { useRouter } from 'expo-router';
 import { Alert, StyleSheet, View } from 'react-native';
 import Animated, { FadeOut, SlideInDown } from 'react-native-reanimated';
 
 type MeasurementStatusProps = {
-  measurements: Record<Mesaurements, number>;
+  measurements: Record<Mesaurement, number>;
   startAgainAction: () => void;
 };
 
 type MeasurementTileProps = {
-  measurement: Mesaurements;
+  measurement: Mesaurement;
   measurementValue: number;
 };
 
@@ -80,7 +80,7 @@ const MeasurementStatus = ({
           ([measurement, measurementValue], index) => (
             <MeasurementTile
               key={index}
-              measurement={measurement as Mesaurements}
+              measurement={measurement as Mesaurement}
               measurementValue={measurementValue}
             />
           ),

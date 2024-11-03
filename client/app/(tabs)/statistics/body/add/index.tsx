@@ -5,10 +5,10 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import MeasurementStep from './MeasurementStep';
-import { Mesaurements } from '@/types/measurement';
+import { Mesaurement } from '@/types/measurement';
 import MeasurementStatus from './MeasurementStatus';
 
-const EMPTY_MEASUREMENT: Record<Mesaurements, number> = {
+const EMPTY_MEASUREMENT: Record<Mesaurement, number> = {
   weight: 0,
   biceps: 0,
   chest: 0,
@@ -23,7 +23,7 @@ const AddMeasurement = () => {
 
   const [currentStep, setCurrentStep] = useState(1);
   const [measurements, setMeasurements] =
-    useState<Record<Mesaurements, number>>(EMPTY_MEASUREMENT);
+    useState<Record<Mesaurement, number>>(EMPTY_MEASUREMENT);
 
   const handleStartAgain = () => {
     setMeasurements(EMPTY_MEASUREMENT);
@@ -31,7 +31,7 @@ const AddMeasurement = () => {
   };
 
   const updateMeasurement = (
-    measurement: Mesaurements,
+    measurement: Mesaurement,
     measurementValue: number,
   ) => {
     const newMeasurements = { ...measurements };

@@ -10,7 +10,7 @@ type MeasurementData = {
   calf: number;
 };
 
-type Mesaurements =
+type Mesaurement =
   | 'weight'
   | 'biceps'
   | 'chest'
@@ -19,4 +19,4 @@ type Mesaurements =
   | 'thigh'
   | 'calf';
 
-export type { MeasurementData, Mesaurements };
+export type { MeasurementData, Mesaurement };
