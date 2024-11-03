@@ -19,6 +19,7 @@ const LiveTrainingPage = () => {
     currentExerciseIndex,
     nextItem,
     peviousItem,
+    addOpinion,
   } = useLiveTrainingContext();
 
   const handleStartLiveTraining = useCallback(() => {
@@ -34,13 +35,16 @@ const LiveTrainingPage = () => {
     }
   }, [router, startLiveTraining, workoutID]);
 
-  const handleModalClose = useCallback(() => {
+  const handleModalClose = useCallback((opinionValue?: number) => {
+    if(opinionValue !== undefined) {
+      addOpinion(opinionValue, trainingItems[currentExerciseIndex - 1].exerciseIndex);
+    }
     setIsModalVisible(false);
-
+   
     if (currentExerciseIndex >= trainingItems.length) {
       router.navigate('/live_training/summary');
     }
-  }, [currentExerciseIndex, router, trainingItems.length]);
+  }, [addOpinion, currentExerciseIndex, router, trainingItems]);
 
   const showModal = useCallback(
     (index: number) => {
