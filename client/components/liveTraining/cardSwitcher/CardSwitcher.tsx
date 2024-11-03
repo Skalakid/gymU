@@ -22,7 +22,7 @@ const CardSwitcher = ({
   const currentCardIndex = useSharedValue(desiredCardIndex);
 
   const handleOnSwipe = (index: number) => {
-    currentCardIndex.value = index;
+    currentCardIndex.value = Math.min(desiredCardIndex, index);
     onSwipe(index);
   };
 

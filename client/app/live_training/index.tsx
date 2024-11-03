@@ -1,5 +1,5 @@
 import { Alert, StyleSheet, View } from 'react-native';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ThemedText from '@/components/ThemedText';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
 import ExercisePlayer from '@/components/liveTraining/exercisePlayer/ExercisePlayer';
@@ -21,6 +21,7 @@ const LiveTrainingPage = () => {
     peviousItem,
     addOpinion,
   } = useLiveTrainingContext();
+  const shouldEnableMoving = useRef(false);
 
   const handleStartLiveTraining = useCallback(() => {
     if (Number.isNaN(workoutID)) {
@@ -42,6 +43,7 @@ const LiveTrainingPage = () => {
           opinionValue,
           trainingItems[currentExerciseIndex - 1].exerciseIndex,
         );
+        shouldEnableMoving.current = true;
       }
       setIsModalVisible(false);
 
@@ -52,33 +54,60 @@ const LiveTrainingPage = () => {
     [addOpinion, currentExerciseIndex, router, trainingItems],
   );
 
+  const shouldShowModal = useCallback(
+    (index: number) => {
+      const currentExerciseID = trainingItems[index]?.exerciseID;
+      const previousExerciseID = trainingItems[index - 1]?.exerciseID;
+
+      if (
+        !shouldEnableMoving.current &&
+        (index >= trainingItems.length ||
+          (currentExerciseID &&
+            currentExerciseID >= 0 &&
+            previousExerciseID &&
+            previousExerciseID >= 0 &&
+            currentExerciseID !== previousExerciseID))
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    [trainingItems],
+  );
+
   const showModal = useCallback(
     (index: number, action?: ActionType) => {
       if (action === 'prev') {
         return;
       }
-      const currentExerciseID = trainingItems[index]?.exerciseID;
-      const previousExerciseID = trainingItems[index - 1]?.exerciseID;
-
-      if (
-        index >= trainingItems.length ||
-        (currentExerciseID &&
-          currentExerciseID >= 0 &&
-          previousExerciseID &&
-          previousExerciseID >= 0 &&
-          currentExerciseID !== previousExerciseID)
-      ) {
+      if (shouldShowModal(index)) {
         setIsModalVisible(true);
       } else {
         handleModalClose();
       }
     },
-    [handleModalClose, trainingItems],
+    [handleModalClose, shouldShowModal],
+  );
+
+  const handlSwipe = useCallback(
+    (index: number) => {
+      if (shouldShowModal(index - 1)) {
+        return;
+      }
+      shouldEnableMoving.current = false;
+      showModal(nextItem());
+    },
+    [nextItem, shouldShowModal, showModal],
   );
 
   const handleNextItem = useCallback(() => {
-    showModal(nextItem());
-  }, [nextItem, showModal]);
+    if (shouldShowModal(currentExerciseIndex)) {
+      return;
+    }
+    shouldEnableMoving.current = false;
+    nextItem();
+  }, [currentExerciseIndex, nextItem, shouldShowModal]);
 
   const handlePreviousItem = useCallback(() => {
     peviousItem();
@@ -107,11 +136,11 @@ const LiveTrainingPage = () => {
           <CardSwitcher
             data={trainingItems}
             desiredCardIndex={currentExerciseIndex}
-            onSwipe={handleNextItem}
+            onSwipe={handlSwipe}
             onAutoSwipe={showModal}
           />
           <ExercisePlayer
-            onNext={nextItem}
+            onNext={handleNextItem}
             onPrevious={handlePreviousItem}
             progress={interpolate(
               currentExerciseIndex,
