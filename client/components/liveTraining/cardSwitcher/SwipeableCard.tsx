@@ -23,7 +23,7 @@ type CardProps = {
   nextCardName: string;
   isHidden: boolean;
   nextIndex: number;
-  onAutoSwipe: (index: number) => void;
+  onAutoSwipe: (index: number, action: ActionType) => void;
 };
 
 const SwipeableCard = ({
@@ -55,11 +55,11 @@ const SwipeableCard = ({
     (
       newIndex: number,
       swipeDirection: number,
-      callback: (i: number) => void,
+      callback: (i: number, action: ActionType) => void,
     ) => {
       direction.value = swipeDirection;
       translateX.value = withTiming(swipeDirection * (width + 100), {}, () => {
-        runOnJS(callback)(newIndex);
+        runOnJS(callback)(newIndex, 'next');
       });
       animatedValue.value = withTiming(newIndex);
     },
@@ -148,7 +148,7 @@ const SwipeableCard = ({
         );
       } else if (diff < 0 && index === nextIndex) {
         recenterCard();
-        onAutoSwipe(nextIndex);
+        onAutoSwipe(nextIndex, 'prev');
       }
     }
   }, [

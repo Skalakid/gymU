@@ -35,19 +35,28 @@ const LiveTrainingPage = () => {
     }
   }, [router, startLiveTraining, workoutID]);
 
-  const handleModalClose = useCallback((opinionValue?: number) => {
-    if(opinionValue !== undefined) {
-      addOpinion(opinionValue, trainingItems[currentExerciseIndex - 1].exerciseIndex);
-    }
-    setIsModalVisible(false);
-   
-    if (currentExerciseIndex >= trainingItems.length) {
-      router.navigate('/live_training/summary');
-    }
-  }, [addOpinion, currentExerciseIndex, router, trainingItems]);
+  const handleModalClose = useCallback(
+    (opinionValue?: number) => {
+      if (opinionValue !== undefined) {
+        addOpinion(
+          opinionValue,
+          trainingItems[currentExerciseIndex - 1].exerciseIndex,
+        );
+      }
+      setIsModalVisible(false);
+
+      if (currentExerciseIndex >= trainingItems.length) {
+        router.navigate('/live_training/summary');
+      }
+    },
+    [addOpinion, currentExerciseIndex, router, trainingItems],
+  );
 
   const showModal = useCallback(
-    (index: number) => {
+    (index: number, action?: ActionType) => {
+      if (action === 'prev') {
+        return;
+      }
       const currentExerciseID = trainingItems[index]?.exerciseID;
       const previousExerciseID = trainingItems[index - 1]?.exerciseID;
 

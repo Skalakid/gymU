@@ -11,3 +11,5 @@ type TrainingItem = {
   };
   type: string;
 };
+
+type ActionType = 'next' | 'prev';

@@ -8,7 +8,7 @@ type CardSwitcherProps = {
   data: TrainingItem[];
   desiredCardIndex: number;
   onSwipe: (index: number) => void;
-  onAutoSwipe: (index: number) => void;
+  onAutoSwipe: (index: number, action: ActionType) => void;
 };
 
 const CardSwitcher = ({
@@ -26,9 +26,9 @@ const CardSwitcher = ({
     onSwipe(index);
   };
 
-  const handleOnAutoSwipe = (index: number) => {
+  const handleOnAutoSwipe = (index: number, action: ActionType) => {
     currentCardIndex.value = index;
-    onAutoSwipe(index);
+    onAutoSwipe(index, action);
   };
 
   return (
