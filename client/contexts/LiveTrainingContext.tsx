@@ -137,6 +137,10 @@ function LiveTrainingContextProvider({
 
   const startLiveTraining = useCallback(
     async (workoutID: number) => {
+      if (workoutID === currentWorkout?.workout_id) {
+        return;
+      }
+
       try {
         resetTraining();
         const workoutDetails = await loadWorkout(workoutID);
@@ -153,7 +157,7 @@ function LiveTrainingContextProvider({
         }
       }
     },
-    [resetTraining, loadWorkout, parseExercises],
+    [currentWorkout, resetTraining, loadWorkout, parseExercises],
   );
 
   const nextItem = useCallback(() => {

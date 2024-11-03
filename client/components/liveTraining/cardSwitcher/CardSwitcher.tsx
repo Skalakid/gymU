@@ -14,12 +14,12 @@ type CardSwitcherProps = {
 const CardSwitcher = ({
   data,
   onSwipe,
-  desiredCardIndex = 0,
+  desiredCardIndex,
   onAutoSwipe,
 }: CardSwitcherProps) => {
   const MAX = 2;
-  const animatedValue = useSharedValue(0);
-  const currentCardIndex = useSharedValue(0);
+  const animatedValue = useSharedValue(desiredCardIndex);
+  const currentCardIndex = useSharedValue(desiredCardIndex);
 
   const handleOnSwipe = (index: number) => {
     currentCardIndex.value = index;

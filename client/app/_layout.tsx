@@ -29,6 +29,7 @@ import { CreateWorkoutContextProvider } from '@/contexts/CreateWorkoutContext';
 import { ExerciseContextProvider } from '@/contexts/ExerciseContext';
 import { WorkoutContextProvider } from '@/contexts/WorkoutContext';
 import { LiveTrainingContextProvider } from '@/contexts/LiveTrainingContext';
+import { CardSwitcherContexttProvider } from '@/contexts/CardSwitcherContext';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -98,29 +99,31 @@ const RootLayout = () => {
 
   return (
     <AuthContextProvider>
-      <LiveTrainingContextProvider>
-        <WorkoutContextProvider>
-          <ExerciseContextProvider>
-            <CreateWorkoutContextProvider>
-              <ThemeProvider
-                value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-              >
-                <SafeAreaView
-                  style={[
-                    styles.container,
-                    {
-                      backgroundColor:
-                        Colors[colorScheme ?? 'light'].background,
-                    },
-                  ]}
+      <CardSwitcherContexttProvider>
+        <LiveTrainingContextProvider>
+          <WorkoutContextProvider>
+            <ExerciseContextProvider>
+              <CreateWorkoutContextProvider>
+                <ThemeProvider
+                  value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
                 >
-                  <InitialLayout />
-                </SafeAreaView>
-              </ThemeProvider>
-            </CreateWorkoutContextProvider>
-          </ExerciseContextProvider>
-        </WorkoutContextProvider>
-      </LiveTrainingContextProvider>
+                  <SafeAreaView
+                    style={[
+                      styles.container,
+                      {
+                        backgroundColor:
+                          Colors[colorScheme ?? 'light'].background,
+                      },
+                    ]}
+                  >
+                    <InitialLayout />
+                  </SafeAreaView>
+                </ThemeProvider>
+              </CreateWorkoutContextProvider>
+            </ExerciseContextProvider>
+          </WorkoutContextProvider>
+        </LiveTrainingContextProvider>
+      </CardSwitcherContexttProvider>
     </AuthContextProvider>
   );
 };
