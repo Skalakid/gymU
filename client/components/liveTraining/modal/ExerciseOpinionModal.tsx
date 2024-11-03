@@ -11,6 +11,7 @@ import useTheme from '@/hooks/useTheme';
 type ExerciseOpinionModalProps = {
   visible: boolean;
   onClose: (value: number) => void;
+  value?: number;
 };
 
 const ExerciseOpinionModal = ({
@@ -20,7 +21,8 @@ const ExerciseOpinionModal = ({
   const theme = useTheme();
   const [value, setValue] = useState<number | null>(null);
   const [exercise, setExercise] = useState<DetailedExerciseItem | null>(null);
-  const { currentExerciseIndex, getWorkoutExercise } = useLiveTrainingContext();
+  const { currentExerciseIndex, getWorkoutExercise, getExerciseOpinion } =
+    useLiveTrainingContext();
 
   const handleSelection = (value: number) => {
     setValue(value);
@@ -40,7 +42,8 @@ const ExerciseOpinionModal = ({
       return;
     }
     setExercise(getWorkoutExercise(currentExerciseIndex - 1));
-  }, [currentExerciseIndex, getWorkoutExercise, visible]);
+    setValue(getExerciseOpinion(currentExerciseIndex - 1)?.value ?? null);
+  }, [currentExerciseIndex, getExerciseOpinion, getWorkoutExercise, visible]);
 
   return (
     <Modal visible={visible} transparent animationType="fade">
@@ -60,7 +63,7 @@ const ExerciseOpinionModal = ({
             />
           )}
 
-          <OpinionForm onSelection={handleSelection} />
+          <OpinionForm onSelection={handleSelection} value={value} />
 
           <SecondaryButton
             value="Skip"

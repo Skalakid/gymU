@@ -15,6 +15,7 @@ type LiveTrainingContext = {
     trainingItemIndex: number,
   ) => DetailedExerciseItem | null;
   addOpinion: (value: number, exerciseIndex: number) => void;
+  getExerciseOpinion: (trainingItemIndex: number) => Opinion | null;
 };
 
 const LiveTrainingContext = React.createContext<LiveTrainingContext>({
@@ -27,6 +28,7 @@ const LiveTrainingContext = React.createContext<LiveTrainingContext>({
   peviousItem: () => 0,
   getWorkoutExercise: () => null,
   addOpinion: () => null,
+  getExerciseOpinion: () => null,
 });
 
 type Opinion = {
@@ -197,6 +199,22 @@ function LiveTrainingContextProvider({
     [opinions],
   );
 
+  const getExerciseOpinion = useCallback(
+    (trainingItemIndex: number) => {
+      const trainingItem = trainingItems[trainingItemIndex];
+      if (!trainingItem) {
+        return null;
+      }
+
+      return (
+        opinions.find(
+          (opinion) => opinion.exerciseIndex === trainingItem.exerciseIndex,
+        ) || null
+      );
+    },
+    [opinions, trainingItems],
+  );
+
   const value = useMemo(
     () => ({
       isLoading,
@@ -208,6 +226,7 @@ function LiveTrainingContextProvider({
       peviousItem,
       getWorkoutExercise,
       addOpinion,
+      getExerciseOpinion,
     }),
     [
       currentExerciseIndex,
@@ -219,6 +238,7 @@ function LiveTrainingContextProvider({
       trainingItems,
       getWorkoutExercise,
       addOpinion,
+      getExerciseOpinion,
     ],
   );
 

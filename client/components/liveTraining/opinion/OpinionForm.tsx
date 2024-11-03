@@ -1,11 +1,12 @@
 import { StyleSheet, View, ViewStyle } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Icons from '@/constants/Icons';
 import OpinionIconButton from './OpinionIconButton';
 
 type WorkoutOpinionFormProps = {
   onSelection: (value: number) => void;
   style?: ViewStyle;
+  value?: number | null;
 };
 
 const formData = [
@@ -29,13 +30,25 @@ const formData = [
   },
 ];
 
-const OpinionForm = ({ onSelection, style }: WorkoutOpinionFormProps) => {
+const OpinionForm = ({
+  onSelection,
+  style,
+  value,
+}: WorkoutOpinionFormProps) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const handleSelection = (index: number) => {
     setSelectedIndex(index);
     onSelection(formData[index].value);
   };
+
+  useEffect(() => {
+    setSelectedIndex(
+      value !== null && value !== undefined
+        ? formData.findIndex((item) => item.value === value)
+        : null,
+    );
+  }, [value]);
 
   return (
     <View style={[styles.container, style]}>
