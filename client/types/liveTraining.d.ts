@@ -1,5 +1,6 @@
 type TrainingItem = {
   exerciseID: number;
+  exerciseIndex: number;
   name: string;
   value: {
     sets: number;

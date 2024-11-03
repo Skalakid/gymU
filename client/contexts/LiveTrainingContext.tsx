@@ -36,9 +36,10 @@ function LiveTrainingContextProvider({
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState<number>(0);
 
   const getTrainingItem = useCallback(
-    (exercise: DetailedExerciseItem): TrainingItem => {
+    (exercise: DetailedExerciseItem, index: number): TrainingItem => {
       return {
         exerciseID: exercise.exercise_id,
+        exerciseIndex: index,
         name: exercise.name,
         value: {
           sets: exercise.value.sets || 0,
@@ -57,7 +58,7 @@ function LiveTrainingContextProvider({
     (exercises: DetailedExerciseItem[]) => {
       const items: TrainingItem[] = [];
 
-      exercises.forEach((exercise) => {
+      exercises.forEach((exercise, index) => {
         if (exercise.value.sets) {
           const sets = exercise.value.sets;
           for (let i = 0; i < sets; i++) {
@@ -68,12 +69,13 @@ function LiveTrainingContextProvider({
                   ...exercise.value,
                   sets: sets - i,
                 },
-              }),
+              },index),
             );
 
             if (i < sets - 1) {
               items.push({
                 exerciseID: -1,
+                exerciseIndex: -1,
                 name: 'Rest',
                 value: {
                   sets: 0,
@@ -87,7 +89,7 @@ function LiveTrainingContextProvider({
             }
           }
         } else {
-          items.push(getTrainingItem(exercise));
+          items.push(getTrainingItem(exercise, index));
         }
       });
 
@@ -163,12 +165,7 @@ function LiveTrainingContextProvider({
         return null;
       }
 
-      const exercise =
-        currentWorkout?.exercises.find(
-          (exercise) => exercise.exercise_id === trainingItem.exerciseID,
-        ) || null;
-
-      return exercise;
+      return currentWorkout?.exercises[trainingItem.exerciseIndex] || null;
     },
     [currentWorkout?.exercises, trainingItems],
   );
