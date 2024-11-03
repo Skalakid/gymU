@@ -32,7 +32,7 @@ const LiveTrainingContext = React.createContext<LiveTrainingContext>({
 type Opinion = {
   value: number;
   exerciseIndex: number;
-}
+};
 
 function LiveTrainingContextProvider({
   children,
@@ -71,13 +71,16 @@ function LiveTrainingContextProvider({
           const sets = exercise.value.sets;
           for (let i = 0; i < sets; i++) {
             items.push(
-              getTrainingItem({
-                ...exercise,
-                value: {
-                  ...exercise.value,
-                  sets: sets - i,
+              getTrainingItem(
+                {
+                  ...exercise,
+                  value: {
+                    ...exercise.value,
+                    sets: sets - i,
+                  },
                 },
-              },index),
+                index,
+              ),
             );
 
             if (i < sets - 1) {
@@ -178,10 +181,21 @@ function LiveTrainingContextProvider({
     [currentWorkout?.exercises, trainingItems],
   );
 
-  const addOpinion = useCallback((value: number, exerciseIndex: number) => {
-    setOpinions([...opinions, { value, exerciseIndex }]);
-  }, [opinions]);
-
+  const addOpinion = useCallback(
+    (value: number, exerciseIndex: number) => {
+      const index = opinions.findIndex(
+        (opinion) => opinion.exerciseIndex === exerciseIndex,
+      );
+      if (index === -1) {
+        setOpinions([...opinions, { value, exerciseIndex }]);
+      } else {
+        const newOpinions = [...opinions];
+        newOpinions[index] = { value, exerciseIndex };
+        setOpinions(newOpinions);
+      }
+    },
+    [opinions],
+  );
 
   const value = useMemo(
     () => ({
@@ -193,7 +207,7 @@ function LiveTrainingContextProvider({
       nextItem,
       peviousItem,
       getWorkoutExercise,
-      addOpinion
+      addOpinion,
     }),
     [
       currentExerciseIndex,
@@ -204,7 +218,7 @@ function LiveTrainingContextProvider({
       startLiveTraining,
       trainingItems,
       getWorkoutExercise,
-      addOpinion
+      addOpinion,
     ],
   );
 
