@@ -26,12 +26,10 @@ const MeasurementTile = ({
   return (
     <View style={[styles.subTile]}>
       <ThemedText size="xl" weight="semiBold" style={styles.subTileText}>
-        {' '}
-        {measurement}{' '}
+        {measurement}
       </ThemedText>
       <ThemedText size="xl" weight="semiBold" style={styles.subTileText}>
-        {' '}
-        {measurementValue}{' '}
+        {measurementValue}
       </ThemedText>
     </View>
   );
