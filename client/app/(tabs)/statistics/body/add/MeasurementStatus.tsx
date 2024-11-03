@@ -71,7 +71,7 @@ const MeasurementStatus = ({
       entering={SlideInDown}
       exiting={FadeOut}
     >
-      <ThemedText size="xxl" weight="semiBold">
+      <ThemedText size="xxl" weight="semiBold" style={styles.headerText}>
         Your measurements:
       </ThemedText>
 
@@ -87,8 +87,13 @@ const MeasurementStatus = ({
         )}
       </View>
 
-      <PrimaryButton value="Save measurements" onPress={handleAddMeasurement} />
-      <SecondaryButton value="Start again" onPress={startAgainAction} />
+      <View style={styles.buttonsContainer}>
+        <PrimaryButton
+          value="Save measurements"
+          onPress={handleAddMeasurement}
+        />
+        <SecondaryButton value="Start again" onPress={startAgainAction} />
+      </View>
     </Animated.View>
   );
 };
@@ -98,17 +103,24 @@ export default MeasurementStatus;
 const styles = StyleSheet.create({
   container: {
     width: '90%',
-    height: '57%',
+    height: '86%',
 
     borderWidth: 2,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
 
-    gap: 10,
+    gap: 20,
     padding: 10,
 
     position: 'absolute',
     bottom: 0,
+
+    display: 'flex',
+    justifyContent: 'space-around',
+  },
+
+  headerText: {
+    marginTop: '-8%',
   },
 
   subTilesContainer: {
@@ -130,5 +142,11 @@ const styles = StyleSheet.create({
   subTileText: {
     width: '50%',
     textAlign: 'center',
+  },
+
+  buttonsContainer: {
+    width: '100%',
+    gap: 20,
+    marginBottom: '-10%',
   },
 });

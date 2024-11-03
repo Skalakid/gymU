@@ -4,7 +4,7 @@ import ThemedText from '@/components/ThemedText';
 import Images from '@/constants/Images';
 import useThemeColor from '@/hooks/useThemeColor';
 import { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
 import Animated, {
   FadeIn,
@@ -64,19 +64,21 @@ const MeasurementStep = ({
         value={measurementValue}
       />
 
-      <PrimaryButton
-        value={'Next'}
-        onPress={() => {
-          updater(title, measurementValue);
-        }}
-      />
+      <View style={styles.buttonsContainer}>
+        <PrimaryButton
+          value={'Next'}
+          onPress={() => {
+            updater(title, measurementValue);
+          }}
+        />
 
-      <SecondaryButton
-        value={'Go back'}
-        onPress={goBackAction}
-        disabled={isFirstStep}
-        style={{ opacity: isFirstStep ? 0.7 : 1 }}
-      />
+        <SecondaryButton
+          value={'Go back'}
+          onPress={goBackAction}
+          disabled={isFirstStep}
+          style={{ opacity: isFirstStep ? 0.7 : 1 }}
+        />
+      </View>
     </Animated.View>
   );
 };
@@ -86,15 +88,23 @@ export default MeasurementStep;
 const styles = StyleSheet.create({
   container: {
     width: '90%',
-    height: '78%',
+    height: '86%',
 
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
 
-    gap: 10,
+    gap: 20,
     padding: 10,
 
     position: 'absolute',
     bottom: 0,
+
+    display: 'flex',
+    justifyContent: 'space-around',
+  },
+
+  buttonsContainer: {
+    width: '100%',
+    gap: 20,
   },
 });
