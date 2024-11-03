@@ -4,12 +4,15 @@ import ThemedText from '@/components/ThemedText';
 import Images from '@/constants/Images';
 import useThemeColor from '@/hooks/useThemeColor';
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Keyboard, StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
 import Animated, {
   FadeIn,
   FadeOut,
+  LinearTransition,
   SlideInDown,
+  useAnimatedStyle,
+  useSharedValue,
 } from 'react-native-reanimated';
 import SecondaryButton from '@/components/button/SecondaryButton';
 import { Mesaurement } from '@/types/measurement';
@@ -30,13 +33,29 @@ const MeasurementStep = ({
 }: MeasurementStepProps) => {
   const [measurementValue, setMeasurementValue] = useState(0);
   const backgroundColor = useThemeColor({}, 'tile');
+  const keyboardOffset = useSharedValue(0);
 
   const isFirstStep = goBackAction === undefined;
 
+  Keyboard.addListener('keyboardDidShow', () => {
+    keyboardOffset.value = Keyboard.metrics()?.height ?? 0;
+  });
+
+  Keyboard.addListener('keyboardDidHide', () => {
+    keyboardOffset.value = 0;
+  });
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      marginBottom: keyboardOffset.value / 1.4,
+    };
+  });
+
   return (
     <Animated.View
-      style={[styles.container, { backgroundColor }]}
+      style={[styles.container, { backgroundColor }, animatedStyle]}
       entering={isFirstStep ? SlideInDown : FadeIn}
+      layout={LinearTransition}
       exiting={FadeOut}
     >
       <Header
