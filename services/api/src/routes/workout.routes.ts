@@ -1,5 +1,6 @@
 import express from 'express';
 import * as workoutController from '../controllers/workout.controller';
+import * as userWorkoutLogController from '../controllers/userWorkoutLog.controller';
 import { authenticateToken } from '../middlewares/auth.middleware';
 
 const router = express.Router();
@@ -12,6 +13,12 @@ router.get(
   '/difficulty/all',
   authenticateToken,
   workoutController.getWorkoutDifficulties,
+);
+
+router.post(
+  '/live_training/save',
+  authenticateToken,
+  userWorkoutLogController.createWorkoutLog,
 );
 
 export = router;
