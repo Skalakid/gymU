@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, View } from 'react-native';
+import { Alert, FlatList, StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
 import ThemedText from '@/components/ThemedText';
@@ -6,8 +6,11 @@ import WorkoutOpinionForm from '@/components/liveTraining/opinion/OpinionForm';
 import PrimaryButton from '@/components/button/PrimaryButton';
 import { useLiveTrainingContext } from '@/contexts/LiveTrainingContext';
 import DetailedExerciseItem from '@/components/exercises/DetailedExerciseItem';
+import { useRouter } from 'expo-router';
 
 const LiveTrainingSummaryPage = () => {
+  const router = useRouter();
+
   const { currentWorkout, saveWorkoutLog } = useLiveTrainingContext();
   const [opinionValue, setOpinionValue] = useState<number | null>(null);
 
@@ -16,7 +19,23 @@ const LiveTrainingSummaryPage = () => {
   };
 
   const handleSubmit = () => {
-    saveWorkoutLog(opinionValue ?? 0);
+    try {
+      if (!currentWorkout) {
+        Alert.alert('No workout found');
+      }
+
+      if (opinionValue === null) {
+        Alert.alert('Please rate your workout');
+        return;
+      }
+
+      saveWorkoutLog(opinionValue ?? 0);
+      Alert.alert('Success', 'Workout log saved successfully');
+      router.dismissAll();
+      router.replace('/home');
+    } catch (error) {
+      Alert.alert('Failed to save workout log', 'Please try again later');
+    }
   };
 
   return (
