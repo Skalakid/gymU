@@ -10,8 +10,8 @@ import { useRouter } from 'expo-router';
 
 const LiveTrainingSummaryPage = () => {
   const router = useRouter();
-
-  const { currentWorkout, saveWorkoutLog } = useLiveTrainingContext();
+  const { currentWorkout, saveWorkoutLog, resetTraining } =
+    useLiveTrainingContext();
   const [opinionValue, setOpinionValue] = useState<number | null>(null);
 
   const handleOpinionSelection = (value: number) => {
@@ -31,6 +31,7 @@ const LiveTrainingSummaryPage = () => {
 
       saveWorkoutLog(opinionValue ?? 0);
       Alert.alert('Success', 'Workout log saved successfully');
+      resetTraining();
       router.dismissAll();
       router.replace('/home');
     } catch (error) {

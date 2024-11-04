@@ -1,5 +1,6 @@
 import fetchApi from '@/api/fetch';
 import React, { useCallback, useMemo, useState } from 'react';
+import { useCardSwitcherContextt } from './CardSwitcherContext';
 
 type LiveTrainingContextProviderProps = { children: React.ReactNode };
 
@@ -17,6 +18,7 @@ type LiveTrainingContext = {
   addOpinion: (value: number, exerciseIndex: number) => void;
   getExerciseOpinion: (trainingItemIndex: number) => Opinion | null;
   saveWorkoutLog: (workoutOpinion: number) => void;
+  resetTraining: () => void;
 };
 
 const LiveTrainingContext = React.createContext<LiveTrainingContext>({
@@ -31,6 +33,7 @@ const LiveTrainingContext = React.createContext<LiveTrainingContext>({
   addOpinion: () => null,
   getExerciseOpinion: () => null,
   saveWorkoutLog: () => null,
+  resetTraining: () => null,
 });
 
 type Opinion = {
@@ -41,6 +44,7 @@ type Opinion = {
 function LiveTrainingContextProvider({
   children,
 }: LiveTrainingContextProviderProps) {
+  const { cardData } = useCardSwitcherContextt();
   const [isLoading, setIsLoading] = useState(false);
   const [currentWorkout, setCurrentWorkout] = useState<Workout | null>(null);
   const [trainingItems, setTrainingItems] = useState<TrainingItem[]>([]);
@@ -131,11 +135,13 @@ function LiveTrainingContextProvider({
   }, []);
 
   const resetTraining = useCallback(() => {
+    cardData.current = [];
     setIsLoading(false);
     setCurrentWorkout(null);
     setTrainingItems([]);
     setCurrentExerciseIndex(0);
-  }, []);
+    setOpinions([]);
+  }, [cardData]);
 
   const startLiveTraining = useCallback(
     async (workoutID: number) => {
@@ -266,6 +272,7 @@ function LiveTrainingContextProvider({
       addOpinion,
       getExerciseOpinion,
       saveWorkoutLog,
+      resetTraining,
     }),
     [
       currentExerciseIndex,
@@ -279,6 +286,7 @@ function LiveTrainingContextProvider({
       addOpinion,
       getExerciseOpinion,
       saveWorkoutLog,
+      resetTraining,
     ],
   );
 
