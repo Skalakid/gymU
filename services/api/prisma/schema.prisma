@@ -82,6 +82,7 @@ model user_exercise_history_item {
   item_id          Int              @id @default(autoincrement())
   user_log_id      Int
   exercise_id      Int
+  opinion          Int
   value            Json
   order_index      Int
   timestamp        DateTime?        @default(now()) @db.Timestamptz(6)
@@ -102,6 +103,7 @@ model user_workout {
 model user_workout_log {
   log_id                     Int                          @id @default(autoincrement())
   user_workout_id            Int
+  opinion                    Int
   log_date                   DateTime?                    @default(now()) @db.Timestamptz(6)
   user_exercise_history_item user_exercise_history_item[]
   user_workout               user_workout                 @relation(fields: [user_workout_id], references: [user_workout_id], onDelete: NoAction, onUpdate: NoAction)
