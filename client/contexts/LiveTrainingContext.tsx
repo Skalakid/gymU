@@ -16,6 +16,7 @@ type LiveTrainingContext = {
   ) => DetailedExerciseItem | null;
   addOpinion: (value: number, exerciseIndex: number) => void;
   getExerciseOpinion: (trainingItemIndex: number) => Opinion | null;
+  saveWorkoutLog: (workoutOpinion: number) => void;
 };
 
 const LiveTrainingContext = React.createContext<LiveTrainingContext>({
@@ -29,6 +30,7 @@ const LiveTrainingContext = React.createContext<LiveTrainingContext>({
   getWorkoutExercise: () => null,
   addOpinion: () => null,
   getExerciseOpinion: () => null,
+  saveWorkoutLog: () => null,
 });
 
 type Opinion = {
@@ -219,6 +221,38 @@ function LiveTrainingContextProvider({
     [opinions, trainingItems],
   );
 
+  const saveWorkoutLog = useCallback(
+    async (workoutOpinion: number) => {
+      try {
+        const response = await fetchApi(
+          '/workout/live_training/save',
+          'POST',
+          {},
+          {
+            user_workout_id: currentWorkout?.workout_id,
+            opinion: workoutOpinion,
+            exercises: currentWorkout?.exercises.map((exercise, index) => ({
+              exercise_id: exercise.exercise_id,
+              value: exercise.value,
+              opinion: opinions[index]?.value || 0,
+              order_index: index,
+            })),
+          },
+        );
+        if (!response.ok) {
+          throw new Error('Failed to save workout log');
+        }
+        const data = await response.json();
+        return data;
+      } catch (event) {
+        if (event instanceof Error) {
+          throw new Error(event.message);
+        }
+      }
+    },
+    [currentWorkout?.exercises, currentWorkout?.workout_id, opinions],
+  );
+
   const value = useMemo(
     () => ({
       isLoading,
@@ -231,6 +265,7 @@ function LiveTrainingContextProvider({
       getWorkoutExercise,
       addOpinion,
       getExerciseOpinion,
+      saveWorkoutLog,
     }),
     [
       currentExerciseIndex,
@@ -243,6 +278,7 @@ function LiveTrainingContextProvider({
       getWorkoutExercise,
       addOpinion,
       getExerciseOpinion,
+      saveWorkoutLog,
     ],
   );
 

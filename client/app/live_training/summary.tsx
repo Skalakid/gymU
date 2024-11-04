@@ -8,11 +8,15 @@ import { useLiveTrainingContext } from '@/contexts/LiveTrainingContext';
 import DetailedExerciseItem from '@/components/exercises/DetailedExerciseItem';
 
 const LiveTrainingSummaryPage = () => {
-  const { currentWorkout } = useLiveTrainingContext();
+  const { currentWorkout, saveWorkoutLog } = useLiveTrainingContext();
   const [opinionValue, setOpinionValue] = useState<number | null>(null);
 
   const handleOpinionSelection = (value: number) => {
     setOpinionValue(value);
+  };
+
+  const handleSubmit = () => {
+    saveWorkoutLog(opinionValue ?? 0);
   };
 
   return (
@@ -56,7 +60,7 @@ const LiveTrainingSummaryPage = () => {
           />
         </View>
 
-        <PrimaryButton value="Finish" onPress={() => console.log('Finish')} />
+        <PrimaryButton value="Finish" onPress={handleSubmit} />
       </View>
     </PageWithGoBackHeader>
   );

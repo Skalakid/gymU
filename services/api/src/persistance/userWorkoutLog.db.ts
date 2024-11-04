@@ -8,7 +8,7 @@ async function createWorkoutLog(
 ) {
   const timeStamp = new Date();
 
-  await prisma.user_workout_log.create({
+  const log = await prisma.user_workout_log.create({
     data: {
       user_workout_id: user_workout_id,
       opinion: opinion,
@@ -19,7 +19,7 @@ async function createWorkoutLog(
   exercises.forEach(async (exercise) => {
     await prisma.user_exercise_history_item.create({
       data: {
-        user_log_id: user_workout_id,
+        user_log_id: log.log_id,
         exercise_id: exercise.exercise_id,
         opinion: exercise.opinion,
         value: exercise.value,
@@ -28,6 +28,8 @@ async function createWorkoutLog(
       },
     });
   });
+
+  return log;
 }
 
 export { createWorkoutLog };

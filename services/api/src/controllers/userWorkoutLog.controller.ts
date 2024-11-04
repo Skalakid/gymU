@@ -20,7 +20,7 @@ async function createWorkoutLog(
       exercises: ExerciseHistoryItem[];
     } = req.body;
 
-    if (!user_workout_id || !opinion || !exercises) {
+    if (!user_workout_id || opinion === undefined || !exercises) {
       throw new ApiError(400, 'Missing required fields');
     }
 
@@ -31,10 +31,10 @@ async function createWorkoutLog(
     if (
       exercises.some(
         (exercise) =>
-          !exercise.exercise_id ||
+          (!exercise.exercise_id && exercise.exercise_id !== 0) ||
           !exercise.value ||
-          !exercise.opinion ||
-          !exercise.order_index,
+          (!exercise.opinion && exercise.opinion !== 0) ||
+          (!exercise.order_index && exercise.order_index !== 0),
       )
     ) {
       throw new ApiError(400, 'Invalid exercise data');
