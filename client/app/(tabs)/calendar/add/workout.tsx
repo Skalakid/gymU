@@ -1,6 +1,12 @@
 import ThemedText from '@/components/ThemedText';
 import ThemedView from '@/components/ThemedView';
-import { ActivityIndicator, StyleSheet, View, FlatList } from 'react-native';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  View,
+  FlatList,
+  Alert,
+} from 'react-native';
 import Header from '@/components/navigation/Header';
 import { useRouter, useSegments } from 'expo-router';
 import Icons from '@/constants/Icons';
@@ -40,12 +46,20 @@ const CalendarWorkoutPickerPage = () => {
         `${Endpoints.user.all.workouts}${params}`,
         'GET',
       );
+
+      if (!response.ok) {
+        throw new Error(
+          `Unable to load workouts, received code:${response.status}`,
+        );
+      }
+
       const paginatedWorkouts: PaginatedResponse<Workout> =
         await response.json();
       setWorkouts(paginatedWorkouts.data);
       setIsLoaded(true);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      Alert.alert(error.message);
     }
   }, []);
 
@@ -56,11 +70,19 @@ const CalendarWorkoutPickerPage = () => {
         'GET',
         null,
       );
+
+      if (!response.ok) {
+        throw new Error(
+          `Unable to load workout tags, received code:${response.status}`,
+        );
+      }
+
       const data: WorkoutTagsRespone = await response.json();
       setTags(data.workout_tags);
       setAreTagsLoaded(true);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      Alert.alert(error.message);
     }
   }, []);
 
