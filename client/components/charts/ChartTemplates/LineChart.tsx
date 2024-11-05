@@ -5,9 +5,13 @@ import { LineChart as RNLineChart } from 'react-native-chart-kit';
 
 type LineChartProps = {
   title: string;
+  // react-native-chart-kit does not export this type
+  // eslint-disable-next-line
   data: any;
   width?: number;
   height?: number;
+  // react-native-chart-kit does not export this type
+  // eslint-disable-next-line
   chartConfig?: any;
 };
 
