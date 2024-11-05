@@ -28,6 +28,7 @@ import { AuthContextProvider, useAuthContext } from '@/contexts/AuthContext';
 import { CreateWorkoutContextProvider } from '@/contexts/CreateWorkoutContext';
 import { ExerciseContextProvider } from '@/contexts/ExerciseContext';
 import { WorkoutContextProvider } from '@/contexts/WorkoutContext';
+import { CreateCalendarEventContextProvider } from '@/contexts/CreateCalendarEventContext';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -91,20 +92,23 @@ const RootLayout = () => {
       <WorkoutContextProvider>
         <ExerciseContextProvider>
           <CreateWorkoutContextProvider>
-            <ThemeProvider
-              value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-            >
-              <SafeAreaView
-                style={[
-                  styles.container,
-                  {
-                    backgroundColor: Colors[colorScheme ?? 'light'].background,
-                  },
-                ]}
+            <CreateCalendarEventContextProvider>
+              <ThemeProvider
+                value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
               >
-                <InitialLayout />
-              </SafeAreaView>
-            </ThemeProvider>
+                <SafeAreaView
+                  style={[
+                    styles.container,
+                    {
+                      backgroundColor:
+                        Colors[colorScheme ?? 'light'].background,
+                    },
+                  ]}
+                >
+                  <InitialLayout />
+                </SafeAreaView>
+              </ThemeProvider>
+            </CreateCalendarEventContextProvider>
           </CreateWorkoutContextProvider>
         </ExerciseContextProvider>
       </WorkoutContextProvider>
