@@ -16,14 +16,14 @@ const AddToCalendarForm = ({
     selectedWorkout,
     selectedDate,
     selectedTime,
-    selectedRepeats,
-    selectedRepeatsUnit,
-    selectedRepetitions,
+    selectedRepeatFrequency,
+    selectedRepeatUnit,
+    selectedRepeatCount,
     updateSeletedDate,
     updateSelectedTime,
-    updateSelectedRepeats,
-    updateSelectedRepeatsUnit,
-    updateSelectedRepetitions,
+    updateSelectedRepeatFrequency,
+    updateSelectedRepeatUnit,
+    updateSelectedRepeatCount,
   } = useCreateCalendarEventContext();
 
   return (
@@ -47,17 +47,17 @@ const AddToCalendarForm = ({
       />
 
       <RepeatInput
-        value={selectedRepeats}
-        unit={selectedRepeatsUnit}
-        onUnitChange={updateSelectedRepeatsUnit}
-        onValueChange={updateSelectedRepeats}
+        value={selectedRepeatFrequency}
+        unit={selectedRepeatUnit}
+        onUnitChange={updateSelectedRepeatUnit}
+        onValueChange={updateSelectedRepeatFrequency}
         style={styles.repeatInput}
       />
 
       <FinishAfterInput
-        unit={selectedRepeatsUnit}
-        value={selectedRepetitions}
-        onValueChange={updateSelectedRepetitions}
+        unit={selectedRepeatUnit}
+        value={selectedRepeatCount}
+        onValueChange={updateSelectedRepeatCount}
         style={styles.section}
       />
 

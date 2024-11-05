@@ -14,16 +14,16 @@ type CreateCalendarEventContext = {
   selectedWorkout: Workout | null;
   selectedDate: Date | null;
   selectedTime: Date | null;
-  selectedRepeats: number;
-  selectedRepeatsUnit: TimeUnit;
-  selectedRepetitions: number;
+  selectedRepeatFrequency: number;
+  selectedRepeatUnit: TimeUnit;
+  selectedRepeatCount: number;
 
   updateSelectedWorkout: (item: Workout | null) => void;
   updateSeletedDate: (date: Date | null) => void;
   updateSelectedTime: (time: Date | null) => void;
-  updateSelectedRepeats: (repeats: number) => void;
-  updateSelectedRepeatsUnit: (unit: TimeUnit) => void;
-  updateSelectedRepetitions: (repetitions: number) => void;
+  updateSelectedRepeatFrequency: (repeats: number) => void;
+  updateSelectedRepeatUnit: (unit: TimeUnit) => void;
+  updateSelectedRepeatCount: (repetitions: number) => void;
   resetContext: () => void;
 };
 
@@ -31,15 +31,15 @@ const CreateCalendarEventContext = createContext<CreateCalendarEventContext>({
   selectedWorkout: null,
   selectedDate: null,
   selectedTime: null,
-  selectedRepeats: 0,
-  selectedRepeatsUnit: 'day',
-  selectedRepetitions: 0,
+  selectedRepeatFrequency: 0,
+  selectedRepeatUnit: 'day',
+  selectedRepeatCount: 0,
   updateSelectedWorkout: (item) => item,
   updateSeletedDate: (date) => date,
   updateSelectedTime: (time) => time,
-  updateSelectedRepeats: (repeats) => repeats,
-  updateSelectedRepeatsUnit: (unit) => unit,
-  updateSelectedRepetitions: (repetitions: number) => repetitions,
+  updateSelectedRepeatFrequency: (repeats) => repeats,
+  updateSelectedRepeatUnit: (unit) => unit,
+  updateSelectedRepeatCount: (repetitions: number) => repetitions,
 
   resetContext: () => {},
 });
@@ -51,11 +51,11 @@ const CreateCalendarEventContextProvider = ({
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<Date | null>(null);
 
-  const [selectedRepeats, setSelectedRepeats] = useState<number>(0);
-  const [selectedRepeatsUnit, setSelectedRepeatsUnit] =
-    useState<TimeUnit>('day');
+  const [selectedRepeatFrequency, setselectedRepeatFrequency] =
+    useState<number>(0);
+  const [selectedRepeatUnit, setselectedRepeatUnit] = useState<TimeUnit>('day');
 
-  const [selectedRepetitions, setSelectedRepetitions] = useState<number>(0);
+  const [selectedRepeatCount, setselectedRepeatCount] = useState<number>(0);
 
   const updateSelectedWorkout = useCallback((item: Workout | null) => {
     setSelectedWorkout(item);
@@ -69,16 +69,16 @@ const CreateCalendarEventContextProvider = ({
     (time: Date | null) => setSelectedTime(time),
     [],
   );
-  const updateSelectedRepeats = useCallback(
-    (repeats: number) => setSelectedRepeats(repeats),
+  const updateSelectedRepeatFrequency = useCallback(
+    (repeats: number) => setselectedRepeatFrequency(repeats),
     [],
   );
-  const updateSelectedRepeatsUnit = useCallback(
-    (unit: TimeUnit) => setSelectedRepeatsUnit(unit),
+  const updateSelectedRepeatUnit = useCallback(
+    (unit: TimeUnit) => setselectedRepeatUnit(unit),
     [],
   );
-  const updateSelectedRepetitions = useCallback(
-    (repetitions: number) => setSelectedRepetitions(repetitions),
+  const updateSelectedRepeatCount = useCallback(
+    (repetitions: number) => setselectedRepeatCount(repetitions),
     [],
   );
 
@@ -86,9 +86,9 @@ const CreateCalendarEventContextProvider = ({
     setSelectedWorkout(null);
     setSelectedDate(null);
     setSelectedTime(null);
-    setSelectedRepeats(0);
-    setSelectedRepeatsUnit('day');
-    setSelectedRepetitions(0);
+    setselectedRepeatFrequency(0);
+    setselectedRepeatUnit('day');
+    setselectedRepeatCount(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -97,31 +97,31 @@ const CreateCalendarEventContextProvider = ({
       selectedWorkout,
       selectedDate,
       selectedTime,
-      selectedRepeats,
-      selectedRepeatsUnit,
-      selectedRepetitions,
+      selectedRepeatFrequency,
+      selectedRepeatUnit,
+      selectedRepeatCount,
       resetContext,
       updateSelectedWorkout,
       updateSeletedDate,
       updateSelectedTime,
-      updateSelectedRepeats,
-      updateSelectedRepeatsUnit,
-      updateSelectedRepetitions,
+      updateSelectedRepeatFrequency,
+      updateSelectedRepeatUnit,
+      updateSelectedRepeatCount,
     }),
     [
       selectedWorkout,
       selectedDate,
       selectedTime,
-      selectedRepeats,
-      selectedRepeatsUnit,
-      selectedRepetitions,
+      selectedRepeatFrequency,
+      selectedRepeatUnit,
+      selectedRepeatCount,
       resetContext,
       updateSelectedWorkout,
       updateSeletedDate,
       updateSelectedTime,
-      updateSelectedRepeats,
-      updateSelectedRepeatsUnit,
-      updateSelectedRepetitions,
+      updateSelectedRepeatFrequency,
+      updateSelectedRepeatUnit,
+      updateSelectedRepeatCount,
     ],
   );
 
