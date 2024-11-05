@@ -18,41 +18,33 @@ const extractAverageData = (
   key: Mesaurement,
   timeInterval: number,
 ) => {
-  const values = new Array(timeInterval).fill(0);
-  const counts = new Array(timeInterval).fill(0);
-
-  let index = 0;
-  let lastMonth;
+  const totalValues = new Array(12).fill(0);
+  const counts = new Array(12).fill(0);
 
   for (let i = 0; i < data.length; ++i) {
     const saveDate = data[i].save_date;
     const measurement = data[i][key];
-
     const currentMonth = new Date(saveDate).getMonth();
 
-    if (i === 0) {
-      lastMonth = currentMonth;
-    } else if (currentMonth !== lastMonth) {
-      let diff = currentMonth - lastMonth!;
-
-      if (diff < 0) {
-        diff += 12;
-      }
-
-      index += diff;
-      lastMonth = currentMonth;
-    }
-
-    values[index] += measurement;
-    counts[index] += 1;
+    totalValues[currentMonth] += measurement;
+    counts[currentMonth] += 1;
   }
 
-  for (let i = 0; i < timeInterval; ++i) {
+  for (let i = 0; i < 12; ++i) {
     if (counts[i] === 0) {
       continue;
     }
 
-    values[i] /= counts[i];
+    totalValues[i] /= counts[i];
+  }
+
+  const values = [];
+  const startMonth = new Date().getMonth() + 1 - timeInterval;
+  let index = startMonth >= 0 ? startMonth : startMonth + 12;
+
+  for (let i = 0; i < timeInterval; ++i) {
+    values.push(totalValues[index]);
+    index = (index + 1) % 12;
   }
 
   return values;
