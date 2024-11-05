@@ -4,10 +4,12 @@ import ThemedText from '@/components/ThemedText';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
 import ExercisePlayer from '@/components/liveTraining/exercisePlayer/ExercisePlayer';
 import { useLiveTrainingContext } from '@/contexts/LiveTrainingContext';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Link, useLocalSearchParams, useRouter } from 'expo-router';
 import CardSwitcher from '@/components/liveTraining/cardSwitcher/CardSwitcher';
 import { interpolate } from 'react-native-reanimated';
 import ExerciseOpinionModal from '@/components/liveTraining/modal/ExerciseOpinionModal';
+import Icon from '@/components/common/Icon';
+import Icons from '@/constants/Icons';
 
 const LiveTrainingPage = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -131,6 +133,13 @@ const LiveTrainingPage = () => {
           <ThemedText size="l" weight="medium">
             Workout name
           </ThemedText>
+
+          <View style={styles.editLink}>
+            <Link href="/live_training/edit">
+              <ThemedText size="link">Edit workout</ThemedText>
+            </Link>
+            <Icon icon={Icons.edit} size={16} />
+          </View>
         </View>
         <View style={styles.player}>
           <CardSwitcher
@@ -165,6 +174,14 @@ const styles = StyleSheet.create({
   },
   title: {
     gap: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  editLink: {
+    gap: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   player: {
     flex: 1,
