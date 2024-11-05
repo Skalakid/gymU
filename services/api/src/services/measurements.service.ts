@@ -2,6 +2,7 @@ import * as MesaurementDB from '../persistance/measurements.db';
 
 async function createMeasurement(
   user_id: number,
+  save_date: Date,
   weight: number,
   biceps: number,
   chest: number,
@@ -12,6 +13,7 @@ async function createMeasurement(
 ) {
   return await MesaurementDB.createMesaurement(
     user_id,
+    save_date,
     weight,
     biceps,
     chest,

@@ -2,6 +2,7 @@ import { prisma } from '../config/db.server';
 
 async function createMesaurement(
   user_id: number,
+  save_date: Date,
   weight: number,
   biceps: number,
   chest: number,
@@ -13,6 +14,7 @@ async function createMesaurement(
   const newMeasurement = await prisma.measurement.create({
     data: {
       user_id,
+      save_date,
       weight,
       biceps,
       chest,
@@ -30,6 +32,7 @@ async function getMeasurements(user_id: number) {
   const measurements = await prisma.measurement.findMany({
     select: {
       user_id: true,
+      save_date: true,
       weight: true,
       biceps: true,
       chest: true,

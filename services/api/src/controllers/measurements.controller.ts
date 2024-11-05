@@ -3,17 +3,27 @@ import { AuthRequest } from '../middlewares/auth.middleware';
 import * as MeasurementService from '../services/measurements.service';
 import ApiError from '../error/ApiError';
 
-function createMeasurement(
+async function createMeasurement(
   req: AuthRequest,
   res: Response,
   next: NextFunction,
 ) {
   try {
-    const { user_id, weight, biceps, chest, waist, hips, thigh, calf } =
-      req.body;
+    const {
+      user_id,
+      save_date,
+      weight,
+      biceps,
+      chest,
+      waist,
+      hips,
+      thigh,
+      calf,
+    } = req.body;
 
     if (
       user_id === undefined ||
+      save_date === undefined ||
       weight === undefined ||
       biceps === undefined ||
       chest === undefined ||
@@ -25,8 +35,9 @@ function createMeasurement(
       throw new ApiError(400, 'Missing required fields');
     }
 
-    const newMeasurement = MeasurementService.createMeasurement(
+    const newMeasurement = await MeasurementService.createMeasurement(
       user_id,
+      save_date,
       weight,
       biceps,
       chest,
