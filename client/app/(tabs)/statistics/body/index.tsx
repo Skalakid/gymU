@@ -1,4 +1,4 @@
-import WeightChart from '@/components/charts/WeightChart';
+import MeasurementChart from '@/components/charts/MeasurementChart';
 import Header from '@/components/navigation/Header';
 import ThemedView from '@/components/ThemedView';
 import Icons from '@/constants/Icons';
@@ -22,7 +22,11 @@ const BodyMeasurements = () => {
       />
 
       <ScrollView contentContainerStyle={styles.chartContainers}>
-        <WeightChart timeInterval={12} />
+        <MeasurementChart measurement="weight" timeInterval={12} />
+        <MeasurementChart measurement="weight" timeInterval={9} />
+        <MeasurementChart measurement="weight" timeInterval={6} />
+        <MeasurementChart measurement="biceps" timeInterval={12} />
+        <MeasurementChart measurement="hips" timeInterval={12} />
       </ScrollView>
     </ThemedView>
   );
@@ -33,10 +37,7 @@ export default BodyMeasurements;
 const styles = StyleSheet.create({
   container: { flex: 1 },
   chartContainers: {
-    flex: 1,
-    display: 'flex',
     alignItems: 'center',
-
     gap: 20,
   },
 });

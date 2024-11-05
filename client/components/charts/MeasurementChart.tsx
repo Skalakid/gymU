@@ -4,8 +4,10 @@ import { useEffect, useState } from 'react';
 import ThemedText from '../ThemedText';
 import LineChart from './ChartTemplates/LineChart';
 import { extractAverageData, getLabels } from '@/utils/chart.utils';
+import { Mesaurement } from '@/types/measurement';
 
-type WeightChartProps = {
+type MeasurementChartProps = {
+  measurement: Mesaurement;
   timeInterval: number;
 };
 
@@ -14,7 +16,10 @@ type ChartData = {
   values: number[];
 };
 
-const WeightChart = ({ timeInterval }: WeightChartProps) => {
+const MeasurementChart = ({
+  measurement,
+  timeInterval,
+}: MeasurementChartProps) => {
   const auth = useAuthContext();
   const [userData, setUserData] = useState<ChartData | null>(null);
 
@@ -27,7 +32,7 @@ const WeightChart = ({ timeInterval }: WeightChartProps) => {
       const data = await rawData.json();
 
       const labels = getLabels(timeInterval);
-      const values = extractAverageData(data, 'weight', timeInterval);
+      const values = extractAverageData(data, measurement, timeInterval);
 
       setUserData({
         labels,
@@ -44,7 +49,7 @@ const WeightChart = ({ timeInterval }: WeightChartProps) => {
     <ThemedText>Loading</ThemedText>
   ) : (
     <LineChart
-      title={'weight'}
+      title={measurement}
       data={{
         labels: userData.labels,
         datasets: [{ data: userData.values }],
@@ -53,4 +58,4 @@ const WeightChart = ({ timeInterval }: WeightChartProps) => {
   );
 };
 
-export default WeightChart;
+export default MeasurementChart;
