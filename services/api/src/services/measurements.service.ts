@@ -1,0 +1,29 @@
+import * as MesaurementDB from '../persistance/measurements.db';
+
+async function createMeasurement(
+  user_id: number,
+  weight: number,
+  biceps: number,
+  chest: number,
+  waist: number,
+  hips: number,
+  thigh: number,
+  calf: number,
+) {
+  return await MesaurementDB.createMesaurement(
+    user_id,
+    weight,
+    biceps,
+    chest,
+    waist,
+    hips,
+    thigh,
+    calf,
+  );
+}
+
+async function getMeasurements(user_id: number) {
+  return await MesaurementDB.getMeasurements(user_id);
+}
+
+export { createMeasurement, getMeasurements };
