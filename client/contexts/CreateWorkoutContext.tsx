@@ -14,7 +14,7 @@ type CreateWorkoutContext = {
     orderIndex: number,
     newExerciseData: DetailedExerciseItem,
   ) => void;
-  updateExerciseOrderIndex: (exerciseId: number, orderIndex: number) => void;
+  updateExercises: (exercises: OrderedExerciseItem[]) => void;
   removeExercise: (index: number) => void;
   clearExercises: () => void;
   currentExercise: React.MutableRefObject<OrderedExerciseItem | null>;
@@ -28,7 +28,7 @@ const CreateWorkoutContext = React.createContext<CreateWorkoutContext>({
   updateWorkoutGeneralInfo: () => null,
   addExercise: () => null,
   updateExercise: () => null,
-  updateExerciseOrderIndex: () => null,
+  updateExercises: () => null,
   removeExercise: () => null,
   clearExercises: () => null,
   currentExercise: { current: null },
@@ -80,18 +80,11 @@ function CreateWorkoutContextProvider({
     [selectedExercises],
   );
 
-  const updateExerciseOrderIndex = useCallback(
-    (exerciseId: number, orderIndex: number) => {
-      setSelectedExercises((prev) =>
-        prev.map((exercise) =>
-          exercise.exercise_id === exerciseId
-            ? { ...exercise, orderIndex }
-            : exercise,
-        ),
-      );
-    },
-    [],
-  );
+  const updateExercises = useCallback((exercises: OrderedExerciseItem[]) => {
+    setSelectedExercises(
+      exercises.map((exercise, index) => ({ ...exercise, orderIndex: index })),
+    );
+  }, []);
 
   const removeExercise = useCallback((index: number) => {
     setSelectedExercises((prev) => prev.filter((_, i) => i !== index));
@@ -159,7 +152,7 @@ function CreateWorkoutContextProvider({
       updateWorkoutGeneralInfo,
       addExercise,
       updateExercise,
-      updateExerciseOrderIndex,
+      updateExercises,
       removeExercise,
       clearExercises,
       saveWorkout,
@@ -171,7 +164,7 @@ function CreateWorkoutContextProvider({
       updateWorkoutGeneralInfo,
       addExercise,
       updateExercise,
-      updateExerciseOrderIndex,
+      updateExercises,
       removeExercise,
       clearExercises,
       saveWorkout,

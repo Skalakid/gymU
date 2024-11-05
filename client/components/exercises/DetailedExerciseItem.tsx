@@ -17,6 +17,7 @@ type ExerciseItemProp = {
   bodyParts?: string[];
   description?: string;
   onPress?: () => void;
+  onLongPress?: () => void;
   activeOpacity?: number;
   exerciseDetails: ExerciseDetails;
 };
@@ -28,6 +29,7 @@ const DetailedExerciseItem = ({
   tileStyle,
   bodyParts,
   onPress,
+  onLongPress,
   activeOpacity,
   exerciseDetails,
 }: ExerciseItemProp) => {
@@ -38,6 +40,7 @@ const DetailedExerciseItem = ({
     <TouchableOpacity
       style={style}
       onPress={onPress}
+      onLongPress={onLongPress}
       activeOpacity={activeOpacity}
     >
       <Tile style={[styles.container, tileStyle]}>

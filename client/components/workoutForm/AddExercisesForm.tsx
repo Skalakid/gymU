@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import ThemedText from '../ThemedText';
 import AddExerciseItemButton from '../exercises/AddExerciseItemButton';
 import { useRouter } from 'expo-router';
@@ -7,10 +7,20 @@ import PrimaryButton from '../button/PrimaryButton';
 import DeleteAndEditSwipeable from '../common/swipeable/DeleteAndEditSwipeable';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import DetailedExerciseItem from '../exercises/DetailedExerciseItem';
+import DraggableFlatList, {
+  DragEndParams,
+  OpacityDecorator,
+  RenderItemParams,
+  ScaleDecorator,
+} from 'react-native-draggable-flatlist';
 
 const AddExercisesForm = () => {
-  const { selectedExercises, removeExercise, updateCurrentExercise } =
-    useCreateWorkoutContext();
+  const {
+    selectedExercises,
+    removeExercise,
+    updateCurrentExercise,
+    updateExercises,
+  } = useCreateWorkoutContext();
   const router = useRouter();
 
   const handleExerciseAddButtonPress = () => {
@@ -33,6 +43,46 @@ const AddExercisesForm = () => {
     });
   };
 
+  const updateExerciseOrder = ({
+    data,
+  }: DragEndParams<OrderedExerciseItem>) => {
+    updateExercises(data);
+  };
+
+  const renderItem = ({
+    item,
+    drag,
+    getIndex,
+  }: RenderItemParams<OrderedExerciseItem>) => {
+    const itemIndex = getIndex();
+    if (itemIndex === undefined) return null;
+    return (
+      <OpacityDecorator activeOpacity={0.6}>
+        <ScaleDecorator activeScale={1.05}>
+          <DeleteAndEditSwipeable
+            rightActionContainerStyle={styles.actionContainerStyle}
+            leftActionContainerStyle={styles.actionContainerStyle}
+            rightThreshold={100}
+            leftThreshold={100}
+            style={styles.swipeableContainer}
+            onSwipeRight={() => handleRemoveExercise(itemIndex)}
+            onSwipeLeft={() => handleEditExercise(itemIndex)}
+          >
+            <DetailedExerciseItem
+              name={item.name}
+              type={item.exercise_type}
+              bodyParts={item.body_parts}
+              description={item.description}
+              activeOpacity={1}
+              exerciseDetails={item.value}
+              onLongPress={drag}
+            />
+          </DeleteAndEditSwipeable>
+        </ScaleDecorator>
+      </OpacityDecorator>
+    );
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -44,30 +94,14 @@ const AddExercisesForm = () => {
       <View style={styles.content}>
         {selectedExercises && (
           <GestureHandlerRootView>
-            <FlatList
-              style={styles.exerciseList}
+            <DraggableFlatList
               data={selectedExercises ?? []}
-              renderItem={({ item, index }) => (
-                <DeleteAndEditSwipeable
-                  key={`${item.name} + ${index} + ${item.orderIndex}`}
-                  rightActionContainerStyle={styles.actionContainerStyle}
-                  leftActionContainerStyle={styles.actionContainerStyle}
-                  rightThreshold={100}
-                  leftThreshold={100}
-                  style={styles.swipeableContainer}
-                  onSwipeRight={() => handleRemoveExercise(index)}
-                  onSwipeLeft={() => handleEditExercise(index)}
-                >
-                  <DetailedExerciseItem
-                    name={item.name}
-                    type={item.exercise_type}
-                    bodyParts={item.body_parts}
-                    description={item.description}
-                    activeOpacity={1}
-                    exerciseDetails={item.value}
-                  />
-                </DeleteAndEditSwipeable>
-              )}
+              keyExtractor={(item, index) =>
+                `${item.name} + ${index} + ${item.orderIndex}`
+              }
+              style={styles.exerciseList}
+              renderItem={renderItem}
+              onDragEnd={updateExerciseOrder}
               ListEmptyComponent={() => (
                 <ThemedText size="s" style={styles.infoText}>
                   Let's cook the perfect workout plan! 🔥
