@@ -43,7 +43,7 @@ const MeasurementChart = ({
     if (!userData) {
       getData();
     }
-  }, []);
+  }, [auth.user?.user_id, measurement, timeInterval, userData]);
 
   return userData === null ? (
     <ThemedText>Loading</ThemedText>
