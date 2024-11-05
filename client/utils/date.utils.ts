@@ -76,10 +76,14 @@ const areMonthsEqual = (dateA: string, dateB: string) => {
   return dateA.substring(0, 7) === dateB.substring(0, 7);
 };
 
+const getDateSince = (timeInterval: number) =>
+  new Date(new Date().setMonth(new Date().getMonth() - timeInterval));
+
 export {
   getFormatedDate,
   prepareCalendar,
   isProperDateFormat,
   areMonthsEqual,
   getParsedValue,
+  getDateSince,
 };
