@@ -5,6 +5,7 @@ import ThemedText from '@/components/ThemedText';
 import WorkoutItem from '@/components/workouts/WorkoutItem';
 import { StyleSheet, ScrollView } from 'react-native';
 import RepeatInput from './RepeatInput';
+import FinishAfterInput from './FinishAfterInput';
 
 type AddToCalendarFormProps = { onWorkoutButtonPress: () => void };
 
@@ -17,20 +18,23 @@ const AddToCalendarForm = ({
     selectedTime,
     selectedRepeats,
     selectedRepeatsUnit,
+    selectedRepetitions,
     updateSeletedDate,
     updateSelectedTime,
     updateSelectedRepeats,
     updateSelectedRepeatsUnit,
+    updateSelectedRepetitions,
   } = useCreateCalendarEventContext();
 
   return (
-    <ScrollView style={pageStyles.container}>
+    <ScrollView style={[styles.container]}>
       <DateTimeInput
         label="Date"
         placeholder="Choose date"
         value={selectedDate}
         onValueChange={updateSeletedDate}
         type="date"
+        style={styles.section}
       />
 
       <DateTimeInput
@@ -39,17 +43,22 @@ const AddToCalendarForm = ({
         value={selectedTime}
         onValueChange={updateSelectedTime}
         type="time"
+        style={styles.section}
       />
-
-      <ThemedText size="l" weight="semiBold">
-        Repeat every:
-      </ThemedText>
 
       <RepeatInput
         value={selectedRepeats}
         unit={selectedRepeatsUnit}
         onUnitChange={updateSelectedRepeatsUnit}
         onValueChange={updateSelectedRepeats}
+        style={styles.repeatInput}
+      />
+
+      <FinishAfterInput
+        unit={selectedRepeatsUnit}
+        value={selectedRepetitions}
+        onValueChange={updateSelectedRepetitions}
+        style={styles.section}
       />
 
       <ThemedText size="l" weight="semiBold">
@@ -71,8 +80,10 @@ const AddToCalendarForm = ({
   );
 };
 
-const pageStyles = StyleSheet.create({
-  container: {},
+const styles = StyleSheet.create({
+  container: { rowGap: 20 },
+  section: { flex: 1, marginBottom: 10 },
+  repeatInput: { flex: 1, marginBottom: 20 },
 });
 
 export default AddToCalendarForm;

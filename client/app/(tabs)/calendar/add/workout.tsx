@@ -4,15 +4,13 @@ import { ActivityIndicator, StyleSheet, View, FlatList } from 'react-native';
 import Header from '@/components/navigation/Header';
 import { useRouter, useSegments } from 'expo-router';
 import Icons from '@/constants/Icons';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import WorkoutItem from '@/components/workouts/WorkoutItem';
 import { Colors } from '@/constants/Colors';
 import fetchApi from '@/api/fetch';
 import TagSelector from '@/components/workouts/TagSelector';
 import { useCreateCalendarEventContext } from '@/contexts/CreateCalendarEventContext';
-
-const ALL_USER_WORKOUT_ENDPOINT = '/user/workout/all';
-const ALL_USER_WORKOUT_TAGS_ENDPOINT = '/user/workout/tag/all';
+import Endpoints from '@/constants/Endpoints';
 
 const CalendarWorkoutPickerPage = () => {
   const router = useRouter();
@@ -35,11 +33,11 @@ const CalendarWorkoutPickerPage = () => {
   const segments = useSegments();
   const isFocused = segments[segments.length - 1] === 'workouts';
 
-  const getAllWorkouts = async (tagIds: number[] | null = null) => {
+  const getAllWorkouts = useCallback(async (tagIds: number[] | null = null) => {
     try {
       const params = tagIds !== null ? `?tag_ids=${tagIds.join(',')}` : '';
       const response = await fetchApi(
-        `${ALL_USER_WORKOUT_ENDPOINT}${params}`,
+        `${Endpoints.user.all.workouts}${params}`,
         'GET',
       );
       const paginatedWorkouts: PaginatedResponse<Workout> =
@@ -49,12 +47,12 @@ const CalendarWorkoutPickerPage = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, []);
 
-  const getAllWorkoutTags = async () => {
+  const getAllWorkoutTags = useCallback(async () => {
     try {
       const response = await fetchApi(
-        ALL_USER_WORKOUT_TAGS_ENDPOINT,
+        Endpoints.user.all.workoutTags,
         'GET',
         null,
       );
@@ -64,7 +62,7 @@ const CalendarWorkoutPickerPage = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, []);
 
   const handleTagSelectionChange = (selectedTags: WorkoutType[]) => {
     getAllWorkouts(selectedTags.map((tag) => tag.tag_id));
@@ -73,8 +71,7 @@ const CalendarWorkoutPickerPage = () => {
   useEffect(() => {
     getAllWorkouts();
     getAllWorkoutTags();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFocused]);
+  }, [isFocused, getAllWorkouts, getAllWorkoutTags]);
 
   return (
     <ThemedView style={styles.container}>

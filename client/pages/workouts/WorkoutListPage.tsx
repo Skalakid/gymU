@@ -7,7 +7,7 @@ import WorkoutItem from '@/components/workouts/WorkoutItem';
 import { Colors } from '@/constants/Colors';
 import Icons from '@/constants/Icons';
 import { useRouter, useSegments } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 
 type WorkoutListProps = {
@@ -29,23 +29,26 @@ const WorkoutListPage = ({
   const segments = useSegments();
   const isFocused = segments[segments.length - 1] === 'workouts';
 
-  const getAllWorkouts = async (tagIds: number[] | null = null) => {
-    try {
-      const params = tagIds !== null ? `?tag_ids=${tagIds.join(',')}` : '';
-      const response = await fetchApi(
-        `${getAllWorkoutsEndpoint}${params}`,
-        'GET',
-      );
-      const paginatedWorkouts: PaginatedResponse<Workout> =
-        await response.json();
-      setWorkouts(paginatedWorkouts.data);
-      setIsLoaded(true);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const getAllWorkouts = useCallback(
+    async (tagIds: number[] | null = null) => {
+      try {
+        const params = tagIds !== null ? `?tag_ids=${tagIds.join(',')}` : '';
+        const response = await fetchApi(
+          `${getAllWorkoutsEndpoint}${params}`,
+          'GET',
+        );
+        const paginatedWorkouts: PaginatedResponse<Workout> =
+          await response.json();
+        setWorkouts(paginatedWorkouts.data);
+        setIsLoaded(true);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [getAllWorkoutsEndpoint],
+  );
 
-  const getAllWorkoutTags = async () => {
+  const getAllWorkoutTags = useCallback(async () => {
     try {
       const response = await fetchApi(getAllWorkoutTagsEndpoint, 'GET', null);
       const data: WorkoutTagsRespone = await response.json();
@@ -54,13 +57,12 @@ const WorkoutListPage = ({
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [getAllWorkoutTagsEndpoint]);
 
   useEffect(() => {
     getAllWorkouts();
     getAllWorkoutTags();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFocused]);
+  }, [isFocused, getAllWorkouts, getAllWorkoutTags]);
 
   const handleTagSelectionChange = (selectedTags: WorkoutType[]) => {
     getAllWorkouts(selectedTags.map((tag) => tag.tag_id));

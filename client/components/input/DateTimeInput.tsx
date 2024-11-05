@@ -20,6 +20,7 @@ const DateTimeInput = ({
   placeholder,
   onValueChange,
   type = 'date',
+  style,
 }: DateInputProps) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const theme = useTheme();
@@ -46,7 +47,7 @@ const DateTimeInput = ({
         : value?.toTimeString().split(' ')[0].substring(0, 5);
 
   return (
-    <View>
+    <View style={style}>
       {label && (
         <ThemedText size="m" weight="medium">
           {label}

@@ -16,12 +16,14 @@ type CreateCalendarEventContext = {
   selectedTime: Date | null;
   selectedRepeats: number;
   selectedRepeatsUnit: TimeUnit;
+  selectedRepetitions: number;
 
   updateSelectedWorkout: (item: Workout | null) => void;
   updateSeletedDate: (date: Date | null) => void;
   updateSelectedTime: (time: Date | null) => void;
   updateSelectedRepeats: (repeats: number) => void;
   updateSelectedRepeatsUnit: (unit: TimeUnit) => void;
+  updateSelectedRepetitions: (repetitions: number) => void;
   resetContext: () => void;
 };
 
@@ -31,11 +33,13 @@ const CreateCalendarEventContext = createContext<CreateCalendarEventContext>({
   selectedTime: null,
   selectedRepeats: 0,
   selectedRepeatsUnit: 'day',
+  selectedRepetitions: 0,
   updateSelectedWorkout: (item) => item,
   updateSeletedDate: (date) => date,
   updateSelectedTime: (time) => time,
   updateSelectedRepeats: (repeats) => repeats,
   updateSelectedRepeatsUnit: (unit) => unit,
+  updateSelectedRepetitions: (repetitions: number) => repetitions,
 
   resetContext: () => {},
 });
@@ -50,6 +54,8 @@ const CreateCalendarEventContextProvider = ({
   const [selectedRepeats, setSelectedRepeats] = useState<number>(0);
   const [selectedRepeatsUnit, setSelectedRepeatsUnit] =
     useState<TimeUnit>('day');
+
+  const [selectedRepetitions, setSelectedRepetitions] = useState<number>(0);
 
   const updateSelectedWorkout = useCallback((item: Workout | null) => {
     setSelectedWorkout(item);
@@ -71,6 +77,10 @@ const CreateCalendarEventContextProvider = ({
     (unit: TimeUnit) => setSelectedRepeatsUnit(unit),
     [],
   );
+  const updateSelectedRepetitions = useCallback(
+    (repetitions: number) => setSelectedRepetitions(repetitions),
+    [],
+  );
 
   const resetContext = useCallback(() => {
     setSelectedWorkout(null);
@@ -78,6 +88,7 @@ const CreateCalendarEventContextProvider = ({
     setSelectedTime(null);
     setSelectedRepeats(0);
     setSelectedRepeatsUnit('day');
+    setSelectedRepetitions(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -88,12 +99,14 @@ const CreateCalendarEventContextProvider = ({
       selectedTime,
       selectedRepeats,
       selectedRepeatsUnit,
+      selectedRepetitions,
       resetContext,
       updateSelectedWorkout,
       updateSeletedDate,
       updateSelectedTime,
       updateSelectedRepeats,
       updateSelectedRepeatsUnit,
+      updateSelectedRepetitions,
     }),
     [
       selectedWorkout,
@@ -101,12 +114,14 @@ const CreateCalendarEventContextProvider = ({
       selectedTime,
       selectedRepeats,
       selectedRepeatsUnit,
+      selectedRepetitions,
       resetContext,
       updateSelectedWorkout,
       updateSeletedDate,
       updateSelectedTime,
       updateSelectedRepeats,
       updateSelectedRepeatsUnit,
+      updateSelectedRepetitions,
     ],
   );
 
