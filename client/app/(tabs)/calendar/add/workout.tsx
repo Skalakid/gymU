@@ -57,9 +57,9 @@ const CalendarWorkoutPickerPage = () => {
         await response.json();
       setWorkouts(paginatedWorkouts.data);
       setIsLoaded(true);
-    } catch (error: any) {
+    } catch (error) {
       console.error(error);
-      Alert.alert(error.message);
+      Alert.alert((error as Error).message);
     }
   }, []);
 
@@ -80,9 +80,9 @@ const CalendarWorkoutPickerPage = () => {
       const data: WorkoutTagsRespone = await response.json();
       setTags(data.workout_tags);
       setAreTagsLoaded(true);
-    } catch (error: any) {
+    } catch (error) {
       console.error(error);
-      Alert.alert(error.message);
+      Alert.alert((error as Error).message);
     }
   }, []);
 
