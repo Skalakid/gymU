@@ -2,7 +2,8 @@ import ThemedView from '@/components/ThemedView';
 import EventCalendar from '@/components/calendar/EventCalendar';
 import EventCalendarNavigation from '@/components/calendar/navigation/EventCalendarNavigation';
 import Icons from '@/constants/Icons';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useRouter } from 'expo-router';
 import { StyleSheet } from 'react-native';
 import Header from '@/components/navigation/Header';
 import {
@@ -10,6 +11,7 @@ import {
   getFormatedDate,
   getParsedValue,
 } from '@/utils/date.utils';
+import { useCreateCalendarEventContext } from '@/contexts/CreateCalendarEventContext';
 
 const hardcodedEvents = {
   '2024-10-21': [{ color: 'white', name: 'test1' }],
@@ -32,6 +34,13 @@ const CalendarPage = () => {
 
   const [month, setMonth] = useState(new Date(currentDate).getMonth() + 1);
   const [year, setYear] = useState(new Date(currentDate).getFullYear());
+
+  const router = useRouter();
+  const { resetContext } = useCreateCalendarEventContext();
+
+  useEffect(() => {
+    resetContext();
+  }, [resetContext]);
 
   const updateCalendarDate = useCallback(
     (currentMonth: number, currentYear: number) => {
@@ -91,12 +100,17 @@ const CalendarPage = () => {
     [selectedDate, setNavigation],
   );
 
+  const onAddToCalendarPress = () => {
+    router.navigate('/calendar/add');
+  };
+
   return (
     <ThemedView style={styles.container}>
       <Header
         title="Calendar"
         rightIcon={Icons.calendarAdd}
         rightIconSize={26}
+        rightIconOnPress={onAddToCalendarPress}
       />
 
       <EventCalendarNavigation

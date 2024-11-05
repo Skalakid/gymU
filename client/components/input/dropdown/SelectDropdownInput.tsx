@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Colors } from '@/constants/Colors';
-import { StyleSheet, View, useColorScheme } from 'react-native';
+import { ViewStyle, StyleSheet, View, useColorScheme } from 'react-native';
 import ThemedText from '../../ThemedText';
 import useTheme from '@/hooks/useTheme';
 import SelectDropdown from 'react-native-select-dropdown';
@@ -20,6 +20,7 @@ type SelectDropdownInputProps = {
   iconColor?: string;
   iconSize?: number;
   disabled?: boolean;
+  style?: ViewStyle;
 };
 
 const SelectDropdownInput = ({
@@ -33,6 +34,7 @@ const SelectDropdownInput = ({
   iconColor,
   iconSize = 26,
   disabled,
+  style,
 }: SelectDropdownInputProps) => {
   const theme = useTheme();
   const colorScheme = useColorScheme();
@@ -67,7 +69,7 @@ const SelectDropdownInput = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       {label && (
         <ThemedText size="m" weight="medium">
           {label}

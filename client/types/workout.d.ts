@@ -31,3 +31,7 @@ type WorkoutGeneralInfo = {
   isPrivate: boolean;
   tags: WorkoutType[];
 };
+
+type WorkoutTagsRespone = {
+  workout_tags: WorkoutType[];
+};
