@@ -21,6 +21,7 @@ const DefaultChartConfig = {
 
 const ChartWidth = Dimensions.get('window').width * 0.9;
 const ChartHeight = Dimensions.get('window').height * 0.2;
+const ContainerHeight = Dimensions.get('window').height * 0.26;
 
 const LineChart = ({
   title,
@@ -51,8 +52,8 @@ export default LineChart;
 
 const styles = StyleSheet.create({
   container: {
-    height: '35%',
     width: '95%',
+    height: ContainerHeight,
 
     padding: 5,
     gap: 10,
