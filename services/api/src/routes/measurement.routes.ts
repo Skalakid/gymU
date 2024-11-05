@@ -10,5 +10,10 @@ router.post(
   measurementController.createMeasurement,
 );
 router.get('/:id', authenticateToken, measurementController.getMeasurements);
+router.get(
+  '/:id/:time_interval',
+  authenticateToken,
+  measurementController.getMesaurementsSince,
+);
 
 export = router;

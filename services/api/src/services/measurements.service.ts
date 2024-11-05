@@ -28,4 +28,8 @@ async function getMeasurements(user_id: number) {
   return await MesaurementDB.getMeasurements(user_id);
 }
 
-export { createMeasurement, getMeasurements };
+async function getMeasurementsSince(user_id: number, time_interval: number) {
+  return await MesaurementDB.getMeasurementsSince(user_id, time_interval);
+}
+
+export { createMeasurement, getMeasurements, getMeasurementsSince };

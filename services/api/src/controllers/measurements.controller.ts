@@ -81,4 +81,36 @@ async function getMeasurements(
   }
 }
 
-export { createMeasurement, getMeasurements };
+async function getMesaurementsSince(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const user_id = Number(req.params.id) || -1;
+    const time_interval = Number(req.params.time_interval) || -1;
+
+    if (!user_id || user_id <= 0) {
+      throw new ApiError(400, 'Invalid user id');
+    }
+
+    if (!time_interval || time_interval <= 0) {
+      throw new ApiError(400, 'Invalid start date');
+    }
+
+    const measurements = await MeasurementService.getMeasurementsSince(
+      user_id,
+      time_interval,
+    );
+
+    if (!measurements) {
+      throw new ApiError(500, 'Failed to get measurements');
+    }
+
+    res.status(201).send(measurements);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export { createMeasurement, getMeasurements, getMesaurementsSince };
