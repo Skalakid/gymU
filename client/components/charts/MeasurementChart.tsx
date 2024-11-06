@@ -5,6 +5,9 @@ import LineChart from './ChartTemplates/LineChart';
 import { extractAverageData, getLabels } from '@/utils/chart.utils';
 import { Mesaurement } from '@/types/measurement';
 import { ActivityIndicator } from 'react-native';
+import Tile from '../common/Tile';
+import { capitalize } from '@/utils/text.utils';
+import { useTheme } from '@react-navigation/native';
 
 type MeasurementChartProps = {
   measurement: Mesaurement;
@@ -21,6 +24,7 @@ const MeasurementChart = ({
   timeInterval,
 }: MeasurementChartProps) => {
   const auth = useAuthContext();
+  const theme = useTheme();
   const [userData, setUserData] = useState<ChartData | null>(null);
 
   useEffect(() => {
@@ -46,15 +50,17 @@ const MeasurementChart = ({
   }, [auth.user?.user_id, measurement, timeInterval, userData]);
 
   return userData === null ? (
-    <ActivityIndicator />
+    <ActivityIndicator color={theme.colors.primary} />
   ) : (
-    <LineChart
-      title={measurement}
-      data={{
-        labels: userData.labels,
-        datasets: [{ data: userData.values }],
-      }}
-    />
+    <Tile>
+      <LineChart
+        title={capitalize(measurement)}
+        data={{
+          labels: userData.labels,
+          datasets: [{ data: userData.values }],
+        }}
+      />
+    </Tile>
   );
 };
 
