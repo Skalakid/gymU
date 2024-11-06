@@ -23,10 +23,10 @@ const BodyMeasurements = () => {
 
       <ScrollView contentContainerStyle={styles.chartContainers}>
         <MeasurementChart measurement="weight" timeInterval={12} />
-        <MeasurementChart measurement="weight" timeInterval={9} />
-        <MeasurementChart measurement="weight" timeInterval={6} />
         <MeasurementChart measurement="biceps" timeInterval={12} />
+        <MeasurementChart measurement="chest" timeInterval={12} />
         <MeasurementChart measurement="hips" timeInterval={12} />
+        <MeasurementChart measurement="thigh" timeInterval={12} />
       </ScrollView>
     </ThemedView>
   );
