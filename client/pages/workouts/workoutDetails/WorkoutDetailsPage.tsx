@@ -1,7 +1,6 @@
 import fetchApi from '@/api/fetch';
 import PageSwitcher from '@/components/navigation/PageSwitcher';
 import Icons from '@/constants/Icons';
-import { useIsFocused } from '@react-navigation/native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -10,18 +9,20 @@ import WorkoutExercises from './WorkoutExercises';
 import WorkoutModalPage from '../WorkoutModalPage';
 
 type WorkoutDetailsPageProps = {
-  workoutType?: 'external' | 'user';
+  onWorkoutDetailsChange?: (workoutDetails: Workout) => void;
+  onRightIconPress?: (workoutDetails: Workout) => void;
+  rightIcon?: (typeof Icons)[keyof typeof Icons];
 };
 
 const WorkoutDetailsPage = ({
-  workoutType = 'external',
+  onWorkoutDetailsChange,
+  onRightIconPress,
+  rightIcon,
 }: WorkoutDetailsPageProps) => {
   const router = useRouter();
-  const isFocused = useIsFocused();
   const { id } = useLocalSearchParams();
   const [currentSubpage, setCurrentSubpage] = useState(0);
   const [workoutDetails, setWorkoutDetails] = useState<Workout | null>(null);
-  const isExternal = workoutType === 'external';
 
   const getWorkoutDetails = useCallback(async () => {
     try {
@@ -32,14 +33,22 @@ const WorkoutDetailsPage = ({
       }
       const workoutDetails: Workout = await response.json();
       setWorkoutDetails(workoutDetails);
+      onWorkoutDetailsChange?.(workoutDetails);
     } catch (error) {
       console.error(error);
     }
-  }, [id]);
+  }, [id, onWorkoutDetailsChange]);
 
   useEffect(() => {
     getWorkoutDetails();
   }, [getWorkoutDetails]);
+
+  const handleRightIconPress = async () => {
+    if (onRightIconPress && workoutDetails) {
+      await onRightIconPress(workoutDetails);
+    }
+    await getWorkoutDetails();
+  };
 
   const renderSubpage = () => {
     if (!workoutDetails) return null;
@@ -58,30 +67,12 @@ const WorkoutDetailsPage = ({
     router.back();
   };
 
-  const handleSaveWorkout = async () => {
-    if (!workoutDetails || workoutDetails?.isSavedByUser || !isExternal) {
-      return;
-    }
-
-    await fetchApi(`/user/workout/save`, 'POST', null, {
-      workout_id: workoutDetails.workout_id,
-    });
-    await getWorkoutDetails();
-  };
-
-  if (!isFocused) return null;
   return (
     <WorkoutModalPage
       title="Workout Details"
       onGoBack={handleGoBack}
-      rightIcon={
-        !isExternal
-          ? undefined
-          : workoutDetails?.isSavedByUser
-            ? Icons.check
-            : Icons.save
-      }
-      rightIconOnPress={handleSaveWorkout}
+      rightIcon={rightIcon}
+      rightIconOnPress={handleRightIconPress}
     >
       <>
         <View style={styles.switcher}>

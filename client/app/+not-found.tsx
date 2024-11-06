@@ -11,7 +11,7 @@ const NotFoundScreen = () => {
         <ThemedText style={styles.text} size="h2">
           This page doesn't exist.
         </ThemedText>
-        <Link href="/" style={styles.link}>
+        <Link href="/(auth)" style={styles.link}>
           <ThemedText size="link">Go to start screen!</ThemedText>
         </Link>
       </ThemedView>

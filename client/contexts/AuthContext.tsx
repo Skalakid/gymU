@@ -30,7 +30,7 @@ type LoginResponse = {
 
 function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isAuthenticated, setisAuthenticated] = useState<boolean>(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
 
   const login = useCallback(async (email: string, password: string) => {
@@ -71,7 +71,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
       email: data.email,
       username: data.username,
     });
-    setisAuthenticated(true);
+    setIsAuthenticated(true);
   }, []);
 
   const register = useCallback(
@@ -116,7 +116,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
 
     await deleteTokens();
-    setisAuthenticated(false);
+    setIsAuthenticated(false);
     setUser(null);
   }, [deleteTokens]);
 
@@ -140,11 +140,11 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
           email: data.email,
           username: data.username,
         });
-        setisAuthenticated(true);
+        setIsAuthenticated(true);
       } catch (error) {
         await deleteTokens();
         setUser(null);
-        setisAuthenticated(false);
+        setIsAuthenticated(false);
       }
 
       setIsLoaded(true);

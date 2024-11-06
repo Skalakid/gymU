@@ -9,6 +9,7 @@ type PageWithGoBackHeaderProps = {
   children: React.ReactNode;
   title?: string;
   style?: ViewStyle;
+  headerStyle?: ViewStyle;
   rightIcon?: IconType;
   rightIconOnPress?: () => void;
   rightIconColor?: string;
@@ -18,13 +19,14 @@ type PageWithGoBackHeaderProps = {
 const PageWithGoBackHeader = ({
   children,
   style,
+  headerStyle = {},
   title,
 }: PageWithGoBackHeaderProps) => {
   return (
     <ThemedView style={styles.container}>
       <Header
         title={title}
-        style={{ paddingLeft: 10 }}
+        style={[{ paddingLeft: 10 }, headerStyle]}
         leftIcon={Icons.arrowLeft}
         leftIconSize={32}
         leftIconOnPress={() => router.back()}

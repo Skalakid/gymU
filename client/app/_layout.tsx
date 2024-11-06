@@ -3,7 +3,7 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from '@react-navigation/native';
-import { Slot, useRouter, useSegments } from 'expo-router';
+import { Stack, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
@@ -28,6 +28,7 @@ import { AuthContextProvider, useAuthContext } from '@/contexts/AuthContext';
 import { CreateWorkoutContextProvider } from '@/contexts/CreateWorkoutContext';
 import { ExerciseContextProvider } from '@/contexts/ExerciseContext';
 import { WorkoutContextProvider } from '@/contexts/WorkoutContext';
+import { LiveTrainingContextProvider } from '@/contexts/LiveTrainingContext';
 import { CreateCalendarEventContextProvider } from '@/contexts/CreateCalendarEventContext';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -58,7 +59,16 @@ const InitialLayout = () => {
     }
   }, [isLoaded]);
 
-  return <Slot />;
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen
+        name="live_training/index"
+        options={{
+          presentation: 'modal',
+        }}
+      />
+    </Stack>
+  );
 };
 
 const RootLayout = () => {
@@ -89,29 +99,31 @@ const RootLayout = () => {
 
   return (
     <AuthContextProvider>
-      <WorkoutContextProvider>
-        <ExerciseContextProvider>
-          <CreateWorkoutContextProvider>
-            <CreateCalendarEventContextProvider>
-              <ThemeProvider
-                value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-              >
-                <SafeAreaView
-                  style={[
-                    styles.container,
-                    {
-                      backgroundColor:
-                        Colors[colorScheme ?? 'light'].background,
-                    },
-                  ]}
+      <LiveTrainingContextProvider>
+        <WorkoutContextProvider>
+          <ExerciseContextProvider>
+            <CreateWorkoutContextProvider>
+              <CreateCalendarEventContextProvider>
+                <ThemeProvider
+                  value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
                 >
-                  <InitialLayout />
-                </SafeAreaView>
-              </ThemeProvider>
-            </CreateCalendarEventContextProvider>
-          </CreateWorkoutContextProvider>
-        </ExerciseContextProvider>
-      </WorkoutContextProvider>
+                  <SafeAreaView
+                    style={[
+                      styles.container,
+                      {
+                        backgroundColor:
+                          Colors[colorScheme ?? 'light'].background,
+                      },
+                    ]}
+                  >
+                    <InitialLayout />
+                  </SafeAreaView>
+                </ThemeProvider>
+              </CreateCalendarEventContextProvider>
+            </CreateWorkoutContextProvider>
+          </ExerciseContextProvider>
+        </WorkoutContextProvider>
+      </LiveTrainingContextProvider>
     </AuthContextProvider>
   );
 };

@@ -45,6 +45,9 @@ const SizePresets: Record<string, TextStyle> = {
   xxl: {
     fontSize: 20,
   },
+  x4l: {
+    fontSize: 32,
+  },
   h1: {
     ...WeightPresets.bold,
     fontSize: 40,
