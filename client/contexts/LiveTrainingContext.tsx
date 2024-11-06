@@ -1,6 +1,6 @@
 import fetchApi from '@/api/fetch';
 import React, { useCallback, useMemo, useState } from 'react';
-import { useCardSwitcherContextt } from './CardSwitcherContext';
+import { useCardSwitcherContext } from './CardSwitcherContext';
 
 type LiveTrainingContextProviderProps = { children: React.ReactNode };
 
@@ -44,7 +44,7 @@ type Opinion = {
 function LiveTrainingContextProvider({
   children,
 }: LiveTrainingContextProviderProps) {
-  const { cardData } = useCardSwitcherContextt();
+  const { cardData } = useCardSwitcherContext();
   const [isLoading, setIsLoading] = useState(false);
   const [currentWorkout, setCurrentWorkout] = useState<Workout | null>(null);
   const [trainingItems, setTrainingItems] = useState<TrainingItem[]>([]);
@@ -233,7 +233,7 @@ function LiveTrainingContextProvider({
         const response = await fetchApi(
           '/workout/live_training/save',
           'POST',
-          {},
+          null,
           {
             user_workout_id: currentWorkout?.workout_id,
             opinion: workoutOpinion,
