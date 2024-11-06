@@ -11,6 +11,7 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import CardContent from './CardContent';
+import { useCardSwitcherContextt } from '@/contexts/CardSwitcherContext';
 
 type CardProps = {
   trainingItem: TrainingItem;
@@ -23,7 +24,7 @@ type CardProps = {
   nextCardName: string;
   isHidden: boolean;
   nextIndex: number;
-  onAutoSwipe: (index: number) => void;
+  onAutoSwipe: (index: number, action: ActionType) => void;
 };
 
 const SwipeableCard = ({
@@ -39,9 +40,10 @@ const SwipeableCard = ({
   nextIndex,
   onAutoSwipe,
 }: CardProps) => {
+  const { cardData, addCardData, removeCardData } = useCardSwitcherContextt();
   const { width } = useWindowDimensions();
-  const translateX = useSharedValue(0);
-  const direction = useSharedValue(0);
+  const translateX = useSharedValue(cardData.current[index]?.translationX || 0);
+  const direction = useSharedValue(cardData.current[index]?.direction || 0);
   const isManuallySwiped = useSharedValue(false);
 
   const recenterCard = useCallback(() => {
@@ -55,15 +57,17 @@ const SwipeableCard = ({
     (
       newIndex: number,
       swipeDirection: number,
-      callback: (i: number) => void,
+      callback: (i: number, action: ActionType) => void,
     ) => {
       direction.value = swipeDirection;
-      translateX.value = withTiming(swipeDirection * (width + 100), {}, () => {
-        runOnJS(callback)(newIndex);
+      const xValue = swipeDirection * (width + 100);
+      translateX.value = withTiming(xValue, {}, () => {
+        runOnJS(callback)(newIndex, 'next');
+        runOnJS(addCardData)(index, xValue, swipeDirection);
       });
       animatedValue.value = withTiming(newIndex);
     },
-    [animatedValue, direction, translateX, width],
+    [addCardData, animatedValue, direction, index, translateX, width],
   );
 
   const pan = Gesture.Pan()
@@ -148,7 +152,8 @@ const SwipeableCard = ({
         );
       } else if (diff < 0 && index === nextIndex) {
         recenterCard();
-        onAutoSwipe(nextIndex);
+        onAutoSwipe(nextIndex, 'prev');
+        removeCardData(index);
       }
     }
   }, [
@@ -160,6 +165,7 @@ const SwipeableCard = ({
     nextIndex,
     onAutoSwipe,
     recenterCard,
+    removeCardData,
   ]);
 
   if (isHidden) {

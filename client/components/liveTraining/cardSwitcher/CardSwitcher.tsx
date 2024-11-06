@@ -8,24 +8,27 @@ type CardSwitcherProps = {
   data: TrainingItem[];
   desiredCardIndex: number;
   onSwipe: (index: number) => void;
+  onAutoSwipe: (index: number, action: ActionType) => void;
 };
 
 const CardSwitcher = ({
   data,
   onSwipe,
-  desiredCardIndex = 0,
+  desiredCardIndex,
+  onAutoSwipe,
 }: CardSwitcherProps) => {
   const MAX = 2;
-  const animatedValue = useSharedValue(0);
-  const currentCardIndex = useSharedValue(0);
+  const animatedValue = useSharedValue(desiredCardIndex);
+  const currentCardIndex = useSharedValue(desiredCardIndex);
 
   const handleOnSwipe = (index: number) => {
-    currentCardIndex.value = index;
+    currentCardIndex.value = Math.min(desiredCardIndex, index);
     onSwipe(index);
   };
 
-  const handleOnAutoSwipe = (index: number) => {
+  const handleOnAutoSwipe = (index: number, action: ActionType) => {
     currentCardIndex.value = index;
+    onAutoSwipe(index, action);
   };
 
   return (

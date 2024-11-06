@@ -13,6 +13,7 @@ type ExerciseItemProp = {
   name: string;
   type: string;
   style?: ViewStyle;
+  tileStyle?: ViewStyle;
   bodyParts?: string[];
   description?: string;
   onPress?: () => void;
@@ -24,6 +25,7 @@ const DetailedExerciseItem = ({
   name,
   type,
   style,
+  tileStyle,
   bodyParts,
   onPress,
   activeOpacity,
@@ -38,7 +40,7 @@ const DetailedExerciseItem = ({
       onPress={onPress}
       activeOpacity={activeOpacity}
     >
-      <Tile style={styles.container}>
+      <Tile style={[styles.container, tileStyle]}>
         <View style={styles.title}>
           <Icon icon={getExerciseTypeIcon(type)} size={14} color={theme.text} />
           <ThemedText size="l" weight="medium">

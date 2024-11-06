@@ -7,6 +7,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import ThemedText from '../ThemedText';
+import useTheme from '@/hooks/useTheme';
 
 export type ButtonProps = {
   value: string;
@@ -25,9 +26,14 @@ const PrimaryButton = ({
   style,
   textStyle,
 }: ButtonProps) => {
+  const theme = useTheme();
   return (
     <TouchableOpacity
-      style={[styles.button, style]}
+      style={[
+        styles.button,
+        { backgroundColor: disabled ? 'grey' : theme.primary },
+        style,
+      ]}
       onPress={onPress}
       disabled={disabled || isLoading}
       activeOpacity={0.7}
@@ -47,7 +53,6 @@ export default PrimaryButton;
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: Colors.dark.primary,
     width: '100%',
     paddingVertical: 16,
     alignItems: 'center',

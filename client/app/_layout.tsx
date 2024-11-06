@@ -29,6 +29,7 @@ import { CreateWorkoutContextProvider } from '@/contexts/CreateWorkoutContext';
 import { ExerciseContextProvider } from '@/contexts/ExerciseContext';
 import { WorkoutContextProvider } from '@/contexts/WorkoutContext';
 import { LiveTrainingContextProvider } from '@/contexts/LiveTrainingContext';
+import { CardSwitcherContexttProvider } from '@/contexts/CardSwitcherContext';
 import { CreateCalendarEventContextProvider } from '@/contexts/CreateCalendarEventContext';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -62,7 +63,7 @@ const InitialLayout = () => {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen
-        name="live_training/index"
+        name="live_training"
         options={{
           presentation: 'modal',
         }}
@@ -99,31 +100,33 @@ const RootLayout = () => {
 
   return (
     <AuthContextProvider>
-      <LiveTrainingContextProvider>
-        <WorkoutContextProvider>
-          <ExerciseContextProvider>
-            <CreateWorkoutContextProvider>
-              <CreateCalendarEventContextProvider>
-                <ThemeProvider
-                  value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-                >
-                  <SafeAreaView
-                    style={[
-                      styles.container,
-                      {
-                        backgroundColor:
-                          Colors[colorScheme ?? 'light'].background,
-                      },
-                    ]}
+      <CardSwitcherContexttProvider>
+        <LiveTrainingContextProvider>
+          <WorkoutContextProvider>
+            <ExerciseContextProvider>
+              <CreateWorkoutContextProvider>
+                <CreateCalendarEventContextProvider>
+                  <ThemeProvider
+                    value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
                   >
-                    <InitialLayout />
-                  </SafeAreaView>
-                </ThemeProvider>
-              </CreateCalendarEventContextProvider>
-            </CreateWorkoutContextProvider>
-          </ExerciseContextProvider>
-        </WorkoutContextProvider>
-      </LiveTrainingContextProvider>
+                    <SafeAreaView
+                      style={[
+                        styles.container,
+                        {
+                          backgroundColor:
+                            Colors[colorScheme ?? 'light'].background,
+                        },
+                      ]}
+                    >
+                      <InitialLayout />
+                    </SafeAreaView>
+                  </ThemeProvider>
+                </CreateCalendarEventContextProvider>
+              </CreateWorkoutContextProvider>
+            </ExerciseContextProvider>
+          </WorkoutContextProvider>
+        </LiveTrainingContextProvider>
+      </CardSwitcherContexttProvider>
     </AuthContextProvider>
   );
 };

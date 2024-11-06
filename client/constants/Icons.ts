@@ -12,6 +12,9 @@ import check from '../assets/icons/check.svg';
 import circleAdd from '../assets/icons/circle-add.svg';
 import dumbell from '../assets/icons/dumbell.svg';
 import edit from '../assets/icons/edit.svg';
+import emojiLaugh from '../assets/icons/emojiLaugh.svg';
+import emojiSmile from '../assets/icons/emojiSmile.svg';
+import emojiTired from '../assets/icons/emojiTired.svg';
 import flame from '../assets/icons/flame.svg';
 import hashtag from '../assets/icons/hashtag.svg';
 import heartFill from '../assets/icons/heart-fill.svg';
@@ -47,6 +50,9 @@ export default {
   circleAdd,
   dumbell,
   edit,
+  emojiLaugh,
+  emojiSmile,
+  emojiTired,
   flame,
   hashtag,
   heartFill,

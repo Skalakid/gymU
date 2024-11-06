@@ -1,12 +1,23 @@
 import { StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
 import Icon, { IconProps } from '../common/Icon';
+import ThemedText from '../ThemedText';
 
 type IconButtonProps = IconProps & {
   onPress?: () => void;
   style?: ViewStyle;
+  labelStyle?: ViewStyle;
+  label?: string;
+  labelSize?: 's' | 'm' | 'l';
 };
 
-const IconButton = ({ onPress, style, ...rest }: IconButtonProps) => {
+const IconButton = ({
+  onPress,
+  style,
+  labelStyle,
+  label,
+  labelSize = 's',
+  ...rest
+}: IconButtonProps) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
@@ -14,6 +25,11 @@ const IconButton = ({ onPress, style, ...rest }: IconButtonProps) => {
       style={[styles.button, style]}
     >
       <Icon {...rest} />
+      {label && (
+        <ThemedText size={labelSize} color={rest.color} style={labelStyle}>
+          {label}
+        </ThemedText>
+      )}
     </TouchableOpacity>
   );
 };

@@ -1,5 +1,6 @@
 type TrainingItem = {
   exerciseID: number;
+  exerciseIndex: number;
   name: string;
   value: {
     sets: number;
@@ -10,3 +11,5 @@ type TrainingItem = {
   };
   type: string;
 };
+
+type ActionType = 'next' | 'prev';
