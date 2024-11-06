@@ -90,7 +90,7 @@ const LiveTrainingPage = () => {
     [handleModalClose, shouldShowModal],
   );
 
-  const handlSwipe = useCallback(
+  const handleSwipe = useCallback(
     (index: number) => {
       if (shouldShowModal(index - 1)) {
         return;
@@ -136,7 +136,7 @@ const LiveTrainingPage = () => {
           <CardSwitcher
             data={trainingItems}
             desiredCardIndex={currentExerciseIndex}
-            onSwipe={handlSwipe}
+            onSwipe={handleSwipe}
             onAutoSwipe={showModal}
           />
           <ExercisePlayer

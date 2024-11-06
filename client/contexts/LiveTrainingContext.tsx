@@ -72,18 +72,9 @@ function LiveTrainingContextProvider({
         if (exercise.value.sets) {
           const sets = exercise.value.sets;
           for (let i = 0; i < sets; i++) {
-            items.push(
-              getTrainingItem(
-                {
-                  ...exercise,
-                  value: {
-                    ...exercise.value,
-                    sets: sets - i,
-                  },
-                },
-                index,
-              ),
-            );
+            const exerciseItem = { ...exercise };
+            exerciseItem.value.sets = sets - i;
+            items.push(getTrainingItem(exerciseItem, index));
 
             if (i < sets - 1) {
               items.push({
