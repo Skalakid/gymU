@@ -8,6 +8,7 @@ import Tag from '../common/tag/Tag';
 import { capitalize } from '@/utils/text.utils';
 import { useExerciseContext } from '@/contexts/ExerciseContext';
 import ExerciseDetailsList from './ExerciseDetailsList';
+import DraggableItemIndicator from '../common/draggable/DraggableItemIndicator';
 
 type ExerciseItemProp = {
   name: string;
@@ -20,6 +21,7 @@ type ExerciseItemProp = {
   onLongPress?: () => void;
   activeOpacity?: number;
   exerciseDetails: ExerciseDetails;
+  isDraggable?: boolean;
 };
 
 const DetailedExerciseItem = ({
@@ -32,6 +34,7 @@ const DetailedExerciseItem = ({
   onLongPress,
   activeOpacity,
   exerciseDetails,
+  isDraggable = false,
 }: ExerciseItemProp) => {
   const { getExerciseTypeIcon } = useExerciseContext();
   const theme = useTheme();
@@ -44,35 +47,42 @@ const DetailedExerciseItem = ({
       activeOpacity={activeOpacity}
     >
       <Tile style={[styles.container, tileStyle]}>
-        <View style={styles.title}>
-          <Icon icon={getExerciseTypeIcon(type)} size={14} color={theme.text} />
-          <ThemedText size="l" weight="medium">
-            {name}
-          </ThemedText>
-        </View>
-
-        <View style={styles.info}>
-          <View style={styles.tags}>
-            {bodyParts?.map((part) => (
-              <Tag
-                key={part}
-                value={capitalize(part.replace('_', ' '))}
-                size="s"
-                style={{
-                  backgroundColor: theme.secondary,
-                }}
-              />
-            ))}
+        <View style={{ flex: 1 }}>
+          <View style={styles.title}>
+            <Icon
+              icon={getExerciseTypeIcon(type)}
+              size={14}
+              color={theme.text}
+            />
+            <ThemedText size="l" weight="medium">
+              {name}
+            </ThemedText>
           </View>
 
-          <ExerciseDetailsList
-            sets={exerciseDetails?.sets}
-            reps={exerciseDetails?.reps}
-            weight={exerciseDetails?.weight}
-            time={exerciseDetails?.time}
-            breakTime={exerciseDetails?.breakTime}
-          />
+          <View style={styles.info}>
+            <View style={styles.tags}>
+              {bodyParts?.map((part) => (
+                <Tag
+                  key={part}
+                  value={capitalize(part.replace('_', ' '))}
+                  size="s"
+                  style={{
+                    backgroundColor: theme.secondary,
+                  }}
+                />
+              ))}
+            </View>
+
+            <ExerciseDetailsList
+              sets={exerciseDetails?.sets}
+              reps={exerciseDetails?.reps}
+              weight={exerciseDetails?.weight}
+              time={exerciseDetails?.time}
+              breakTime={exerciseDetails?.breakTime}
+            />
+          </View>
         </View>
+        {isDraggable && <DraggableItemIndicator />}
       </Tile>
     </TouchableOpacity>
   );
@@ -84,6 +94,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 15,
     minHeight: 100,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   content: {
     flex: 1,

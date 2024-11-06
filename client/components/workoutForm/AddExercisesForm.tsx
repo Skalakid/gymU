@@ -76,6 +76,7 @@ const AddExercisesForm = () => {
               activeOpacity={1}
               exerciseDetails={item.value}
               onLongPress={drag}
+              isDraggable
             />
           </DeleteAndEditSwipeable>
         </ScaleDecorator>
