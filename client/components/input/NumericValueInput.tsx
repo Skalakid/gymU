@@ -17,6 +17,8 @@ type TextInputProps = {
   label?: string;
   style?: ViewStyle;
   unit?: string;
+  minValue?: number;
+  maxValue?: number;
 };
 
 const NumericValueInput = ({
@@ -24,6 +26,8 @@ const NumericValueInput = ({
   onValueChange,
   label,
   style,
+  minValue,
+  maxValue,
 }: TextInputProps) => {
   const colorScheme = useColorScheme();
   const primaryColor = Colors[colorScheme ?? 'light'].text;
@@ -31,6 +35,14 @@ const NumericValueInput = ({
   const handleValueChange = (text: string) => {
     const numericValue = text === '-' ? 0 : Number(text);
     if (isNaN(numericValue)) {
+      return;
+    }
+
+    if (typeof minValue !== 'undefined' && minValue > numericValue) {
+      return;
+    }
+
+    if (typeof maxValue !== 'undefined' && maxValue < numericValue) {
       return;
     }
     onValueChange?.(numericValue);
@@ -96,12 +108,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   textInput: {
-    padding: 16,
     fontFamily: 'Poppins',
     flex: 1,
     textAlign: 'center',
+    flexGrow: 1,
   },
   button: {
-    width: 64,
+    padding: 16,
   },
 });
