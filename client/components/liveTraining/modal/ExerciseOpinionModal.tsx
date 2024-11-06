@@ -66,7 +66,7 @@ const ExerciseOpinionModal = ({
           <OpinionForm onSelection={handleSelection} value={value} />
 
           <SecondaryButton
-            value="Skip"
+            value="Save"
             onPress={handleClose}
             disabled={value === null}
           />

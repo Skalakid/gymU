@@ -4,6 +4,7 @@ import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 import workoutRoutes from './routes/workout.routes';
 import exerciseRoutes from './routes/exercise.routes';
+import measurementRoutes from './routes/measurement.routes';
 import errorHandler from './middlewares/error.middleware';
 import initSwagger from './config/swagger';
 
@@ -29,6 +30,7 @@ app.use(authRoutes);
 app.use('/user', userRoutes);
 app.use('/workout', workoutRoutes);
 app.use('/exercise', exerciseRoutes);
+app.use('/measurement', measurementRoutes);
 
 app.use(errorHandler);
 initSwagger(app);
