@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, View } from 'react-native';
+import { Alert, FlatList, StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
 import ThemedText from '@/components/ThemedText';
@@ -6,13 +6,37 @@ import WorkoutOpinionForm from '@/components/liveTraining/opinion/OpinionForm';
 import PrimaryButton from '@/components/button/PrimaryButton';
 import { useLiveTrainingContext } from '@/contexts/LiveTrainingContext';
 import DetailedExerciseItem from '@/components/exercises/DetailedExerciseItem';
+import { useRouter } from 'expo-router';
 
 const LiveTrainingSummaryPage = () => {
-  const { currentWorkout } = useLiveTrainingContext();
+  const router = useRouter();
+  const { currentWorkout, saveWorkoutLog, resetTraining } =
+    useLiveTrainingContext();
   const [opinionValue, setOpinionValue] = useState<number | null>(null);
 
   const handleOpinionSelection = (value: number) => {
     setOpinionValue(value);
+  };
+
+  const handleSubmit = () => {
+    try {
+      if (!currentWorkout) {
+        Alert.alert('No workout found');
+      }
+
+      if (opinionValue === null) {
+        Alert.alert('Please rate your workout');
+        return;
+      }
+
+      saveWorkoutLog(opinionValue ?? 0);
+      Alert.alert('Success', 'Workout log saved successfully');
+      resetTraining();
+      router.dismissAll();
+      router.replace('/home');
+    } catch (error) {
+      Alert.alert('Failed to save workout log', 'Please try again later');
+    }
   };
 
   return (
@@ -56,7 +80,7 @@ const LiveTrainingSummaryPage = () => {
           />
         </View>
 
-        <PrimaryButton value="Finish" onPress={() => console.log('Finish')} />
+        <PrimaryButton value="Finish" onPress={handleSubmit} />
       </View>
     </PageWithGoBackHeader>
   );

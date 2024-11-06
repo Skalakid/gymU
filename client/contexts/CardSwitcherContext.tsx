@@ -50,14 +50,14 @@ function CardSwitcherContexttProvider({
   );
 }
 
-function useCardSwitcherContextt() {
+function useCardSwitcherContext() {
   const context = React.useContext(CardSwitcherContextt);
   if (context === undefined) {
     throw new Error(
-      'useCardSwitcherContextt must be used within a CardSwitcherContexttProvider',
+      'useCardSwitcherContext must be used within a CardSwitcherContexttProvider',
     );
   }
   return context;
 }
 
-export { CardSwitcherContexttProvider, useCardSwitcherContextt };
+export { CardSwitcherContexttProvider, useCardSwitcherContext };

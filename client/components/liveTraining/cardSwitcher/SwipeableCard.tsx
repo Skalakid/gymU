@@ -11,7 +11,7 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import CardContent from './CardContent';
-import { useCardSwitcherContextt } from '@/contexts/CardSwitcherContext';
+import { useCardSwitcherContext } from '@/contexts/CardSwitcherContext';
 
 type CardProps = {
   trainingItem: TrainingItem;
@@ -40,7 +40,7 @@ const SwipeableCard = ({
   nextIndex,
   onAutoSwipe,
 }: CardProps) => {
-  const { cardData, addCardData, removeCardData } = useCardSwitcherContextt();
+  const { cardData, addCardData, removeCardData } = useCardSwitcherContext();
   const { width } = useWindowDimensions();
   const translateX = useSharedValue(cardData.current[index]?.translationX || 0);
   const direction = useSharedValue(cardData.current[index]?.direction || 0);

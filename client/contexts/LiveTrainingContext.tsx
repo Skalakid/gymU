@@ -1,5 +1,6 @@
 import fetchApi from '@/api/fetch';
 import React, { useCallback, useMemo, useState } from 'react';
+import { useCardSwitcherContext } from './CardSwitcherContext';
 
 type LiveTrainingContextProviderProps = { children: React.ReactNode };
 
@@ -16,6 +17,8 @@ type LiveTrainingContext = {
   ) => DetailedExerciseItem | null;
   addOpinion: (value: number, exerciseIndex: number) => void;
   getExerciseOpinion: (trainingItemIndex: number) => Opinion | null;
+  saveWorkoutLog: (workoutOpinion: number) => void;
+  resetTraining: () => void;
 };
 
 const LiveTrainingContext = React.createContext<LiveTrainingContext>({
@@ -29,6 +32,8 @@ const LiveTrainingContext = React.createContext<LiveTrainingContext>({
   getWorkoutExercise: () => null,
   addOpinion: () => null,
   getExerciseOpinion: () => null,
+  saveWorkoutLog: () => null,
+  resetTraining: () => null,
 });
 
 type Opinion = {
@@ -39,6 +44,7 @@ type Opinion = {
 function LiveTrainingContextProvider({
   children,
 }: LiveTrainingContextProviderProps) {
+  const { cardData } = useCardSwitcherContext();
   const [isLoading, setIsLoading] = useState(false);
   const [currentWorkout, setCurrentWorkout] = useState<Workout | null>(null);
   const [trainingItems, setTrainingItems] = useState<TrainingItem[]>([]);
@@ -72,9 +78,18 @@ function LiveTrainingContextProvider({
         if (exercise.value.sets) {
           const sets = exercise.value.sets;
           for (let i = 0; i < sets; i++) {
-            const exerciseItem = { ...exercise };
-            exerciseItem.value.sets = sets - i;
-            items.push(getTrainingItem(exerciseItem, index));
+            items.push(
+              getTrainingItem(
+                {
+                  ...exercise,
+                  value: {
+                    ...exercise.value,
+                    sets: sets - i,
+                  },
+                },
+                index,
+              ),
+            );
 
             if (i < sets - 1) {
               items.push({
@@ -120,11 +135,13 @@ function LiveTrainingContextProvider({
   }, []);
 
   const resetTraining = useCallback(() => {
+    cardData.current = [];
     setIsLoading(false);
     setCurrentWorkout(null);
     setTrainingItems([]);
     setCurrentExerciseIndex(0);
-  }, []);
+    setOpinions([]);
+  }, [cardData]);
 
   const startLiveTraining = useCallback(
     async (workoutID: number) => {
@@ -210,6 +227,38 @@ function LiveTrainingContextProvider({
     [opinions, trainingItems],
   );
 
+  const saveWorkoutLog = useCallback(
+    async (workoutOpinion: number) => {
+      try {
+        const response = await fetchApi(
+          '/workout/live_training/save',
+          'POST',
+          null,
+          {
+            user_workout_id: currentWorkout?.workout_id,
+            opinion: workoutOpinion,
+            exercises: currentWorkout?.exercises.map((exercise, index) => ({
+              exercise_id: exercise.exercise_id,
+              value: exercise.value,
+              opinion: opinions[index]?.value || 0,
+              order_index: index,
+            })),
+          },
+        );
+        if (!response.ok) {
+          throw new Error('Failed to save workout log');
+        }
+        const data = await response.json();
+        return data;
+      } catch (event) {
+        if (event instanceof Error) {
+          throw new Error(event.message);
+        }
+      }
+    },
+    [currentWorkout?.exercises, currentWorkout?.workout_id, opinions],
+  );
+
   const value = useMemo(
     () => ({
       isLoading,
@@ -222,6 +271,8 @@ function LiveTrainingContextProvider({
       getWorkoutExercise,
       addOpinion,
       getExerciseOpinion,
+      saveWorkoutLog,
+      resetTraining,
     }),
     [
       currentExerciseIndex,
@@ -234,6 +285,8 @@ function LiveTrainingContextProvider({
       getWorkoutExercise,
       addOpinion,
       getExerciseOpinion,
+      saveWorkoutLog,
+      resetTraining,
     ],
   );
 
