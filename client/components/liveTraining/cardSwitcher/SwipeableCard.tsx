@@ -127,8 +127,6 @@ const SwipeableCard = ({
       [0, 1],
     );
 
-    // console.log(index, isHidden, animatedValue.value, translateX.value);
-
     return {
       zIndex: dataLength - index,
       opacity: index < currentIndex.value + maxVisibleItems ? 1 : opacity,
@@ -146,7 +144,6 @@ const SwipeableCard = ({
   useEffect(() => {
     if (!isManuallySwiped.value) {
       const diff = nextIndex - currentIndex.value;
-      // console.log(diff, nextIndex, currentIndex.value);
       if (diff > 0 && index === nextIndex - 1) {
         moveCard(
           nextIndex,
