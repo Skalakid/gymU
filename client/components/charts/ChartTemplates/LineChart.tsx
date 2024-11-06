@@ -34,6 +34,10 @@ const LineChart = ({
   height = ChartHeight,
   chartConfig = DefaultChartConfig,
 }: LineChartProps) => {
+  const pointsToHide = data.datasets[0].data
+    .map((value: number, index: number) => (value === 0 ? index : -1))
+    .filter((value: number) => value !== -1);
+
   return (
     <ThemedView style={[styles.container]}>
       <ThemedText size="xl" weight="semiBold">
@@ -47,6 +51,7 @@ const LineChart = ({
         withHorizontalLines={false}
         withVerticalLines={false}
         verticalLabelRotation={-30}
+        hidePointsAtIndex={pointsToHide}
       />
     </ThemedView>
   );
