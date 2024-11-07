@@ -19,6 +19,7 @@ type TextInputProps = {
   unit?: string;
   minValue?: number;
   maxValue?: number;
+  disabled?: boolean;
 };
 
 const NumericValueInput = ({
@@ -28,11 +29,16 @@ const NumericValueInput = ({
   style,
   minValue,
   maxValue,
+  disabled,
 }: TextInputProps) => {
   const colorScheme = useColorScheme();
   const primaryColor = Colors[colorScheme ?? 'light'].text;
 
   const handleValueChange = (text: string) => {
+    if (disabled) {
+      return;
+    }
+
     const numericValue = text === '-' ? 0 : Number(text);
     if (isNaN(numericValue)) {
       return;
@@ -61,6 +67,7 @@ const NumericValueInput = ({
           styles.textInputConatiner,
           {
             borderColor: primaryColor,
+            opacity: disabled ? 0.5 : 1,
           },
         ]}
       >
@@ -83,6 +90,7 @@ const NumericValueInput = ({
           onChangeText={handleValueChange}
           autoCapitalize="none"
           keyboardType="numeric"
+          editable={!disabled}
         />
         <IconButton
           icon={Icons.plus}

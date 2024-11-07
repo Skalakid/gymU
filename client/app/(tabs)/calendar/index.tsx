@@ -1,32 +1,27 @@
 import ThemedView from '@/components/ThemedView';
-import EventCalendar from '@/components/calendar/EventCalendar';
+import EventCalendar, {
+  CalendarEvents,
+} from '@/components/calendar/EventCalendar';
 import EventCalendarNavigation from '@/components/calendar/navigation/EventCalendarNavigation';
 import Icons from '@/constants/Icons';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'expo-router';
-import { StyleSheet } from 'react-native';
+import { Alert, ScrollView, StyleSheet, View } from 'react-native';
 import Header from '@/components/navigation/Header';
 import {
+  areDatesEqual,
   areMonthsEqual,
+  compareEventCalendarDatetime,
+  dateToTime,
+  getCalendarFirstAndLastDay,
   getFormatedDate,
   getParsedValue,
 } from '@/utils/date.utils';
 import { useCreateCalendarEventContext } from '@/contexts/CreateCalendarEventContext';
-
-const hardcodedEvents = {
-  '2024-10-21': [{ color: 'white', name: 'test1' }],
-  '2024-10-22': [{ color: 'gray', name: 'test2' }],
-  '2024-10-25': [{ color: 'red', name: 'test3' }],
-  '2024-10-26': [
-    { color: 'blue', name: 'test4' },
-    { color: 'gray', name: 'test5' },
-  ],
-  '2024-10-28': [
-    { color: 'blue', name: 'test6' },
-    { color: 'gray', name: 'test7' },
-    { color: 'gray', name: 'test8' },
-  ],
-};
+import fetchApi from '@/api/fetch';
+import { EventCalendarData } from '@/types/calendar';
+import WorkoutItem from '@/components/workouts/WorkoutItem';
+import ThemedText from '@/components/ThemedText';
 
 const CalendarPage = () => {
   const [currentDate] = useState(getFormatedDate(new Date()));
@@ -34,6 +29,7 @@ const CalendarPage = () => {
 
   const [month, setMonth] = useState(new Date(currentDate).getMonth() + 1);
   const [year, setYear] = useState(new Date(currentDate).getFullYear());
+  const [events, setEvents] = useState<EventCalendarData[]>([]);
 
   const router = useRouter();
   const { resetContext } = useCreateCalendarEventContext();
@@ -41,6 +37,32 @@ const CalendarPage = () => {
   useEffect(() => {
     resetContext();
   }, [resetContext]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const { firstDay, lastDay } = getCalendarFirstAndLastDay(month, year);
+
+      try {
+        const response = await fetchApi(
+          `/calendar/grid/${firstDay}/${lastDay}`,
+          'GET',
+          null,
+          null,
+        );
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch');
+        }
+
+        setEvents((await response.json()) ?? []);
+      } catch (error) {
+        console.error(error);
+        Alert.alert(`Unable to load events for ${month}-${year}: ${error}`);
+      }
+    };
+
+    fetchEvents();
+  }, [month, year]);
 
   const updateCalendarDate = useCallback(
     (currentMonth: number, currentYear: number) => {
@@ -104,6 +126,54 @@ const CalendarPage = () => {
     router.navigate('/calendar/add');
   };
 
+  const calendarEvents = useMemo<CalendarEvents>(() => {
+    const result: CalendarEvents = {};
+
+    for (const event of events) {
+      const date = getFormatedDate(new Date(event.datetime));
+
+      if (!(date in result)) {
+        result[date] = [];
+      }
+
+      result[date].push({
+        color: 'gray',
+        name: event.workout.name,
+      });
+    }
+
+    return result;
+  }, [events]);
+
+  const currentDateEvents = useMemo(
+    () =>
+      events.filter((event) =>
+        areDatesEqual(new Date(event.datetime), new Date(selectedDate)),
+      ),
+    [events, selectedDate],
+  );
+
+  const workoutItems = useMemo(
+    () =>
+      currentDateEvents
+        .sort(compareEventCalendarDatetime)
+        .map(({ eventId, datetime, workout }) => {
+          return (
+            <WorkoutItem
+              id={workout.workoutId}
+              name={`[${dateToTime(new Date(datetime))}] ${workout.name}`}
+              level={workout.level}
+              tags={workout.tags}
+              onPress={() => {
+                router.navigate(`/workouts/${workout.workoutId}`);
+              }}
+              key={eventId}
+            />
+          );
+        }),
+    [currentDateEvents, router],
+  );
+
   return (
     <ThemedView style={styles.container}>
       <Header
@@ -120,14 +190,25 @@ const CalendarPage = () => {
         onNextPress={onNextPress}
         style={styles.navigation}
       />
-      <EventCalendar
-        onDayPress={onDayPress}
-        month={month}
-        year={year}
-        events={hardcodedEvents}
-        selectedDate={selectedDate}
-        currentDate={currentDate}
-      ></EventCalendar>
+      <ScrollView>
+        <EventCalendar
+          onDayPress={onDayPress}
+          month={month}
+          year={year}
+          events={calendarEvents}
+          selectedDate={selectedDate}
+          currentDate={currentDate}
+        />
+        <View style={styles.workoutsContainer}>
+          {workoutItems.length !== 0 ? (
+            workoutItems
+          ) : (
+            <ThemedText style={styles.workoutsNotFound}>
+              --- No trainings found ---
+            </ThemedText>
+          )}
+        </View>
+      </ScrollView>
     </ThemedView>
   );
 };
@@ -141,5 +222,10 @@ const styles = StyleSheet.create({
 
   navigation: {
     paddingHorizontal: 10,
+  },
+
+  workoutsContainer: { padding: 20, gap: 20 },
+  workoutsNotFound: {
+    textAlign: 'center',
   },
 });

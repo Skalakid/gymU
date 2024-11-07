@@ -2,6 +2,33 @@ import {
   CalendarCell,
   CalendarEvents,
 } from '@/components/calendar/EventCalendar';
+import { EventCalendarData } from '@/types/calendar';
+import { add } from 'date-fns';
+
+const getCalendarFirstAndLastDay = (month: number, year: number) => {
+  const firstDay = new Date(year, month - 1, 1, 1);
+  const firstWeekDay = firstDay.getDay();
+  const firstWeekDate = firstDay.getDate();
+
+  const offset = firstWeekDay === 0 ? -6 : -firstWeekDay + 1;
+  firstDay.setDate(firstWeekDate + offset);
+
+  const lastDay = add(firstDay, { weeks: 6 });
+
+  return { firstDay, lastDay };
+};
+
+const mergeDateTime = (date: Date, time: Date) => {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+
+  const hours = time.getHours();
+  const minutes = time.getMinutes();
+  const seconds = time.getSeconds();
+
+  return new Date(year, month, day, hours, minutes, seconds);
+};
 
 const zerofill = (value: number, padding = 2) => {
   return value.toString().padStart(padding, '0');
@@ -76,6 +103,22 @@ const areMonthsEqual = (dateA: string, dateB: string) => {
   return dateA.substring(0, 7) === dateB.substring(0, 7);
 };
 
+const areDatesEqual = (dateA: Date, dateB: Date) => {
+  return (
+    dateA.getFullYear() === dateB.getFullYear() &&
+    dateA.getMonth() === dateB.getMonth() &&
+    dateA.getDate() === dateB.getDate()
+  );
+};
+
+const compareEventCalendarDatetime = (
+  a: EventCalendarData,
+  b: EventCalendarData,
+) => new Date(a.datetime).getTime() - new Date(b.datetime).getTime();
+
+const dateToTime = (date: Date) =>
+  date?.toTimeString().split(' ')[0].substring(0, 5);
+
 const getDateSince = (timeInterval: number) =>
   new Date(new Date().setMonth(new Date().getMonth() - timeInterval));
 
@@ -85,5 +128,10 @@ export {
   isProperDateFormat,
   areMonthsEqual,
   getParsedValue,
+  mergeDateTime,
+  areDatesEqual,
+  getCalendarFirstAndLastDay,
+  compareEventCalendarDatetime,
+  dateToTime,
   getDateSince,
 };

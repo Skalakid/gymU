@@ -1,4 +1,5 @@
 import PrimaryButton from '@/components/button/PrimaryButton';
+import { useCreateCalendarEventContext } from '@/contexts/CreateCalendarEventContext';
 import AddToCalendarForm from '@/pages/calendar/AddToCalendarForm';
 import WorkoutModalPage from '@/pages/workouts/WorkoutModalPage';
 import { useRouter } from 'expo-router';
@@ -6,8 +7,18 @@ import { useRouter } from 'expo-router';
 const AddToCalendarPage = () => {
   const router = useRouter();
 
+  const { areAllCalendarFieldsSelected, saveCalendarEvent } =
+    useCreateCalendarEventContext();
+
   const handleWorkoutButtonPress = () => {
     router.navigate('/calendar/add/workout');
+  };
+
+  const handleSubmit = async () => {
+    const isSaveSucced = await saveCalendarEvent();
+    if (isSaveSucced) {
+      router.back();
+    }
   };
 
   return (
@@ -15,10 +26,8 @@ const AddToCalendarPage = () => {
       <AddToCalendarForm onWorkoutButtonPress={handleWorkoutButtonPress} />
       <PrimaryButton
         value="Add"
-        onPress={() => {
-          // eslint-disable-next-line no-console
-          console.log('TODO: Connect with proper endpoint');
-        }}
+        onPress={handleSubmit}
+        disabled={!areAllCalendarFieldsSelected()}
       />
     </WorkoutModalPage>
   );
