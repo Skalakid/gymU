@@ -124,7 +124,7 @@ const CreateCalendarEventContextProvider = ({
 
     if (!areAllCalendarFieldsSelected()) {
       Alert.alert('Fill all fields before submitting workout!');
-      return;
+      return false;
     }
 
     const request = {
