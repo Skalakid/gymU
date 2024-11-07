@@ -119,6 +119,9 @@ const compareEventCalendarDatetime = (
 const dateToTime = (date: Date) =>
   date?.toTimeString().split(' ')[0].substring(0, 5);
 
+const getDateSince = (timeInterval: number) =>
+  new Date(new Date().setMonth(new Date().getMonth() - timeInterval));
+
 export {
   getFormatedDate,
   prepareCalendar,
@@ -130,4 +133,5 @@ export {
   getCalendarFirstAndLastDay,
   compareEventCalendarDatetime,
   dateToTime,
+  getDateSince,
 };
