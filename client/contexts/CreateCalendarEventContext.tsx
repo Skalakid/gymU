@@ -131,7 +131,7 @@ const CreateCalendarEventContextProvider = ({
       datetime: mergeDateTime(selectedDate!, selectedTime!),
       repeatFrequency: selectedRepeatFrequency,
       repeatUnit: selectedRepeatFrequency === 0 ? 'day' : selectedRepeatUnit,
-      repeatCount: selectedRepeatFrequency === 0 ? selectedRepeatCount : 0,
+      repeatCount: selectedRepeatFrequency === 0 ? 0 : selectedRepeatCount,
       workoutId: selectedWorkout?.workout_id,
     };
 

@@ -2,6 +2,7 @@ import {
   CalendarCell,
   CalendarEvents,
 } from '@/components/calendar/EventCalendar';
+import { EventCalendarData } from '@/types/calendar';
 import { add } from 'date-fns';
 
 const getCalendarFirstAndLastDay = (month: number, year: number) => {
@@ -102,6 +103,22 @@ const areMonthsEqual = (dateA: string, dateB: string) => {
   return dateA.substring(0, 7) === dateB.substring(0, 7);
 };
 
+const areDatesEqual = (dateA: Date, dateB: Date) => {
+  return (
+    dateA.getFullYear() === dateB.getFullYear() &&
+    dateA.getMonth() === dateB.getMonth() &&
+    dateA.getDate() === dateB.getDate()
+  );
+};
+
+const compareEventCalendarDatetime = (
+  a: EventCalendarData,
+  b: EventCalendarData,
+) => new Date(a.datetime).getTime() - new Date(b.datetime).getTime();
+
+const dateToTime = (date: Date) =>
+  date?.toTimeString().split(' ')[0].substring(0, 5);
+
 export {
   getFormatedDate,
   prepareCalendar,
@@ -109,5 +126,8 @@ export {
   areMonthsEqual,
   getParsedValue,
   mergeDateTime,
+  areDatesEqual,
   getCalendarFirstAndLastDay,
+  compareEventCalendarDatetime,
+  dateToTime,
 };

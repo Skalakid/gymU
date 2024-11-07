@@ -6,10 +6,13 @@ import EventCalendarNavigation from '@/components/calendar/navigation/EventCalen
 import Icons from '@/constants/Icons';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'expo-router';
-import { Alert, StyleSheet } from 'react-native';
+import { Alert, ScrollView, StyleSheet, View } from 'react-native';
 import Header from '@/components/navigation/Header';
 import {
+  areDatesEqual,
   areMonthsEqual,
+  compareEventCalendarDatetime,
+  dateToTime,
   getCalendarFirstAndLastDay,
   getFormatedDate,
   getParsedValue,
@@ -17,6 +20,8 @@ import {
 import { useCreateCalendarEventContext } from '@/contexts/CreateCalendarEventContext';
 import fetchApi from '@/api/fetch';
 import { EventCalendarData } from '@/types/calendar';
+import WorkoutItem from '@/components/workouts/WorkoutItem';
+import ThemedText from '@/components/ThemedText';
 
 const CalendarPage = () => {
   const [currentDate] = useState(getFormatedDate(new Date()));
@@ -140,6 +145,35 @@ const CalendarPage = () => {
     return result;
   }, [events]);
 
+  const currentDateEvents = useMemo(
+    () =>
+      events.filter((event) =>
+        areDatesEqual(new Date(event.datetime), new Date(selectedDate)),
+      ),
+    [events, selectedDate],
+  );
+
+  const workoutItems = useMemo(
+    () =>
+      currentDateEvents
+        .sort(compareEventCalendarDatetime)
+        .map(({ eventId, datetime, workout }) => {
+          return (
+            <WorkoutItem
+              id={workout.workoutId}
+              name={`[${dateToTime(new Date(datetime))}] ${workout.name}`}
+              level={workout.level}
+              tags={workout.tags}
+              onPress={() => {
+                router.navigate(`/workouts/${workout.workoutId}`);
+              }}
+              key={eventId}
+            />
+          );
+        }),
+    [currentDateEvents, router],
+  );
+
   return (
     <ThemedView style={styles.container}>
       <Header
@@ -156,14 +190,25 @@ const CalendarPage = () => {
         onNextPress={onNextPress}
         style={styles.navigation}
       />
-      <EventCalendar
-        onDayPress={onDayPress}
-        month={month}
-        year={year}
-        events={calendarEvents}
-        selectedDate={selectedDate}
-        currentDate={currentDate}
-      ></EventCalendar>
+      <ScrollView>
+        <EventCalendar
+          onDayPress={onDayPress}
+          month={month}
+          year={year}
+          events={calendarEvents}
+          selectedDate={selectedDate}
+          currentDate={currentDate}
+        />
+        <View style={styles.workoutsContainer}>
+          {workoutItems.length !== 0 ? (
+            workoutItems
+          ) : (
+            <ThemedText style={styles.workoutsNotFound}>
+              --- No trainings found ---
+            </ThemedText>
+          )}
+        </View>
+      </ScrollView>
     </ThemedView>
   );
 };
@@ -177,5 +222,10 @@ const styles = StyleSheet.create({
 
   navigation: {
     paddingHorizontal: 10,
+  },
+
+  workoutsContainer: { padding: 20, gap: 20 },
+  workoutsNotFound: {
+    textAlign: 'center',
   },
 });

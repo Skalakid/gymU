@@ -4,6 +4,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useState } from 'react';
 import { SizePresets, WeightPresets } from '@/constants/Typography';
 import useTheme from '@/hooks/useTheme';
+import { dateToTime } from '@/utils/date.utils';
 
 type DateInputProps = {
   value?: Date | null;
@@ -44,7 +45,7 @@ const DateTimeInput = ({
       ? placeholder
       : type === 'date'
         ? value?.toDateString()
-        : value?.toTimeString().split(' ')[0].substring(0, 5);
+        : dateToTime(value!);
 
   return (
     <View style={style}>
