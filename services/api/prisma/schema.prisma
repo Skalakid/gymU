@@ -139,8 +139,9 @@ model workout_template {
 }
 
 model measurement {
-  measurement_id Int   @id @default(autoincrement())
+  measurement_id Int      @id @default(autoincrement())
   user_id        Int
+  save_date      DateTime @default(now()) @db.Timestamptz(6)
   weight         Float
   biceps         Float
   chest          Float

@@ -1,8 +1,10 @@
+import MeasurementChart from '@/components/charts/MeasurementChart';
 import Header from '@/components/navigation/Header';
 import ThemedView from '@/components/ThemedView';
 import Icons from '@/constants/Icons';
 import { useRouter } from 'expo-router';
 import { StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native';
 
 const BodyMeasurements = () => {
   const router = useRouter();
@@ -18,6 +20,14 @@ const BodyMeasurements = () => {
         rightIconSize={26}
         rightIconOnPress={() => router.navigate('/statistics/body/add')}
       />
+
+      <ScrollView contentContainerStyle={styles.chartContainers}>
+        <MeasurementChart measurement="weight" timeInterval={12} />
+        <MeasurementChart measurement="biceps" timeInterval={12} />
+        <MeasurementChart measurement="chest" timeInterval={12} />
+        <MeasurementChart measurement="hips" timeInterval={12} />
+        <MeasurementChart measurement="thigh" timeInterval={12} />
+      </ScrollView>
     </ThemedView>
   );
 };
@@ -26,4 +36,8 @@ export default BodyMeasurements;
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
+  chartContainers: {
+    alignItems: 'center',
+    gap: 20,
+  },
 });
