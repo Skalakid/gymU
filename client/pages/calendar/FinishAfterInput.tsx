@@ -9,6 +9,9 @@ type FinishAfterInputProps = {
   value: number;
   onValueChange: (value: number) => void;
   style?: ViewStyle;
+  minValue?: number;
+  maxValue?: number;
+  disabled?: boolean;
 };
 
 const FinishAfterInput = ({
@@ -16,13 +19,16 @@ const FinishAfterInput = ({
   value,
   onValueChange,
   style,
+  minValue = 1,
+  maxValue = calendarConstraints.repeats[unit].maxRepetitions,
+  disabled,
 }: FinishAfterInputProps) => {
-  if (value < 0) {
-    onValueChange(0);
+  if (value < minValue) {
+    onValueChange(minValue);
   }
 
-  if (value > calendarConstraints.repeats[unit].maxRepetitions) {
-    onValueChange(calendarConstraints.repeats[unit].maxRepetitions);
+  if (value > maxValue) {
+    onValueChange(maxValue);
   }
 
   return (
@@ -30,10 +36,11 @@ const FinishAfterInput = ({
       <ThemedText style={styles.text}>Finish after</ThemedText>
       <NumericValueInput
         style={styles.input}
-        minValue={0}
-        maxValue={calendarConstraints.repeats[unit].maxRepetitions}
+        minValue={minValue}
+        maxValue={maxValue}
         value={value}
         onValueChange={onValueChange}
+        disabled={disabled}
       />
     </View>
   );

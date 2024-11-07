@@ -7,6 +7,9 @@ import {
   useState,
 } from 'react';
 import { TimeUnit } from '@/types/calendar';
+import { Alert } from 'react-native';
+import { mergeDateTime } from '@/utils/date.utils';
+import fetchApi from '@/api/fetch';
 
 type CreateCalendarEventContextProviderProps = { children: ReactNode };
 
@@ -25,6 +28,8 @@ type CreateCalendarEventContext = {
   updateSelectedRepeatUnit: (unit: TimeUnit) => void;
   updateSelectedRepeatCount: (repetitions: number) => void;
   resetContext: () => void;
+  saveCalendarEvent: () => Promise<boolean>;
+  areAllCalendarFieldsSelected: () => boolean;
 };
 
 const CreateCalendarEventContext = createContext<CreateCalendarEventContext>({
@@ -42,6 +47,8 @@ const CreateCalendarEventContext = createContext<CreateCalendarEventContext>({
   updateSelectedRepeatCount: (repetitions: number) => repetitions,
 
   resetContext: () => {},
+  saveCalendarEvent: async () => false,
+  areAllCalendarFieldsSelected: () => false,
 });
 
 const CreateCalendarEventContextProvider = ({
@@ -55,7 +62,7 @@ const CreateCalendarEventContextProvider = ({
     useState<number>(0);
   const [selectedRepeatUnit, setselectedRepeatUnit] = useState<TimeUnit>('day');
 
-  const [selectedRepeatCount, setselectedRepeatCount] = useState<number>(0);
+  const [selectedRepeatCount, setselectedRepeatCount] = useState<number>(1);
 
   const updateSelectedWorkout = useCallback((item: Workout | null) => {
     setSelectedWorkout(item);
@@ -88,9 +95,68 @@ const CreateCalendarEventContextProvider = ({
     setSelectedTime(null);
     setselectedRepeatFrequency(0);
     setselectedRepeatUnit('day');
-    setselectedRepeatCount(0);
+    setselectedRepeatCount(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const areAllCalendarFieldsSelected = useCallback(() => {
+    const emptyFields = [
+      selectedDate,
+      selectedTime,
+      selectedRepeatCount,
+      selectedRepeatFrequency,
+      selectedRepeatUnit,
+      selectedWorkout,
+    ].filter((item) => item == null);
+
+    return emptyFields.length === 0;
+  }, [
+    selectedDate,
+    selectedTime,
+    selectedRepeatCount,
+    selectedRepeatFrequency,
+    selectedRepeatUnit,
+    selectedWorkout,
+  ]);
+
+  const saveCalendarEvent = useCallback(async () => {
+    /// TODO: Add better validation
+
+    if (!areAllCalendarFieldsSelected()) {
+      Alert.alert('Fill all fields before submitting workout!');
+      return;
+    }
+
+    const request = {
+      datetime: mergeDateTime(selectedDate!, selectedTime!),
+      repeatFrequency: selectedRepeatFrequency,
+      repeatUnit: selectedRepeatFrequency === 0 ? 'day' : selectedRepeatUnit,
+      repeatCount: selectedRepeatFrequency === 0 ? selectedRepeatCount : 0,
+      workoutId: selectedWorkout?.workout_id,
+    };
+
+    try {
+      const response = await fetchApi('/calendar', 'POST', null, request, true);
+      if (!response.ok) {
+        throw new Error('Something went wrong');
+      }
+
+      resetContext();
+      return true;
+    } catch (error) {
+      Alert.alert(`${error}. Please try again later`);
+    }
+    return false;
+  }, [
+    selectedDate,
+    selectedTime,
+    selectedRepeatCount,
+    selectedRepeatFrequency,
+    selectedRepeatUnit,
+    selectedWorkout,
+    resetContext,
+    areAllCalendarFieldsSelected,
+  ]);
 
   const value = useMemo(
     () => ({
@@ -100,13 +166,15 @@ const CreateCalendarEventContextProvider = ({
       selectedRepeatFrequency,
       selectedRepeatUnit,
       selectedRepeatCount,
-      resetContext,
       updateSelectedWorkout,
       updateSeletedDate,
       updateSelectedTime,
       updateSelectedRepeatFrequency,
       updateSelectedRepeatUnit,
       updateSelectedRepeatCount,
+      resetContext,
+      saveCalendarEvent,
+      areAllCalendarFieldsSelected,
     }),
     [
       selectedWorkout,
@@ -115,13 +183,15 @@ const CreateCalendarEventContextProvider = ({
       selectedRepeatFrequency,
       selectedRepeatUnit,
       selectedRepeatCount,
-      resetContext,
       updateSelectedWorkout,
       updateSeletedDate,
       updateSelectedTime,
       updateSelectedRepeatFrequency,
       updateSelectedRepeatUnit,
       updateSelectedRepeatCount,
+      resetContext,
+      saveCalendarEvent,
+      areAllCalendarFieldsSelected,
     ],
   );
 

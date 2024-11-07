@@ -59,6 +59,7 @@ const AddToCalendarForm = ({
         value={selectedRepeatCount}
         onValueChange={updateSelectedRepeatCount}
         style={styles.section}
+        disabled={selectedRepeatFrequency === 0}
       />
 
       <ThemedText size="l" weight="semiBold">

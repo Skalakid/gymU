@@ -67,6 +67,7 @@ const RepeatInput = ({
             onUnitChange(value.unit);
           }}
           selectedValue={unit}
+          disabled={value === 0}
         />
       </View>
     </View>

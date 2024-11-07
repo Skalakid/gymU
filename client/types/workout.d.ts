@@ -19,6 +19,13 @@ type Workout = {
   isSavedByUser?: boolean;
 };
 
+type SimplifiedWorkout = {
+  workoutId: number;
+  name: string;
+  level: string;
+  tags: string[];
+};
+
 type Difficulty = {
   level_id: number;
   name: string;

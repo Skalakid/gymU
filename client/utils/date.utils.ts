@@ -2,6 +2,32 @@ import {
   CalendarCell,
   CalendarEvents,
 } from '@/components/calendar/EventCalendar';
+import { add } from 'date-fns';
+
+const getCalendarFirstAndLastDay = (month: number, year: number) => {
+  const firstDay = new Date(year, month - 1, 1, 1);
+  const firstWeekDay = firstDay.getDay();
+  const firstWeekDate = firstDay.getDate();
+
+  const offset = firstWeekDay === 0 ? -6 : -firstWeekDay + 1;
+  firstDay.setDate(firstWeekDate + offset);
+
+  const lastDay = add(firstDay, { weeks: 6 });
+
+  return { firstDay, lastDay };
+};
+
+const mergeDateTime = (date: Date, time: Date) => {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+
+  const hours = time.getHours();
+  const minutes = time.getMinutes();
+  const seconds = time.getSeconds();
+
+  return new Date(year, month, day, hours, minutes, seconds);
+};
 
 const zerofill = (value: number, padding = 2) => {
   return value.toString().padStart(padding, '0');
@@ -82,4 +108,6 @@ export {
   isProperDateFormat,
   areMonthsEqual,
   getParsedValue,
+  mergeDateTime,
+  getCalendarFirstAndLastDay,
 };
