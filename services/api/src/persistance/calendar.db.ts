@@ -37,7 +37,11 @@ async function getAllEventsInRange(
           workout_template: {
             include: {
               workout_level: true,
-              workout_tags: true,
+              workout_tags: {
+                include: {
+                  tag: true,
+                },
+              },
             },
           },
         },

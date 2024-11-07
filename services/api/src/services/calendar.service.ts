@@ -21,8 +21,8 @@ async function getAllEventsInRange(
       workout: {
         workoutId: workout.workout_id,
         name: workout.name,
-        level: workout.workout_level,
-        tags: workout.workout_tags,
+        level: workout.workout_level.name,
+        tags: workout.workout_tags.map(({ tag }) => tag.name),
       },
     };
   });
