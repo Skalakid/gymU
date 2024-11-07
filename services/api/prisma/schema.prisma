@@ -8,14 +8,15 @@ datasource db {
 }
 
 model app_user {
-  user_id          Int                @id @default(autoincrement())
-  username         String             @db.VarChar(50)
-  email            String             @unique @db.VarChar(255)
-  password_hash    String
-  created_at       DateTime?          @default(now()) @db.Timestamptz(6)
-  user_workout     user_workout[]
-  workout_template workout_template[]
-  refresh_token    refresh_token[]
+  user_id               Int                     @id @default(autoincrement())
+  username              String                  @db.VarChar(50)
+  email                 String                  @unique @db.VarChar(255)
+  password_hash         String
+  created_at            DateTime?               @default(now()) @db.Timestamptz(6)
+  user_workout          user_workout[]
+  workout_template      workout_template[]
+  refresh_token         refresh_token[]
+  calendar_event_parent calendar_event_parent[]
 }
 
 model refresh_token {
@@ -100,13 +101,37 @@ model user_workout {
   user_workout_log user_workout_log[]
 }
 
+model calendar_event_parent {
+  parent_id        Int      @id @default(autoincrement())
+  user_id          Int
+  workout_id       Int
+  repeat_frequency Int
+  repeat_unit      TimeUnit
+  repeat_count     Int
+
+  calendar_event   calendar_event[]
+  app_user         app_user         @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  workout_template workout_template @relation(fields: [workout_id], references: [workout_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model calendar_event {
+  event_id              Int                   @id @default(autoincrement())
+  parent_id             Int
+  datetime              DateTime
+  user_workout_log      user_workout_log?
+  calendar_event_parent calendar_event_parent @relation(fields: [parent_id], references: [parent_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
 model user_workout_log {
   log_id                     Int                          @id @default(autoincrement())
   user_workout_id            Int
   opinion                    Int
   log_date                   DateTime?                    @default(now()) @db.Timestamptz(6)
   user_exercise_history_item user_exercise_history_item[]
-  user_workout               user_workout                 @relation(fields: [user_workout_id], references: [user_workout_id], onDelete: NoAction, onUpdate: NoAction)
+  event_id                   Int?                         @unique
+
+  user_workout   user_workout    @relation(fields: [user_workout_id], references: [user_workout_id], onDelete: NoAction, onUpdate: NoAction)
+  calendar_event calendar_event? @relation(fields: [event_id], references: [event_id])
 }
 
 model workout_tags {
@@ -136,6 +161,7 @@ model workout_template {
   workout_tags           workout_tags[]
   app_user               app_user                 @relation(fields: [author_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
   workout_level          workout_level            @relation(fields: [workout_level_id], references: [level_id])
+  calendar_event_parent  calendar_event_parent[]
 }
 
 model measurement {
@@ -148,4 +174,10 @@ model measurement {
   hips           Float
   thigh          Float
   calf           Float
+}
+
+enum TimeUnit {
+  day
+  week
+  month
 }
