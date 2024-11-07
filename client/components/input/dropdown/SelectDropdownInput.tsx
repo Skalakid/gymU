@@ -48,6 +48,7 @@ const SelectDropdownInput = ({
           styles.button,
           {
             borderColor: primaryColor,
+            opacity: disabled ? 0.5 : 1,
           },
         ]}
       >
@@ -62,7 +63,6 @@ const SelectDropdownInput = ({
           icon={isActive ? Icons.arrowTop : Icons.arrowBottom}
           size={20}
           color={primaryColor}
-          style={{ opacity: disabled ? 0.5 : 1 }}
         />
       </ThemedView>
     );
