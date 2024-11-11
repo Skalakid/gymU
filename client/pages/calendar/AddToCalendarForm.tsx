@@ -38,6 +38,7 @@ const AddToCalendarForm = ({
       />
 
       <DateTimeInput
+        dupa="enter"
         label="Time"
         placeholder="Choose time"
         value={selectedTime}
