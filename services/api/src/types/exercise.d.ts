@@ -1,24 +1,24 @@
 type NewExerciseType = {
   name: string;
-  has_reps: boolean;
-  has_sets: boolean;
-  has_weights: boolean;
-  has_time: boolean;
-  is_break: boolean;
+  hasReps: boolean;
+  hasSets: boolean;
+  hasWeights: boolean;
+  hasTime: boolean;
+  isBreak: boolean;
 };
 
 type NewExercise = {
-  exercise_type_id: number;
+  exerciseTypeId: number;
   name: string;
   description: string;
-  body_parts: string[];
+  bodyParts: string[];
 };
 
 type BasicExercise = {
-  exercise_id: number;
+  exerciseId: number;
   name: string;
-  exercise_type: string;
-  body_parts: string[];
+  exerciseType: string;
+  bodyParts: string[];
   shortDescription?: string;
 };
 
@@ -32,20 +32,20 @@ type ExerciseDetails = {
 };
 
 type DetailedExercise = {
-  exercise_id: number;
+  exerciseId: number;
   name: string;
-  exercise_type: string;
-  body_parts: string[];
+  exerciseType: string;
+  bodyParts: string[];
   value?: ExerciseDetails;
   description?: string;
-  order_index?: number;
+  orderIndex?: number;
 };
 
 type NewExerciseTemplateItem = {
-  workout_template_id: number;
-  exercise_id: number;
+  workoutTemplateId: number;
+  exerciseId: number;
   value: Prisma.JsonValue;
-  order_index: number;
+  orderIndex: number;
 };
 
 export type {

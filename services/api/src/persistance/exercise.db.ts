@@ -3,17 +3,17 @@ import { prisma } from '../config/db.server';
 async function getAllExercises() {
   const exercises = await prisma.exercise.findMany({
     select: {
-      exercise_id: true,
+      exerciseId: true,
       name: true,
       description: true,
-      exercise_type: {
+      exerciseType: {
         select: {
           name: true,
         },
       },
-      exercises_body_parts: {
+      exercisesBodyParts: {
         select: {
-          body_part: {
+          bodyPart: {
             select: {
               name: true,
             },
@@ -26,23 +26,23 @@ async function getAllExercises() {
   return exercises;
 }
 
-async function getExerciseDetails(exercise_id: number) {
+async function getExerciseDetails(exerciseId: number) {
   const exercises = await prisma.exercise.findUnique({
     where: {
-      exercise_id: exercise_id,
+      exerciseId: exerciseId,
     },
     select: {
-      exercise_id: true,
+      exerciseId: true,
       name: true,
       description: true,
-      exercise_type: {
+      exerciseType: {
         select: {
           name: true,
         },
       },
-      exercises_body_parts: {
+      exercisesBodyParts: {
         select: {
-          body_part: {
+          bodyPart: {
             select: {
               name: true,
             },
@@ -56,14 +56,14 @@ async function getExerciseDetails(exercise_id: number) {
 }
 
 async function getAllExersiceTypes() {
-  const exerciseTypes = await prisma.exercise_type.findMany({
+  const exerciseTypes = await prisma.exerciseType.findMany({
     select: {
       name: true,
-      has_reps: true,
-      has_sets: true,
-      has_weights: true,
-      has_time: true,
-      is_break: true,
+      hasReps: true,
+      hasSets: true,
+      hasWeights: true,
+      hasTime: true,
+      isBreak: true,
     },
   });
   return exerciseTypes;

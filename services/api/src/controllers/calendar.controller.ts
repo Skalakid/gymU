@@ -10,7 +10,7 @@ async function getAllEventsInRange(
   next: NextFunction,
 ) {
   try {
-    const userId = Number((req.user as ReturnUser).user_id) || -1;
+    const userId = Number((req.user as ReturnUser).userId) || -1;
     const { startDate, endDate } = req.params;
 
     const events = await CalendarService.getAllEventsInRange(
@@ -31,7 +31,7 @@ async function createEvent(
   next: NextFunction,
 ) {
   try {
-    const userId = Number((req.user as ReturnUser).user_id) || -1;
+    const userId = Number((req.user as ReturnUser).userId) || -1;
     const { datetime, repeatFrequency, repeatUnit, repeatCount, workoutId } =
       req.body;
 

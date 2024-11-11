@@ -4,18 +4,18 @@ import { NewWorkoutTemplate } from '../../src/types/workout';
 import { WorkoutTag } from '../../src/types/workout';
 
 export default async function seedWorkouts() {
-  const workoutTemplates = await prisma.workout_template.findMany();
+  const workoutTemplates = await prisma.workoutTemplate.findMany();
   if (workoutTemplates.length === 0) {
     await Promise.all(
       getWorkoutTemplates().map(async (workoutTemplate) => {
-        await prisma.workout_template.create({
+        await prisma.workoutTemplate.create({
           data: {
-            author_id: workoutTemplate.author_id,
+            authorId: workoutTemplate.authorId,
             name: workoutTemplate.name,
             description: workoutTemplate.description,
-            created_at: workoutTemplate.created_at,
+            createdAt: workoutTemplate.createdAt,
             private: workoutTemplate.private,
-            workout_level_id: workoutTemplate.workout_level_id,
+            workoutLevelId: workoutTemplate.workoutLevelId,
           },
         });
       }),
@@ -23,7 +23,7 @@ export default async function seedWorkouts() {
     console.log('Workout templates seeded');
   }
 
-  const exerciseTemplateItems = await prisma.exercise_template_item.findMany();
+  const exerciseTemplateItems = await prisma.exerciseTemplateItem.findMany();
   if (exerciseTemplateItems.length === 0) {
     await Promise.all(
       getExerciseTemplateItems().map(async (exerciseTemplateItem) => {
@@ -32,16 +32,16 @@ export default async function seedWorkouts() {
             name: exerciseTemplateItem.exercise_name,
           },
           select: {
-            exercise_id: true,
+            exerciseId: true,
           },
         });
         if (exercise) {
-          await prisma.exercise_template_item.create({
+          await prisma.exerciseTemplateItem.create({
             data: {
-              workout_template_id: exerciseTemplateItem.workout_template_id,
-              exercise_id: exercise.exercise_id,
+              workoutTemplateId: exerciseTemplateItem.workoutTemplateId,
+              exerciseId: exercise.exerciseId,
               value: exerciseTemplateItem.value as Prisma.InputJsonValue,
-              order_index: exerciseTemplateItem.order_index,
+              orderIndex: exerciseTemplateItem.orderIndex,
             },
           });
         }
@@ -50,14 +50,14 @@ export default async function seedWorkouts() {
     console.log('Exercise template items seeded');
   }
 
-  const workoutTags = await prisma.workout_tags.findMany();
+  const workoutTags = await prisma.workoutTags.findMany();
   if (workoutTags.length === 0) {
     await Promise.all(
       getWorkoutTags().map(async (workoutTag) => {
-        await prisma.workout_tags.create({
+        await prisma.workoutTags.create({
           data: {
-            tag_id: workoutTag.tag_id,
-            workout_template_id: workoutTag.workout_template_id,
+            tagId: workoutTag.tagId,
+            workoutTemplateId: workoutTag.workoutTemplateId,
           },
         });
       }),
@@ -69,56 +69,56 @@ export default async function seedWorkouts() {
 function getWorkoutTemplates(): NewWorkoutTemplate[] {
   return [
     {
-      author_id: 1,
+      authorId: 1,
       name: 'Giga workout',
       description:
         'Professional workout dedicated for gym lovers that focuses on all muscle groups',
-      created_at: new Date(),
+      createdAt: new Date(),
       private: false,
-      workout_level_id: 1,
+      workoutLevelId: 1,
     },
     {
-      author_id: 1,
+      authorId: 1,
       name: '"the timetable is known" type of workout',
       description: 'Lets gooooo!',
-      created_at: new Date(),
+      createdAt: new Date(),
       private: false,
-      workout_level_id: 4,
+      workoutLevelId: 4,
     },
   ];
 }
 
 type NewExerciseTemplateItemSeed = {
-  workout_template_id: number;
+  workoutTemplateId: number;
   exercise_name: string;
   value: Prisma.JsonValue;
-  order_index: number;
+  orderIndex: number;
 };
 
 function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
   return [
     // workout 1
     {
-      workout_template_id: 1,
+      workoutTemplateId: 1,
       exercise_name: 'Push ups',
       value: JSON.stringify({
         sets: 3,
         reps: 15,
         breakTime: 60,
       }),
-      order_index: 1,
+      orderIndex: 1,
     },
     {
-      workout_template_id: 1,
+      workoutTemplateId: 1,
       exercise_name: 'Interval running',
       value: JSON.stringify({
         time: 1000,
         breakTime: 120,
       }),
-      order_index: 2,
+      orderIndex: 2,
     },
     {
-      workout_template_id: 1,
+      workoutTemplateId: 1,
       exercise_name: 'Deadlifts',
       value: JSON.stringify({
         sets: 3,
@@ -126,36 +126,36 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
         weight: 80,
         breakTime: 60,
       }),
-      order_index: 3,
+      orderIndex: 3,
     },
     // workout 2
     {
-      workout_template_id: 2,
+      workoutTemplateId: 2,
       exercise_name: 'Pull ups',
       value: JSON.stringify({
         sets: 4,
         reps: 5,
         breakTime: 60,
       }),
-      order_index: 1,
+      orderIndex: 1,
     },
     {
-      workout_template_id: 2,
+      workoutTemplateId: 2,
       exercise_name: 'Squats',
       value: JSON.stringify({
         sets: 3,
         reps: 10,
         breakTime: 60,
       }),
-      order_index: 2,
+      orderIndex: 2,
     },
     {
-      workout_template_id: 2,
+      workoutTemplateId: 2,
       exercise_name: 'Rest',
       value: JSON.stringify({
         breakTime: 240,
       }),
-      order_index: 3,
+      orderIndex: 3,
     },
   ];
 }
@@ -163,24 +163,24 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
 function getWorkoutTags(): WorkoutTag[] {
   return [
     {
-      tag_id: 1,
-      workout_template_id: 1,
+      tagId: 1,
+      workoutTemplateId: 1,
     },
     {
-      tag_id: 2,
-      workout_template_id: 1,
+      tagId: 2,
+      workoutTemplateId: 1,
     },
     {
-      tag_id: 3,
-      workout_template_id: 2,
+      tagId: 3,
+      workoutTemplateId: 2,
     },
     {
-      tag_id: 4,
-      workout_template_id: 2,
+      tagId: 4,
+      workoutTemplateId: 2,
     },
     {
-      tag_id: 5,
-      workout_template_id: 2,
+      tagId: 5,
+      workoutTemplateId: 2,
     },
   ];
 }

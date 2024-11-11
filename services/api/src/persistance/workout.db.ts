@@ -6,15 +6,15 @@ async function getAllWorkoutsPaginated(
   pageSize: number,
   tagIds: number[] | null,
 ) {
-  return await prisma.workout_template.findMany({
+  return await prisma.workoutTemplate.findMany({
     skip: skip,
     take: pageSize,
     where: tagIds
       ? {
-          workout_tags: {
+          workoutTags: {
             some: {
               tag: {
-                tag_id: {
+                tagId: {
                   in: tagIds,
                 },
               },
@@ -23,17 +23,17 @@ async function getAllWorkoutsPaginated(
         }
       : undefined,
     include: {
-      app_user: {
+      appUser: {
         select: {
           username: true,
         },
       },
-      workout_tags: {
+      workoutTags: {
         select: {
           tag: true,
         },
       },
-      workout_level: {
+      workoutLevel: {
         select: {
           name: true,
         },
@@ -43,13 +43,13 @@ async function getAllWorkoutsPaginated(
 }
 
 async function countAllFilteredWorkouts(tagIds: number[] | null) {
-  return await prisma.workout_template.count({
+  return await prisma.workoutTemplate.count({
     where: tagIds
       ? {
-          workout_tags: {
+          workoutTags: {
             some: {
               tag: {
-                tag_id: {
+                tagId: {
                   in: tagIds,
                 },
               },
@@ -61,39 +61,39 @@ async function countAllFilteredWorkouts(tagIds: number[] | null) {
 }
 
 async function getWorkoutDetails(workoutId: number) {
-  return await prisma.workout_template.findUnique({
+  return await prisma.workoutTemplate.findUnique({
     where: {
-      workout_id: Number(workoutId),
+      workoutId: Number(workoutId),
     },
     include: {
-      app_user: {
+      appUser: {
         select: {
           username: true,
         },
       },
-      workout_tags: {
+      workoutTags: {
         select: {
           tag: true,
         },
       },
-      workout_level: {
+      workoutLevel: {
         select: {
           name: true,
         },
       },
-      exercise_template_item: {
+      exerciseTemplateItems: {
         select: {
           exercise: {
             select: {
               name: true,
-              exercise_type: {
+              exerciseType: {
                 select: {
                   name: true,
                 },
               },
-              exercises_body_parts: {
+              exercisesBodyParts: {
                 select: {
-                  body_part: {
+                  bodyPart: {
                     select: {
                       name: true,
                     },
@@ -103,8 +103,8 @@ async function getWorkoutDetails(workoutId: number) {
             },
           },
           value: true,
-          order_index: true,
-          exercise_id: true,
+          orderIndex: true,
+          exerciseId: true,
         },
       },
     },
@@ -112,43 +112,43 @@ async function getWorkoutDetails(workoutId: number) {
 }
 
 async function createWorkout(
-  author_id: number,
+  authorId: number,
   name: string,
   description: string,
   is_private: boolean,
-  workout_level_id: number,
-  tag_ids: number[],
+  workoutLevelId: number,
+  tagIds: number[],
   exercises: ExerciseWorkoutItem[],
 ) {
-  const newWorkout = await prisma.workout_template.create({
+  const newWorkout = await prisma.workoutTemplate.create({
     data: {
-      author_id: author_id || 1,
+      authorId: authorId || 1,
       name,
       description,
-      created_at: new Date(),
+      createdAt: new Date(),
       private: is_private,
-      workout_level_id,
+      workoutLevelId,
     },
   });
   if (!newWorkout) {
     return null;
   }
 
-  const workoutTags = tag_ids.map((tag_id: number) => {
-    return prisma.workout_tags.create({
+  const workoutTags = tagIds.map((tagId: number) => {
+    return prisma.workoutTags.create({
       data: {
-        tag_id,
-        workout_template_id: newWorkout.workout_id,
+        tagId,
+        workoutTemplateId: newWorkout.workoutId,
       },
     });
   });
   const exerciseItems = exercises.map((item: ExerciseWorkoutItem) => {
-    return prisma.exercise_template_item.create({
+    return prisma.exerciseTemplateItem.create({
       data: {
-        workout_template_id: newWorkout.workout_id,
-        exercise_id: item.exercise_id,
+        workoutTemplateId: newWorkout.workoutId,
+        exerciseId: item.exerciseId,
         value: item.value,
-        order_index: item.order_index,
+        orderIndex: item.orderIndex,
       },
     });
   });
@@ -158,9 +158,9 @@ async function createWorkout(
 }
 
 async function getAllWorkoutTags() {
-  return await prisma.workout_template.findMany({
+  return await prisma.workoutTemplate.findMany({
     select: {
-      workout_tags: {
+      workoutTags: {
         select: {
           tag: true,
         },
@@ -170,7 +170,7 @@ async function getAllWorkoutTags() {
 }
 
 async function getWorkoutDifficulties() {
-  return await prisma.workout_level.findMany();
+  return await prisma.workoutLevel.findMany();
 }
 
 export {

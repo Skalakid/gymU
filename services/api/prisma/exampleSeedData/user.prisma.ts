@@ -3,16 +3,16 @@ import { NewUser } from '../../src/types/user';
 import bcrypt from 'bcrypt';
 
 export default async function seedTags() {
-  const currentUsers = await prisma.app_user.findMany();
+  const currentUsers = await prisma.appUser.findMany();
   if (currentUsers.length === 0) {
     await Promise.all(
       getExampleUsers().map(async (user) => {
         const hashedPassword = await bcrypt.hash(user.password, 10);
-        await prisma.app_user.create({
+        await prisma.appUser.create({
           data: {
             username: user.username,
             email: user.email,
-            password_hash: hashedPassword,
+            passwordHash: hashedPassword,
           },
         });
       }),

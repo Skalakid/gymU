@@ -10,8 +10,8 @@ async function createMeasurement(
 ) {
   try {
     const {
-      user_id,
-      save_date,
+      userId,
+      saveDate,
       weight,
       biceps,
       chest,
@@ -22,8 +22,8 @@ async function createMeasurement(
     } = req.body;
 
     if (
-      user_id === undefined ||
-      save_date === undefined ||
+      userId === undefined ||
+      saveDate === undefined ||
       weight === undefined ||
       biceps === undefined ||
       chest === undefined ||
@@ -36,8 +36,8 @@ async function createMeasurement(
     }
 
     const newMeasurement = await MeasurementService.createMeasurement(
-      user_id,
-      save_date,
+      userId,
+      saveDate,
       weight,
       biceps,
       chest,
@@ -63,13 +63,13 @@ async function getMeasurements(
   next: NextFunction,
 ) {
   try {
-    const user_id = Number(req.params.id) || -1;
+    const userId = Number(req.params.id) || -1;
 
-    if (!user_id || user_id <= 0) {
+    if (!userId || userId <= 0) {
       throw new ApiError(400, 'Invalid user id');
     }
 
-    const measurements = await MeasurementService.getMeasurements(user_id);
+    const measurements = await MeasurementService.getMeasurements(userId);
 
     if (!measurements) {
       throw new ApiError(500, 'Failed to get measurements');
@@ -87,10 +87,10 @@ async function getMesaurementsSince(
   next: NextFunction,
 ) {
   try {
-    const user_id = Number(req.params.id) || -1;
+    const userId = Number(req.params.id) || -1;
     const time_interval = Number(req.params.time_interval) || -1;
 
-    if (!user_id || user_id <= 0) {
+    if (!userId || userId <= 0) {
       throw new ApiError(400, 'Invalid user id');
     }
 
@@ -99,7 +99,7 @@ async function getMesaurementsSince(
     }
 
     const measurements = await MeasurementService.getMeasurementsSince(
-      user_id,
+      userId,
       time_interval,
     );
 

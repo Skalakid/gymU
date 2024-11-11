@@ -15,14 +15,14 @@ export default async function seedTags() {
     console.log('Tags seeded');
   }
 
-  const workoutLevels = await prisma.workout_level.findMany();
+  const workoutLevels = await prisma.workoutLevel.findMany();
   if (workoutLevels.length === 0) {
     await Promise.all(
       getWorkoutLevels().map(async (level, index) => {
-        await prisma.workout_level.create({
+        await prisma.workoutLevel.create({
           data: {
             name: level,
-            level_id: index,
+            levelId: index,
           },
         });
       }),

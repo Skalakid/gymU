@@ -21,23 +21,23 @@ async function getAllEventsInRange(
   startDate: Date,
   endDate: Date,
 ) {
-  return await prisma.calendar_event.findMany({
+  return await prisma.calendarEvent.findMany({
     where: {
       datetime: {
         gte: startDate,
         lte: endDate,
       },
-      calendar_event_parent: {
-        user_id: userId,
+      calendarEventParent: {
+        userId: userId,
       },
     },
     include: {
-      calendar_event_parent: {
+      calendarEventParent: {
         include: {
-          workout_template: {
+          workoutTemplate: {
             include: {
-              workout_level: true,
-              workout_tags: {
+              workoutLevel: true,
+              workoutTags: {
                 include: {
                   tag: true,
                 },
@@ -52,24 +52,24 @@ async function getAllEventsInRange(
 
 async function createEvent(userId: number, calendarEvent: NewCalendarEvent) {
   return await prisma.$transaction(async (tx) => {
-    const eventParent = await tx.calendar_event_parent.create({
+    const eventParent = await tx.calendarEventParent.create({
       data: {
-        user_id: userId,
-        workout_id: calendarEvent.workoutId,
-        repeat_count: calendarEvent.repeatCount,
-        repeat_frequency: calendarEvent.repeatFrequency,
-        repeat_unit: calendarEvent.repeatUnit,
+        userId: userId,
+        workoutId: calendarEvent.workoutId,
+        repeatCount: calendarEvent.repeatCount,
+        repeatFrequency: calendarEvent.repeatFrequency,
+        repeatUnit: calendarEvent.repeatUnit,
       },
     });
 
-    const parentId = eventParent.parent_id;
+    const parentId = eventParent.parentId;
     const events = [];
 
     let currentDate = calendarEvent.datetime;
 
     for (let i = 0; i <= calendarEvent.repeatCount; i++) {
       const event = {
-        parent_id: parentId,
+        parentId: parentId,
         datetime: currentDate,
       };
 
@@ -82,7 +82,7 @@ async function createEvent(userId: number, calendarEvent: NewCalendarEvent) {
       );
     }
 
-    await tx.calendar_event.createMany({ data: events });
+    await tx.calendarEvent.createMany({ data: events });
   });
 }
 
