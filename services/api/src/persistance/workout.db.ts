@@ -115,7 +115,7 @@ async function createWorkout(
   authorId: number,
   name: string,
   description: string,
-  is_private: boolean,
+  isPrivate: boolean,
   workoutLevelId: number,
   tagIds: number[],
   exercises: ExerciseWorkoutItem[],
@@ -126,7 +126,7 @@ async function createWorkout(
       name,
       description,
       createdAt: new Date(),
-      private: is_private,
+      private: isPrivate,
       workoutLevelId,
     },
   });

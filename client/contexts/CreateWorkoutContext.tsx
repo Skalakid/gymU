@@ -120,7 +120,7 @@ function CreateWorkoutContextProvider({
         {
           name: workoutGeneralInfo.name,
           description: workoutGeneralInfo.description,
-          is_private: workoutGeneralInfo.isPrivate,
+          isPrivate: workoutGeneralInfo.isPrivate,
           workoutLevelId: workoutGeneralInfo.dificulty.level,
           tagIds: workoutGeneralInfo.tags.map((tag) => tag.tagId),
           exercises: selectedExercises.map((exercise, index) => ({

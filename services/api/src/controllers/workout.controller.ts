@@ -67,13 +67,13 @@ async function createWorkout(
   next: NextFunction,
 ) {
   try {
-    const { name, description, is_private, workoutLevelId, tagIds, exercises } =
+    const { name, description, isPrivate, workoutLevelId, tagIds, exercises } =
       req.body;
 
     if (
       name === undefined ||
       description === undefined ||
-      is_private === undefined ||
+      isPrivate === undefined ||
       workoutLevelId === undefined ||
       tagIds === undefined ||
       exercises === undefined
@@ -85,7 +85,7 @@ async function createWorkout(
       Number(req.user),
       name,
       description,
-      is_private,
+      isPrivate,
       workoutLevelId,
       tagIds,
       exercises,
