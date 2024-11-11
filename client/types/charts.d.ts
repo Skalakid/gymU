@@ -1,5 +1,7 @@
 type DefaultChartProps = {
   title: string;
+  // For now every chart has different data set, so it is easier to mark it as any
+  // eslint-disable-next-line
   data: any;
 
   width?: number;

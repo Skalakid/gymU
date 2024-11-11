@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native';
 import ThemedText from '@/components/ThemedText';
 import ThemedView from '@/components/ThemedView';
+import { ReactNode } from 'react';
 
 type TitledChartProps = {
   title: string;
   height: number;
-  children: any;
+  children: ReactNode;
 };
 
 const TitledChart = ({ title, height, children }: TitledChartProps) => {
