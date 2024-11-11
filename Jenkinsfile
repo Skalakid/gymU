@@ -30,19 +30,18 @@ def publishFailure(String checkName, String summary = 'Failed to pass') {
 
 /// CUSTOM CHECKS ///
 
-def runLinterChecks(String checkName) {
+def runCheck(String checkName, String scriptBody, String resultFile) {
     echo "Check started: `${checkName}`"
     
     def code
 
     withChecks(name: checkName) {
-        def eslintResultsFilename = 'eslint-results.xml'
-
+        
         /// Remove previous eslint output results ///
-        sh "rm -f ${eslintResultsFilename}"
+        sh "rm -f ${resultFile}"
         
         /// LINT ///
-        code = sh script:"yarn lint > ${eslintResultsFilename}", returnStatus: true 
+        code = sh script:"${scriptBody} > ${resultFile}", returnStatus: true 
         echo "Execution code: ${code}"
         
         if (code == 0) {
@@ -55,7 +54,7 @@ def runLinterChecks(String checkName) {
 
             /// READ ESLINT RESULTS ///
             def workspace = pwd()
-            def summary = readFile "${workspace}/${eslintResultsFilename}"
+            def summary = readFile "${workspace}/${resultFile}"
 
             /// PUBLISH ///
             publishFailure(checkName, "See:\n```xml\n${summary}```")
@@ -63,6 +62,15 @@ def runLinterChecks(String checkName) {
     }
 
     return code
+}
+
+
+def runLinterChecks(String checkName) {
+    runCheck(checkName, "yarn lint", "eslint-results.xml")
+}
+
+def runTscChecks(String checkName) {
+    runCheck(checkName, "yarn tsc --noEmit", "tsc-noEmit-result.txt")
 }
 
 //// MAIN PIPELINE ////
@@ -83,20 +91,40 @@ pipeline {
         stage("Run linters") {
             parallel {
                 stage("Mobile Client / Lint") {
-                    steps {
-                        dir('client') {
-                            runLinterChecks("Mobile Client / Lint")
+                    stages {
+                        stage("Lint") {
+                            steps {
+                                dir('client') {
+                                    runLinterChecks("Mobile Client / Lint")
+                                }
+                            }
+                        }
+                        stage("TSC Syntax Check") {
+                            steps {
+                                dir('client') {
+                                    runTscChecks("Mobile Client / TSC Syntax Check")
+                                }
+                            }
                         }
                     }
                 }
 
-                stage ("Services / API / Lint") {
-                    steps {
-                        dir('services/api') {
-                            sh 'pwd'
-                            sh 'ls -lsa'
+                stage ("Services / API") {
+                    stages {
+                        stage("Lint") {
+                            steps {
+                                dir('services/api') {
+                                    runLinterChecks("Services / API / Lint")
+                                }
+                            }
+                        }
 
-                            runLinterChecks("Services / API / Lint")
+                        stage("TSC Syntax Check") {
+                            steps {
+                                dir('services/api') {
+                                    runTscChecks("Services / API / TSC Syntax Check")
+                                }
+                            }
                         }
                     }
                 }
