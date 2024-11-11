@@ -7,10 +7,12 @@ import Images from '@/constants/Images';
 import ThemedText from '@/components/ThemedText';
 import useThemeColor from '@/hooks/useThemeColor';
 import WorkoutsHeatmap from '@/components/charts/WorkoutsHeatmap';
+import { useState } from 'react';
 
 const StatisticsPage = () => {
   const router = useRouter();
   const backgroundColor = useThemeColor({}, 'tile');
+  const [heatmapInterval, setheatmapInterval] = useState(3);
 
   return (
     <ThemedView style={styles.container}>
@@ -31,7 +33,7 @@ const StatisticsPage = () => {
         </ThemedView>
       </Pressable>
 
-      <WorkoutsHeatmap title="Your workouts" months={3} />
+      <WorkoutsHeatmap title="Your workouts" months={heatmapInterval} />
     </ThemedView>
   );
 };
