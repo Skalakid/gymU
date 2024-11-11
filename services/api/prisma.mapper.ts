@@ -55,7 +55,7 @@ async function fixPrismaFile() {
   let currentModelName: string | null = null;
   let hasAddedModelMap = false;
 
-  for (let line of textAsArray) {
+  for (const line of textAsArray) {
     // Are we at the start of a model definition
     const modelMatch = line.match(/^model (\w+) {$/);
     if (modelMatch) {
