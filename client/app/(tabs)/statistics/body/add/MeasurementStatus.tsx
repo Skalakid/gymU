@@ -46,8 +46,8 @@ const MeasurementStatus = ({
   const handleAddMeasurement = async () => {
     try {
       const data = {
-        user_id: auth.user?.user_id,
-        save_date: new Date(),
+        userId: auth.user?.userId,
+        saveDate: new Date(),
         ...measurements,
       };
 

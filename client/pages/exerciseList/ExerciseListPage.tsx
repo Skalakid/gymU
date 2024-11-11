@@ -30,7 +30,7 @@ const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
       const data: ExerciseType[] = await response.json();
       setTags(
         data.map((tag, index) => ({
-          tag_id: index + 1,
+          tagId: index + 1,
           name: capitalize(tag.name),
         })),
       );
@@ -98,9 +98,9 @@ const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
             <BasicExerciseItem
               key={`exercise${item.name}${index}`}
               name={item.name}
-              type={item.exercise_type}
+              type={item.exerciseType}
               style={{ marginBottom: 20 }}
-              bodyParts={item.body_parts}
+              bodyParts={item.bodyParts}
               description={item.shortDescription}
               onPress={() => handleItemPress(item)}
             />

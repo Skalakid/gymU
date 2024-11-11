@@ -84,7 +84,7 @@ function CreateWorkoutContextProvider({
     (exerciseId: number, orderIndex: number) => {
       setSelectedExercises((prev) =>
         prev.map((exercise) =>
-          exercise.exercise_id === exerciseId
+          exercise.exerciseId === exerciseId
             ? { ...exercise, orderIndex }
             : exercise,
         ),
@@ -121,12 +121,12 @@ function CreateWorkoutContextProvider({
           name: workoutGeneralInfo.name,
           description: workoutGeneralInfo.description,
           is_private: workoutGeneralInfo.isPrivate,
-          workout_level_id: workoutGeneralInfo.dificulty.level,
-          tag_ids: workoutGeneralInfo.tags.map((tag) => tag.tag_id),
+          workoutLevelId: workoutGeneralInfo.dificulty.level,
+          tagIds: workoutGeneralInfo.tags.map((tag) => tag.tagId),
           exercises: selectedExercises.map((exercise, index) => ({
-            exercise_id: exercise.exercise_id,
+            exerciseId: exercise.exerciseId,
             value: JSON.stringify(filterNonNull(exercise.value)),
-            order_index: index,
+            orderIndex: index,
           })),
         },
         true,

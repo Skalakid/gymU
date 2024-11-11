@@ -54,7 +54,7 @@ function LiveTrainingContextProvider({
   const getTrainingItem = useCallback(
     (exercise: DetailedExerciseItem, index: number): TrainingItem => {
       return {
-        exerciseID: exercise.exercise_id,
+        exerciseID: exercise.exerciseId,
         exerciseIndex: index,
         name: exercise.name,
         value: {
@@ -64,7 +64,7 @@ function LiveTrainingContextProvider({
           time: exercise.value.time || 0,
           isBreak: exercise.value.isBreak || false,
         },
-        type: exercise.exercise_type,
+        type: exercise.exerciseType,
       };
     },
     [],
@@ -145,7 +145,7 @@ function LiveTrainingContextProvider({
 
   const startLiveTraining = useCallback(
     async (workoutID: number) => {
-      if (workoutID === currentWorkout?.workout_id) {
+      if (workoutID === currentWorkout?.workoutId) {
         return;
       }
 
@@ -235,13 +235,13 @@ function LiveTrainingContextProvider({
           'POST',
           null,
           {
-            user_workout_id: currentWorkout?.workout_id,
+            userWorkoutId: currentWorkout?.workoutId,
             opinion: workoutOpinion,
             exercises: currentWorkout?.exercises.map((exercise, index) => ({
-              exercise_id: exercise.exercise_id,
+              exerciseId: exercise.exerciseId,
               value: exercise.value,
               opinion: opinions[index]?.value || 0,
-              order_index: index,
+              orderIndex: index,
             })),
           },
         );
@@ -256,7 +256,7 @@ function LiveTrainingContextProvider({
         }
       }
     },
-    [currentWorkout?.exercises, currentWorkout?.workout_id, opinions],
+    [currentWorkout?.exercises, currentWorkout?.workoutId, opinions],
   );
 
   const value = useMemo(

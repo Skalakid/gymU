@@ -56,8 +56,8 @@ const ExerciseOpinionModal = ({
           {exercise && (
             <DetailedExerciseItem
               name={exercise.name}
-              type={exercise.exercise_type}
-              bodyParts={exercise.body_parts}
+              type={exercise.exerciseType}
+              bodyParts={exercise.bodyParts}
               exerciseDetails={exercise.value}
               tileStyle={{ backgroundColor: theme.background }}
             />

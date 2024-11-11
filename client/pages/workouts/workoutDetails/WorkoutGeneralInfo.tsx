@@ -36,13 +36,13 @@ const WorkoutGeneralInfo = ({ workoutDetails }: WorkoutGeneralInfoProps) => {
         <Tile style={styles.tile}>
           <View style={styles.row}>
             <Icon icon={Icons.flame} size={20} color={theme.text} />
-            <ThemedText>{capitalize(workoutDetails?.workout_level)}</ThemedText>
+            <ThemedText>{capitalize(workoutDetails?.workoutLevel)}</ThemedText>
           </View>
 
           <View style={styles.row}>
             <Icon icon={Icons.hashtag} size={20} color={theme.text} />
             <FlatList
-              data={workoutDetails?.workout_tags}
+              data={workoutDetails?.workoutTags}
               renderItem={({ item, index }) => (
                 <Tag key={`tag${index}`} value={capitalize(item)} size="l" />
               )}

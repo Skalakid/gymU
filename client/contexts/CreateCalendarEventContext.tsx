@@ -132,7 +132,7 @@ const CreateCalendarEventContextProvider = ({
       repeatFrequency: selectedRepeatFrequency,
       repeatUnit: selectedRepeatFrequency === 0 ? 'day' : selectedRepeatUnit,
       repeatCount: selectedRepeatFrequency === 0 ? 0 : selectedRepeatCount,
-      workoutId: selectedWorkout?.workout_id,
+      workoutId: selectedWorkout?.workoutId,
     };
 
     try {
