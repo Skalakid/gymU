@@ -1,3 +1,6 @@
+//// This script is slightly modified copy of this script:
+/// https://github.com/prisma/prisma/discussions/2530#discussioncomment-17535
+
 import * as fs from 'fs';
 import * as path from 'path';
 import { camelCase, upperFirst } from 'lodash';
