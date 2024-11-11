@@ -15,7 +15,14 @@ function snakeToPascal(str: string) {
   return upperFirst(camelCase(str));
 }
 
-const PRISMA_PRIMITIVES = ['String', 'Boolean', 'Int', 'Float', 'DateTime'];
+const PRISMA_PRIMITIVES = [
+  'String',
+  'Boolean',
+  'Int',
+  'Float',
+  'DateTime',
+  'TimeUnit',
+];
 const KNEX_INTERNAL_MODELS = [
   'knex_migrations',
   'knex_migrations_lock',
