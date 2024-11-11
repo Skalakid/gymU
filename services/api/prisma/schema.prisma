@@ -7,174 +7,206 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model app_user {
-  user_id               Int                     @id @default(autoincrement())
-  username              String                  @db.VarChar(50)
-  email                 String                  @unique @db.VarChar(255)
-  password_hash         String
-  created_at            DateTime?               @default(now()) @db.Timestamptz(6)
-  user_workout          user_workout[]
-  workout_template      workout_template[]
-  refresh_token         refresh_token[]
-  calendar_event_parent calendar_event_parent[]
+model AppUser {
+  userId               Int                   @id @default(autoincrement()) @map("user_id")
+  username             String                @db.VarChar(50)
+  email                String                @unique @db.VarChar(255)
+  passwordHash         String                @map("password_hash")
+  createdAt            DateTime?             @default(now()) @map("created_at") @db.Timestamptz(6)
+  userWorkouts         UserWorkout[]
+  workoutTemplates     WorkoutTemplate[]
+  refreshTokens        RefreshToken[]
+  calendarEventParents CalendarEventParent[]
+
+  @@map("app_user")
 }
 
-model refresh_token {
-  refresh_token_id Int      @id @default(autoincrement())
-  token            String
-  user_id          Int
-  app_user         app_user @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+model RefreshToken {
+  refreshTokenId Int     @id @default(autoincrement()) @map("refresh_token_id")
+  token          String
+  userId         Int     @map("user_id")
+  appUser        AppUser @relation(fields: [userId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("refresh_token")
 }
 
-model body_part {
-  body_part_id         Int                    @id @default(autoincrement())
-  name                 String                 @db.VarChar(100)
-  exercises_body_parts exercises_body_parts[]
+model BodyPart {
+  bodyPartId         Int                  @id @default(autoincrement()) @map("body_part_id")
+  name               String               @db.VarChar(100)
+  exercisesBodyParts ExercisesBodyParts[]
+
+  @@map("body_part")
 }
 
-model exercise {
-  exercise_id                Int                          @id @default(autoincrement())
-  exercise_type_id           Int
-  name                       String                       @db.VarChar(255)
-  description                String?
-  exercise_type              exercise_type                @relation(fields: [exercise_type_id], references: [exercise_type_id], onDelete: NoAction, onUpdate: NoAction)
-  exercise_template_item     exercise_template_item[]
-  exercises_body_parts       exercises_body_parts[]
-  user_exercise_history_item user_exercise_history_item[]
+model Exercise {
+  exerciseId               Int                       @id @default(autoincrement()) @map("exercise_id")
+  exerciseTypeId           Int                       @map("exercise_type_id")
+  name                     String                    @db.VarChar(255)
+  description              String?
+  exerciseType             ExerciseType              @relation(fields: [exerciseTypeId], references: [exerciseTypeId], onDelete: NoAction, onUpdate: NoAction)
+  exerciseTemplateItems    ExerciseTemplateItem[]
+  exercisesBodyParts       ExercisesBodyParts[]
+  userExerciseHistoryItems UserExerciseHistoryItem[]
+
+  @@map("exercise")
 }
 
-model exercise_template_item {
-  item_id             Int              @id @default(autoincrement())
-  workout_template_id Int
-  exercise_id         Int
-  value               Json
-  order_index         Int
-  exercise            exercise         @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
-  workout_template    workout_template @relation(fields: [workout_template_id], references: [workout_id], onDelete: NoAction, onUpdate: NoAction)
+model ExerciseTemplateItem {
+  itemId            Int             @id @default(autoincrement()) @map("item_id")
+  workoutTemplateId Int             @map("workout_template_id")
+  exerciseId        Int             @map("exercise_id")
+  value             Json
+  orderIndex        Int             @map("order_index")
+  exercise          Exercise        @relation(fields: [exerciseId], references: [exerciseId], onDelete: NoAction, onUpdate: NoAction)
+  workoutTemplate   WorkoutTemplate @relation(fields: [workoutTemplateId], references: [workoutId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("exercise_template_item")
 }
 
-model exercise_type {
-  exercise_type_id Int        @id @default(autoincrement())
-  name             String     @db.VarChar(50)
-  has_reps         Boolean?   @default(false)
-  has_sets         Boolean?   @default(false)
-  has_weights      Boolean?   @default(false)
-  has_time         Boolean?   @default(false)
-  is_break         Boolean?   @default(false)
-  exercise         exercise[]
+model ExerciseType {
+  exerciseTypeId Int        @id @default(autoincrement()) @map("exercise_type_id")
+  name           String     @db.VarChar(50)
+  hasReps        Boolean?   @default(false) @map("has_reps")
+  hasSets        Boolean?   @default(false) @map("has_sets")
+  hasWeights     Boolean?   @default(false) @map("has_weights")
+  hasTime        Boolean?   @default(false) @map("has_time")
+  isBreak        Boolean?   @default(false) @map("is_break")
+  exercises      Exercise[]
+
+  @@map("exercise_type")
 }
 
-model exercises_body_parts {
-  exercise_id  Int
-  body_part_id Int
-  body_part    body_part @relation(fields: [body_part_id], references: [body_part_id], onDelete: NoAction, onUpdate: NoAction)
-  exercise     exercise  @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
+model ExercisesBodyParts {
+  exerciseId Int      @map("exercise_id")
+  bodyPartId Int      @map("body_part_id")
+  bodyPart   BodyPart @relation(fields: [bodyPartId], references: [bodyPartId], onDelete: NoAction, onUpdate: NoAction)
+  exercise   Exercise @relation(fields: [exerciseId], references: [exerciseId], onDelete: NoAction, onUpdate: NoAction)
 
-  @@id([exercise_id, body_part_id])
+  @@id([exerciseId, bodyPartId])
 }
 
-model tag {
-  tag_id       Int            @id @default(autoincrement())
-  name         String?        @db.VarChar(64)
-  workout_tags workout_tags[]
+model Tag {
+  tagId       Int           @id @default(autoincrement()) @map("tag_id")
+  name        String?       @db.VarChar(64)
+  workoutTags WorkoutTags[]
+
+  @@map("tag")
 }
 
-model user_exercise_history_item {
-  item_id          Int              @id @default(autoincrement())
-  user_log_id      Int
-  exercise_id      Int
-  opinion          Int
-  value            Json
-  order_index      Int
-  timestamp        DateTime?        @default(now()) @db.Timestamptz(6)
-  exercise         exercise         @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
-  user_workout_log user_workout_log @relation(fields: [user_log_id], references: [log_id], onDelete: NoAction, onUpdate: NoAction)
+model UserExerciseHistoryItem {
+  itemId         Int            @id @default(autoincrement()) @map("item_id")
+  userLogId      Int            @map("user_log_id")
+  exerciseId     Int            @map("exercise_id")
+  opinion        Int
+  value          Json
+  orderIndex     Int            @map("order_index")
+  timestamp      DateTime?      @default(now()) @db.Timestamptz(6)
+  exercise       Exercise       @relation(fields: [exerciseId], references: [exerciseId], onDelete: NoAction, onUpdate: NoAction)
+  userWorkoutLog UserWorkoutLog @relation(fields: [userLogId], references: [logId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("user_exercise_history_item")
 }
 
-model user_workout {
-  user_workout_id  Int                @id @default(autoincrement())
-  user_id          Int
-  workout_id       Int
-  timestamp        DateTime?          @default(now()) @db.Timestamptz(6)
-  app_user         app_user           @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
-  workout_template workout_template   @relation(fields: [workout_id], references: [workout_id], onDelete: NoAction, onUpdate: NoAction)
-  user_workout_log user_workout_log[]
+model UserWorkout {
+  userWorkoutId   Int              @id @default(autoincrement()) @map("user_workout_id")
+  userId          Int              @map("user_id")
+  workoutId       Int              @map("workout_id")
+  timestamp       DateTime?        @default(now()) @db.Timestamptz(6)
+  appUser         AppUser          @relation(fields: [userId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
+  workoutTemplate WorkoutTemplate  @relation(fields: [workoutId], references: [workoutId], onDelete: NoAction, onUpdate: NoAction)
+  userWorkoutLogs UserWorkoutLog[]
+
+  @@map("user_workout")
 }
 
-model calendar_event_parent {
-  parent_id        Int      @id @default(autoincrement())
-  user_id          Int
-  workout_id       Int
-  repeat_frequency Int
-  repeat_unit      TimeUnit
-  repeat_count     Int
+model CalendarEventParent {
+  parentId        Int      @id @default(autoincrement()) @map("parent_id")
+  userId          Int      @map("user_id")
+  workoutId       Int      @map("workout_id")
+  repeatFrequency Int      @map("repeat_frequency")
+  repeatUnit      TimeUnit @map("repeat_unit")
+  repeatCount     Int      @map("repeat_count")
 
-  calendar_event   calendar_event[]
-  app_user         app_user         @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
-  workout_template workout_template @relation(fields: [workout_id], references: [workout_id], onDelete: NoAction, onUpdate: NoAction)
+  calendarEvents  CalendarEvent[]
+  appUser         AppUser         @relation(fields: [userId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
+  workoutTemplate WorkoutTemplate @relation(fields: [workoutId], references: [workoutId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("calendar_event_parent")
 }
 
-model calendar_event {
-  event_id              Int                   @id @default(autoincrement())
-  parent_id             Int
-  datetime              DateTime
-  user_workout_log      user_workout_log?
-  calendar_event_parent calendar_event_parent @relation(fields: [parent_id], references: [parent_id], onDelete: NoAction, onUpdate: NoAction)
+model CalendarEvent {
+  eventId             Int                 @id @default(autoincrement()) @map("event_id")
+  parentId            Int                 @map("parent_id")
+  datetime            DateTime
+  userWorkoutLog      UserWorkoutLog?
+  calendarEventParent CalendarEventParent @relation(fields: [parentId], references: [parentId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("calendar_event")
 }
 
-model user_workout_log {
-  log_id                     Int                          @id @default(autoincrement())
-  user_workout_id            Int
-  opinion                    Int
-  log_date                   DateTime?                    @default(now()) @db.Timestamptz(6)
-  user_exercise_history_item user_exercise_history_item[]
-  event_id                   Int?                         @unique
+model UserWorkoutLog {
+  logId                    Int                       @id @default(autoincrement()) @map("log_id")
+  userWorkoutId            Int                       @map("user_workout_id")
+  opinion                  Int
+  logDate                  DateTime?                 @default(now()) @map("log_date") @db.Timestamptz(6)
+  userExerciseHistoryItems UserExerciseHistoryItem[]
+  eventId                  Int?                      @unique @map("event_id")
 
-  user_workout   user_workout    @relation(fields: [user_workout_id], references: [user_workout_id], onDelete: NoAction, onUpdate: NoAction)
-  calendar_event calendar_event? @relation(fields: [event_id], references: [event_id])
+  userWorkout   UserWorkout    @relation(fields: [userWorkoutId], references: [userWorkoutId], onDelete: NoAction, onUpdate: NoAction)
+  calendarEvent CalendarEvent? @relation(fields: [eventId], references: [eventId])
+
+  @@map("user_workout_log")
 }
 
-model workout_tags {
-  workout_tag_id      Int              @id @default(autoincrement())
-  tag_id              Int
-  workout_template_id Int
-  tag                 tag              @relation(fields: [tag_id], references: [tag_id], onDelete: NoAction, onUpdate: NoAction)
-  workout_template    workout_template @relation(fields: [workout_template_id], references: [workout_id], onDelete: NoAction, onUpdate: NoAction)
+model WorkoutTags {
+  workoutTagId      Int             @id @default(autoincrement()) @map("workout_tag_id")
+  tagId             Int             @map("tag_id")
+  workoutTemplateId Int             @map("workout_template_id")
+  tag               Tag             @relation(fields: [tagId], references: [tagId], onDelete: NoAction, onUpdate: NoAction)
+  workoutTemplate   WorkoutTemplate @relation(fields: [workoutTemplateId], references: [workoutId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("workout_tags")
 }
 
-model workout_level {
-  level_id         Int                @id @default(autoincrement())
-  name             String             @db.VarChar(50)
-  workout_template workout_template[]
+model WorkoutLevel {
+  levelId          Int               @id @default(autoincrement()) @map("level_id")
+  name             String            @db.VarChar(50)
+  workoutTemplates WorkoutTemplate[]
+
+  @@map("workout_level")
 }
 
-model workout_template {
-  workout_id             Int                      @id @default(autoincrement())
-  author_id              Int
-  name                   String                   @db.VarChar(100)
-  description            String
-  created_at             DateTime?                @default(now()) @db.Timestamptz(6)
-  private                Boolean?                 @default(false)
-  workout_level_id       Int
-  exercise_template_item exercise_template_item[]
-  user_workout           user_workout[]
-  workout_tags           workout_tags[]
-  app_user               app_user                 @relation(fields: [author_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
-  workout_level          workout_level            @relation(fields: [workout_level_id], references: [level_id])
-  calendar_event_parent  calendar_event_parent[]
+model WorkoutTemplate {
+  workoutId             Int                    @id @default(autoincrement()) @map("workout_id")
+  authorId              Int                    @map("author_id")
+  name                  String                 @db.VarChar(100)
+  description           String
+  createdAt             DateTime?              @default(now()) @map("created_at") @db.Timestamptz(6)
+  private               Boolean?               @default(false)
+  workoutLevelId        Int                    @map("workout_level_id")
+  exerciseTemplateItems ExerciseTemplateItem[]
+  userWorkouts          UserWorkout[]
+  workoutTags           WorkoutTags[]
+  appUser               AppUser                @relation(fields: [authorId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
+  workoutLevel          WorkoutLevel           @relation(fields: [workoutLevelId], references: [levelId])
+  calendarEventParents  CalendarEventParent[]
+
+  @@map("workout_template")
 }
 
-model measurement {
-  measurement_id Int      @id @default(autoincrement())
-  user_id        Int
-  save_date      DateTime @default(now()) @db.Timestamptz(6)
-  weight         Float
-  biceps         Float
-  chest          Float
-  waist          Float
-  hips           Float
-  thigh          Float
-  calf           Float
+model Measurement {
+  measurementId Int      @id @default(autoincrement()) @map("measurement_id")
+  userId        Int      @map("user_id")
+  saveDate      DateTime @default(now()) @map("save_date") @db.Timestamptz(6)
+  weight        Float
+  biceps        Float
+  chest         Float
+  waist         Float
+  hips          Float
+  thigh         Float
+  calf          Float
+
+  @@map("measurement")
 }
 
 enum TimeUnit {
