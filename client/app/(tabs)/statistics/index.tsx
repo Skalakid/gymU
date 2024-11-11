@@ -12,7 +12,7 @@ import { useState } from 'react';
 const StatisticsPage = () => {
   const router = useRouter();
   const backgroundColor = useThemeColor({}, 'tile');
-  const [heatmapInterval, setheatmapInterval] = useState(3);
+  const [heatmapInterval] = useState(3);
 
   return (
     <ThemedView style={styles.container}>

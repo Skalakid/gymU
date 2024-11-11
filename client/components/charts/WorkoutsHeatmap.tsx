@@ -38,7 +38,7 @@ const WorkoutsHeatmap = ({ title, months }: WorkoutsHeatmapProps) => {
     if (!chartData) {
       getData();
     }
-  }, []);
+  }, [months, chartData]);
 
   return !chartData ? (
     <ActivityIndicator />
