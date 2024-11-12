@@ -81,6 +81,40 @@ async function getMeasurements(
   }
 }
 
+async function getBodyPartsMeasurements(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const user_id = Number(req.params.id) || -1;
+    const bodyParts = req.params.bodyParts;
+
+    if (!user_id || user_id <= 0) {
+      throw new ApiError(400, 'Invalid user id');
+    }
+
+    if (!bodyParts) {
+      throw new ApiError(400, 'Provide body parts');
+    }
+
+    const bodyPartsArray = bodyParts.split(',');
+
+    const measurements = await MeasurementService.getBodyPartsMeasurements(
+      user_id,
+      bodyPartsArray,
+    );
+
+    if (!measurements) {
+      throw new ApiError(500, 'Failed to get measurements');
+    }
+
+    res.status(201).send(measurements);
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function getMesaurementsSince(
   req: AuthRequest,
   res: Response,
@@ -88,7 +122,7 @@ async function getMesaurementsSince(
 ) {
   try {
     const user_id = Number(req.params.id) || -1;
-    const time_interval = Number(req.params.time_interval) || -1;
+    const time_interval = Number(req.params.timeInterval) || -1;
 
     if (!user_id || user_id <= 0) {
       throw new ApiError(400, 'Invalid user id');
@@ -113,4 +147,50 @@ async function getMesaurementsSince(
   }
 }
 
-export { createMeasurement, getMeasurements, getMesaurementsSince };
+async function getSelectedMeasurementsSince(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const user_id = Number(req.params.id) || -1;
+    const bodyParts = req.params.bodyParts;
+    const time_interval = Number(req.params.timeInterval) || -1;
+
+    if (!user_id || user_id <= 0) {
+      throw new ApiError(400, 'Invalid user id');
+    }
+
+    if (!bodyParts) {
+      throw new ApiError(400, 'Provide body parts');
+    }
+
+    if (!time_interval || time_interval <= 0) {
+      throw new ApiError(400, 'Invalid start date');
+    }
+
+    const bodyPartsArray = bodyParts.split(',');
+
+    const measurements = await MeasurementService.getSelectedMeasurementsSince(
+      user_id,
+      bodyPartsArray,
+      time_interval,
+    );
+
+    if (!measurements) {
+      throw new ApiError(500, 'Failed to get measurements');
+    }
+
+    res.status(201).send(measurements);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export {
+  createMeasurement,
+  getMeasurements,
+  getBodyPartsMeasurements,
+  getMesaurementsSince,
+  getSelectedMeasurementsSince,
+};

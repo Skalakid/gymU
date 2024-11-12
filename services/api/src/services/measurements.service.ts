@@ -28,8 +28,30 @@ async function getMeasurements(user_id: number) {
   return await MesaurementDB.getMeasurements(user_id);
 }
 
+async function getBodyPartsMeasurements(user_id: number, bodyParts: string[]) {
+  return await MesaurementDB.getBodyPartsMeasurements(user_id, bodyParts);
+}
+
 async function getMeasurementsSince(user_id: number, time_interval: number) {
   return await MesaurementDB.getMeasurementsSince(user_id, time_interval);
 }
 
-export { createMeasurement, getMeasurements, getMeasurementsSince };
+async function getSelectedMeasurementsSince(
+  user_id: number,
+  bodyParts: string[],
+  time_interval: number,
+) {
+  return await MesaurementDB.getSelectedMeasurementsSince(
+    user_id,
+    bodyParts,
+    time_interval,
+  );
+}
+
+export {
+  createMeasurement,
+  getMeasurements,
+  getBodyPartsMeasurements,
+  getMeasurementsSince,
+  getSelectedMeasurementsSince,
+};

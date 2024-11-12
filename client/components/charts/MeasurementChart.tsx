@@ -30,7 +30,7 @@ const MeasurementChart = ({
   useEffect(() => {
     const getData = async () => {
       const rawData = await fetchApi(
-        `/measurement/${auth.user?.user_id}/${timeInterval}`,
+        `/measurement/${auth.user?.user_id}/${measurement}/${timeInterval}`,
         'GET',
       );
       const data = await rawData.json();

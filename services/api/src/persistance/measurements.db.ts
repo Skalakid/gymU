@@ -49,6 +49,27 @@ async function getMeasurements(user_id: number) {
   return measurements;
 }
 
+async function getBodyPartsMeasurements(user_id: number, bodyParts: string[]) {
+  const measurements = await prisma.measurement.findMany({
+    select: {
+      user_id: true,
+      save_date: true,
+      weight: bodyParts.includes('weight'),
+      biceps: bodyParts.includes('biceps'),
+      chest: bodyParts.includes('chest'),
+      waist: bodyParts.includes('waist'),
+      hips: bodyParts.includes('hips'),
+      thigh: bodyParts.includes('thigh'),
+      calf: bodyParts.includes('calf'),
+    },
+    where: {
+      user_id: user_id,
+    },
+  });
+
+  return measurements;
+}
+
 async function getMeasurementsSince(user_id: number, time_interval: number) {
   const measurements = await prisma.measurement.findMany({
     select: {
@@ -78,4 +99,43 @@ async function getMeasurementsSince(user_id: number, time_interval: number) {
   return measurements;
 }
 
-export { createMesaurement, getMeasurements, getMeasurementsSince };
+async function getSelectedMeasurementsSince(
+  user_id: number,
+  bodyParts: string[],
+  time_interval: number,
+) {
+  const measurements = await prisma.measurement.findMany({
+    select: {
+      user_id: true,
+      save_date: true,
+      weight: bodyParts.includes('weight'),
+      biceps: bodyParts.includes('biceps'),
+      chest: bodyParts.includes('chest'),
+      waist: bodyParts.includes('waist'),
+      hips: bodyParts.includes('hips'),
+      thigh: bodyParts.includes('thigh'),
+      calf: bodyParts.includes('calf'),
+    },
+    where: {
+      user_id: user_id,
+      save_date: {
+        gte: new Date(
+          new Date().setMonth(new Date().getMonth() - time_interval),
+        ),
+      },
+    },
+    orderBy: {
+      save_date: 'asc',
+    },
+  });
+
+  return measurements;
+}
+
+export {
+  createMesaurement,
+  getMeasurements,
+  getBodyPartsMeasurements,
+  getMeasurementsSince,
+  getSelectedMeasurementsSince,
+};

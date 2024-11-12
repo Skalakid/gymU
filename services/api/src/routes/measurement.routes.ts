@@ -9,11 +9,25 @@ router.post(
   authenticateToken,
   measurementController.createMeasurement,
 );
-router.get('/:id', authenticateToken, measurementController.getMeasurements);
 router.get(
-  '/:id/:time_interval',
+  '/:id/all',
+  authenticateToken,
+  measurementController.getMeasurements,
+);
+router.get(
+  '/:id/:bodyParts',
+  authenticateToken,
+  measurementController.getBodyPartsMeasurements,
+);
+router.get(
+  '/:id/all/:timeInterval',
   authenticateToken,
   measurementController.getMesaurementsSince,
+);
+router.get(
+  '/:id/:bodyParts/:timeInterval',
+  authenticateToken,
+  measurementController.getSelectedMeasurementsSince,
 );
 
 export = router;
