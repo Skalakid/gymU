@@ -35,7 +35,7 @@ async function getAllWorkouts(
         workoutId: workout.workoutId,
         name: workout.name,
         workoutTags: workout.workoutTags.map(
-          (workout_tag) => workout_tag.tag.name,
+          (workoutTag) => workoutTag.tag.name,
         ),
         workoutLevel: workoutLevel.name,
         isSavedByUser: workoutIdsSavedByUser.includes(workout.workoutId),
@@ -89,7 +89,7 @@ async function getWorkoutDetails(workoutId: number, userId: number) {
       userId: workout.authorId,
       username: workout.appUser.username,
     },
-    workoutTags: workout.workoutTags.map((workout_tag) => workout_tag.tag.name),
+    workoutTags: workout.workoutTags.map((workoutTag) => workoutTag.tag.name),
     workoutLevel: workout.workoutLevel.name,
     exercises: exerciseItems,
     isSavedByUser,
@@ -120,7 +120,7 @@ async function createWorkout(
 
 async function getAllWorkoutTags() {
   const tags = (await WorkoutDB.getAllWorkoutTags())
-    .map((tag) => tag.workoutTags.map((workout_tag) => workout_tag.tag))
+    .map((tag) => tag.workoutTags.map((workoutTag) => workoutTag.tag))
     .flat(1);
 
   const uniqueIds: number[] = [];

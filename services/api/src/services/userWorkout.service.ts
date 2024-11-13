@@ -24,7 +24,7 @@ async function getAllUserWorkouts(
       workoutId: workout.workoutId,
       name: workout.name,
       workoutTags: workout.workoutTags.map(
-        (workout_tag) => workout_tag.tag.name || '',
+        (workoutTag) => workoutTag.tag.name || '',
       ),
       workoutLevel: workout.workoutLevel.name,
     };
@@ -45,7 +45,7 @@ async function getAllUserWorkouts(
 async function getAllWorkoutTags() {
   const tags = (await UserWorkoutDB.getAllWorkoutTags())
     .map((tag) =>
-      tag.workoutTemplate.workoutTags.map((workout_tag) => workout_tag.tag),
+      tag.workoutTemplate.workoutTags.map((workoutTag) => workoutTag.tag),
     )
     .flat(1);
 

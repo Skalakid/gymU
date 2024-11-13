@@ -11,7 +11,7 @@ router.post(
 );
 router.get('/:id', authenticateToken, measurementController.getMeasurements);
 router.get(
-  '/:id/:time_interval',
+  '/:id/:timeInterval',
   authenticateToken,
   measurementController.getMesaurementsSince,
 );

@@ -7,7 +7,7 @@ const UserWorkoutDetails = () => {
 
   const handleRightIconPress = (workoutDetails: Workout) => {
     router.push({
-      pathname: '/live_training',
+      pathname: '/live-training',
       params: { workoutID: workoutDetails.workoutId },
     });
   };

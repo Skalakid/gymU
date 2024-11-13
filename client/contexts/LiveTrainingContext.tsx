@@ -231,7 +231,7 @@ function LiveTrainingContextProvider({
     async (workoutOpinion: number) => {
       try {
         const response = await fetchApi(
-          '/workout/live_training/save',
+          '/workout/live-training/save',
           'POST',
           null,
           {

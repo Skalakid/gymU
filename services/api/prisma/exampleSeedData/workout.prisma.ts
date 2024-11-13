@@ -29,7 +29,7 @@ export default async function seedWorkouts() {
       getExerciseTemplateItems().map(async (exerciseTemplateItem) => {
         const exercise = await prisma.exercise.findFirst({
           where: {
-            name: exerciseTemplateItem.exercise_name,
+            name: exerciseTemplateItem.exerciseName,
           },
           select: {
             exerciseId: true,
@@ -90,7 +90,7 @@ function getWorkoutTemplates(): NewWorkoutTemplate[] {
 
 type NewExerciseTemplateItemSeed = {
   workoutTemplateId: number;
-  exercise_name: string;
+  exerciseName: string;
   value: Prisma.JsonValue;
   orderIndex: number;
 };
@@ -100,7 +100,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
     // workout 1
     {
       workoutTemplateId: 1,
-      exercise_name: 'Push ups',
+      exerciseName: 'Push ups',
       value: JSON.stringify({
         sets: 3,
         reps: 15,
@@ -110,7 +110,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
     },
     {
       workoutTemplateId: 1,
-      exercise_name: 'Interval running',
+      exerciseName: 'Interval running',
       value: JSON.stringify({
         time: 1000,
         breakTime: 120,
@@ -119,7 +119,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
     },
     {
       workoutTemplateId: 1,
-      exercise_name: 'Deadlifts',
+      exerciseName: 'Deadlifts',
       value: JSON.stringify({
         sets: 3,
         reps: 10,
@@ -131,7 +131,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
     // workout 2
     {
       workoutTemplateId: 2,
-      exercise_name: 'Pull ups',
+      exerciseName: 'Pull ups',
       value: JSON.stringify({
         sets: 4,
         reps: 5,
@@ -141,7 +141,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
     },
     {
       workoutTemplateId: 2,
-      exercise_name: 'Squats',
+      exerciseName: 'Squats',
       value: JSON.stringify({
         sets: 3,
         reps: 10,
@@ -151,7 +151,7 @@ function getExerciseTemplateItems(): NewExerciseTemplateItemSeed[] {
     },
     {
       workoutTemplateId: 2,
-      exercise_name: 'Rest',
+      exerciseName: 'Rest',
       value: JSON.stringify({
         breakTime: 240,
       }),

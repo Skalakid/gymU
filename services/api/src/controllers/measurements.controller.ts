@@ -88,19 +88,19 @@ async function getMesaurementsSince(
 ) {
   try {
     const userId = Number(req.params.id) || -1;
-    const time_interval = Number(req.params.time_interval) || -1;
+    const timeInterval = Number(req.params.timeInterval) || -1;
 
     if (!userId || userId <= 0) {
       throw new ApiError(400, 'Invalid user id');
     }
 
-    if (!time_interval || time_interval <= 0) {
+    if (!timeInterval || timeInterval <= 0) {
       throw new ApiError(400, 'Invalid start date');
     }
 
     const measurements = await MeasurementService.getMeasurementsSince(
       userId,
-      time_interval,
+      timeInterval,
     );
 
     if (!measurements) {

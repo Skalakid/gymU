@@ -16,7 +16,7 @@ type DetailedExercise = {
 
 type ExerciseItem = {
   exerciseId: number;
-  exercise_name: string;
+  exerciseName: string;
   exerciseType: string;
   value: string;
   orderIndex: number;

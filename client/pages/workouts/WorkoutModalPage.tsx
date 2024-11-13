@@ -36,7 +36,7 @@ const WorkoutModalPage = ({
       {!shouldFillFullHeight && (
         <Animated.View entering={FadeIn.delay(200).duration(500)}>
           <Image
-            source={image || Images.workout_example_img}
+            source={image || Images.workoutExampleImg}
             contentFit="cover"
             style={{ width: '100%', height: 200 }}
           />

@@ -49,7 +49,7 @@ async function getMeasurements(userId: number) {
   return measurements;
 }
 
-async function getMeasurementsSince(userId: number, time_interval: number) {
+async function getMeasurementsSince(userId: number, timeInterval: number) {
   const measurements = await prisma.measurement.findMany({
     select: {
       userId: true,
@@ -66,7 +66,7 @@ async function getMeasurementsSince(userId: number, time_interval: number) {
       userId: userId,
       saveDate: {
         gte: new Date(
-          new Date().setMonth(new Date().getMonth() - time_interval),
+          new Date().setMonth(new Date().getMonth() - timeInterval),
         ),
       },
     },
