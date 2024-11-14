@@ -70,10 +70,10 @@ const AddToCalendarForm = ({
         <AddExerciseItemButton onPress={onWorkoutButtonPress} />
       ) : (
         <WorkoutItem
-          id={selectedWorkout.workout_id}
+          id={selectedWorkout.workoutId}
           name={selectedWorkout.name}
-          level={selectedWorkout.workout_level}
-          tags={selectedWorkout.workout_tags}
+          level={selectedWorkout.workoutLevel}
+          tags={selectedWorkout.workoutTags}
           onPress={onWorkoutButtonPress}
         />
       )}

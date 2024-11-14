@@ -1,35 +1,35 @@
 type NewWorkoutTemplate = {
-  author_id: number;
+  authorId: number;
   name: string;
   description: string;
-  created_at: Date;
+  createdAt: Date;
   private: boolean;
-  workout_level_id: number;
+  workoutLevelId: number;
 };
 
 type GeneralWorkout = {
-  workout_id: number;
+  workoutId: number;
   name: string;
-  workout_tags: string[];
-  workout_level: string;
+  workoutTags: string[];
+  workoutLevel: string;
   isOwnedByUser?: boolean;
 };
 
 type NewUserWorkout = {
-  user_id: number;
-  workout_id: number;
+  userId: number;
+  workoutId: number;
   timestamp: Date;
 };
 
 type WorkoutTag = {
-  workout_template_id: number;
-  tag_id: number;
+  workoutTemplateId: number;
+  tagId: number;
 };
 
 type ExerciseWorkoutItem = {
-  exercise_id: number;
+  exerciseId: number;
   value: JsonNull | InputJsonValue;
-  order_index: number;
+  orderIndex: number;
 };
 
 export type {

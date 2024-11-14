@@ -30,7 +30,7 @@ async function refreshToken(req: Request, res: Response, next: NextFunction) {
       throw new ApiError(400, 'Missing refresh token');
     }
 
-    const token = await prisma.refresh_token.findFirst({
+    const token = await prisma.refreshToken.findFirst({
       where: {
         token: refreshToken as string,
       },
@@ -49,7 +49,7 @@ async function refreshToken(req: Request, res: Response, next: NextFunction) {
 
         const user = decoded as ReturnUser;
         const accessToken = generateAuthenticationToken({
-          user_id: user.user_id,
+          userId: user.userId,
           email: user.email,
           username: user.username,
         });
@@ -72,7 +72,7 @@ async function login(req: Request, res: Response, next: NextFunction) {
   }
 
   try {
-    const user = await prisma.app_user.findUnique({
+    const user = await prisma.appUser.findUnique({
       where: {
         email: email,
       },
@@ -82,22 +82,22 @@ async function login(req: Request, res: Response, next: NextFunction) {
       throw new ApiError(404, 'User not found');
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password_hash);
+    const passwordMatch = await bcrypt.compare(password, user.passwordHash);
     if (!passwordMatch) {
       throw new ApiError(401, 'Invalid password');
     }
 
     const returnUser: ReturnUser = {
-      user_id: user.user_id,
+      userId: user.userId,
       email: user.email,
       username: user.username,
     };
 
     const accessToken = generateAuthenticationToken(returnUser);
 
-    const storedRefreshToken = await prisma.refresh_token.findFirst({
+    const storedRefreshToken = await prisma.refreshToken.findFirst({
       where: {
-        user_id: user.user_id,
+        userId: user.userId,
       },
     });
 
@@ -108,9 +108,9 @@ async function login(req: Request, res: Response, next: NextFunction) {
     }
 
     if (!storedRefreshToken?.token) {
-      await prisma.refresh_token.create({
+      await prisma.refreshToken.create({
         data: {
-          user_id: user.user_id,
+          userId: user.userId,
           token: refreshToken,
         },
       });
@@ -137,16 +137,16 @@ async function signup(req: Request, res: Response, next: NextFunction) {
       password,
       CONST.AUTH.SALT_OR_ROUNDS,
     );
-    const user = await prisma.app_user.create({
+    const user = await prisma.appUser.create({
       data: {
         email,
         username,
-        password_hash: hashedPassword,
+        passwordHash: hashedPassword,
       },
     });
 
     res.status(201).send({
-      id: user.user_id,
+      id: user.userId,
       email: user.email,
       username: user.username,
     });
@@ -162,7 +162,7 @@ async function logout(req: Request, res: Response, next: NextFunction) {
       throw new ApiError(400, 'Missing refresh token');
     }
 
-    const deletedTokens = await prisma.refresh_token.deleteMany({
+    const deletedTokens = await prisma.refreshToken.deleteMany({
       where: {
         token: refreshToken as string,
       },

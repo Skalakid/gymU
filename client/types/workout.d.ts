@@ -1,20 +1,20 @@
 type WorkoutType = {
-  tag_id: number;
+  tagId: number;
   name: string;
 };
 
 type Workout = {
-  workout_id: number;
+  workoutId: number;
   name: string;
   description: string;
-  created_at: string;
+  createdAt: string;
   private: boolean;
-  workout_tags: string[];
+  workoutTags: string[];
   author: {
-    user_id: number;
+    userId: number;
     username: string;
   };
-  workout_level: string;
+  workoutLevel: string;
   exercises: DetailedExerciseItem[];
   isSavedByUser?: boolean;
 };
@@ -27,7 +27,7 @@ type SimplifiedWorkout = {
 };
 
 type Difficulty = {
-  level_id: number;
+  levelId: number;
   name: string;
 };
 
@@ -40,5 +40,5 @@ type WorkoutGeneralInfo = {
 };
 
 type WorkoutTagsRespone = {
-  workout_tags: WorkoutType[];
+  workoutTags: WorkoutType[];
 };

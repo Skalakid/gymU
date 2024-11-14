@@ -10,11 +10,11 @@ async function getAllWorkouts(
   next: NextFunction,
 ) {
   try {
-    const userId = Number((req.user as ReturnUser).user_id) || -1;
+    const userId = Number((req.user as ReturnUser).userId) || -1;
     const page = Number(req.query.page) || 1;
     const pageSize = Number(req.query.size) || 10;
     const skip = (page - 1) * pageSize;
-    const tags = req.query.tag_ids?.toString();
+    const tags = req.query.tagIds?.toString();
 
     let tagIds = null;
     if (tags !== undefined) {
@@ -41,7 +41,7 @@ async function getWorkoutDetails(
   next: NextFunction,
 ) {
   try {
-    const userId = Number((req.user as ReturnUser).user_id) || -1;
+    const userId = Number((req.user as ReturnUser).userId) || -1;
     const workoutId = Number(req.params.id) || -1;
     if (Number.isNaN(workoutId) || workoutId <= 0) {
       throw new ApiError(400, 'Invalid workout id');
@@ -67,21 +67,15 @@ async function createWorkout(
   next: NextFunction,
 ) {
   try {
-    const {
-      name,
-      description,
-      is_private,
-      workout_level_id,
-      tag_ids,
-      exercises,
-    } = req.body;
+    const { name, description, isPrivate, workoutLevelId, tagIds, exercises } =
+      req.body;
 
     if (
       name === undefined ||
       description === undefined ||
-      is_private === undefined ||
-      workout_level_id === undefined ||
-      tag_ids === undefined ||
+      isPrivate === undefined ||
+      workoutLevelId === undefined ||
+      tagIds === undefined ||
       exercises === undefined
     ) {
       throw new ApiError(400, 'Missing required fields');
@@ -91,9 +85,9 @@ async function createWorkout(
       Number(req.user),
       name,
       description,
-      is_private,
-      workout_level_id,
-      tag_ids,
+      isPrivate,
+      workoutLevelId,
+      tagIds,
       exercises,
     );
     if (!newWorkout) {
@@ -114,7 +108,7 @@ async function getAllWorkoutTags(
   try {
     const workoutTags = await WorkoutService.getAllWorkoutTags();
     res.status(201).send({
-      workout_tags: workoutTags,
+      workoutTags: workoutTags,
     });
   } catch (error) {
     next(error);

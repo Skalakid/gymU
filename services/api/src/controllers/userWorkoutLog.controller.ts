@@ -11,16 +11,16 @@ async function createWorkoutLog(
 ) {
   try {
     const {
-      user_workout_id,
+      userWorkoutId,
       opinion,
       exercises,
     }: {
-      user_workout_id: number;
+      userWorkoutId: number;
       opinion: number;
       exercises: ExerciseHistoryItem[];
     } = req.body;
 
-    if (!user_workout_id || opinion === undefined || !exercises) {
+    if (!userWorkoutId || opinion === undefined || !exercises) {
       throw new ApiError(400, 'Missing required fields');
     }
 
@@ -31,17 +31,17 @@ async function createWorkoutLog(
     if (
       exercises.some(
         (exercise) =>
-          (!exercise.exercise_id && exercise.exercise_id !== 0) ||
+          (!exercise.exerciseId && exercise.exerciseId !== 0) ||
           !exercise.value ||
           (!exercise.opinion && exercise.opinion !== 0) ||
-          (!exercise.order_index && exercise.order_index !== 0),
+          (!exercise.orderIndex && exercise.orderIndex !== 0),
       )
     ) {
       throw new ApiError(400, 'Invalid exercise data');
     }
 
     const workoutLog = await UserWorkoutLogService.createWorkoutLog(
-      user_workout_id,
+      userWorkoutId,
       opinion,
       exercises,
     );

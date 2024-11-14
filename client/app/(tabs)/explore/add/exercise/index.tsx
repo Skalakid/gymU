@@ -8,11 +8,11 @@ const WorkoutExercisePickerPage = () => {
   const router = useRouter();
   const handleSelectItem = (exercise: BasicExercise) => {
     updateCurrentExercise({
-      exercise_id: exercise.exercise_id,
+      exerciseId: exercise.exerciseId,
       name: exercise.name,
       description: exercise.shortDescription,
-      body_parts: exercise.body_parts,
-      exercise_type: exercise.exercise_type,
+      bodyParts: exercise.bodyParts,
+      exerciseType: exercise.exerciseType,
       value: {
         sets: null,
         reps: null,

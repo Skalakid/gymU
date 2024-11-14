@@ -48,7 +48,7 @@ const LiveTrainingPage = () => {
       setIsModalVisible(false);
 
       if (currentExerciseIndex >= trainingItems.length) {
-        router.navigate('/live_training/summary');
+        router.navigate('/live-training/summary');
       }
     },
     [addOpinion, currentExerciseIndex, router, trainingItems],

@@ -15,7 +15,7 @@ const WorkoutDetails = () => {
       return;
     }
     await fetchApi(`/user/workout/save`, 'POST', null, {
-      workout_id: workoutDetails.workout_id,
+      workoutId: workoutDetails.workoutId,
     });
     setIsSaved(true);
   };

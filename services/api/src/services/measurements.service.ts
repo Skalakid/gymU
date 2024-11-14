@@ -1,8 +1,8 @@
 import * as MesaurementDB from '../persistance/measurements.db';
 
 async function createMeasurement(
-  user_id: number,
-  save_date: Date,
+  userId: number,
+  saveDate: Date,
   weight: number,
   biceps: number,
   chest: number,
@@ -12,8 +12,8 @@ async function createMeasurement(
   calf: number,
 ) {
   return await MesaurementDB.createMesaurement(
-    user_id,
-    save_date,
+    userId,
+    saveDate,
     weight,
     biceps,
     chest,
@@ -24,12 +24,12 @@ async function createMeasurement(
   );
 }
 
-async function getMeasurements(user_id: number) {
-  return await MesaurementDB.getMeasurements(user_id);
+async function getMeasurements(userId: number) {
+  return await MesaurementDB.getMeasurements(userId);
 }
 
-async function getMeasurementsSince(user_id: number, time_interval: number) {
-  return await MesaurementDB.getMeasurementsSince(user_id, time_interval);
+async function getMeasurementsSince(userId: number, timeInterval: number) {
+  return await MesaurementDB.getMeasurementsSince(userId, timeInterval);
 }
 
 export { createMeasurement, getMeasurements, getMeasurementsSince };

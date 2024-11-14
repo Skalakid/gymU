@@ -16,7 +16,7 @@ router.get(
 );
 
 router.post(
-  '/live_training/save',
+  '/live-training/save',
   authenticateToken,
   userWorkoutLogController.createWorkoutLog,
 );

@@ -63,7 +63,7 @@ const InitialLayout = () => {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen
-        name="live_training"
+        name="live-training"
         options={{
           presentation: 'modal',
         }}
