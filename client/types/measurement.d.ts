@@ -20,4 +20,6 @@ type Mesaurement =
   | 'thigh'
   | 'calf';
 
-export type { MeasurementData, Mesaurement };
+type MeasurementWithHeight = Measurement | 'height';
+
+export type { MeasurementData, Mesaurement, MeasurementWithHeight };

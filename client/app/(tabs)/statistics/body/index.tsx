@@ -1,3 +1,4 @@
+import fetchApi from '@/api/fetch';
 import MeasurementChart from '@/components/charts/MeasurementChart';
 import Header from '@/components/navigation/Header';
 import ThemedView from '@/components/ThemedView';
@@ -18,7 +19,10 @@ const BodyMeasurements = () => {
         leftIconOnPress={() => router.back()}
         rightIcon={Icons.circleAdd}
         rightIconSize={26}
-        rightIconOnPress={() => router.navigate('/statistics/body/add')}
+        rightIconOnPress={async () => {
+          const height = await fetchApi('/user/height', 'GET');
+          router.navigate(`/statistics/body/add${height ? '/height' : ''}`);
+        }}
       />
 
       <ScrollView contentContainerStyle={styles.chartContainers}>
