@@ -106,8 +106,8 @@ async function getSelectedMeasurementsSince(
 ) {
   const measurements = await prisma.measurement.findMany({
     select: {
-      user_id: true,
-      save_date: true,
+      userId: true,
+      saveDate: true,
       weight: bodyParts.includes('weight'),
       biceps: bodyParts.includes('biceps'),
       chest: bodyParts.includes('chest'),
@@ -117,15 +117,15 @@ async function getSelectedMeasurementsSince(
       calf: bodyParts.includes('calf'),
     },
     where: {
-      user_id: user_id,
-      save_date: {
+      userId: user_id,
+      saveDate: {
         gte: new Date(
           new Date().setMonth(new Date().getMonth() - time_interval),
         ),
       },
     },
     orderBy: {
-      save_date: 'asc',
+      saveDate: 'asc',
     },
   });
 
