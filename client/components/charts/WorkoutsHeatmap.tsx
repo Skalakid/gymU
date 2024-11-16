@@ -11,28 +11,37 @@ type WorkoutsHeatmapProps = {
   months: number;
 };
 
+type ChartDataType = {
+  date: Date;
+  count: number;
+}
+
 const WorkoutsHeatmap = ({ title, months }: WorkoutsHeatmapProps) => {
-  const [chartData, setChartData] = useState(null);
+  const [chartData, setChartData] = useState<ChartDataType[] | null>(null);
 
   useEffect(() => {
     const getData = async () => {
       const startDate = getDateSince(months);
       const endDate = new Date();
 
-      const rawData = await fetchApi(
-        `/calendar/grid/${startDate}/${endDate}`,
-        'GET',
-      );
-      const data = await rawData.json();
-
-      const newChartData = data.map((element: EventCalendarData) => {
-        return {
-          date: element.datetime,
-          count: 1,
-        };
-      });
-
-      setChartData(newChartData);
+      try{
+        const rawData = await fetchApi(
+          `/calendar/grid/${startDate}/${endDate}`,
+          'GET',
+        );
+        const data = await rawData.json();
+  
+        const newChartData = data.map((element: EventCalendarData) => {
+          return {
+            date: element.datetime,
+            count: 1,
+          };
+        });
+  
+        setChartData(newChartData);
+      } catch {  
+        setChartData([]);
+      }
     };
 
     if (!chartData) {
@@ -40,7 +49,7 @@ const WorkoutsHeatmap = ({ title, months }: WorkoutsHeatmapProps) => {
     }
   }, [months, chartData]);
 
-  return !chartData ? (
+  return chartData === null ? (
     <ActivityIndicator />
   ) : (
     <Tile style={styles.tile}>
