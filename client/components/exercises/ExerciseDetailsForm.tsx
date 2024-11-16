@@ -43,17 +43,17 @@ const ExerciseDetailsForm = ({
 
   useEffect(() => {
     onFormUpdate({
-      sets: exerciseType?.has_sets ? sets : null,
-      reps: exerciseType?.has_reps ? reps : null,
-      weight: exerciseType?.has_weights ? weight : null,
-      time: exerciseType?.has_time ? time : null,
-      breakTime: exerciseType?.has_sets && sets > 1 ? breakTime : null,
+      sets: exerciseType?.hasSets ? sets : null,
+      reps: exerciseType?.hasReps ? reps : null,
+      weight: exerciseType?.hasWeights ? weight : null,
+      time: exerciseType?.hasTime ? time : null,
+      breakTime: exerciseType?.hasSets && sets > 1 ? breakTime : null,
     });
   }, [breakTime, exerciseType, onFormUpdate, reps, sets, time, weight]);
 
   return (
     <View style={styles.container}>
-      {exerciseType?.has_sets && (
+      {exerciseType?.hasSets && (
         <RowTextInput
           value={sets}
           onChageText={(value) => handleNumericChange(value, setSets)}
@@ -61,7 +61,7 @@ const ExerciseDetailsForm = ({
           icon={Icons.repeat}
         />
       )}
-      {exerciseType?.has_reps && (
+      {exerciseType?.hasReps && (
         <RowTextInput
           value={reps}
           onChageText={(value) => handleNumericChange(value, setReps)}
@@ -69,7 +69,7 @@ const ExerciseDetailsForm = ({
           icon={Icons.flame}
         />
       )}
-      {exerciseType?.has_weights && (
+      {exerciseType?.hasWeights && (
         <RowTextInput
           value={weight}
           onChageText={(value) => handleNumericChange(value, setWeight, 1000)}
@@ -77,7 +77,7 @@ const ExerciseDetailsForm = ({
           icon={Icons.weight}
         />
       )}
-      {exerciseType?.has_time && (
+      {exerciseType?.hasTime && (
         <RowTextInput
           value={time}
           onChageText={(value) => handleNumericChange(value, setTime)}
@@ -86,7 +86,7 @@ const ExerciseDetailsForm = ({
         />
       )}
 
-      {exerciseType?.has_sets && sets > 1 && (
+      {exerciseType?.hasSets && sets > 1 && (
         <RowTextInput
           value={breakTime}
           onChageText={(value) => handleNumericChange(value, setBreakTime)}

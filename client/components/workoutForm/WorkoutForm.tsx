@@ -27,7 +27,7 @@ export type DificultiesData = {
 
 // TODO: Code duplicate
 type WorkoutTagsRespone = {
-  workout_tags: WorkoutType[];
+  workoutTags: WorkoutType[];
 };
 
 type WorkoutFormProps = {
@@ -54,7 +54,7 @@ const WorkoutForm = ({ onSubmit }: WorkoutFormProps) => {
     try {
       const response = await fetchApi('/workout/tag/all', 'GET', null);
       const data: WorkoutTagsRespone = await response.json();
-      setAllTags(data.workout_tags);
+      setAllTags(data.workoutTags);
     } catch (error) {
       console.error(error);
     }
@@ -98,7 +98,7 @@ const WorkoutForm = ({ onSubmit }: WorkoutFormProps) => {
     setPickerData(
       difficulties.map((difficulty) => ({
         label: capitalize(difficulty.name),
-        level: difficulty.level_id,
+        level: difficulty.levelId,
       })),
     );
   }, [difficulties]);

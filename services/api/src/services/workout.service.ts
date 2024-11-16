@@ -21,24 +21,24 @@ async function getAllWorkouts(
   );
   const allWorkoutsCount = await WorkoutDB.countAllFilteredWorkouts(tagIds);
   const workoutIdsSavedByUser = (await getWorkoutIdsSavedByUser(userId)).map(
-    (item) => item.workout_id,
+    (item) => item.workoutId,
   );
 
   const workoutsWithTagName: GeneralWorkout[] = workouts.map(
     ({
-      workout_level,
+      workoutLevel,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      workout_level_id,
+      workoutLevelId,
       ...workout
     }) => {
       return {
-        workout_id: workout.workout_id,
+        workoutId: workout.workoutId,
         name: workout.name,
-        workout_tags: workout.workout_tags.map(
-          (workout_tag) => workout_tag.tag.name,
+        workoutTags: workout.workoutTags.map(
+          (workoutTag) => workoutTag.tag.name,
         ),
-        workout_level: workout_level.name,
-        isSavedByUser: workoutIdsSavedByUser.includes(workout.workout_id),
+        workoutLevel: workoutLevel.name,
+        isSavedByUser: workoutIdsSavedByUser.includes(workout.workoutId),
       } as GeneralWorkout;
     },
   );
@@ -64,35 +64,33 @@ async function getWorkoutDetails(workoutId: number, userId: number) {
 
   const isSavedByUser = await isWorkoutSavedByUser(userId, workoutId);
 
-  const exerciseItems: DetailedExercise[] = workout.exercise_template_item
+  const exerciseItems: DetailedExercise[] = workout.exerciseTemplateItems
     .map((item) => {
       return {
-        exercise_id: item.exercise_id,
+        exerciseId: item.exerciseId,
         name: item.exercise.name,
-        exercise_type: item.exercise.exercise_type.name,
+        exerciseType: item.exercise.exerciseType.name,
         value: JSON.parse(item.value as string),
-        order_index: item.order_index,
-        body_parts: item.exercise.exercises_body_parts.map(
-          (item) => item.body_part.name,
+        orderIndex: item.orderIndex,
+        bodyParts: item.exercise.exercisesBodyParts.map(
+          (item) => item.bodyPart.name,
         ),
       };
     })
-    .sort((a, b) => a.order_index - b.order_index);
+    .sort((a, b) => a.orderIndex - b.orderIndex);
 
   const workoutWithTagName = {
-    workout_id: workout.workout_id,
+    workoutId: workout.workoutId,
     name: workout.name,
     description: workout.description,
     private: workout.private,
-    created_at: workout.created_at,
+    createdAt: workout.createdAt,
     author: {
-      user_id: workout.author_id,
-      username: workout.app_user.username,
+      userId: workout.authorId,
+      username: workout.appUser.username,
     },
-    workout_tags: workout.workout_tags.map(
-      (workout_tag) => workout_tag.tag.name,
-    ),
-    workout_level: workout.workout_level.name,
+    workoutTags: workout.workoutTags.map((workoutTag) => workoutTag.tag.name),
+    workoutLevel: workout.workoutLevel.name,
     exercises: exerciseItems,
     isSavedByUser,
   };
@@ -101,43 +99,43 @@ async function getWorkoutDetails(workoutId: number, userId: number) {
 }
 
 async function createWorkout(
-  author_id: number,
+  authorId: number,
   name: string,
   description: string,
-  is_private: boolean,
-  workout_level_id: number,
-  tag_ids: number[],
+  isPrivate: boolean,
+  workoutLevelId: number,
+  tagIds: number[],
   exercises: ExerciseWorkoutItem[],
 ) {
   return await WorkoutDB.createWorkout(
-    author_id,
+    authorId,
     name,
     description,
-    is_private,
-    workout_level_id,
-    tag_ids,
+    isPrivate,
+    workoutLevelId,
+    tagIds,
     exercises,
   );
 }
 
 async function getAllWorkoutTags() {
   const tags = (await WorkoutDB.getAllWorkoutTags())
-    .map((tag) => tag.workout_tags.map((workout_tag) => workout_tag.tag))
+    .map((tag) => tag.workoutTags.map((workoutTag) => workoutTag.tag))
     .flat(1);
 
   const uniqueIds: number[] = [];
   return tags.filter((tag) => {
-    if (uniqueIds.includes(tag.tag_id)) {
+    if (uniqueIds.includes(tag.tagId)) {
       return false;
     }
-    uniqueIds.push(tag.tag_id);
+    uniqueIds.push(tag.tagId);
     return true;
   });
 }
 
 async function getWorkoutDifficulties() {
   const difficulties = await WorkoutDB.getWorkoutDifficulties();
-  return difficulties.sort((a, b) => a.level_id - b.level_id);
+  return difficulties.sort((a, b) => a.levelId - b.levelId);
 }
 
 export {

@@ -15,18 +15,18 @@ async function getAllUserWorkouts(
 ) {
   const workouts = (
     await UserWorkoutDB.getAllUserWorkouts(userId, skip, pageSize, tagIds)
-  ).map((item) => item.workout_template);
+  ).map((item) => item.workoutTemplate);
 
   const allWorkoutsCount = await UserWorkoutDB.countAllFilteredWorkouts(tagIds);
 
   const workoutsWithTagName: GeneralWorkout[] = workouts.map((workout) => {
     return {
-      workout_id: workout.workout_id,
+      workoutId: workout.workoutId,
       name: workout.name,
-      workout_tags: workout.workout_tags.map(
-        (workout_tag) => workout_tag.tag.name || '',
+      workoutTags: workout.workoutTags.map(
+        (workoutTag) => workoutTag.tag.name || '',
       ),
-      workout_level: workout.workout_level.name,
+      workoutLevel: workout.workoutLevel.name,
     };
   });
 
@@ -45,16 +45,16 @@ async function getAllUserWorkouts(
 async function getAllWorkoutTags() {
   const tags = (await UserWorkoutDB.getAllWorkoutTags())
     .map((tag) =>
-      tag.workout_template.workout_tags.map((workout_tag) => workout_tag.tag),
+      tag.workoutTemplate.workoutTags.map((workoutTag) => workoutTag.tag),
     )
     .flat(1);
 
   const uniqueIds: number[] = [];
   return tags.filter((tag) => {
-    if (uniqueIds.includes(tag.tag_id)) {
+    if (uniqueIds.includes(tag.tagId)) {
       return false;
     }
-    uniqueIds.push(tag.tag_id);
+    uniqueIds.push(tag.tagId);
     return true;
   });
 }

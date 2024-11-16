@@ -19,7 +19,7 @@ const ExerciseItem = ({ exercise }: ExerciseItemProp) => {
     <TouchableOpacity>
       <Tile style={styles.container}>
         <ThemedText size="l" weight="medium">
-          {exercise.exercise_name}
+          {exercise.exerciseName}
         </ThemedText>
         <View style={styles.info}>
           {value && (

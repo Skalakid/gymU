@@ -12,7 +12,7 @@ type TagProps = {
 const TagSelector = ({ tags, onSelectionChange, style }: TagProps) => {
   const selectableTags = [
     {
-      tag_id: 0,
+      tagId: 0,
       name: 'All',
     },
     ...tags,

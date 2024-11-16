@@ -72,7 +72,7 @@ const MeasurementStep = ({
       </ThemedText>
 
       <Image
-        source={img ?? Images.custom_measurement}
+        source={img ?? Images.customMeasurement}
         contentFit="cover"
         style={{ width: '100%', height: 200, borderRadius: 15 }}
       />

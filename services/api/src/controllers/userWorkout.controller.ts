@@ -10,8 +10,8 @@ async function addWorkoutToUserAccount(
   next: NextFunction,
 ) {
   try {
-    const userId = Number((req.user as ReturnUser).user_id) || 1;
-    const workoutId = Number(req.body.workout_id);
+    const userId = Number((req.user as ReturnUser).userId) || 1;
+    const workoutId = Number(req.body.workoutId);
 
     if (!userId) {
       throw new ApiError(401, 'User not authenticated');
@@ -35,7 +35,7 @@ async function getAllUserWorkouts(
   next: NextFunction,
 ) {
   try {
-    const userId = Number((req.user as ReturnUser).user_id) || -1;
+    const userId = Number((req.user as ReturnUser).userId) || -1;
     if (!userId) {
       throw new ApiError(401, 'User not authenticated');
     }
@@ -43,7 +43,7 @@ async function getAllUserWorkouts(
     const page = Number(req.query.page) || 1;
     const pageSize = Number(req.query.size) || 10;
     const skip = (page - 1) * pageSize;
-    const tags = req.query.tag_ids?.toString();
+    const tags = req.query.tagIds?.toString();
 
     let tagIds = null;
     if (tags !== undefined) {
@@ -71,7 +71,7 @@ async function getAllWorkoutTags(
   try {
     const workoutTags = await UserWorkoutService.getAllWorkoutTags();
     res.status(201).send({
-      workout_tags: workoutTags,
+      workoutTags: workoutTags,
     });
   } catch (error) {
     next(error);

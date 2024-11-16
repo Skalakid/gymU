@@ -15,8 +15,8 @@ const ExerciseSummary = ({ exercises }: ExerciseSummaryProps) => {
         <DetailedExerciseItem
           key={`summary${item.name}${index}${item.orderIndex}`}
           name={item.name}
-          type={item.exercise_type}
-          bodyParts={item.body_parts}
+          type={item.exerciseType}
+          bodyParts={item.bodyParts}
           description={item.description}
           activeOpacity={1}
           exerciseDetails={item.value}

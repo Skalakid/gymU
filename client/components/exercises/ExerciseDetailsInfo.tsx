@@ -49,7 +49,7 @@ const ExerciseDetailsInfo = ({
     <Tile style={style}>
       <View style={styles.title}>
         <Icon
-          icon={getExerciseTypeIcon(exercise.exercise_type)}
+          icon={getExerciseTypeIcon(exercise.exerciseType)}
           size={14}
           color={theme.text}
         />
@@ -60,7 +60,7 @@ const ExerciseDetailsInfo = ({
 
       <View style={styles.info}>
         <View style={styles.tags}>
-          {exercise.body_parts?.map((part) => (
+          {exercise.bodyParts?.map((part) => (
             <Tag
               key={`tag${part}`}
               value={capitalize(part.replace('_', ' '))}

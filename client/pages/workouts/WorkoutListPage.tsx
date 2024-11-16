@@ -32,7 +32,7 @@ const WorkoutListPage = ({
   const getAllWorkouts = useCallback(
     async (tagIds: number[] | null = null) => {
       try {
-        const params = tagIds !== null ? `?tag_ids=${tagIds.join(',')}` : '';
+        const params = tagIds !== null ? `?tagIds=${tagIds.join(',')}` : '';
         const response = await fetchApi(
           `${getAllWorkoutsEndpoint}${params}`,
           'GET',
@@ -52,7 +52,7 @@ const WorkoutListPage = ({
     try {
       const response = await fetchApi(getAllWorkoutTagsEndpoint, 'GET', null);
       const data: WorkoutTagsRespone = await response.json();
-      setTags(data.workout_tags);
+      setTags(data.workoutTags);
       setAreTagsLoaded(true);
     } catch (error) {
       console.error(error);
@@ -65,7 +65,7 @@ const WorkoutListPage = ({
   }, [isFocused, getAllWorkouts, getAllWorkoutTags]);
 
   const handleTagSelectionChange = (selectedTags: WorkoutType[]) => {
-    getAllWorkouts(selectedTags.map((tag) => tag.tag_id));
+    getAllWorkouts(selectedTags.map((tag) => tag.tagId));
   };
 
   const handleAddWorkout = () => {
@@ -91,18 +91,18 @@ const WorkoutListPage = ({
         <FlatList
           style={styles.workoutList}
           data={workouts}
-          keyExtractor={(item) => item.workout_id.toString()}
+          keyExtractor={(item) => item.workoutId.toString()}
           renderItem={({ item }) => (
             <WorkoutItem
-              id={item.workout_id}
+              id={item.workoutId}
               name={item.name}
-              level={item.workout_level}
-              tags={item.workout_tags}
+              level={item.workoutLevel}
+              tags={item.workoutTags}
               onPress={() => {
                 if (segments[segments.length - 1] === 'workouts') {
-                  router.navigate(`/workouts/${item.workout_id}`);
+                  router.navigate(`/workouts/${item.workoutId}`);
                 } else if (segments[segments.length - 1] === 'explore') {
-                  router.navigate(`/explore/${item.workout_id}`);
+                  router.navigate(`/explore/${item.workoutId}`);
                 }
               }}
             />

@@ -71,8 +71,8 @@ const LiveTrainingSummaryPage = () => {
             renderItem={({ item }) => (
               <DetailedExerciseItem
                 name={item.name}
-                type={item.exercise_type}
-                bodyParts={item.body_parts}
+                type={item.exerciseType}
+                bodyParts={item.bodyParts}
                 exerciseDetails={item.value}
                 style={{ marginBottom: 20 }}
               />

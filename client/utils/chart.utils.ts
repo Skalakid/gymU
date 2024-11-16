@@ -22,7 +22,7 @@ const extractAverageData = (
   const counts = new Array(12).fill(0);
 
   for (let i = 0; i < data.length; ++i) {
-    const saveDate = data[i].save_date;
+    const saveDate = data[i].saveDate;
     const measurement = data[i][key];
     const currentMonth = new Date(saveDate).getMonth();
 

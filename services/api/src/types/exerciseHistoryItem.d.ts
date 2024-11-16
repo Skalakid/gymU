@@ -1,8 +1,8 @@
 type ExerciseHistoryItem = {
-  exercise_id: number;
+  exerciseId: number;
   opinion: number;
   value: JsonNull | InputJsonValue;
-  order_index: number;
+  orderIndex: number;
 };
 
 export type { ExerciseHistoryItem };

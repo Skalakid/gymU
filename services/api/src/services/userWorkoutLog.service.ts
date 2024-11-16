@@ -2,7 +2,7 @@ import * as UserWorkoutLogDB from '../persistance/userWorkoutLog.db';
 import { ExerciseHistoryItem } from '../types/exerciseHistoryItem';
 
 async function createWorkoutLog(
-  user_workout_id: number,
+  userWorkoutId: number,
   opinion: number,
   exercises: ExerciseHistoryItem[],
 ) {
@@ -23,7 +23,7 @@ async function createWorkoutLog(
   }));
 
   return await UserWorkoutLogDB.createWorkoutLog(
-    user_workout_id,
+    userWorkoutId,
     workoutOpinion,
     workoutExercises,
   );

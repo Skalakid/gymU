@@ -12,13 +12,11 @@ async function checkEmailUniqueness(email: string) {
 }
 
 async function getAllUsers() {
-  const users: ReturnUser[] = (await prisma.app_user.findMany()).map(
-    (user) => ({
-      user_id: user.user_id,
-      email: user.email,
-      username: user.username,
-    }),
-  );
+  const users: ReturnUser[] = (await prisma.appUser.findMany()).map((user) => ({
+    userId: user.userId,
+    email: user.email,
+    username: user.username,
+  }));
 
   return users;
 }
