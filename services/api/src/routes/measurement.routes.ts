@@ -9,23 +9,19 @@ router.post(
   authenticateToken,
   measurementController.createMeasurement,
 );
+router.get('/all', authenticateToken, measurementController.getMeasurements);
 router.get(
-  '/:id/all',
-  authenticateToken,
-  measurementController.getMeasurements,
-);
-router.get(
-  '/:id/:bodyParts',
+  '/:bodyParts',
   authenticateToken,
   measurementController.getBodyPartsMeasurements,
 );
 router.get(
-  '/:id/all/:timeInterval',
+  '/all/:timeInterval',
   authenticateToken,
   measurementController.getMesaurementsSince,
 );
 router.get(
-  '/:id/:bodyParts/:timeInterval',
+  '/:bodyParts/:timeInterval',
   authenticateToken,
   measurementController.getSelectedMeasurementsSince,
 );

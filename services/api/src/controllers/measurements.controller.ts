@@ -2,6 +2,7 @@ import { NextFunction, Response } from 'express';
 import { AuthRequest } from '../middlewares/auth.middleware';
 import * as MeasurementService from '../services/measurements.service';
 import ApiError from '../error/ApiError';
+import { ReturnUser } from '../types/user';
 
 async function createMeasurement(
   req: AuthRequest,
@@ -9,20 +10,16 @@ async function createMeasurement(
   next: NextFunction,
 ) {
   try {
-    const {
-      userId,
-      saveDate,
-      weight,
-      biceps,
-      chest,
-      waist,
-      hips,
-      thigh,
-      calf,
-    } = req.body;
+    const { saveDate, weight, biceps, chest, waist, hips, thigh, calf } =
+      req.body;
+
+    const userId = Number((req.user as ReturnUser).userId) || 1;
+
+    if (!userId) {
+      throw new ApiError(400, 'Invalid user id');
+    }
 
     if (
-      userId === undefined ||
       saveDate === undefined ||
       weight === undefined ||
       biceps === undefined ||
@@ -63,9 +60,9 @@ async function getMeasurements(
   next: NextFunction,
 ) {
   try {
-    const userId = Number(req.params.id) || -1;
+    const userId = Number((req.user as ReturnUser).userId) || 1;
 
-    if (!userId || userId <= 0) {
+    if (!userId) {
       throw new ApiError(400, 'Invalid user id');
     }
 
@@ -87,10 +84,10 @@ async function getBodyPartsMeasurements(
   next: NextFunction,
 ) {
   try {
-    const user_id = Number(req.params.id) || -1;
+    const userId = Number((req.user as ReturnUser).userId) || 1;
     const bodyParts = req.params.bodyParts;
 
-    if (!user_id || user_id <= 0) {
+    if (!userId) {
       throw new ApiError(400, 'Invalid user id');
     }
 
@@ -101,7 +98,7 @@ async function getBodyPartsMeasurements(
     const bodyPartsArray = bodyParts.split(',');
 
     const measurements = await MeasurementService.getBodyPartsMeasurements(
-      user_id,
+      userId,
       bodyPartsArray,
     );
 
@@ -121,10 +118,10 @@ async function getMesaurementsSince(
   next: NextFunction,
 ) {
   try {
-    const userId = Number(req.params.id) || -1;
+    const userId = Number((req.user as ReturnUser).userId) || 1;
     const timeInterval = Number(req.params.timeInterval) || -1;
 
-    if (!userId || userId <= 0) {
+    if (!userId) {
       throw new ApiError(400, 'Invalid user id');
     }
 
@@ -153,11 +150,11 @@ async function getSelectedMeasurementsSince(
   next: NextFunction,
 ) {
   try {
-    const user_id = Number(req.params.id) || -1;
+    const userId = Number((req.user as ReturnUser).userId) || 1;
     const bodyParts = req.params.bodyParts;
     const time_interval = Number(req.params.timeInterval) || -1;
 
-    if (!user_id || user_id <= 0) {
+    if (!userId) {
       throw new ApiError(400, 'Invalid user id');
     }
 
@@ -172,7 +169,7 @@ async function getSelectedMeasurementsSince(
     const bodyPartsArray = bodyParts.split(',');
 
     const measurements = await MeasurementService.getSelectedMeasurementsSince(
-      user_id,
+      userId,
       bodyPartsArray,
       time_interval,
     );
