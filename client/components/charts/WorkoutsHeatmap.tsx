@@ -14,7 +14,7 @@ type WorkoutsHeatmapProps = {
 type ChartDataType = {
   date: Date;
   count: number;
-}
+};
 
 const WorkoutsHeatmap = ({ title, months }: WorkoutsHeatmapProps) => {
   const [chartData, setChartData] = useState<ChartDataType[] | null>(null);
@@ -24,22 +24,22 @@ const WorkoutsHeatmap = ({ title, months }: WorkoutsHeatmapProps) => {
       const startDate = getDateSince(months);
       const endDate = new Date();
 
-      try{
+      try {
         const rawData = await fetchApi(
           `/calendar/grid/${startDate}/${endDate}`,
           'GET',
         );
         const data = await rawData.json();
-  
+
         const newChartData = data.map((element: EventCalendarData) => {
           return {
             date: element.datetime,
             count: 1,
           };
         });
-  
+
         setChartData(newChartData);
-      } catch {  
+      } catch {
         setChartData([]);
       }
     };
