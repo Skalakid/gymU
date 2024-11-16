@@ -33,5 +33,59 @@ async function getCurrentUser(
   }
 }
 
-export { getAllUsers, getCurrentUser };
+async function addUserHeight(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const userId = Number((req.user as ReturnUser).userId) || 1;
+
+    if (!userId) {
+      throw new ApiError(400, 'Invalid user id');
+    }
+
+    const { height } = req.body;
+
+    if (!height) {
+      throw new ApiError(400, 'Invalid height');
+    }
+
+    const result = await UserService.addUserHeight(userId, height);
+
+    if (!result) {
+      throw new ApiError(500, 'Failed to add height');
+    }
+
+    res.status(201).send(result);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function getUserHeight(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const userId = Number((req.user as ReturnUser).userId) || 1;
+
+    if (!userId) {
+      throw new ApiError(400, 'Invalid user id');
+    }
+
+    const height = await UserService.getUserHeight(userId);
+
+    if (!height) {
+      throw new ApiError(500, 'Failed to add height');
+    }
+
+    res.status(201).send(height);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export { getAllUsers, getCurrentUser, addUserHeight, getUserHeight };
 export type { ReturnUser };

@@ -8,4 +8,26 @@ async function getUserByEmail(email: string) {
   });
 }
 
-export { getUserByEmail };
+async function addUserHeight(userId: number, height: number) {
+  return await prisma.appUser.update({
+    where: {
+      userId,
+    },
+    data: {
+      height,
+    },
+  });
+}
+
+async function getUserHeight(userId: number) {
+  return await prisma.appUser.findUnique({
+    select: {
+      height: true,
+    },
+    where: {
+      userId,
+    },
+  });
+}
+
+export { getUserByEmail, addUserHeight, getUserHeight };
