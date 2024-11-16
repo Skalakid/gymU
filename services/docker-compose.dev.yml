@@ -1,6 +1,9 @@
 version: '3.9'
 
 services:
+  asset:
+    restart: always
+    command: dev
   api:
     restart: always
     command: dev:db:push

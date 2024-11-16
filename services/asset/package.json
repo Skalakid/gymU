@@ -1,12 +1,13 @@
 {
-  "name": "asset",
+  "name": "@gymu/asset",
   "version": "1.0.0",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "npx tsc",
+    "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts --legacy-watch",
+    "prod": "yarn build && yarn start",
+    "dev": "nodemon ./src/index.ts --legacy-watch",
     "lint": "eslint . --ext .ts,.tsx",
     "prettier": "prettier --write ."
   },

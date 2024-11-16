@@ -43,12 +43,25 @@ services:
       networks:
         - gymu.network
 
+    asset:
+      build: 
+        context: ./asset
+        dockerfile: Dockerfile
+      container_name: asset.service
+      volumes:
+        - ./asset/src:/app/src
+      ports:
+        - 4000:4000
+      networks:
+        - gymu.network
+
     api:
       build: 
         context: ./api
         dockerfile: Dockerfile
       depends_on:
         - postgres
+        - asset
       container_name: api.service
       volumes:
         - ./api/src:/app/src
@@ -63,3 +76,4 @@ services:
         - postgres_user
       networks:
         - gymu.network
+  
