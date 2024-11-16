@@ -20,8 +20,12 @@ const BodyMeasurements = () => {
         rightIcon={Icons.circleAdd}
         rightIconSize={26}
         rightIconOnPress={async () => {
-          const height = await fetchApi('/user/height', 'GET');
-          router.navigate(`/statistics/body/add${height ? '/height' : ''}`);
+          const rawData = await fetchApi('/user/height', 'GET');
+          const data = await rawData.json();
+
+          router.navigate(
+            `/statistics/body/add${data.height ? '' : '/height'}`,
+          );
         }}
       />
 
