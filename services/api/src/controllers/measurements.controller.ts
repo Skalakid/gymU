@@ -152,7 +152,7 @@ async function getSelectedMeasurementsSince(
   try {
     const userId = Number((req.user as ReturnUser).userId) || 1;
     const bodyParts = req.params.bodyParts;
-    const time_interval = Number(req.params.timeInterval) || -1;
+    const timeInterval = Number(req.params.timeInterval) || -1;
 
     if (!userId) {
       throw new ApiError(400, 'Invalid user id');
@@ -162,7 +162,7 @@ async function getSelectedMeasurementsSince(
       throw new ApiError(400, 'Provide body parts');
     }
 
-    if (!time_interval || time_interval <= 0) {
+    if (!timeInterval || timeInterval <= 0) {
       throw new ApiError(400, 'Invalid start date');
     }
 
@@ -171,7 +171,7 @@ async function getSelectedMeasurementsSince(
     const measurements = await MeasurementService.getSelectedMeasurementsSince(
       userId,
       bodyPartsArray,
-      time_interval,
+      timeInterval,
     );
 
     if (!measurements) {
