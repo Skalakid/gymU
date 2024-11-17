@@ -8,4 +8,15 @@ async function getUserByEmail(email: string) {
   });
 }
 
-export { getUserByEmail };
+async function getGender(userId: number) {
+  return await prisma.appUser.findUnique({
+    select: {
+      gender: true,
+    },
+    where: {
+      userId,
+    },
+  });
+}
+
+export { getUserByEmail, getGender };

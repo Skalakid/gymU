@@ -5,5 +5,6 @@ services:
     restart: always
     command: dev
   api:
+    image: gymu.api.service:dev
     restart: always
     command: dev:db:push

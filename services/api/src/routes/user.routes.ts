@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.get('/current', authenticateToken, userController.getCurrentUser);
 router.get('/all', authenticateToken, userController.getAllUsers);
+router.get('/gender', authenticateToken, userController.getGender);
 
 router.post(
   '/workout/save',

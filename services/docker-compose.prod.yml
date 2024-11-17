@@ -4,4 +4,5 @@ services:
   asset:
     command: prod
   api:
+    image: gymu.api.service:prod
     command: prod

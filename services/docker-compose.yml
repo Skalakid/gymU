@@ -60,6 +60,7 @@ services:
         - gymu.network
 
     api:
+      image: gymu.api.service:latest
       build: 
         context: ./api
         dockerfile: Dockerfile
