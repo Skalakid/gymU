@@ -1,10 +1,10 @@
 import { prisma } from '../config/db.server';
-import { getUserByEmail } from '../persistance/user.db';
+import * as UserDB from '../persistance/user.db';
 import { ReturnUser } from '../types/user';
 
 async function checkEmailUniqueness(email: string) {
   try {
-    const user = await getUserByEmail(email);
+    const user = await UserDB.getUserByEmail(email);
     return user === null;
   } catch (error) {
     return false;
@@ -21,4 +21,8 @@ async function getAllUsers() {
   return users;
 }
 
-export { checkEmailUniqueness, getAllUsers };
+async function getGender(userId: number) {
+  return await UserDB.getGender(userId);
+}
+
+export { checkEmailUniqueness, getAllUsers, getGender };
