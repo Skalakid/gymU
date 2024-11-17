@@ -1,27 +1,8 @@
-import ThemedText from '@/components/ThemedText';
-import ThemedView from '@/components/ThemedView';
-import { Dimensions, StyleSheet } from 'react-native';
+import { DefaultChartConfig } from '@/constants/Chart';
+import { LineChartProps } from '@/types/charts';
+import { Dimensions } from 'react-native';
 import { LineChart as RNLineChart } from 'react-native-chart-kit';
-
-type LineChartProps = {
-  title: string;
-  // react-native-chart-kit does not export this type
-  // eslint-disable-next-line
-  data: any;
-  width?: number;
-  height?: number;
-  // react-native-chart-kit does not export this type
-  // eslint-disable-next-line
-  chartConfig?: any;
-};
-
-const DefaultChartConfig = {
-  // Remove background color
-  backgroundGradientFromOpacity: 0,
-  backgroundGradientToOpacity: 0,
-  // Set main color to primary orange
-  color: (opacity = 1) => `rgba(240, 99, 18, ${opacity})`,
-};
+import TitledChart from './TitledChart';
 
 const ChartWidth = Dimensions.get('window').width * 0.9;
 const ChartHeight = Dimensions.get('window').height * 0.2;
@@ -39,10 +20,7 @@ const LineChart = ({
     .filter((value: number) => value !== -1);
 
   return (
-    <ThemedView style={[styles.container]}>
-      <ThemedText size="xl" weight="semiBold">
-        {title}
-      </ThemedText>
+    <TitledChart title={title} height={ContainerHeight}>
       <RNLineChart
         data={data}
         width={width}
@@ -53,20 +31,8 @@ const LineChart = ({
         verticalLabelRotation={-30}
         hidePointsAtIndex={pointsToHide}
       />
-    </ThemedView>
+    </TitledChart>
   );
 };
 
 export default LineChart;
-
-const styles = StyleSheet.create({
-  container: {
-    width: '95%',
-    height: ContainerHeight,
-
-    padding: 5,
-    gap: 10,
-
-    borderRadius: 15,
-  },
-});
