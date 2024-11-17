@@ -2,6 +2,7 @@ import express, { Express, Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 import multer from 'multer';
+import { existsSync } from 'fs';
 
 dotenv.config();
 
@@ -44,9 +45,12 @@ app.get('/assets', (req: Request, res: Response) => {
     return;
   }
 
-  res.sendFile(
-    `${ASSETS_DIR_PATH}${filePath[0] === '/' ? '' : '/'}${filePath}`,
-  );
+  const assetPath = `${ASSETS_DIR_PATH}${filePath[0] === '/' ? '' : '/'}${filePath}`;
+  if (!existsSync(assetPath)) {
+    res.status(404).send('File not found');
+  }
+
+  res.status(201).sendFile(assetPath);
 });
 
 app.get('/', (req: Request, res: Response) => {
