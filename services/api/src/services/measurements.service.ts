@@ -39,12 +39,12 @@ async function getMeasurementsSince(userId: number, timeInterval: number) {
 async function getSelectedMeasurementsSince(
   userId: number,
   bodyParts: string[],
-  time_interval: number,
+  timeInterval: number,
 ) {
   return await MesaurementDB.getSelectedMeasurementsSince(
     userId,
     bodyParts,
-    time_interval,
+    timeInterval,
   );
 }
 
