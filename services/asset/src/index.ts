@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import multer from 'multer';
 import { existsSync } from 'fs';
+import { authenticateToken } from './middlewares/auth.middleware';
 
 dotenv.config();
 
@@ -24,19 +25,24 @@ const upload = multer({
   limits: { fileSize: 3000000 },
 });
 
-app.post('/assets/upload', upload.single('file'), (req, res) => {
-  const { file } = req;
-  if (!file) {
-    res.status(400).send('Invalid request');
-    return;
-  }
+app.post(
+  '/assets/upload',
+  authenticateToken,
+  upload.single('file'),
+  (req, res) => {
+    const { file } = req;
+    if (!file) {
+      res.status(400).send('Invalid request');
+      return;
+    }
 
-  res.status(201).json({
-    url: `http://localhost:${port}/assets/uploads/${file.filename}`,
-  });
-});
+    res.status(201).json({
+      url: `http://localhost:${port}/assets/uploads/${file.filename}`,
+    });
+  },
+);
 
-app.get('/assets', (req: Request, res: Response) => {
+app.get('/assets', authenticateToken, (req: Request, res: Response) => {
   const filePath = req.query.file?.toString();
   if (!filePath) {
     res.status(400).send('Invalid request');
