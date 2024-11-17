@@ -8,6 +8,7 @@ import measurementRoutes from './routes/measurement.routes';
 import calendarRoutes from './routes/calendar.routes';
 import errorHandler from './middlewares/error.middleware';
 import initSwagger from './config/swagger';
+import assetRoutes from './routes/asset.routes';
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use(authRoutes);
+app.use('/assets', assetRoutes);
 app.use('/user', userRoutes);
 app.use('/workout', workoutRoutes);
 app.use('/exercise', exerciseRoutes);

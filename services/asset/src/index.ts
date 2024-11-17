@@ -12,6 +12,8 @@ const port = process.env.SERVER_PORT || 4000;
 const ASSETS_DIR_PATH = path.join(__dirname, 'assets');
 const UPLOADS_DIR_PATH = path.join(ASSETS_DIR_PATH, 'uploads');
 
+app.use(express.json());
+
 const storage = multer.diskStorage({
   destination: UPLOADS_DIR_PATH,
   filename: function (req, file, cb) {
@@ -51,7 +53,9 @@ app.get('/assets', authenticateToken, (req: Request, res: Response) => {
 
   const assetPath = `${ASSETS_DIR_PATH}${filePath[0] === '/' ? '' : '/'}${filePath}`;
   if (!existsSync(assetPath)) {
+    console.log('-------');
     res.status(404).send('File not found');
+    return;
   }
 
   res.status(201).sendFile(assetPath);
