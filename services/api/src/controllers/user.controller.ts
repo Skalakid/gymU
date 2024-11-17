@@ -33,5 +33,21 @@ async function getCurrentUser(
   }
 }
 
-export { getAllUsers, getCurrentUser };
+async function getGender(req: AuthRequest, res: Response, next: NextFunction) {
+  try {
+    const userId = Number((req.user as ReturnUser).userId) || 1;
+
+    const gender = await UserService.getGender(userId);
+
+    if (!gender) {
+      throw new ApiError(500, 'Failed to obtain gender');
+    }
+
+    res.status(200).send(gender);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export { getAllUsers, getCurrentUser, getGender };
 export type { ReturnUser };
