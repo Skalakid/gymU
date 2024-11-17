@@ -23,7 +23,6 @@ const assetProxyOptions: Options<
   changeOrigin: true,
   followRedirects: true,
   pathRewrite: (path: string) => {
-    console.log(path);
     return '/assets' + path;
   },
   on: {
