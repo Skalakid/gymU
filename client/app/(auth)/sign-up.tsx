@@ -27,7 +27,7 @@ const SignUpPage = () => {
   const genderRadioButtons = useMemo(
     () => [
       {
-        id: 'M', // acts as primary key, should be unique and non-empty string
+        id: 'M',
         label: 'Male',
         labelStyle: { color: theme.colors.text },
       },
