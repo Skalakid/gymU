@@ -13,6 +13,7 @@ export default async function seedTags() {
             username: user.username,
             email: user.email,
             passwordHash: hashedPassword,
+            gender: 'M',
           },
         });
       }),
