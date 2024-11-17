@@ -1,20 +1,52 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express, Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
+import multer from 'multer';
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.SERVER_PORT || 4000;
+const ASSETS_DIR_PATH = path.join(__dirname, 'assets');
+const UPLOADS_DIR_PATH = path.join(ASSETS_DIR_PATH, 'uploads');
 
-app.get('/assets/:filename', (req: Request, res: Response) => {
-  const { filename } = req.params;
-  if (!filename) {
+const storage = multer.diskStorage({
+  destination: UPLOADS_DIR_PATH,
+  filename: function (req, file, cb) {
+    const imageName = `${Date.now()}${file.originalname}`;
+    cb(null, imageName);
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 3000000 },
+});
+
+app.post('/assets/upload', upload.single('file'), (req, res) => {
+  const { file } = req;
+  console.log(file);
+  if (!file) {
     res.status(400).send('Invalid request');
+    return;
   }
 
-  const filePath = path.join(__dirname, 'assets', filename);
-  res.sendFile(filePath);
+  res.status(201).json({
+    url: `http://localhost:${port}/assets/uploads/${file.filename}`,
+  });
+});
+
+app.get('/assets', (req: Request, res: Response) => {
+  const filePath = req.query.file?.toString();
+
+  if (!filePath) {
+    res.status(400).send('Invalid request');
+    return;
+  }
+
+  res.sendFile(
+    `${ASSETS_DIR_PATH}${filePath[0] === '/' ? '' : '/'}${filePath}`,
+  );
 });
 
 app.get('/', (req: Request, res: Response) => {
