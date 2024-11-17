@@ -92,7 +92,7 @@ async function getSelectedMeasurements(
     }
 
     if (!selectedMeasurements) {
-      throw new ApiError(400, 'Provide body parts');
+      throw new ApiError(400, 'Provide measurements');
     }
 
     const selectedMeasurementsArray = selectedMeasurements.split(',');
@@ -159,7 +159,7 @@ async function getSelectedMeasurementsSince(
     }
 
     if (!selectedMeasurements) {
-      throw new ApiError(400, 'Provide body parts');
+      throw new ApiError(400, 'Provide measurements');
     }
 
     if (!timeInterval || timeInterval <= 0) {
