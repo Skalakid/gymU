@@ -5,5 +5,7 @@ import { authenticateToken } from '../middlewares/auth.middleware';
 const router = express.Router();
 
 router.get('/bmi', authenticateToken, ratiosController.calculateBMI);
+router.get('/whr', authenticateToken, ratiosController.calculateWHR);
+router.get('/whtr', authenticateToken, ratiosController.calculateWHtR);
 
 export = router;
