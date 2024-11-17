@@ -29,4 +29,14 @@ async function getUserHeight(userId: number) {
   return await UserDB.getUserHeight(userId);
 }
 
-export { checkEmailUniqueness, getAllUsers, addUserHeight, getUserHeight };
+async function getGender(userId: number) {
+  return await UserDB.getGender(userId);
+}
+
+export {
+  checkEmailUniqueness,
+  getAllUsers,
+  addUserHeight,
+  getUserHeight,
+  getGender,
+};

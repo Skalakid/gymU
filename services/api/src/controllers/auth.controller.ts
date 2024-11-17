@@ -123,8 +123,8 @@ async function login(req: Request, res: Response, next: NextFunction) {
 }
 
 async function signup(req: Request, res: Response, next: NextFunction) {
-  const { email, username, password } = req.body;
-  if (!email || !username || !password) {
+  const { email, username, password, gender } = req.body;
+  if (!email || !username || !password || !gender) {
     throw new ApiError(400, 'Missing required fields');
   }
 
@@ -142,6 +142,7 @@ async function signup(req: Request, res: Response, next: NextFunction) {
         email,
         username,
         passwordHash: hashedPassword,
+        gender,
       },
     });
 
@@ -149,6 +150,7 @@ async function signup(req: Request, res: Response, next: NextFunction) {
       id: user.userId,
       email: user.email,
       username: user.username,
+      gender: user.gender,
     });
   } catch (error) {
     next(error);

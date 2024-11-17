@@ -30,4 +30,15 @@ async function getUserHeight(userId: number) {
   });
 }
 
-export { getUserByEmail, addUserHeight, getUserHeight };
+async function getGender(userId: number) {
+  return await prisma.appUser.findUnique({
+    select: {
+      gender: true,
+    },
+    where: {
+      userId,
+    },
+  });
+}
+
+export { getUserByEmail, addUserHeight, getUserHeight, getGender };
