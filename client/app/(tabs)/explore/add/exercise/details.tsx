@@ -71,12 +71,12 @@ const DetailsPage = () => {
             </ThemedText>
 
             <ExerciseDetailsInfo
-              exerciseID={currentExercise.current!.exercise_id}
+              exerciseID={currentExercise.current!.exerciseId}
               style={{ marginBottom: 20 }}
             />
 
             <ExerciseDetailsForm
-              type={currentExercise.current!.exercise_type}
+              type={currentExercise.current!.exerciseType}
               onFormUpdate={handleFormUpdate}
               defaultSets={currentExercise.current!.value.sets || 3}
               defaultReps={currentExercise.current!.value.reps || 10}

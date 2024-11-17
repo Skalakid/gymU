@@ -1,7 +1,7 @@
 type MeasurementData = {
-  mesaurement_id: number;
-  user_id: number;
-  save_date: Date;
+  measurementId: number;
+  userId: number;
+  saveDate: Date;
   weight: number;
   biceps: number;
   chest: number;

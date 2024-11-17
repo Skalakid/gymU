@@ -1,33 +1,33 @@
 type BasicExercise = {
-  exercise_id: number;
+  exerciseId: number;
   name: string;
-  exercise_type: string;
-  body_parts: string[];
+  exerciseType: string;
+  bodyParts: string[];
   shortDescription: string;
 };
 
 type DetailedExercise = {
-  exercise_id: number;
+  exerciseId: number;
   name: string;
-  exercise_type: string;
-  body_parts: string[];
+  exerciseType: string;
+  bodyParts: string[];
   description: string;
 };
 
 type ExerciseItem = {
-  exercise_id: number;
-  exercise_name: string;
-  exercise_type: string;
+  exerciseId: number;
+  exerciseName: string;
+  exerciseType: string;
   value: string;
-  order_index: number;
+  orderIndex: number;
 };
 
 type ExerciseType = {
-  has_reps: boolean;
-  has_sets: boolean;
-  has_time: boolean;
-  has_weights: boolean;
-  is_break: boolean;
+  hasReps: boolean;
+  hasSets: boolean;
+  hasTime: boolean;
+  hasWeights: boolean;
+  isBreak: boolean;
   name: string;
 };
 

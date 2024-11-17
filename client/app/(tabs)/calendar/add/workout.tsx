@@ -41,7 +41,7 @@ const CalendarWorkoutPickerPage = () => {
 
   const getAllWorkouts = useCallback(async (tagIds: number[] | null = null) => {
     try {
-      const params = tagIds !== null ? `?tag_ids=${tagIds.join(',')}` : '';
+      const params = tagIds !== null ? `?tagIds=${tagIds.join(',')}` : '';
       const response = await fetchApi(
         `${Endpoints.user.all.workouts}${params}`,
         'GET',
@@ -78,7 +78,7 @@ const CalendarWorkoutPickerPage = () => {
       }
 
       const data: WorkoutTagsRespone = await response.json();
-      setTags(data.workout_tags);
+      setTags(data.workoutTags);
       setAreTagsLoaded(true);
     } catch (error) {
       console.error(error);
@@ -87,7 +87,7 @@ const CalendarWorkoutPickerPage = () => {
   }, []);
 
   const handleTagSelectionChange = (selectedTags: WorkoutType[]) => {
-    getAllWorkouts(selectedTags.map((tag) => tag.tag_id));
+    getAllWorkouts(selectedTags.map((tag) => tag.tagId));
   };
 
   useEffect(() => {
@@ -115,13 +115,13 @@ const CalendarWorkoutPickerPage = () => {
         <FlatList
           style={styles.workoutList}
           data={workouts}
-          keyExtractor={(item) => item.workout_id.toString()}
+          keyExtractor={(item) => item.workoutId.toString()}
           renderItem={({ item }) => (
             <WorkoutItem
-              id={item.workout_id}
+              id={item.workoutId}
               name={item.name}
-              level={item.workout_level}
-              tags={item.workout_tags}
+              level={item.workoutLevel}
+              tags={item.workoutTags}
               onPress={() => {
                 handleSelectItem(item);
               }}

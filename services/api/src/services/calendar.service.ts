@@ -13,16 +13,16 @@ async function getAllEventsInRange(
   );
 
   return events.map((item) => {
-    const workout = item.calendar_event_parent.workout_template;
+    const workout = item.calendarEventParent.workoutTemplate;
     return {
-      eventId: item.event_id,
-      parentId: item.parent_id,
+      eventId: item.eventId,
+      parentId: item.parentId,
       datetime: item.datetime,
       workout: {
-        workoutId: workout.workout_id,
+        workoutId: workout.workoutId,
         name: workout.name,
-        level: workout.workout_level.name,
-        tags: workout.workout_tags.map(({ tag }) => tag.name),
+        level: workout.workoutLevel.name,
+        tags: workout.workoutTags.map(({ tag }) => tag.name),
       },
     };
   });

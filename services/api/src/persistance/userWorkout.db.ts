@@ -1,10 +1,10 @@
 import { prisma } from '../config/db.server';
 
 async function addWorkoutToUserAccount(userId: number, workoutId: number) {
-  await prisma.user_workout.create({
+  await prisma.userWorkout.create({
     data: {
-      user_id: userId,
-      workout_id: workoutId,
+      userId: userId,
+      workoutId: workoutId,
     },
   });
 }
@@ -15,17 +15,17 @@ async function getAllUserWorkouts(
   pageSize: number,
   tagIds: number[] | null,
 ) {
-  return await prisma.user_workout.findMany({
+  return await prisma.userWorkout.findMany({
     skip: skip,
     take: pageSize,
     where: {
-      user_id: userId,
+      userId: userId,
       ...((tagIds && {
-        workout_template: {
-          workout_tags: {
+        workoutTemplate: {
+          workoutTags: {
             some: {
               tag: {
-                tag_id: {
+                tagId: {
                   in: tagIds,
                 },
               },
@@ -36,11 +36,11 @@ async function getAllUserWorkouts(
         undefined),
     },
     select: {
-      workout_template: {
+      workoutTemplate: {
         select: {
-          workout_id: true,
+          workoutId: true,
           name: true,
-          workout_tags: {
+          workoutTags: {
             select: {
               tag: {
                 select: {
@@ -49,7 +49,7 @@ async function getAllUserWorkouts(
               },
             },
           },
-          workout_level: {
+          workoutLevel: {
             select: {
               name: true,
             },
@@ -61,14 +61,14 @@ async function getAllUserWorkouts(
 }
 
 async function countAllFilteredWorkouts(tagIds: number[] | null) {
-  return await prisma.user_workout.count({
+  return await prisma.userWorkout.count({
     where: tagIds
       ? {
-          workout_template: {
-            workout_tags: {
+          workoutTemplate: {
+            workoutTags: {
               some: {
                 tag: {
-                  tag_id: {
+                  tagId: {
                     in: tagIds,
                   },
                 },
@@ -81,11 +81,11 @@ async function countAllFilteredWorkouts(tagIds: number[] | null) {
 }
 
 async function getAllWorkoutTags() {
-  return await prisma.user_workout.findMany({
+  return await prisma.userWorkout.findMany({
     select: {
-      workout_template: {
+      workoutTemplate: {
         select: {
-          workout_tags: {
+          workoutTags: {
             select: {
               tag: true,
             },
@@ -97,12 +97,12 @@ async function getAllWorkoutTags() {
 }
 
 async function getWorkoutIdsSavedByUser(userId: number) {
-  return await prisma.user_workout.findMany({
+  return await prisma.userWorkout.findMany({
     where: {
-      user_id: userId || -1,
+      userId: userId || -1,
     },
     select: {
-      workout_id: true,
+      workoutId: true,
     },
   });
 }
@@ -110,16 +110,16 @@ async function getWorkoutIdsSavedByUser(userId: number) {
 async function isWorkoutSavedByUser(userId: number, workoutId: number) {
   return (
     (
-      await prisma.user_workout.findFirst({
+      await prisma.userWorkout.findFirst({
         where: {
-          user_id: userId,
-          workout_id: workoutId,
+          userId: userId,
+          workoutId: workoutId,
         },
         select: {
-          workout_id: true,
+          workoutId: true,
         },
       })
-    )?.workout_id === workoutId
+    )?.workoutId === workoutId
   );
 }
 

@@ -1,7 +1,7 @@
 import { prisma } from '../config/db.server';
 
 async function getUserByEmail(email: string) {
-  return await prisma.app_user.findUnique({
+  return await prisma.appUser.findUnique({
     where: {
       email: email,
     },

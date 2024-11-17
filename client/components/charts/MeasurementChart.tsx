@@ -30,7 +30,7 @@ const MeasurementChart = ({
   useEffect(() => {
     const getData = async () => {
       const rawData = await fetchApi(
-        `/measurement/${auth.user?.user_id}/${timeInterval}`,
+        `/measurement/${auth.user?.userId}/${timeInterval}`,
         'GET',
       );
       const data = await rawData.json();
@@ -47,7 +47,7 @@ const MeasurementChart = ({
     if (!userData) {
       getData();
     }
-  }, [auth.user?.user_id, measurement, timeInterval, userData]);
+  }, [auth.user?.userId, measurement, timeInterval, userData]);
 
   return userData === null ? (
     <ActivityIndicator color={theme.colors.primary} />

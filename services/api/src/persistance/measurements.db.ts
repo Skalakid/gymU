@@ -1,8 +1,8 @@
 import { prisma } from '../config/db.server';
 
 async function createMesaurement(
-  user_id: number,
-  save_date: Date,
+  userId: number,
+  saveDate: Date,
   weight: number,
   biceps: number,
   chest: number,
@@ -13,8 +13,8 @@ async function createMesaurement(
 ) {
   const newMeasurement = await prisma.measurement.create({
     data: {
-      user_id,
-      save_date,
+      userId,
+      saveDate,
       weight,
       biceps,
       chest,
@@ -28,11 +28,11 @@ async function createMesaurement(
   return newMeasurement;
 }
 
-async function getMeasurements(user_id: number) {
+async function getMeasurements(userId: number) {
   const measurements = await prisma.measurement.findMany({
     select: {
-      user_id: true,
-      save_date: true,
+      userId: true,
+      saveDate: true,
       weight: true,
       biceps: true,
       chest: true,
@@ -42,18 +42,18 @@ async function getMeasurements(user_id: number) {
       calf: true,
     },
     where: {
-      user_id: user_id,
+      userId: userId,
     },
   });
 
   return measurements;
 }
 
-async function getMeasurementsSince(user_id: number, time_interval: number) {
+async function getMeasurementsSince(userId: number, timeInterval: number) {
   const measurements = await prisma.measurement.findMany({
     select: {
-      user_id: true,
-      save_date: true,
+      userId: true,
+      saveDate: true,
       weight: true,
       biceps: true,
       chest: true,
@@ -63,15 +63,15 @@ async function getMeasurementsSince(user_id: number, time_interval: number) {
       calf: true,
     },
     where: {
-      user_id: user_id,
-      save_date: {
+      userId: userId,
+      saveDate: {
         gte: new Date(
-          new Date().setMonth(new Date().getMonth() - time_interval),
+          new Date().setMonth(new Date().getMonth() - timeInterval),
         ),
       },
     },
     orderBy: {
-      save_date: 'asc',
+      saveDate: 'asc',
     },
   });
 

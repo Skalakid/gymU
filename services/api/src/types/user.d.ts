@@ -5,7 +5,7 @@ type NewUser = {
 };
 
 type ReturnUser = {
-  user_id: number;
+  userId: number;
   email: string;
   username: string;
 };

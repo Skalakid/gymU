@@ -2,28 +2,28 @@ import { ExerciseHistoryItem } from '../types/exerciseHistoryItem';
 import { prisma } from '../config/db.server';
 
 async function createWorkoutLog(
-  user_workout_id: number,
+  userWorkoutId: number,
   opinion: number,
   exercises: ExerciseHistoryItem[],
 ) {
   const timeStamp = new Date();
 
-  const log = await prisma.user_workout_log.create({
+  const log = await prisma.userWorkoutLog.create({
     data: {
-      user_workout_id: user_workout_id,
+      userWorkoutId: userWorkoutId,
       opinion: opinion,
-      log_date: timeStamp,
+      logDate: timeStamp,
     },
   });
 
   exercises.forEach(async (exercise) => {
-    await prisma.user_exercise_history_item.create({
+    await prisma.userExerciseHistoryItem.create({
       data: {
-        user_log_id: log.log_id,
-        exercise_id: exercise.exercise_id,
+        userLogId: log.logId,
+        exerciseId: exercise.exerciseId,
         opinion: exercise.opinion,
         value: exercise.value,
-        order_index: exercise.order_index,
+        orderIndex: exercise.orderIndex,
         timestamp: timeStamp,
       },
     });

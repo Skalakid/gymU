@@ -67,7 +67,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
       data.refreshToken,
     );
     setUser({
-      user_id: data.user_id,
+      userId: data.userId,
       email: data.email,
       username: data.username,
     });
@@ -136,7 +136,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
 
         const data = await response.json();
         setUser({
-          user_id: data.user_id,
+          userId: data.userId,
           email: data.email,
           username: data.username,
         });
