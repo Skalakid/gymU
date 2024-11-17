@@ -1,4 +1,4 @@
-import * as MesaurementDB from '../persistance/measurements.db';
+import * as MesaurementsDB from '../persistance/measurements.db';
 
 async function createMeasurement(
   userId: number,
@@ -11,7 +11,7 @@ async function createMeasurement(
   thigh: number,
   calf: number,
 ) {
-  return await MesaurementDB.createMesaurement(
+  return await MesaurementsDB.createMesaurement(
     userId,
     saveDate,
     weight,
@@ -25,25 +25,31 @@ async function createMeasurement(
 }
 
 async function getMeasurements(userId: number) {
-  return await MesaurementDB.getMeasurements(userId);
+  return await MesaurementsDB.getMeasurements(userId);
 }
 
-async function getBodyPartsMeasurements(userId: number, bodyParts: string[]) {
-  return await MesaurementDB.getBodyPartsMeasurements(userId, bodyParts);
+async function getSelectedMeasurements(
+  userId: number,
+  selectedMeasurements: string[],
+) {
+  return await MesaurementsDB.getSelectedMeasurements(
+    userId,
+    selectedMeasurements,
+  );
 }
 
 async function getMeasurementsSince(userId: number, timeInterval: number) {
-  return await MesaurementDB.getMeasurementsSince(userId, timeInterval);
+  return await MesaurementsDB.getMeasurementsSince(userId, timeInterval);
 }
 
 async function getSelectedMeasurementsSince(
   userId: number,
-  bodyParts: string[],
+  selectedMeasurements: string[],
   timeInterval: number,
 ) {
-  return await MesaurementDB.getSelectedMeasurementsSince(
+  return await MesaurementsDB.getSelectedMeasurementsSince(
     userId,
-    bodyParts,
+    selectedMeasurements,
     timeInterval,
   );
 }
@@ -51,7 +57,7 @@ async function getSelectedMeasurementsSince(
 export {
   createMeasurement,
   getMeasurements,
-  getBodyPartsMeasurements,
+  getSelectedMeasurements,
   getMeasurementsSince,
   getSelectedMeasurementsSince,
 };

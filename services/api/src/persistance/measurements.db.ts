@@ -49,18 +49,21 @@ async function getMeasurements(userId: number) {
   return measurements;
 }
 
-async function getBodyPartsMeasurements(userId: number, bodyParts: string[]) {
+async function getSelectedMeasurements(
+  userId: number,
+  selectedMeasurements: string[],
+) {
   const measurements = await prisma.measurement.findMany({
     select: {
       userId: true,
       saveDate: true,
-      weight: bodyParts.includes('weight'),
-      biceps: bodyParts.includes('biceps'),
-      chest: bodyParts.includes('chest'),
-      waist: bodyParts.includes('waist'),
-      hips: bodyParts.includes('hips'),
-      thigh: bodyParts.includes('thigh'),
-      calf: bodyParts.includes('calf'),
+      weight: selectedMeasurements.includes('weight'),
+      biceps: selectedMeasurements.includes('biceps'),
+      chest: selectedMeasurements.includes('chest'),
+      waist: selectedMeasurements.includes('waist'),
+      hips: selectedMeasurements.includes('hips'),
+      thigh: selectedMeasurements.includes('thigh'),
+      calf: selectedMeasurements.includes('calf'),
     },
     where: {
       userId: userId,
@@ -105,20 +108,20 @@ async function getMeasurementsSince(userId: number, timeInterval: number) {
 
 async function getSelectedMeasurementsSince(
   userId: number,
-  bodyParts: string[],
+  selectedMeasurements: string[],
   timeInterval: number,
 ) {
   const measurements = await prisma.measurement.findMany({
     select: {
       userId: true,
       saveDate: true,
-      weight: bodyParts.includes('weight'),
-      biceps: bodyParts.includes('biceps'),
-      chest: bodyParts.includes('chest'),
-      waist: bodyParts.includes('waist'),
-      hips: bodyParts.includes('hips'),
-      thigh: bodyParts.includes('thigh'),
-      calf: bodyParts.includes('calf'),
+      weight: selectedMeasurements.includes('weight'),
+      biceps: selectedMeasurements.includes('biceps'),
+      chest: selectedMeasurements.includes('chest'),
+      waist: selectedMeasurements.includes('waist'),
+      hips: selectedMeasurements.includes('hips'),
+      thigh: selectedMeasurements.includes('thigh'),
+      calf: selectedMeasurements.includes('calf'),
     },
     where: {
       userId: userId,
@@ -139,7 +142,7 @@ async function getSelectedMeasurementsSince(
 export {
   createMesaurement,
   getMeasurements,
-  getBodyPartsMeasurements,
+  getSelectedMeasurements,
   getMeasurementsSince,
   getSelectedMeasurementsSince,
 };
