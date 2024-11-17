@@ -8,12 +8,30 @@ import measurementRoutes from './routes/measurement.routes';
 import calendarRoutes from './routes/calendar.routes';
 import errorHandler from './middlewares/error.middleware';
 import initSwagger from './config/swagger';
-import assetRoutes from './routes/asset.routes';
+import { Options, createProxyMiddleware } from 'http-proxy-middleware';
+import { IncomingMessage, ServerResponse } from 'http';
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.SERVER_PORT || 3000;
+const assetProxyOptions: Options<
+  IncomingMessage,
+  ServerResponse<IncomingMessage>
+> = {
+  target: 'http://asset.service:4000',
+  changeOrigin: true,
+  followRedirects: true,
+  pathRewrite: (path: string) => {
+    console.log(path);
+    return '/assets' + path;
+  },
+  on: {
+    proxyReq: (proxyReq) => {
+      proxyReq.setHeader('apiKey', process.env.ASSET_SERVICE_PASSWORD ?? '');
+    },
+  },
+};
 
 app.use(express.json());
 
@@ -28,8 +46,9 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Basic Node server with TypeScript');
 });
 
+app.use('/assets', createProxyMiddleware(assetProxyOptions));
+
 app.use(authRoutes);
-app.use('/assets', assetRoutes);
 app.use('/user', userRoutes);
 app.use('/workout', workoutRoutes);
 app.use('/exercise', exerciseRoutes);

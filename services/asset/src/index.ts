@@ -9,13 +9,15 @@ dotenv.config();
 
 const app: Express = express();
 const port = process.env.SERVER_PORT || 4000;
-const ASSETS_DIR_PATH = path.join(__dirname, 'assets');
-const UPLOADS_DIR_PATH = path.join(ASSETS_DIR_PATH, 'uploads');
+const apiServerUrl = process.env.API_SERVER || 'http://localhost:3000';
+
+const assetsDirPath = path.join(__dirname, 'assets');
+const uploadsDirPath = path.join(assetsDirPath, 'uploads');
 
 app.use(express.json());
 
 const storage = multer.diskStorage({
-  destination: UPLOADS_DIR_PATH,
+  destination: uploadsDirPath,
   filename: function (req, file, cb) {
     const imageName = `${Date.now()}${file.originalname}`;
     cb(null, imageName);
@@ -39,7 +41,7 @@ app.post(
     }
 
     res.status(201).json({
-      url: `http://localhost:${port}/assets/uploads/${file.filename}`,
+      url: `${apiServerUrl}/assets/uploads/${file.filename}`,
     });
   },
 );
@@ -51,9 +53,8 @@ app.get('/assets', authenticateToken, (req: Request, res: Response) => {
     return;
   }
 
-  const assetPath = `${ASSETS_DIR_PATH}${filePath[0] === '/' ? '' : '/'}${filePath}`;
+  const assetPath = `${assetsDirPath}${filePath[0] === '/' ? '' : '/'}${filePath}`;
   if (!existsSync(assetPath)) {
-    console.log('-------');
     res.status(404).send('File not found');
     return;
   }

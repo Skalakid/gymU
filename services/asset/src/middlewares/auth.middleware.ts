@@ -8,7 +8,6 @@ function authenticateToken(req: Request, res: Response, next: NextFunction) {
       return;
     }
     const password = process.env.ASSET_SERVICE_PASSWORD;
-    console.log(password, apiKey);
     if (password !== apiKey) {
       res.status(401).send('Unauthorized');
       return;
