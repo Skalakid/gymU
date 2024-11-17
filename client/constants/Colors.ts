@@ -7,6 +7,9 @@ const primaryOrange = '#F06312';
 const secondaryBlue = '#4562C9';
 const error = '#FF0000';
 
+export const ChartPrimaryColor = (opacity = 1) =>
+  `rgba(240, 99, 18, ${opacity})`;
+
 export const Colors = {
   light: {
     primary: primaryOrange,
