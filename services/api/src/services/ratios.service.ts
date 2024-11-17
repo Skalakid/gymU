@@ -2,26 +2,37 @@ import * as RatiosDB from '../persistance/ratios.db';
 import * as UserDB from '../persistance/user.db';
 import * as MeasurementDB from '../persistance/measurements.db';
 
-async function calculateBMI(userId: number) {
-  const heightData = await UserDB.getUserHeight(userId);
-  const weightData = await MeasurementDB.getBodyPartsMeasurements(userId, [
+const getHeight = async (userId: number) =>
+  (await UserDB.getUserHeight(userId))?.height ?? null;
+
+const getWeight = async (userId: number) => {
+  const weightData = await MeasurementDB.getSelectedMeasurements(userId, [
     'weight',
   ]);
 
-  if (!heightData?.height || weightData.length === 0) {
+  return weightData.length === 0
+    ? null
+    : weightData[weightData.length - 1].weight;
+};
+
+const getGender = async (userId: number) =>
+  (await UserDB.getGender(userId))?.gender ?? null;
+
+async function calculateBMI(userId: number) {
+  const height = await getHeight(userId);
+  const weight = await getWeight(userId);
+
+  if (!height || !weight) {
     return -1;
   }
 
-  const heightInMeters = heightData?.height / 100;
-  const weight = weightData[weightData.length - 1].weight;
+  const heightInMeters = height / 100;
 
-  const BMI = weight / (heightInMeters * heightInMeters);
-
-  return BMI;
+  return weight / (heightInMeters * heightInMeters);
 }
 
 async function calculateWHR(userId: number) {
-  const data = await MeasurementDB.getBodyPartsMeasurements(userId, [
+  const data = await MeasurementDB.getSelectedMeasurements(userId, [
     'waist',
     'hips',
   ]);
@@ -36,28 +47,48 @@ async function calculateWHR(userId: number) {
 }
 
 async function calculateWHtR(userId: number) {
-  const heightData = await UserDB.getUserHeight(userId);
-  const waistData = await MeasurementDB.getBodyPartsMeasurements(userId, [
+  const height = await getHeight(userId);
+  const waistData = await MeasurementDB.getSelectedMeasurements(userId, [
     'waist',
   ]);
 
-  if (!heightData?.height || waistData.length === 0) {
+  if (!height || waistData.length === 0) {
     return -1;
   }
 
   const waist = waistData[waistData.length - 1].waist;
 
-  return waist / heightData.height;
+  return waist / height;
 }
 
 async function calculateBrocaIndex(userId: number) {
-  const heightData = await UserDB.getUserHeight(userId);
+  const height = await getHeight(userId);
 
-  if (!heightData?.height) {
+  if (!height) {
     return -1;
   }
 
-  return heightData.height - 100;
+  return height - 100;
 }
 
-export { calculateBMI, calculateWHR, calculateWHtR, calculateBrocaIndex };
+async function calculateLBM(userId: number) {
+  const height = await getHeight(userId);
+  const weight = await getWeight(userId);
+  const gender = await getGender(userId);
+
+  if (!height || !weight || !gender) {
+    return -1;
+  }
+
+  return gender === 'M'
+    ? 0.3281 * weight + 0.33929 * height - 29.5336
+    : 0.29569 * weight + 0.41813 * height - 43.2933;
+}
+
+export {
+  calculateBMI,
+  calculateWHR,
+  calculateWHtR,
+  calculateBrocaIndex,
+  calculateLBM,
+};

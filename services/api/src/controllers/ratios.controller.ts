@@ -19,7 +19,7 @@ async function calculateBMI(
     const BMI = await RatiosService.calculateBMI(userId);
 
     if (!BMI || BMI === -1) {
-      throw new ApiError(500, 'Failed to oobtain BMI');
+      throw new ApiError(500, 'Failed to obtain BMI');
     }
 
     res.status(201).send({ BMI });
@@ -43,7 +43,7 @@ async function calculateWHR(
     const WHR = await RatiosService.calculateWHR(userId);
 
     if (!WHR || WHR === -1) {
-      throw new ApiError(500, 'Failed to oobtain WHR');
+      throw new ApiError(500, 'Failed to obtain WHR');
     }
 
     res.status(201).send({ WHR });
@@ -67,7 +67,7 @@ async function calculateWHtR(
     const WHtR = await RatiosService.calculateWHtR(userId);
 
     if (!WHtR || WHtR === -1) {
-      throw new ApiError(500, 'Failed to oobtain WHtR');
+      throw new ApiError(500, 'Failed to obtain WHtR');
     }
 
     res.status(201).send({ WHtR });
@@ -91,7 +91,7 @@ async function calculateBrocaIndex(
     const BrocaIndex = await RatiosService.calculateBrocaIndex(userId);
 
     if (!BrocaIndex || BrocaIndex === -1) {
-      throw new ApiError(500, 'Failed to oobtain WHtR');
+      throw new ApiError(500, 'Failed to obtain WHtR');
     }
 
     res.status(201).send({ BrocaIndex });
@@ -100,4 +100,34 @@ async function calculateBrocaIndex(
   }
 }
 
-export { calculateBMI, calculateWHR, calculateWHtR, calculateBrocaIndex };
+async function calculateLBM(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const userId = Number((req.user as ReturnUser).userId) || 1;
+
+    if (!userId) {
+      throw new ApiError(400, 'Invalid user id');
+    }
+
+    const LBM = await RatiosService.calculateLBM(userId);
+
+    if (!LBM || LBM === -1) {
+      throw new ApiError(500, 'Failed to obtain LBM');
+    }
+
+    res.status(201).send({ LBM });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export {
+  calculateBMI,
+  calculateWHR,
+  calculateWHtR,
+  calculateBrocaIndex,
+  calculateLBM,
+};
