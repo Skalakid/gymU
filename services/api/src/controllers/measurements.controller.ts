@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express';
 import { AuthRequest } from '../middlewares/auth.middleware';
-import * as MeasurementService from '../services/measurements.service';
+import * as MeasurementsService from '../services/measurements.service';
 import ApiError from '../error/ApiError';
 import { ReturnUser } from '../types/user';
 
@@ -32,7 +32,7 @@ async function createMeasurement(
       throw new ApiError(400, 'Missing required fields');
     }
 
-    const newMeasurement = await MeasurementService.createMeasurement(
+    const newMeasurement = await MeasurementsService.createMeasurement(
       userId,
       saveDate,
       weight,
@@ -66,7 +66,7 @@ async function getMeasurements(
       throw new ApiError(400, 'Invalid user id');
     }
 
-    const measurements = await MeasurementService.getMeasurements(userId);
+    const measurements = await MeasurementsService.getMeasurements(userId);
 
     if (!measurements) {
       throw new ApiError(500, 'Failed to get measurements');
@@ -78,28 +78,28 @@ async function getMeasurements(
   }
 }
 
-async function getBodyPartsMeasurements(
+async function getSelectedMeasurements(
   req: AuthRequest,
   res: Response,
   next: NextFunction,
 ) {
   try {
     const userId = Number((req.user as ReturnUser).userId) || 1;
-    const bodyParts = req.params.bodyParts;
+    const selectedMeasurements = req.params.selectedMeasurements;
 
     if (!userId) {
       throw new ApiError(400, 'Invalid user id');
     }
 
-    if (!bodyParts) {
+    if (!selectedMeasurements) {
       throw new ApiError(400, 'Provide body parts');
     }
 
-    const bodyPartsArray = bodyParts.split(',');
+    const selectedMeasurementsArray = selectedMeasurements.split(',');
 
-    const measurements = await MeasurementService.getBodyPartsMeasurements(
+    const measurements = await MeasurementsService.getSelectedMeasurements(
       userId,
-      bodyPartsArray,
+      selectedMeasurementsArray,
     );
 
     if (!measurements) {
@@ -129,7 +129,7 @@ async function getMesaurementsSince(
       throw new ApiError(400, 'Invalid start date');
     }
 
-    const measurements = await MeasurementService.getMeasurementsSince(
+    const measurements = await MeasurementsService.getMeasurementsSince(
       userId,
       timeInterval,
     );
@@ -151,14 +151,14 @@ async function getSelectedMeasurementsSince(
 ) {
   try {
     const userId = Number((req.user as ReturnUser).userId) || 1;
-    const bodyParts = req.params.bodyParts;
+    const selectedMeasurements = req.params.selectedMeasurements;
     const timeInterval = Number(req.params.timeInterval) || -1;
 
     if (!userId) {
       throw new ApiError(400, 'Invalid user id');
     }
 
-    if (!bodyParts) {
+    if (!selectedMeasurements) {
       throw new ApiError(400, 'Provide body parts');
     }
 
@@ -166,11 +166,11 @@ async function getSelectedMeasurementsSince(
       throw new ApiError(400, 'Invalid start date');
     }
 
-    const bodyPartsArray = bodyParts.split(',');
+    const selectedMeasurementsArray = selectedMeasurements.split(',');
 
-    const measurements = await MeasurementService.getSelectedMeasurementsSince(
+    const measurements = await MeasurementsService.getSelectedMeasurementsSince(
       userId,
-      bodyPartsArray,
+      selectedMeasurementsArray,
       timeInterval,
     );
 
@@ -187,7 +187,7 @@ async function getSelectedMeasurementsSince(
 export {
   createMeasurement,
   getMeasurements,
-  getBodyPartsMeasurements,
+  getSelectedMeasurements,
   getMesaurementsSince,
   getSelectedMeasurementsSince,
 };
