@@ -7,7 +7,12 @@ type AuthContextProviderProps = { children: React.ReactNode };
 
 type AuthContext = {
   login: (email: string, password: string) => void;
-  register: (email: string, username: string, password: string) => void;
+  register: (
+    email: string,
+    username: string,
+    password: string,
+    gender: string,
+  ) => void;
   logout: () => void;
   isAuthenticated: boolean;
   user: User | null;
@@ -75,9 +80,14 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
   }, []);
 
   const register = useCallback(
-    async (email: string, username: string, password: string) => {
-      if (!email || !username || !password) {
-        throw new Error('Email, username, and password are required');
+    async (
+      email: string,
+      username: string,
+      password: string,
+      gender: string,
+    ) => {
+      if (!email || !username || !password || !gender) {
+        throw new Error('Fill in all fields');
       }
 
       const response = await fetchApi(
@@ -88,6 +98,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
           email,
           username,
           password,
+          gender,
         },
         false,
       );

@@ -6,24 +6,45 @@ import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
 import ROUTES from '@/constants/Routes';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import ThemedView from '@/components/ThemedView';
+import RadioGroup from 'react-native-radio-buttons-group';
+import { useTheme } from '@react-navigation/native';
 
 const SignUpPage = () => {
   const { register } = useAuthContext();
   const router = useRouter();
+  const theme = useTheme();
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [gender, setGender] = useState('');
+
+  const genderRadioButtons = useMemo(
+    () => [
+      {
+        id: 'M', // acts as primary key, should be unique and non-empty string
+        label: 'Male',
+        labelStyle: { color: theme.colors.text },
+      },
+      {
+        id: 'F',
+        label: 'Female',
+        labelStyle: { color: theme.colors.text },
+      },
+    ],
+    [],
+  );
 
   const handleRegisterUser = async () => {
     try {
       setErrorMessage('');
       setIsLoading(true);
-      await register(email, username, password);
+      await register(email, username, password, gender);
     } catch (error) {
       if (error instanceof Error) {
         setErrorMessage(error.message);
@@ -79,6 +100,18 @@ const SignUpPage = () => {
         value={repeatPassword}
       />
 
+      <ThemedView>
+        <ThemedText size="m" weight="medium">
+          Gender:
+        </ThemedText>
+        <RadioGroup
+          containerStyle={styles.radioButtons}
+          radioButtons={genderRadioButtons}
+          onPress={setGender}
+          selectedId={gender}
+        />
+      </ThemedView>
+
       <View style={styles.button}>
         <SecondaryButton
           value="Register"
@@ -117,5 +150,12 @@ const styles = StyleSheet.create({
   alreadyHaveAccountLink: {
     textAlign: 'center',
     marginTop: 10,
+  },
+  radioButtons: {
+    width: '100%',
+
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
 });
