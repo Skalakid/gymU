@@ -41,7 +41,7 @@ app.post(
     }
 
     res.status(201).json({
-      url: `${apiServerUrl}/assets/uploads/${file.filename}`,
+      url: `${apiServerUrl}/assets?file=uploads/${file.filename}`,
     });
   },
 );
