@@ -6,6 +6,7 @@ import workoutRoutes from './routes/workout.routes';
 import exerciseRoutes from './routes/exercise.routes';
 import measurementRoutes from './routes/measurement.routes';
 import calendarRoutes from './routes/calendar.routes';
+import ratiosRoutes from './routes/ratios.routes';
 import errorHandler from './middlewares/error.middleware';
 import initSwagger from './config/swagger';
 
@@ -33,6 +34,7 @@ app.use('/workout', workoutRoutes);
 app.use('/exercise', exerciseRoutes);
 app.use('/measurement', measurementRoutes);
 app.use('/calendar', calendarRoutes);
+app.use('/ratios', ratiosRoutes);
 app.use(errorHandler);
 initSwagger(app);
 

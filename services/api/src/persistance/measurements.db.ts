@@ -65,6 +65,10 @@ async function getBodyPartsMeasurements(userId: number, bodyParts: string[]) {
     where: {
       userId: userId,
     },
+
+    orderBy: {
+      saveDate: 'asc',
+    },
   });
 
   return measurements;
