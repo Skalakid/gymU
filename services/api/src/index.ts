@@ -10,6 +10,7 @@ import errorHandler from './middlewares/error.middleware';
 import initSwagger from './config/swagger';
 import { Options, createProxyMiddleware } from 'http-proxy-middleware';
 import { IncomingMessage, ServerResponse } from 'http';
+import { authenticateToken } from './middlewares/auth.middleware';
 
 dotenv.config();
 
@@ -45,7 +46,7 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Basic Node server with TypeScript');
 });
 
-app.use('/assets', createProxyMiddleware(assetProxyOptions));
+app.use('/assets', authenticateToken, createProxyMiddleware(assetProxyOptions));
 
 app.use(authRoutes);
 app.use('/user', userRoutes);
