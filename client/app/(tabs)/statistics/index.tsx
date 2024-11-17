@@ -6,10 +6,13 @@ import { Image } from 'expo-image';
 import Images from '@/constants/Images';
 import ThemedText from '@/components/ThemedText';
 import useThemeColor from '@/hooks/useThemeColor';
+import WorkoutsHeatmap from '@/components/charts/WorkoutsHeatmap';
+import { useState } from 'react';
 
 const StatisticsPage = () => {
   const router = useRouter();
   const backgroundColor = useThemeColor({}, 'tile');
+  const [heatmapInterval] = useState(3);
 
   return (
     <ThemedView style={styles.container}>
@@ -29,6 +32,8 @@ const StatisticsPage = () => {
           </ThemedText>
         </ThemedView>
       </Pressable>
+
+      <WorkoutsHeatmap title="Your workouts" months={heatmapInterval} />
     </ThemedView>
   );
 };
@@ -36,7 +41,10 @@ const StatisticsPage = () => {
 export default StatisticsPage;
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: {
+    flex: 1,
+    gap: 20,
+  },
   button: {
     width: 230,
     height: 250,
