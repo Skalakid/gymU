@@ -9,6 +9,7 @@ router.get('/current', authenticateToken, userController.getCurrentUser);
 router.get('/all', authenticateToken, userController.getAllUsers);
 router.get('/height', authenticateToken, userController.getUserHeight);
 router.post('/height', authenticateToken, userController.addUserHeight);
+router.get('/gender', authenticateToken, userController.getGender);
 
 router.post(
   '/workout/save',
