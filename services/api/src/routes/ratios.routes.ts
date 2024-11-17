@@ -7,5 +7,10 @@ const router = express.Router();
 router.get('/bmi', authenticateToken, ratiosController.calculateBMI);
 router.get('/whr', authenticateToken, ratiosController.calculateWHR);
 router.get('/whtr', authenticateToken, ratiosController.calculateWHtR);
+router.get(
+  '/brocaIndex',
+  authenticateToken,
+  ratiosController.calculateBrocaIndex,
+);
 
 export = router;

@@ -50,4 +50,14 @@ async function calculateWHtR(userId: number) {
   return waist / heightData.height;
 }
 
-export { calculateBMI, calculateWHR, calculateWHtR };
+async function calculateBrocaIndex(userId: number) {
+  const heightData = await UserDB.getUserHeight(userId);
+
+  if (!heightData?.height) {
+    return -1;
+  }
+
+  return heightData.height - 100;
+}
+
+export { calculateBMI, calculateWHR, calculateWHtR, calculateBrocaIndex };

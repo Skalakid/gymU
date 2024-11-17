@@ -76,4 +76,28 @@ async function calculateWHtR(
   }
 }
 
-export { calculateBMI, calculateWHR, calculateWHtR };
+async function calculateBrocaIndex(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const userId = Number((req.user as ReturnUser).userId) || 1;
+
+    if (!userId) {
+      throw new ApiError(400, 'Invalid user id');
+    }
+
+    const BrocaIndex = await RatiosService.calculateBrocaIndex(userId);
+
+    if (!BrocaIndex || BrocaIndex === -1) {
+      throw new ApiError(500, 'Failed to oobtain WHtR');
+    }
+
+    res.status(201).send({ BrocaIndex });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export { calculateBMI, calculateWHR, calculateWHtR, calculateBrocaIndex };
