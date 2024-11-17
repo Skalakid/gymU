@@ -26,7 +26,6 @@ const upload = multer({
 
 app.post('/assets/upload', upload.single('file'), (req, res) => {
   const { file } = req;
-  console.log(file);
   if (!file) {
     res.status(400).send('Invalid request');
     return;
@@ -39,7 +38,6 @@ app.post('/assets/upload', upload.single('file'), (req, res) => {
 
 app.get('/assets', (req: Request, res: Response) => {
   const filePath = req.query.file?.toString();
-
   if (!filePath) {
     res.status(400).send('Invalid request');
     return;
