@@ -39,5 +39,10 @@ function getExampleUsers(): Array<NewUser> {
       email: 'test3@test.pl',
       password: 'test',
     },
+    {
+      username: 'admin',
+      email: 'admin@gymu.com',
+      password: 'admin',
+    },
   ];
 }
