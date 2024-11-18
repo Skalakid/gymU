@@ -137,7 +137,6 @@ async function seedScrappedExercisesAndReturn() {
   const bodyPartsIds = await seedBodyPartsAndReturnIds();
 
   const exercisesJsonIds: Record<string, number> = {};
-
   const exerciseTypesIds = await getUsedExerciseTypes();
 
   const exercises = await prisma.exercise.createManyAndReturn({
@@ -149,6 +148,8 @@ async function seedScrappedExercisesAndReturn() {
       };
     }),
   });
+
+  console.log('[scrapped] Exercises seeded');
 
   for (let index in exercises) {
     const { exerciseId } = exercises[index];
@@ -162,6 +163,8 @@ async function seedScrappedExercisesAndReturn() {
     });
   }
 
+  console.log('[scrapped] Exercises bodyparts seeded');
+
   for (let index in exercises) {
     const { id } = exercisesJson[index];
     const { exerciseId } = exercises[index];
@@ -169,20 +172,18 @@ async function seedScrappedExercisesAndReturn() {
     exercisesJsonIds[id] = exerciseId;
   }
 
-  console.log('[scrapped] Exercises seeded');
-
   return exercisesJsonIds;
 }
 
-async function seedWorkoutsAndReturn() {
-  const exercisesIds = await seedScrappedExercisesAndReturn();
+const getWorkoutLevelId = async (name: string) => {
+  const workoutLevel = await prisma.workoutLevel.findFirst({
+    where: { name },
+  });
+  return workoutLevel?.levelId;
+};
 
-  const getWorkoutLevelId = async (name: string) => {
-    const workoutLevel = await prisma.workoutLevel.findFirst({
-      where: { name },
-    });
-    return workoutLevel?.levelId;
-  };
+async function seedWorkouts() {
+  const exercisesIds = await seedScrappedExercisesAndReturn();
 
   const workoutLevelMapper = {
     beginner: await getWorkoutLevelId('beginner'),
@@ -248,6 +249,7 @@ async function seedWorkoutsAndReturn() {
       }),
     });
   }
+
   console.log('[scrapped] Workout exercises seeded');
 
   for (let index in workouts) {
@@ -260,9 +262,10 @@ async function seedWorkoutsAndReturn() {
       })),
     });
   }
+
   console.log('[scrapped] Workouts tags seeded');
 }
 
 export default async function seedScrappedData() {
-  await seedWorkoutsAndReturn();
+  await seedWorkouts();
 }
