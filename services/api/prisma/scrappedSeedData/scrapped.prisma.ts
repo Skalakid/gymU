@@ -182,14 +182,16 @@ const getWorkoutLevelId = async (name: string) => {
   return workoutLevel?.levelId;
 };
 
+const getWorkoutLevelIds = async () => ({
+  beginner: await getWorkoutLevelId('beginner'),
+  medium: await getWorkoutLevelId('medium'),
+  hardcore: await getWorkoutLevelId('hardcore'),
+});
+
 async function seedWorkouts() {
   const exercisesIds = await seedScrappedExercisesAndReturn();
 
-  const workoutLevelMapper = {
-    beginner: await getWorkoutLevelId('beginner'),
-    medium: await getWorkoutLevelId('medium'),
-    hardcore: await getWorkoutLevelId('hardcore'),
-  };
+  const workoutLevelMapper = await getWorkoutLevelIds();
 
   const workoutTagsIds = await seedWorkoutTagsAndReturnIds();
 
