@@ -46,7 +46,6 @@ async function addUserHeight(
     }
 
     const { height } = req.body;
-
     if (!height) {
       throw new ApiError(400, 'Invalid height');
     }
