@@ -76,7 +76,6 @@ async function getUserHeight(
     }
 
     const height = await UserService.getUserHeight(userId);
-
     if (!height) {
       throw new ApiError(500, 'Failed to add height');
     }
