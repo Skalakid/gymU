@@ -13,7 +13,7 @@ model AppUser {
   email                String                @unique @db.VarChar(255)
   passwordHash         String                @map("password_hash")
   createdAt            DateTime?             @default(now()) @map("created_at") @db.Timestamptz(6)
-  height               Float?
+  height               Int?
   gender               String                @db.VarChar(1)
   userWorkouts         UserWorkout[]
   workoutTemplates     WorkoutTemplate[]
