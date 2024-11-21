@@ -69,7 +69,6 @@ async function getUserHeight(
 ) {
   try {
     const userId = Number((req.user as ReturnUser).userId) || 1;
-
     if (!userId) {
       throw new ApiError(400, 'Invalid user id');
     }
