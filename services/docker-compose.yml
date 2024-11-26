@@ -76,6 +76,7 @@ services:
       depends_on:
         - postgres
         - api
+      container_name: analyze.service
       ports:
         - 3001:3001
       environment:
