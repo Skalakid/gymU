@@ -106,10 +106,12 @@ export async function seedWorkoutTagsAndReturnIds() {
   });
 
   for (const { tagId, name } of existingTags) {
+    // eslint-disable-next-line @typescript-eslint/no-extra-non-null-assertion
     tagsIds[name!!] = tagId;
   }
 
   for (const { tagId, name } of remainingTags) {
+    // eslint-disable-next-line @typescript-eslint/no-extra-non-null-assertion
     tagsIds[name!!] = tagId;
   }
 
@@ -128,7 +130,9 @@ async function getUsedExerciseTypes() {
   });
 
   return {
+    // eslint-disable-next-line
     reps: repsType?.exerciseTypeId!!,
+    // eslint-disable-next-line
     time: timeType?.exerciseTypeId!!,
   };
 }
@@ -151,7 +155,7 @@ async function seedScrappedExercisesAndReturn() {
 
   console.log('[scrapped] Exercises seeded');
 
-  for (let index in exercises) {
+  for (const index in exercises) {
     const { exerciseId } = exercises[index];
     const { bodyParts } = exercisesJson[index];
 
@@ -165,7 +169,7 @@ async function seedScrappedExercisesAndReturn() {
 
   console.log('[scrapped] Exercises bodyparts seeded');
 
-  for (let index in exercises) {
+  for (const index in exercises) {
     const { id } = exercisesJson[index];
     const { exerciseId } = exercises[index];
 
@@ -199,6 +203,7 @@ async function seedWorkouts() {
     where: { username: 'admin' },
   });
 
+  // eslint-disable-next-line
   const adminId = adminUser?.userId!!;
 
   const workouts = await prisma.workoutTemplate.createManyAndReturn({
@@ -208,6 +213,7 @@ async function seedWorkouts() {
       name: workout.title,
       description: workout.description,
       workoutLevelId:
+        // eslint-disable-next-line @typescript-eslint/no-extra-non-null-assertion
         workoutLevelMapper[
           workout.level as 'beginner' | 'medium' | 'hardcore'
         ]!!,
@@ -218,13 +224,18 @@ async function seedWorkouts() {
 
   console.log('[scrapped] Workouts seeded');
 
-  for (let index in workouts) {
+  for (const index in workouts) {
     const { workoutId } = workouts[index];
     const { exercises } = workoutsJson[index];
 
     await prisma.exerciseTemplateItem.createMany({
       data: exercises.map((exercise, order) => {
-        const value: any = {};
+        const value: {
+          reps?: number;
+          sets?: number;
+          time?: number;
+          breakTime?: number;
+        } = {};
 
         if ('reps' in exercise) {
           value.reps = exercise.reps;
@@ -254,7 +265,7 @@ async function seedWorkouts() {
 
   console.log('[scrapped] Workout exercises seeded');
 
-  for (let index in workouts) {
+  for (const index in workouts) {
     const { workoutId } = workouts[index];
 
     await prisma.workoutTags.createMany({
