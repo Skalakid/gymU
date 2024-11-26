@@ -85,6 +85,7 @@ model ExercisesBodyParts {
   exercise   Exercise @relation(fields: [exerciseId], references: [exerciseId], onDelete: NoAction, onUpdate: NoAction)
 
   @@id([exerciseId, bodyPartId])
+  @@map("exercise_body_parts")
 }
 
 model Tag {
@@ -192,6 +193,7 @@ model WorkoutTemplate {
   appUser               AppUser                @relation(fields: [authorId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
   workoutLevel          WorkoutLevel           @relation(fields: [workoutLevelId], references: [levelId])
   calendarEventParents  CalendarEventParent[]
+  source                String?
 
   @@map("workout_template")
 }

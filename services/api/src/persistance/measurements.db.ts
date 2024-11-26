@@ -1,5 +1,19 @@
 import { prisma } from '../config/db.server';
 
+function getSelectData(measurements?: string[]) {
+  return {
+    userId: true,
+    saveDate: true,
+    weight: measurements?.includes('weight') ?? true,
+    biceps: measurements?.includes('biceps') ?? true,
+    chest: measurements?.includes('chest') ?? true,
+    waist: measurements?.includes('waist') ?? true,
+    hips: measurements?.includes('hips') ?? true,
+    thigh: measurements?.includes('thigh') ?? true,
+    calf: measurements?.includes('calf') ?? true,
+  };
+}
+
 async function createMesaurement(
   userId: number,
   saveDate: Date,
@@ -31,15 +45,7 @@ async function createMesaurement(
 async function getMeasurements(userId: number) {
   const measurements = await prisma.measurement.findMany({
     select: {
-      userId: true,
-      saveDate: true,
-      weight: true,
-      biceps: true,
-      chest: true,
-      waist: true,
-      hips: true,
-      thigh: true,
-      calf: true,
+      ...getSelectData(),
     },
     where: {
       userId: userId,
@@ -55,15 +61,7 @@ async function getSelectedMeasurements(
 ) {
   const measurements = await prisma.measurement.findMany({
     select: {
-      userId: true,
-      saveDate: true,
-      weight: selectedMeasurements.includes('weight'),
-      biceps: selectedMeasurements.includes('biceps'),
-      chest: selectedMeasurements.includes('chest'),
-      waist: selectedMeasurements.includes('waist'),
-      hips: selectedMeasurements.includes('hips'),
-      thigh: selectedMeasurements.includes('thigh'),
-      calf: selectedMeasurements.includes('calf'),
+      ...getSelectData(selectedMeasurements),
     },
     where: {
       userId: userId,
@@ -80,15 +78,7 @@ async function getSelectedMeasurements(
 async function getMeasurementsSince(userId: number, timeInterval: number) {
   const measurements = await prisma.measurement.findMany({
     select: {
-      userId: true,
-      saveDate: true,
-      weight: true,
-      biceps: true,
-      chest: true,
-      waist: true,
-      hips: true,
-      thigh: true,
-      calf: true,
+      ...getSelectData(),
     },
     where: {
       userId: userId,
@@ -113,15 +103,7 @@ async function getSelectedMeasurementsSince(
 ) {
   const measurements = await prisma.measurement.findMany({
     select: {
-      userId: true,
-      saveDate: true,
-      weight: selectedMeasurements.includes('weight'),
-      biceps: selectedMeasurements.includes('biceps'),
-      chest: selectedMeasurements.includes('chest'),
-      waist: selectedMeasurements.includes('waist'),
-      hips: selectedMeasurements.includes('hips'),
-      thigh: selectedMeasurements.includes('thigh'),
-      calf: selectedMeasurements.includes('calf'),
+      ...getSelectData(selectedMeasurements),
     },
     where: {
       userId: userId,

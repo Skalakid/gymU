@@ -52,7 +52,7 @@ const MeasurementStatus = ({
       };
 
       const response = await fetchApi(
-        '/measurement/create',
+        '/measurements/create',
         'POST',
         null,
         data,
