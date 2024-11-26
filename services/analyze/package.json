@@ -4,6 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "initialize": "sh ./init.prisma.sh"
+    "initialize": "sh ./init.prisma.sh",
+    "start": "python main.py",
+    "dev": "nodemon --exec yarn start --legacy-watch",
+    "prod": "yarn start"
   }
 }
