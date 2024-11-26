@@ -124,10 +124,35 @@ async function calculateLBM(
   }
 }
 
+async function calculateBMR(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const userId = Number((req.user as ReturnUser).userId) || 1;
+
+    if (!userId) {
+      throw new ApiError(400, 'Invalid user id');
+    }
+
+    const BMR = await RatiosService.calculateBMR(userId);
+
+    if (!BMR || BMR === -1) {
+      throw new ApiError(500, 'Failed to obtain BMR');
+    }
+
+    res.status(201).send({ BMR });
+  } catch (error) {
+    next(error);
+  }
+}
+
 export {
   calculateBMI,
   calculateWHR,
   calculateWHtR,
   calculateBrocaIndex,
   calculateLBM,
+  calculateBMR,
 };

@@ -13,5 +13,6 @@ router.get(
   ratiosController.calculateBrocaIndex,
 );
 router.get('/lbm', authenticateToken, ratiosController.calculateLBM);
+router.get('/bmr', authenticateToken, ratiosController.calculateBMR);
 
 export = router;

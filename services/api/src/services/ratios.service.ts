@@ -85,10 +85,17 @@ async function calculateLBM(userId: number) {
     : 0.29569 * weight + 0.41813 * height - 43.2933;
 }
 
+async function calculateBMR(userId: number) {
+  const LBM = await calculateLBM(userId);
+
+  return LBM !== -1 ? 500 + 22 * LBM : -1;
+}
+
 export {
   calculateBMI,
   calculateWHR,
   calculateWHtR,
   calculateBrocaIndex,
   calculateLBM,
+  calculateBMR,
 };
