@@ -1,4 +1,3 @@
-import * as RatiosDB from '../persistance/ratios.db';
 import * as UserDB from '../persistance/user.db';
 import * as MeasurementDB from '../persistance/measurements.db';
 
