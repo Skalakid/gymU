@@ -10,6 +10,9 @@ RUN apt-get update
 RUN apt-get install yarn -y
 
 RUN yarn global add nodemon
+RUN pip install -r requirements.txt
+
+RUN prisma generate
 
 EXPOSE 3001
 
