@@ -13,7 +13,7 @@ import initSwagger from './config/swagger';
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.SERVER_PORT || 3000;
+const port = Number(process.env.SERVER_PORT || 3000);
 
 app.use(express.json());
 
@@ -36,8 +36,8 @@ app.use('/measurements', measurementsRoutes);
 app.use('/calendar', calendarRoutes);
 app.use('/ratios', ratiosRoutes);
 app.use(errorHandler);
-initSwagger(app);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
+  initSwagger(app, port);
 });
