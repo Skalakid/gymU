@@ -2,6 +2,7 @@
     "private": true,
     "workspaces": [
         "services/api",
+        "services/asset",
         "client",
         "common"
     ],
