@@ -1,43 +1,15 @@
 import Header from '@/components/navigation/Header';
 import ThemedView from '@/components/ThemedView';
 import { useRouter } from 'expo-router';
-import { ActivityIndicator, Pressable, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import Images from '@/constants/Images';
 import ThemedText from '@/components/ThemedText';
 import useThemeColor from '@/hooks/useThemeColor';
 import WorkoutsHeatmap from '@/components/charts/WorkoutsHeatmap';
-import { useEffect, useState } from 'react';
-import fetchApi from '@/api/fetch';
-import Tile from '@/components/common/Tile';
+import { useState } from 'react';
 import { ScrollView } from 'react-native';
-import { Gauge } from '@/components/gauge/Gauge';
-
-const BMIGauge = () => {
-  const [bmi, setBmi] = useState(null);
-
-  useEffect(() => {
-    const getBMI = async () => {
-      try {
-        const rawData = await fetchApi('/ratios/bmi', 'GET');
-        const data = await rawData.json();
-
-        setBmi(data.BMI);
-      } catch {}
-    };
-
-    if (bmi === null) {
-      getBMI();
-    }
-  }, []);
-  return bmi === null ? (
-    <ActivityIndicator />
-  ) : (
-    <Tile>
-      <Gauge minValue={16} maxValue={40} value={18.5} t1={17} t2={25} />
-    </Tile>
-  );
-};
+import { BMIGauge } from '@/components/gauge/BMIGauge';
 
 const StatisticsPage = () => {
   const router = useRouter();
