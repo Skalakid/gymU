@@ -6,5 +6,4 @@ prisma==0.15.0
 python-dotenv
 tqdm
 more-itertools
-pickle
 black
