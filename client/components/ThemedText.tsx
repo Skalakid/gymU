@@ -43,6 +43,6 @@ export default ThemedText;
 
 const styles = StyleSheet.create({
   default: {
-    fontFamily: 'Poppins',
+    // fontFamily: 'Poppins',
   },
 });
