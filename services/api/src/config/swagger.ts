@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Express } from 'express';
-import swaggerJsdoc from 'swagger-jsdoc';
-import { setup, serve } from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUI from 'swagger-ui-express';
 
-const options = {
+const options: swaggerJSDoc.Options = {
   swaggerDefinition: {
     openapi: '3.0.0',
     info: {
@@ -15,12 +16,22 @@ const options = {
       },
     ],
   },
-  apis: ['src/routes//*.ts'],
+  apis: ['src/routes/*.ts'],
 };
 
-function initSwagger(app: Express) {
-  const specs = swaggerJsdoc(options);
-  app.use('/docs', serve, setup(specs, { explorer: true }));
+const swaggerSpec = swaggerJSDoc(options);
+
+const API_DOCS_PATH = '/api';
+
+function initSwagger(app: Express, port: number): void {
+  app.use(
+    API_DOCS_PATH,
+    swaggerUI.serve as any,
+    swaggerUI.setup(swaggerSpec) as any,
+  );
+  console.log(
+    `[server]: API docs are available at http://localhost:${port}${API_DOCS_PATH}`,
+  );
 }
 
 export default initSwagger;
