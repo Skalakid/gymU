@@ -8,6 +8,28 @@ async function getUserByEmail(email: string) {
   });
 }
 
+async function addUserHeight(userId: number, height: number) {
+  return await prisma.appUser.update({
+    where: {
+      userId,
+    },
+    data: {
+      height,
+    },
+  });
+}
+
+async function getUserHeight(userId: number) {
+  return await prisma.appUser.findUnique({
+    select: {
+      height: true,
+    },
+    where: {
+      userId,
+    },
+  });
+}
+
 async function getGender(userId: number) {
   return await prisma.appUser.findUnique({
     select: {
@@ -19,4 +41,4 @@ async function getGender(userId: number) {
   });
 }
 
-export { getUserByEmail, getGender };
+export { getUserByEmail, addUserHeight, getUserHeight, getGender };

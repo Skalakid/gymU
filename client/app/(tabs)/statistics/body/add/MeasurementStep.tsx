@@ -15,14 +15,15 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import SecondaryButton from '@/components/button/SecondaryButton';
-import { Mesaurement } from '@/types/measurement';
+import { MeasurementWithHeight, Mesaurement } from '@/types/measurement';
 import NumericValueInput from '@/components/input/NumericValueInput';
 
 type MeasurementStepProps = {
   img: string | null;
-  title: Mesaurement;
+  title: Mesaurement | MeasurementWithHeight;
   updater: (measurement: Mesaurement, mesaurmentValue: number) => void;
   goBackAction?: () => void;
+  description?: string;
 };
 
 const MeasurementStep = ({
@@ -30,6 +31,7 @@ const MeasurementStep = ({
   title,
   updater,
   goBackAction,
+  description,
 }: MeasurementStepProps) => {
   const [measurementValue, setMeasurementValue] = useState(0);
   const backgroundColor = useThemeColor({}, 'tile');
@@ -68,7 +70,7 @@ const MeasurementStep = ({
       />
 
       <ThemedText size="xl" weight="semiBold">
-        How to measure?
+        {description ?? 'How to measure?'}
       </ThemedText>
 
       <Image

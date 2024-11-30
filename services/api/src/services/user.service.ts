@@ -21,8 +21,22 @@ async function getAllUsers() {
   return users;
 }
 
+async function addUserHeight(userId: number, height: number) {
+  return await UserDB.addUserHeight(userId, height);
+}
+
+async function getUserHeight(userId: number) {
+  return await UserDB.getUserHeight(userId);
+}
+
 async function getGender(userId: number) {
   return await UserDB.getGender(userId);
 }
 
-export { checkEmailUniqueness, getAllUsers, getGender };
+export {
+  checkEmailUniqueness,
+  getAllUsers,
+  addUserHeight,
+  getUserHeight,
+  getGender,
+};
