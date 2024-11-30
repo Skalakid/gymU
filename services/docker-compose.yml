@@ -46,7 +46,7 @@ services:
         - gymu.network
 
     asset:
-      image: gymu.assets.service:latest
+      image: gymu.asset.service:latest
       build: 
         context: ./asset
         dockerfile: Dockerfile
