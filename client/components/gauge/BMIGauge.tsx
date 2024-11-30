@@ -12,7 +12,9 @@ export const BMIGauge = () => {
         const rawData = await fetchApi('/ratios/bmi', 'GET');
         const data = await rawData.json();
 
-        setBmi(data.BMI);
+        if (data.BMI) {
+          setBmi(data.BMI);
+        }
       } catch {}
     };
 
@@ -29,8 +31,8 @@ export const BMIGauge = () => {
       description={`BMI is a ratio of your weight to your height. It can quickly tell if you're in good shape, weigh too little, or should lose some weight.`}
       minValue={16}
       maxValue={40}
-      value={18.5}
-      t1={17}
+      value={bmi}
+      t1={18.5}
       t2={25}
     />
   );

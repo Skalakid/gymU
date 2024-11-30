@@ -2,6 +2,7 @@ import { GaugeProps } from '@/types/gauge';
 import Tile from '../common/Tile';
 import ThemedText from '../ThemedText';
 import { GaugeChart } from './GaugeChart';
+import { roundTwoDecimals } from '@/utils/gauge.utils';
 
 export const Gauge = ({
   ratio,
@@ -22,7 +23,7 @@ export const Gauge = ({
         t2={t2}
       />
       <ThemedText weight={'semiBold'} size={'h4'}>
-        {ratio}: {value}
+        {ratio}: {roundTwoDecimals(value)}
       </ThemedText>
 
       <ThemedText size={'xl'}>{description}</ThemedText>
