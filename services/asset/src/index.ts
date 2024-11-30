@@ -1,4 +1,4 @@
-import express, { Express, Request, Response, NextFunction } from 'express';
+import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 import multer from 'multer';
@@ -32,7 +32,8 @@ const upload = multer({
 app.post(
   '/assets/upload',
   authenticateToken,
-  upload.single('file'),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  upload.single('file') as any,
   (req, res) => {
     const { file } = req;
     if (!file) {
