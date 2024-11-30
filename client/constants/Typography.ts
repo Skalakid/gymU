@@ -49,7 +49,7 @@ const SizePresets: Record<string, TextStyle> = {
     fontSize: 32,
   },
   x5l: {
-    fontSize: 72,
+    fontSize: 64,
   },
   h1: {
     ...WeightPresets.bold,

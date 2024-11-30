@@ -26,7 +26,7 @@ const HomePage = () => {
       <ThemedText weight="semiBold" size="l">
         Recent progress 💪
       </ThemedText>
-      <StatsPreview />
+      <StatsPreview percentageValue={0.12} streak={32} />
 
       <ThemedText weight="semiBold" size="l">
         Feed ✨
