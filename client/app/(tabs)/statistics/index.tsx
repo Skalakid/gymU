@@ -34,7 +34,7 @@ const BMIGauge = () => {
     <ActivityIndicator />
   ) : (
     <Tile>
-      <Gauge id={'bmi'} minValue={16} maxValue={40} value={18.5} t1={20} />
+      <Gauge minValue={16} maxValue={40} value={18.5} t1={17} t2={25} />
     </Tile>
   );
 };

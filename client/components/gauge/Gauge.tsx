@@ -1,81 +1,55 @@
-import Svg, {
-  Circle,
-  ClipPath,
-  Defs,
-  G,
-  LinearGradient,
-  Rect,
-  Stop,
-} from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 import { Pointer } from './Pointer';
 import { Dimensions } from 'react-native';
+import { GaugeColors } from '@/constants/Colors';
+import { GaugeProps } from '@/types/gauge';
+import { calculateAngle, createSlicePath } from '@/utils/gauge.utils';
 
 const SVGWidth = Dimensions.get('window').width * 0.9;
 const SVGHeight = Dimensions.get('window').height * 0.25;
 
-interface GaugeProps {
-  id: string;
-  minValue: number;
-  maxValue: number;
-  value: number;
-  t1?: number;
-  t2?: number;
-}
+const center = {
+  x: SVGWidth / 2,
+  y: SVGHeight / 2,
+};
+const radius = SVGHeight / 2;
 
-export const Gauge: React.FC<GaugeProps> = ({
-  id,
-  minValue,
-  maxValue,
-  value,
-  t1 = 50,
-  t2 = 50,
-}) => {
-  const centerX = SVGWidth / 2;
-  const centerY = SVGHeight / 2;
-  const radius = SVGHeight / 2;
+const scaleFactors = {
+  circle: 0.95,
+  pointer: 0.7,
+};
 
-  const scaleFactors = {
-    circle: 0.95,
-    pointer: 0.85,
-  };
+export const Gauge = ({ minValue, maxValue, value, t1, t2 }: GaugeProps) => {
+  const pointerAngle = calculateAngle(value, minValue, maxValue);
+  const t1Angle = calculateAngle(t1, minValue, maxValue);
+  const t2Angle = calculateAngle(t2, minValue, maxValue);
 
-  const range = maxValue - minValue;
-  const shiftedValue = value - minValue;
-  const percent = shiftedValue / range;
-  const angle = 180 * (1 - percent);
+  const angles = [
+    { start: 180, end: t1Angle },
+    { start: t1Angle, end: t2Angle },
+    { start: t2Angle, end: 360 },
+  ];
 
   return (
     <Svg height={SVGHeight} width={SVGWidth} style={{ borderWidth: 2 }}>
-      <Defs>
-        <LinearGradient
-          id={`gradient_${id}`}
-          x1="0%"
-          y1="50%"
-          x2="100%"
-          y2="50%"
-        >
-          <Stop offset="0%" stopColor="blue" />
-          <Stop offset={`${t1}%`} stopColor="green" />
-          <Stop offset={`${t2}%`} stopColor="green" />
-          <Stop offset="100%" stopColor="red" />
-        </LinearGradient>
-        <ClipPath id={`clip_${id}`}>
-          <Rect x="0" y="0" width={SVGWidth} height={SVGHeight / 2} />
-        </ClipPath>
-      </Defs>
-      <G clipPath={`url(#clip_${id})`}>
-        <Circle
-          cx={SVGWidth / 2}
-          cy={SVGHeight / 2}
-          r={radius * scaleFactors.circle}
-          fill={`url(#gradient_${id})`}
+      {angles.map((value, index) => (
+        <Path
+          key={index}
+          d={createSlicePath(
+            center,
+            radius,
+            value.start,
+            value.end,
+            scaleFactors.circle,
+          )}
+          fill={GaugeColors[index]}
         />
-      </G>
+      ))}
+
       <Pointer
-        angle={angle}
+        angle={pointerAngle}
         length={radius * scaleFactors.pointer}
-        centerX={centerX}
-        centerY={centerY}
+        center={center}
       />
     </Svg>
   );

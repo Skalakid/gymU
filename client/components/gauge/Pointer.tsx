@@ -1,33 +1,22 @@
+import { PointerProps } from '@/types/gauge';
+import { polarToCartesian } from '@/utils/gauge.utils';
 import { Line } from 'react-native-svg';
 
-interface PointerProps {
-  angle: number;
-  centerX: number;
-  centerY: number;
-  length: number;
-  strokeColor?: string;
-  strokeWidth?: number;
-}
-
-export const Pointer: React.FC<PointerProps> = ({
+export const Pointer = ({
   angle,
-  centerX,
-  centerY,
+  center,
   length,
   strokeColor = '#000',
   strokeWidth = 2,
-}) => {
-  const angleRad = (angle * Math.PI) / 180;
-
-  const x2 = centerX + length * Math.cos(angleRad);
-  const y2 = centerY - length * Math.sin(angleRad);
+}: PointerProps) => {
+  const { x, y } = polarToCartesian(center, length, angle);
 
   return (
     <Line
-      x1={centerX}
-      y1={centerY}
-      x2={x2}
-      y2={y2}
+      x1={center.x}
+      y1={center.y}
+      x2={x}
+      y2={y}
       stroke={strokeColor}
       strokeWidth={strokeWidth}
     />
