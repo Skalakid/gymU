@@ -32,8 +32,10 @@ import plus from '../assets/icons/plus.svg';
 import repeat from '../assets/icons/repeat.svg';
 import save from '../assets/icons/save.svg';
 import safari from '../assets/icons/safari.svg';
+import settings from '../assets/icons/settings.svg';
 import time from '../assets/icons/time.svg';
 import trash from '../assets/icons/trash.svg';
+import user from '../assets/icons/user.svg';
 import weight from '../assets/icons/weight.svg';
 
 export default {
@@ -71,7 +73,9 @@ export default {
   repeat,
   safari,
   save,
+  settings,
   time,
   trash,
+  user,
   weight,
 };
