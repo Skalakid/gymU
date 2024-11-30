@@ -1,17 +1,23 @@
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
-import Icon from './Icon';
+import Image from './Image';
 import Icons from '@/constants/Icons';
+import { ImageSource } from 'expo-image';
 
 type UserProfileType = {
   onPress: () => void;
   size?: number;
+  avatarUrl?: string;
 };
 
-const UserProfile = ({ onPress, size }: UserProfileType) => {
+const UserProfile = ({ onPress, avatarUrl, size = 24 }: UserProfileType) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.avatar}>
-      <Icon icon={Icons.user} size={size} />
+      <Image
+        source={avatarUrl}
+        style={[{ width: size, height: size }]}
+        placeholder={Icons.user as ImageSource}
+      />
     </TouchableOpacity>
   );
 };
