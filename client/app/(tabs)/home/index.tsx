@@ -17,7 +17,7 @@ const HomePage = () => {
 
   return (
     <ThemedView style={styles.container}>
-      <ProfileHeader username={user.username} />
+      <ProfileHeader username={user.username} userId={user.userId} />
 
       <TileWithTitle title="Upcoming training:" titleStyle={styles.title}>
         <UpcomingWorkout />
