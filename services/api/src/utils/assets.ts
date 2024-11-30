@@ -28,20 +28,18 @@ async function getAsset(filePath: string) {
 
   const reader = response.body.getReader();
   const stream = new Readable({
-    read() {
-      reader
-        .read()
-        .then(({ done, value }) => {
-          if (done) {
-            this.push(null);
-          } else {
-            this.push(Buffer.from(value));
-          }
-        })
-        .catch((error) => {
-          this.emit('error', error);
+    async read() {
+      try {
+        const { done, value } = await reader.read();
+        if (done) {
           this.push(null);
-        });
+        } else {
+          this.push(Buffer.from(value));
+        }
+      } catch (error) {
+        this.emit('error', error);
+        this.push(null);
+      }
     },
   });
 

@@ -2,6 +2,7 @@ version: '3.9'
 
 services:
   asset:
+    image: gymu.assets.service:dev
     restart: always
     command: dev
   api:

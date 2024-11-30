@@ -2,6 +2,7 @@ version: '3.9'
 
 services:
   asset:
+    image: gymu.assets.service:prod
     command: prod
   api:
     image: gymu.api.service:prod
