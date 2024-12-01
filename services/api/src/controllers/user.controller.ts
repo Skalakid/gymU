@@ -15,7 +15,7 @@ async function getAllUsers(
     const skip = (page - 1) * pageSize;
     const currentUserId = (req.user as ReturnUser).userId ?? -1;
 
-    const users = await UserService.getAllUsers(page, pageSize, skip, [
+    const users = await UserService.getAllUsers(page, skip, pageSize, [
       currentUserId,
     ]);
 

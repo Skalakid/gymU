@@ -18,8 +18,8 @@ async function getAllUsers(
   userIdsToSkip: number[] = [],
 ): Promise<PaginatedResponse<BaseUser>> {
   const users: BaseUser[] = await UserDB.getAllUsers(
-    pageSize,
     skip,
+    pageSize,
     userIdsToSkip,
   );
 
