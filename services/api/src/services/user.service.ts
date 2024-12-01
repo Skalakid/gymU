@@ -21,6 +21,10 @@ async function getAllUsers() {
   return users;
 }
 
+async function getUserDetails(userId: number) {
+  return await UserDB.getUserById(userId);
+}
+
 async function addUserHeight(userId: number, height: number) {
   return await UserDB.addUserHeight(userId, height);
 }
@@ -36,6 +40,7 @@ async function getGender(userId: number) {
 export {
   checkEmailUniqueness,
   getAllUsers,
+  getUserDetails,
   addUserHeight,
   getUserHeight,
   getGender,

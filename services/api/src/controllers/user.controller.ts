@@ -17,6 +17,28 @@ async function getAllUsers(
   }
 }
 
+async function getUserDetails(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const userId = Number(req.params.id);
+    if (!userId) {
+      throw new ApiError(400, 'Invalid user id');
+    }
+
+    const user = await UserService.getUserDetails(userId);
+    if (!user) {
+      throw new ApiError(404, 'User with given id not found');
+    }
+
+    res.status(200).send(user);
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function getCurrentUser(
   req: AuthRequest,
   res: Response,
@@ -99,5 +121,12 @@ async function getGender(req: AuthRequest, res: Response, next: NextFunction) {
   }
 }
 
-export { getAllUsers, getCurrentUser, addUserHeight, getUserHeight, getGender };
+export {
+  getAllUsers,
+  getUserDetails,
+  getCurrentUser,
+  addUserHeight,
+  getUserHeight,
+  getGender,
+};
 export type { ReturnUser };

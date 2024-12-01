@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.get('/current', authenticateToken, userController.getCurrentUser);
 router.get('/all', authenticateToken, userController.getAllUsers);
+router.get('/:id', authenticateToken, userController.getUserDetails);
 router.get('/height', authenticateToken, userController.getUserHeight);
 router.post('/height', authenticateToken, userController.addUserHeight);
 router.get('/gender', authenticateToken, userController.getGender);
