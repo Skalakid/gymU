@@ -1,29 +1,17 @@
-import { FlatList, StyleSheet, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
 import ThemedText from '@/components/ThemedText';
-import fetchApi from '@/api/fetch';
 import UserItem from '@/components/userProfile/UserItem';
+import usePagination from '@/hooks/usePagination';
 
 const AllUsersPage = () => {
-  const [users, setUsers] = useState<BaseUser[]>([]);
+  const { loadingMore, initialLoader, data, loadMore } =
+    usePagination('/user/all');
 
-  const getAllUsers = async () => {
-    try {
-      const result = await fetchApi('/user/all', 'GET');
-      if (!result.ok) {
-        return;
-      }
-      const paginatedUsers: PaginatedResponse<BaseUser> = await result.json();
-      setUsers(paginatedUsers.data);
-    } catch (error) {
-      //
-    }
+  const renderFooter = () => {
+    if (!loadingMore) return null;
+    return <ActivityIndicator size="small" />;
   };
-
-  useEffect(() => {
-    getAllUsers();
-  }, []);
 
   return (
     <PageWithGoBackHeader title="All Users">
@@ -33,13 +21,20 @@ const AllUsersPage = () => {
         </ThemedText>
       </View>
 
-      <FlatList
-        data={users}
-        renderItem={({ item }) => <UserItem user={item} avatarUrl={''} />}
-        keyExtractor={(item, index) => `${item.username}${index}`}
-        contentContainerStyle={styles.container}
-        ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
-      />
+      {initialLoader ? (
+        <ActivityIndicator size="small" />
+      ) : (
+        <FlatList
+          data={data}
+          renderItem={({ item }) => <UserItem user={item} avatarUrl={''} />}
+          keyExtractor={(item, index) => `${item.username}${index}`}
+          style={styles.container}
+          ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
+          onEndReached={loadMore}
+          onEndReachedThreshold={0.1}
+          ListFooterComponent={renderFooter}
+        />
+      )}
     </PageWithGoBackHeader>
   );
 };

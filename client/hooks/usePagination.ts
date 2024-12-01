@@ -10,7 +10,7 @@ const initialData = {
   totalPages: 1,
 };
 
-const usePagination = (endpoint: string) => {
+const usePagination = (endpoint: string, initialSize = 10) => {
   const [initialLoader, setInitialLoader] = useState(true);
   const [data, setData] = useState<any>(initialData.data);
   const [totalItems, setTotalItems] = useState(initialData.totalResult);
@@ -20,13 +20,16 @@ const usePagination = (endpoint: string) => {
   const [loadingMore, setLoadingMore] = useState(false);
 
   // Fetch data for a given page
-  const fetchData = async (page: number, size = 10) => {
+  const fetchData = async (page: number, pageSize: number | null = null) => {
+    if (!(page === 1 || page > pageNo)) {
+      return;
+    }
+
+    const size = pageSize ?? initialSize;
     try {
       const response = await fetchApi(
         `${endpoint}?page=${page}&size=${size}`,
         'GET',
-        null,
-        { page, size },
       );
       const result: PaginatedResponse<any> = await response.json();
 
@@ -48,14 +51,14 @@ const usePagination = (endpoint: string) => {
   };
 
   useEffect(() => {
-    fetchData(pageNo);
+    fetchData(pageNo, initialSize);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Pull-to-refresh
   const handleRefresh = useCallback(() => {
     setRefreshing(true);
-    fetchData(1); // Refresh from the first page
+    fetchData(1, initialSize); // Refresh from the first page
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
