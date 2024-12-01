@@ -10,7 +10,15 @@ async function getAllUsers(
   next: NextFunction,
 ) {
   try {
-    const users = await UserService.getAllUsers();
+    const page = Number(req.query.page) || 1;
+    const pageSize = Number(req.query.size) || 10;
+    const skip = (page - 1) * pageSize;
+    const currentUserId = (req.user as ReturnUser).userId ?? -1;
+
+    const users = await UserService.getAllUsers(pageSize, skip, [
+      currentUserId,
+    ]);
+
     res.status(201).send(users);
   } catch (error) {
     next(error);

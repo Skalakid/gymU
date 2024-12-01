@@ -20,6 +20,26 @@ async function getUserById(userId: number) {
   });
 }
 
+async function getAllUsers(
+  skip: number,
+  pageSize: number,
+  userIdsToSkip: number[] = [],
+) {
+  return await prisma.appUser.findMany({
+    skip: skip,
+    take: pageSize,
+    where: {
+      userId: {
+        notIn: userIdsToSkip,
+      },
+    },
+    select: {
+      userId: true,
+      username: true,
+    },
+  });
+}
+
 async function addUserHeight(userId: number, height: number) {
   return await prisma.appUser.update({
     where: {
@@ -53,4 +73,11 @@ async function getGender(userId: number) {
   });
 }
 
-export { getUserByEmail, getUserById, addUserHeight, getUserHeight, getGender };
+export {
+  getUserByEmail,
+  getUserById,
+  getAllUsers,
+  addUserHeight,
+  getUserHeight,
+  getGender,
+};

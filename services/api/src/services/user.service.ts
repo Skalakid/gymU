@@ -1,6 +1,5 @@
-import { prisma } from '../config/db.server';
 import * as UserDB from '../persistance/user.db';
-import { ReturnUser } from '../types/user';
+import { BaseUser } from '../types/user';
 
 async function checkEmailUniqueness(email: string) {
   try {
@@ -11,13 +10,16 @@ async function checkEmailUniqueness(email: string) {
   }
 }
 
-async function getAllUsers() {
-  const users: ReturnUser[] = (await prisma.appUser.findMany()).map((user) => ({
-    userId: user.userId,
-    email: user.email,
-    username: user.username,
-  }));
-
+async function getAllUsers(
+  skip: number,
+  pageSize: number,
+  userIdsToSkip: number[] = [],
+) {
+  const users: BaseUser[] = await UserDB.getAllUsers(
+    pageSize,
+    skip,
+    userIdsToSkip,
+  );
   return users;
 }
 
