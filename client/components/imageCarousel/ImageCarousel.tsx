@@ -1,5 +1,5 @@
 import { LayoutChangeEvent, StyleSheet, View, ViewToken } from 'react-native';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useSharedValue } from 'react-native-reanimated';
 import Image from '../common/Image';
 import { FlatList, GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -13,6 +13,10 @@ type ImageCarouselProps = {
 const SEPARATOR_WIDTH = 20;
 
 const ImageCarousel = ({ imageUrls }: ImageCarouselProps) => {
+  const data = useMemo(
+    () => (imageUrls.length > 0 ? imageUrls : ['']),
+    [imageUrls],
+  );
   const theme = useTheme();
   const [width, setWidth] = useState(0);
   const activeIndex = useSharedValue(0);
@@ -45,19 +49,19 @@ const ImageCarousel = ({ imageUrls }: ImageCarouselProps) => {
   };
 
   return (
-    <>
+    <View style={styles.container}>
       <GestureHandlerRootView
         style={styles.gestureHandler}
         onLayout={handleOnLayout}
       >
         <FlatList
-          data={imageUrls}
+          data={data}
           renderItem={({ item }) => renderImage(item)}
           horizontal
           showsHorizontalScrollIndicator={false}
           pagingEnabled
           bounces={false}
-          snapToOffsets={imageUrls.map(
+          snapToOffsets={data.map(
             (_, index) => (width + SEPARATOR_WIDTH) * index,
           )}
           contentContainerStyle={{ gap: SEPARATOR_WIDTH }}
@@ -65,17 +69,19 @@ const ImageCarousel = ({ imageUrls }: ImageCarouselProps) => {
         />
       </GestureHandlerRootView>
       <View style={styles.dotsContainer}>
-        {imageUrls.map((_, index) => (
-          <Dot key={index} index={index} currentIndex={activeIndex} />
-        ))}
+        {data.length > 1 &&
+          data.map((_, index) => (
+            <Dot key={index} index={index} currentIndex={activeIndex} />
+          ))}
       </View>
-    </>
+    </View>
   );
 };
 
 export default ImageCarousel;
 
 const styles = StyleSheet.create({
+  container: { gap: 10 },
   gestureHandler: { width: '100%', height: 210 },
   imageContainer: {
     borderRadius: 15,

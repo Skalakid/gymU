@@ -4,8 +4,8 @@ import ThemedText from '@/components/ThemedText';
 import Icon from '@/components/common/Icon';
 import Icons from '@/constants/Icons';
 import useTheme from '@/hooks/useTheme';
-import NoImage from '@/components/common/NoImage';
 import { useExerciseContext } from '@/contexts/ExerciseContext';
+import ImageCarousel from '@/components/imageCarousel/ImageCarousel';
 
 type CardContentProps = {
   trainingItem: TrainingItem;
@@ -67,7 +67,7 @@ const CardContent = ({
       </View>
 
       <View style={styles.content}>
-        <NoImage iconSize={150} style={styles.imageContainer} />
+        <ImageCarousel imageUrls={trainingItem.imageUrls} />
 
         <View style={styles.exerciseInfo}>
           <ThemedText size="l" weight="semiBold">
@@ -84,7 +84,6 @@ const CardContent = ({
 
       {nextCardName && (
         <View style={styles.footer}>
-          <Icon icon={Icons.image} size={44} />
           <View style={styles.nextExercisePreview}>
             <ThemedText size="m">Coming up next...</ThemedText>
             <ThemedText size="s" color={theme.description}>
@@ -117,7 +116,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    gap: 10,
+    gap: 20,
   },
   imageContainer: {
     flex: 1,
@@ -126,6 +125,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   exerciseInfo: {
+    flex: 1,
     gap: 2,
   },
   footer: {
