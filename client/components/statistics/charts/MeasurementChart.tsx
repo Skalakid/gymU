@@ -5,7 +5,7 @@ import LineChart from './ChartTemplates/LineChart';
 import { extractAverageData, getLabels } from '@/utils/chart.utils';
 import { Mesaurement } from '@/types/measurement';
 import { ActivityIndicator } from 'react-native';
-import Tile from '../common/Tile';
+import Tile from '../../common/Tile';
 import { capitalize } from '@/utils/text.utils';
 import { useTheme } from '@react-navigation/native';
 

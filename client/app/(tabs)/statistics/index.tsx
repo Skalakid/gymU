@@ -6,10 +6,12 @@ import { Image } from 'expo-image';
 import Images from '@/constants/Images';
 import ThemedText from '@/components/ThemedText';
 import useThemeColor from '@/hooks/useThemeColor';
-import WorkoutsHeatmap from '@/components/charts/WorkoutsHeatmap';
+import WorkoutsHeatmap from '@/components/statistics/charts/WorkoutsHeatmap';
 import { useState } from 'react';
 import { ScrollView } from 'react-native';
-import { BMIGauge } from '@/components/gauge/BMIGauge';
+import { BMIGauge } from '@/components/statistics/BMIGauge';
+import { WHRTile } from '@/components/statistics/WHRTile';
+import { WHtRGauge } from '@/components/statistics/WHtRGauge';
 
 const StatisticsPage = () => {
   const router = useRouter();
@@ -38,6 +40,8 @@ const StatisticsPage = () => {
       <WorkoutsHeatmap title="Your workouts" months={heatmapInterval} />
 
       <BMIGauge />
+      <WHRTile />
+      <WHtRGauge />
     </ScrollView>
   );
 };

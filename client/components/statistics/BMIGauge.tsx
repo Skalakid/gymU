@@ -1,7 +1,7 @@
 import fetchApi from '@/api/fetch';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { Gauge } from './Gauge';
+import { Gauge } from './gauge/Gauge';
 
 export const BMIGauge = () => {
   const [bmi, setBmi] = useState<number | null>(null);
@@ -38,7 +38,7 @@ export const BMIGauge = () => {
   return (
     <Gauge
       ratio={'BMI'}
-      description={`BMI is a ratio of your weight to your height. It can quickly tell if you're in good shape, weigh too little, or should lose some weight.`}
+      description={`BMI is a ratio of your weight to your height. It can quickly tell if you're in good shape, weigh too little, or should lose some weight. BMI value should be between 18.5 and 25`}
       minValue={16}
       maxValue={40}
       value={bmi}

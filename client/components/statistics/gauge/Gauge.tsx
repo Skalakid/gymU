@@ -1,6 +1,6 @@
 import { GaugeProps } from '@/types/gauge';
-import Tile from '../common/Tile';
-import ThemedText from '../ThemedText';
+import Tile from '../../common/Tile';
+import ThemedText from '../../ThemedText';
 import { GaugeChart } from './GaugeChart';
 import { roundTwoDecimals } from '@/utils/gauge.utils';
 
