@@ -13,6 +13,7 @@ import { BMIGauge } from '@/components/statistics/BMIGauge';
 import { WHRTile } from '@/components/statistics/WHRTile';
 import { WHtRGauge } from '@/components/statistics/WHtRGauge';
 import { BIGauge } from '@/components/statistics/BrocaGauge';
+import { BMRTile } from '@/components/statistics/BMRTile';
 
 const StatisticsPage = () => {
   const router = useRouter();
@@ -44,6 +45,7 @@ const StatisticsPage = () => {
       <WHRTile />
       <WHtRGauge />
       <BIGauge />
+      <BMRTile />
     </ScrollView>
   );
 };
