@@ -1,7 +1,7 @@
 type PaginatedResponse<T> = {
   data: T[];
-  currentPage: number;
-  pages: number;
+  pageNo: number;
+  totalPages: number;
   totalItems: number;
   pageSize: number;
   currentPageSize: number;
