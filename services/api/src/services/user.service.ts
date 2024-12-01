@@ -1,4 +1,5 @@
 import * as UserDB from '../persistance/user.db';
+import { PaginatedResponse } from '../types/api';
 import { BaseUser, UserDetails } from '../types/user';
 
 async function checkEmailUniqueness(email: string) {
@@ -11,16 +12,28 @@ async function checkEmailUniqueness(email: string) {
 }
 
 async function getAllUsers(
+  page: number,
   skip: number,
   pageSize: number,
   userIdsToSkip: number[] = [],
-) {
+): Promise<PaginatedResponse<BaseUser[]>> {
   const users: BaseUser[] = await UserDB.getAllUsers(
     pageSize,
     skip,
     userIdsToSkip,
   );
-  return users;
+
+  const allWorkoutsCount = await UserDB.countAllUsers(userIdsToSkip);
+
+  const paginatedResponse: PaginatedResponse<BaseUser[]> = {
+    currentPage: page,
+    pages: Math.ceil(allWorkoutsCount / pageSize),
+    totalItems: allWorkoutsCount,
+    pageSize,
+    currentPageSize: users.length,
+    data: users,
+  };
+  return paginatedResponse;
 }
 
 async function getUserDetails(userId: number): Promise<UserDetails | null> {

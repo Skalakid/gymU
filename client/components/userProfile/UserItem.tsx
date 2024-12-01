@@ -6,7 +6,7 @@ import ThemedText from '../ThemedText';
 import { useRouter } from 'expo-router';
 
 type UserItemProps = {
-  user: User;
+  user: BaseUser;
   avatarUrl: string;
 };
 

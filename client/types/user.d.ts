@@ -11,3 +11,8 @@ type UserDetails = {
   username: string;
   description: string | null;
 };
+
+type BaseUser = {
+  userId: number;
+  username: string;
+};

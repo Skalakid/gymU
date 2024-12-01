@@ -6,7 +6,7 @@ import fetchApi from '@/api/fetch';
 import UserItem from '@/components/userProfile/UserItem';
 
 const AllUsersPage = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<BaseUser[]>([]);
 
   const getAllUsers = async () => {
     try {
@@ -14,8 +14,8 @@ const AllUsersPage = () => {
       if (!result.ok) {
         return;
       }
-      const data = await result.json();
-      setUsers(data);
+      const paginatedUsers: PaginatedResponse<BaseUser> = await result.json();
+      setUsers(paginatedUsers.data);
     } catch (error) {
       //
     }
@@ -36,7 +36,7 @@ const AllUsersPage = () => {
       <FlatList
         data={users}
         renderItem={({ item }) => <UserItem user={item} avatarUrl={''} />}
-        keyExtractor={(item, index) => `${item.email}${index}`}
+        keyExtractor={(item, index) => `${item.username}${index}`}
         contentContainerStyle={styles.container}
         ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
       />

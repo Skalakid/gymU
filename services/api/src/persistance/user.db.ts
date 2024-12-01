@@ -1,5 +1,15 @@
 import { prisma } from '../config/db.server';
 
+async function countAllUsers(userIdsToSkip: number[] = []) {
+  return await prisma.appUser.count({
+    where: {
+      userId: {
+        notIn: userIdsToSkip,
+      },
+    },
+  });
+}
+
 async function getUserByEmail(email: string) {
   return await prisma.appUser.findUnique({
     where: {
@@ -75,6 +85,7 @@ async function getGender(userId: number) {
 }
 
 export {
+  countAllUsers,
   getUserByEmail,
   getUserById,
   getAllUsers,
