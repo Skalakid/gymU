@@ -8,6 +8,7 @@ import useTheme from '@/hooks/useTheme';
 import Icon from '../common/Icon';
 import { capitalize } from '@/utils/text.utils';
 import fetchApi from '@/api/fetch';
+import ImageCarousel from '../imageCarousel/ImageCarousel';
 
 type ExerciseDetailsInfoProps = {
   exerciseID: number;
@@ -72,6 +73,11 @@ const ExerciseDetailsInfo = ({
           ))}
         </View>
 
+        <ImageCarousel imageUrls={exercise.imageUrls ?? []} />
+
+        <ThemedText size="m" weight="semiBold">
+          Description
+        </ThemedText>
         <ThemedText size="s">{exercise.description}</ThemedText>
       </View>
     </Tile>
