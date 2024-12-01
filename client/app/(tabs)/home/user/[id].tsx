@@ -16,7 +16,7 @@ const UserProfilePage = () => {
   const { user } = useAuthContext();
   const { id } = useLocalSearchParams();
   const isCurrentUser = user?.userId === Number(id);
-  const [userDetails, setUserDetails] = useState<User | null>(
+  const [userDetails, setUserDetails] = useState<UserDetails | null>(
     isCurrentUser ? user : null,
   );
 
@@ -26,7 +26,7 @@ const UserProfilePage = () => {
       if (!result.ok) {
         throw new Error(result.status + '');
       }
-      const data: User = await result.json();
+      const data: UserDetails = await result.json();
       setUserDetails(data);
     } catch (error) {
       console.error(error);
@@ -67,6 +67,11 @@ const UserProfilePage = () => {
           {userDetails?.email && (
             <LabeledText label="Email" text={userDetails?.email ?? '-'} />
           )}
+
+          <LabeledText
+            label="Description"
+            text={userDetails?.description ?? '-'}
+          />
         </View>
       </Tile>
     </PageWithGoBackHeader>

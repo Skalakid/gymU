@@ -16,6 +16,7 @@ async function getUserById(userId: number) {
     select: {
       userId: true,
       username: true,
+      description: true,
     },
   });
 }

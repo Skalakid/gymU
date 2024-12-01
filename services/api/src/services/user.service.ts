@@ -1,5 +1,5 @@
 import * as UserDB from '../persistance/user.db';
-import { BaseUser } from '../types/user';
+import { BaseUser, UserDetails } from '../types/user';
 
 async function checkEmailUniqueness(email: string) {
   try {
@@ -23,7 +23,7 @@ async function getAllUsers(
   return users;
 }
 
-async function getUserDetails(userId: number) {
+async function getUserDetails(userId: number): Promise<UserDetails | null> {
   return await UserDB.getUserById(userId);
 }
 
