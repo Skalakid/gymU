@@ -6,6 +6,7 @@ import workoutRoutes from './routes/workout.routes';
 import exerciseRoutes from './routes/exercise.routes';
 import measurementsRoutes from './routes/measurements.routes';
 import calendarRoutes from './routes/calendar.routes';
+import ratiosRoutes from './routes/ratios.routes';
 import errorHandler from './middlewares/error.middleware';
 import initSwagger from './config/swagger';
 import { Options, createProxyMiddleware } from 'http-proxy-middleware';
@@ -54,6 +55,7 @@ app.use('/workout', workoutRoutes);
 app.use('/exercise', exerciseRoutes);
 app.use('/measurements', measurementsRoutes);
 app.use('/calendar', calendarRoutes);
+app.use('/ratios', ratiosRoutes);
 app.use(errorHandler);
 
 app.listen(port, () => {
