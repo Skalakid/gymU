@@ -1,31 +1,41 @@
 import fetchApi from '@/api/fetch';
 import { useEffect, useState } from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import { Gauge } from './Gauge';
 
 export const BMIGauge = () => {
-  const [bmi, setBmi] = useState(null);
+  const [bmi, setBmi] = useState<number | null>(null);
 
   useEffect(() => {
     const getBMI = async () => {
       try {
         const rawData = await fetchApi('/ratios/bmi', 'GET');
-        const data = await rawData.json();
 
-        if (data.BMI) {
+        if (rawData.ok) {
+          const data = await rawData.json();
           setBmi(data.BMI);
+        } else {
+          setBmi(-1);
         }
-      } catch {}
+      } catch {
+        setBmi(-1);
+      }
     };
 
     if (bmi === null) {
       getBMI();
     }
-  }, []);
+  }, [bmi]);
 
-  return bmi === null ? (
-    <ActivityIndicator />
-  ) : (
+  if (bmi === null) {
+    return <ActivityIndicator />;
+  }
+
+  if (bmi === -1) {
+    return <View />;
+  }
+
+  return (
     <Gauge
       ratio={'BMI'}
       description={`BMI is a ratio of your weight to your height. It can quickly tell if you're in good shape, weigh too little, or should lose some weight.`}
