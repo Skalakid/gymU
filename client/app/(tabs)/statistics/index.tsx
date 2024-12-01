@@ -8,6 +8,8 @@ import ThemedText from '@/components/ThemedText';
 import useThemeColor from '@/hooks/useThemeColor';
 import WorkoutsHeatmap from '@/components/charts/WorkoutsHeatmap';
 import { useState } from 'react';
+import { ScrollView } from 'react-native';
+import { BMIGauge } from '@/components/gauge/BMIGauge';
 
 const StatisticsPage = () => {
   const router = useRouter();
@@ -15,7 +17,7 @@ const StatisticsPage = () => {
   const [heatmapInterval] = useState(3);
 
   return (
-    <ThemedView style={styles.container}>
+    <ScrollView style={styles.container}>
       <Header title={'Statistics'} />
 
       <Pressable
@@ -34,7 +36,9 @@ const StatisticsPage = () => {
       </Pressable>
 
       <WorkoutsHeatmap title="Your workouts" months={heatmapInterval} />
-    </ThemedView>
+
+      <BMIGauge />
+    </ScrollView>
   );
 };
 
