@@ -19,28 +19,31 @@ const usePagination = (endpoint: string, initialSize = 10) => {
   const [refreshing, setRefreshing] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
 
+  const [userParams, setUserParams] = useState('');
+
   // Fetch data for a given page
-  const fetchData = async (page: number, pageSize: number | null = null) => {
+  const fetchData = async (
+    page: number,
+    pageSize: number | null = null,
+    params = '',
+  ) => {
     if (!(page === 1 || page > pageNo)) {
       return;
     }
 
     const size = pageSize ?? initialSize;
     try {
+      const additionalParams = params || userParams;
       const response = await fetchApi(
-        `${endpoint}?page=${page}&size=${size}`,
+        `${endpoint}?page=${page}&size=${size}${additionalParams && '&' + additionalParams}`,
         'GET',
       );
       const result: PaginatedResponse<any> = await response.json();
 
-      if (result.currentPageSize > 0) {
-        setData(page === 1 ? result.data : [...data, ...result.data]);
-        setTotalItems(result.totalItems);
-        setPageNo(result.pageNo);
-        setTotalPages(result.totalPages);
-      } else {
-        console.error('Failed to fetch data');
-      }
+      setData(page === 1 ? result.data : [...data, ...result.data]);
+      setTotalItems(result.totalItems);
+      setPageNo(result.pageNo);
+      setTotalPages(result.totalPages);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -56,9 +59,10 @@ const usePagination = (endpoint: string, initialSize = 10) => {
   }, []);
 
   // Pull-to-refresh
-  const handleRefresh = useCallback(() => {
+  const handleRefresh = useCallback((params = '') => {
+    setUserParams(params);
     setRefreshing(true);
-    fetchData(1, initialSize); // Refresh from the first page
+    fetchData(1, initialSize, params); // Refresh from the first page
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
