@@ -1,5 +1,4 @@
 import ThemedText from '@/components/ThemedText';
-import PrimaryButton from '@/components/button/PrimaryButton';
 import ModalBar from '@/components/common/ModalBar';
 import ExerciseDetailsForm from '@/components/exercises/ExerciseDetailsForm';
 import ExerciseDetailsInfo from '@/components/exercises/ExerciseDetailsInfo';
@@ -61,7 +60,10 @@ const DetailsPage = () => {
         <View style={styles.container}>
           <ModalBar />
 
-          <ScrollView style={styles.scrollView}>
+          <ScrollView
+            style={styles.scrollView}
+            showsVerticalScrollIndicator={false}
+          >
             <ThemedText
               size="xl"
               weight="semiBold"
@@ -83,10 +85,9 @@ const DetailsPage = () => {
               defaultWeight={currentExercise.current!.value.weight || 30}
               defaultTime={currentExercise.current!.value.time || 60}
               defaultBreakTime={currentExercise.current!.value.breakTime || 60}
+              onSubmit={handleAdd}
             />
           </ScrollView>
-
-          <PrimaryButton value="Add" onPress={handleAdd} />
         </View>
       </SafeAreaView>
     </KeyboardAvoidingView>
