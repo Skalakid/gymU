@@ -17,7 +17,7 @@ const NotificationsBell = ({
   onPress,
 }: NotificationsBellProps) => {
   return (
-    <TouchableOpacity style={styles.bell} onPress={onPress}>
+    <TouchableOpacity onPress={onPress}>
       <Icon icon={Icons.bell} size={size} color={color} />
       {showNotificationDot && (
         <View style={[styles.dot, { width: size / 3.25 }]} />
@@ -29,7 +29,6 @@ const NotificationsBell = ({
 export default NotificationsBell;
 
 const styles = StyleSheet.create({
-  bell: {},
   dot: {
     aspectRatio: 1,
     backgroundColor: 'red',
