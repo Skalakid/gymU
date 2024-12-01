@@ -12,6 +12,7 @@ import { ScrollView } from 'react-native';
 import { BMIGauge } from '@/components/statistics/BMIGauge';
 import { WHRTile } from '@/components/statistics/WHRTile';
 import { WHtRGauge } from '@/components/statistics/WHtRGauge';
+import { BIGauge } from '@/components/statistics/BrocaGauge';
 
 const StatisticsPage = () => {
   const router = useRouter();
@@ -42,6 +43,7 @@ const StatisticsPage = () => {
       <BMIGauge />
       <WHRTile />
       <WHtRGauge />
+      <BIGauge />
     </ScrollView>
   );
 };
