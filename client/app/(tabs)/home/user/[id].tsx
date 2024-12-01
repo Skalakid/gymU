@@ -3,12 +3,12 @@ import React, { useMemo } from 'react';
 import ThemedText from '@/components/ThemedText';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import UserProfile from '@/components/common/userProfile/UserProfile';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
 import LabeledText from '@/components/common/LabeledText';
 import Tile from '@/components/common/Tile';
 import Icons from '@/constants/Icons';
-import EditableUserProfile from '@/components/common/userProfile/EditableUserProfile';
+import UserProfile from '@/components/userProfile/UserProfile';
+import EditableUserProfile from '@/components/userProfile/EditableUserProfile';
 
 const UserProfilePage = () => {
   const router = useRouter();
