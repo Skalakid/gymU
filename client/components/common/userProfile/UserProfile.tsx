@@ -1,10 +1,10 @@
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
-import Image from './Image';
+import Image from '../Image';
 import Icons from '@/constants/Icons';
 import { ImageSource } from 'expo-image';
 
-type UserProfileType = {
+export type UserProfileType = {
   onPress: () => void;
   size?: number;
   avatarUrl?: string;

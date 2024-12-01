@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import React from 'react';
 import ThemedText from '../ThemedText';
 import NotificationsBell from '../common/NotificationsBell';
-import UserProfile from '../common/UserProfile';
+import UserProfile from '../common/userProfile/UserProfile';
 import { useRouter } from 'expo-router';
 
 type ProfileHeaderProps = {

@@ -3,11 +3,12 @@ import React, { useMemo } from 'react';
 import ThemedText from '@/components/ThemedText';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import UserProfile from '@/components/common/UserProfile';
+import UserProfile from '@/components/common/userProfile/UserProfile';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
 import LabeledText from '@/components/common/LabeledText';
 import Tile from '@/components/common/Tile';
 import Icons from '@/constants/Icons';
+import EditableUserProfile from '@/components/common/userProfile/EditableUserProfile';
 
 const UserProfilePage = () => {
   const router = useRouter();
@@ -27,7 +28,11 @@ const UserProfilePage = () => {
       rightIconSize={26}
       rightIconOnPress={handleRightIconPress}
     >
-      <UserProfile onPress={() => {}} size={112} />
+      {isCurrentUser ? (
+        <EditableUserProfile onPress={() => {}} size={112} />
+      ) : (
+        <UserProfile onPress={() => {}} size={112} />
+      )}
 
       <Tile style={styles.tile}>
         <ThemedText size="l" weight="semiBold" style={styles.userInfoTitle}>
