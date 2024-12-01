@@ -9,11 +9,30 @@ import calendarRoutes from './routes/calendar.routes';
 import ratiosRoutes from './routes/ratios.routes';
 import errorHandler from './middlewares/error.middleware';
 import initSwagger from './config/swagger';
+import { Options, createProxyMiddleware } from 'http-proxy-middleware';
+import { IncomingMessage, ServerResponse } from 'http';
+import { authenticateToken } from './middlewares/auth.middleware';
 
 dotenv.config();
 
 const app: Express = express();
 const port = Number(process.env.SERVER_PORT || 3000);
+const assetProxyOptions: Options<
+  IncomingMessage,
+  ServerResponse<IncomingMessage>
+> = {
+  target: 'http://asset.service:4000',
+  changeOrigin: true,
+  followRedirects: true,
+  pathRewrite: (path: string) => {
+    return '/assets' + path;
+  },
+  on: {
+    proxyReq: (proxyReq) => {
+      proxyReq.setHeader('apiKey', process.env.ASSET_SERVICE_PASSWORD ?? '');
+    },
+  },
+};
 
 app.use(express.json());
 
@@ -27,6 +46,8 @@ app.use((req, res, next) => {
 app.get('/', (req: Request, res: Response) => {
   res.send('Basic Node server with TypeScript');
 });
+
+app.use('/assets', authenticateToken, createProxyMiddleware(assetProxyOptions));
 
 app.use(authRoutes);
 app.use('/user', userRoutes);
