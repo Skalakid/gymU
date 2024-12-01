@@ -45,7 +45,7 @@ const Image = ({
     return { uri: source };
   }, [source]);
 
-  if (!source || isError) {
+  if (!placeholder && (!source || isError)) {
     return <NoImage style={style} iconSize={100} />;
   }
 
