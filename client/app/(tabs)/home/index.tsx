@@ -32,7 +32,11 @@ const HomePage = () => {
         Feed ✨
       </ThemedText>
 
-      <TileWithTitle style={{ flex: 1 }} title="Recent notifications">
+      <TileWithTitle
+        style={{ flex: 1 }}
+        contentStyle={{ flex: 1 }}
+        title="Recent notifications"
+      >
         <RecentNotifications />
       </TileWithTitle>
     </ThemedView>
