@@ -1,16 +1,35 @@
 from dotenv import load_dotenv
 from src.models.basket import basket
-from src.services.database import PrismaClient
-from src.utils import save_model, load_model
+from concurrent import futures
+from src.proto import analyze_pb2_grpc
 
+import os
 import asyncio
+import grpc
+from src.rpc.analyze import BasketAnalyzeServiceImpl
 
 
 ### MAIN ###
 async def main() -> None:
-    ## This function main is currently used for testing purposes
-    ## In the future we will use it for different purposes
-    await basket.train_job()
+
+    ### GET ENV VARIABLES ###
+    port = os.getenv("GRPC_PORT")
+
+    print("Server started, listening on " + port)
+
+    ### PREPARE MODELS' DATA ###
+    exercise_baskets, exercise_products = await basket.get_prepared_data()
+    print(type(exercise_baskets), type(exercise_products))
+    ### SETUP GRPC SERVER ###
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    analyze_pb2_grpc.add_BasketAnalyzeServiceServicer_to_server(
+        BasketAnalyzeServiceImpl(exercise_baskets, exercise_products), server
+    )
+
+    server.add_insecure_port(f"0.0.0.0:{port}")
+    server.start()
+
+    server.wait_for_termination()
 
 
 ### SETUP ENV ###

@@ -12,7 +12,7 @@ class BasketMarketAnalysis:
         self,
         baskets: List[Tuple[int]],
         products: List[int],
-        epsilon: float,
+        epsilon: float = 0.0000001,
         name: str = "BasketMarketAnalysis",
     ):
         self.baskets = baskets
@@ -145,7 +145,6 @@ class BasketMarketAnalysis:
 
     def save(self):
         utils.save_model(self.supports, self.name)
-        pass
 
     def is_cached(self):
         return utils.does_cache_exists(self.name)
@@ -156,7 +155,7 @@ class BasketMarketAnalysis:
         self.is_already_trained = True
 
 
-async def train_job():
+async def get_prepared_data():
     client = PrismaClient()
     await client.connect()
     workouts = await client.db.workout_template.find_many(
@@ -174,11 +173,22 @@ async def train_job():
 
         baskets.append(tuple(exercise_ids))
 
+    await client.disconnect()
+    products = list(products)
+
+    return baskets, products
+
+
+async def train_job():
+    baskets, products = get_prepared_data()
+
     basket_analysis = BasketMarketAnalysis(baskets, list(products), 0.0000001)
 
     if not basket_analysis.is_already_trained:
         basket_analysis.train()
 
+    example_basket = list(baskets[0])[:4]
+
     print("basket training done")
-    print(basket_analysis.recommend(list(baskets[0])[:4]))
-    await client.disconnect()
+    print("Example results for basket:", example_basket)
+    print("Results:", basket_analysis.recommend(example_basket))
