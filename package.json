@@ -3,6 +3,7 @@
     "workspaces": [
         "services/analyze",
         "services/api",
+        "services/asset",
         "client",
         "common"
     ],

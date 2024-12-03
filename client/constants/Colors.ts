@@ -6,9 +6,14 @@
 const primaryOrange = '#F06312';
 const secondaryBlue = '#4562C9';
 const error = '#FF0000';
+const lightGreen = '#b8e082';
+const lightYellow = '#feda5d';
+const lightRed = '#ff9176';
 
 export const ChartPrimaryColor = (opacity = 1) =>
   `rgba(240, 99, 18, ${opacity})`;
+
+export const GaugeColors = ['#4562C9', '#b8e082', '#ff9176'];
 
 export const Colors = {
   light: {
@@ -21,6 +26,9 @@ export const Colors = {
     description: '#BCBCBC',
     icon: '#11181C',
     error,
+    lightGreen,
+    lightYellow,
+    lightRed,
   },
   dark: {
     primary: primaryOrange,
@@ -32,6 +40,9 @@ export const Colors = {
     description: '#BCBCBC',
     icon: '#A8A8A8',
     error,
+    lightGreen,
+    lightYellow,
+    lightRed,
   },
   white: '#FFFFFF',
 };

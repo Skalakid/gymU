@@ -1,5 +1,5 @@
 import fetchApi from '@/api/fetch';
-import MeasurementChart from '@/components/charts/MeasurementChart';
+import MeasurementChart from '@/components/statistics/charts/MeasurementChart';
 import Header from '@/components/navigation/Header';
 import ThemedView from '@/components/ThemedView';
 import Icons from '@/constants/Icons';

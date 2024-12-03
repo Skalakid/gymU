@@ -15,6 +15,8 @@ secrets:
     file: ./secrets/postgres_password.txt
   postgres_user:
     file: ./secrets/postgres_user.txt
+  asset_service_password:
+    file: ./secrets/asset_service_password.txt
 
 services:
     postgres:
@@ -43,6 +45,21 @@ services:
       networks:
         - gymu.network
 
+    asset:
+      image: gymu.asset.service:latest
+      build: 
+        context: ./asset
+        dockerfile: Dockerfile
+      container_name: asset.service
+      volumes:
+        - ./asset/src:/app/src
+      ports:
+        - 4000:4000
+      secrets:
+        - asset_service_password
+      networks:
+        - gymu.network
+
     api:
       image: gymu.api.service:latest
       build: 
@@ -50,6 +67,7 @@ services:
         dockerfile: Dockerfile
       depends_on:
         - postgres
+        - asset
       container_name: api.service
       volumes:
         - ./api/src:/app/src
@@ -62,6 +80,7 @@ services:
         - postgres_db
         - postgres_password
         - postgres_user
+        - asset_service_password
       networks:
         - gymu.network
 

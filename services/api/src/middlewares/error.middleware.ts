@@ -29,7 +29,7 @@ const errorHandler: ErrorRequestHandler = (
 
   res.status(500).json({
     status: 500,
-    message: 'Internal Server Error dupsko',
+    message: 'Internal Server Error',
   });
 };
 
