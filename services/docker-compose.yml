@@ -57,6 +57,8 @@ services:
         - 3000:3000
         - 5555:5555
       environment:
+        - GRPC_HOST=analyze.service
+        - GRPC_PORT=50051
         - DATABASE_ADDRESS=postgres.service
       secrets:
         - postgres_db
@@ -80,6 +82,7 @@ services:
       ports:
         - 3001:3001
       environment:
+        - GRPC_PORT=50051
         - DATABASE_ADDRESS=postgres.service
       secrets:
         - postgres_db
