@@ -20,8 +20,3 @@ class PrismaClient(metaclass=SingletonMeta):
         await self.db.disconnect()
         self.is_connected = False
 
-
-x = PrismaClient()
-y = PrismaClient()
-
-assert id(x) == id(y)
