@@ -3,7 +3,7 @@ import Heatmap from './ChartTemplates/Heatmap';
 import { useEffect, useState } from 'react';
 import { getDateSince } from '@/utils/date.utils';
 import fetchApi from '@/api/fetch';
-import Tile from '../common/Tile';
+import Tile from '../../common/Tile';
 import { EventCalendarData } from '@/types/calendar';
 
 type WorkoutsHeatmapProps = {

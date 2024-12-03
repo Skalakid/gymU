@@ -4,6 +4,7 @@
         "services/proto",
         "services/analyze",
         "services/api",
+        "services/asset",
         "client",
         "common"
     ],
