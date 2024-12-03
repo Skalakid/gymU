@@ -12,6 +12,7 @@ import initSwagger from './config/swagger';
 import { Options, createProxyMiddleware } from 'http-proxy-middleware';
 import { IncomingMessage, ServerResponse } from 'http';
 import { authenticateToken } from './middlewares/auth.middleware';
+import analyzeService from './services/analyze.service';
 
 dotenv.config();
 
@@ -62,3 +63,5 @@ app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
   initSwagger(app, port);
 });
+
+analyzeService.recommendExercises(1, [1, 2, 5]);
