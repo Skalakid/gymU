@@ -39,7 +39,7 @@ async function getStreak(userId: number) {
   const userCreationDate = await UserDB.getCreationDate(userId);
 
   if (!userCreationDate) {
-    return -1;
+    return 0;
   }
 
   const userAddedWorkouts = await CalendarDB.getAllEventsInRange(
@@ -65,11 +65,7 @@ async function getStreak(userId: number) {
   let streak = 0;
 
   for (const date of addedWorkoutsDates) {
-    if (completedWorkoutDates.includes(date)) {
-      ++streak;
-    } else {
-      break;
-    }
+    streak = completedWorkoutDates.includes(date) ? streak + 1 : 0;
   }
 
   return streak;
