@@ -33,18 +33,18 @@ _Schema: [Lucid](https://lucid.app/lucidchart/72865ec2-e302-43c9-828b-27426595a0
 
 Tables:
 
-- `app_user` - Stores all app users
-- `workout_template` - Stores workout templates that users can create
+- `appUser` - Stores all app users
+- `workoutTemplate` - Stores workout templates that users can create
 - `tag` - Stores tags that can be added to workout templates
-- `workout_tags` - Many-to-many table to store which tags are associated with a workout template
-- `exercise_template_item` - Stores exercises that are part of a workout template. Contains basic information about the exercise like sets, reps, etc.
+- `workoutTags` - Many-to-many table to store which tags are associated with a workout template
+- `exerciseTemplateItem` - Stores exercises that are part of a workout template. Contains basic information about the exercise like sets, reps, etc.
 - `exercise` - Stores all exercises that users can add to their workouts
-- `exercise_type` - Stores exercise types to specify what kind of attributes an exercise has
-- `body_part` - Stores body parts to specify what body parts an exercise targets
-- `exercise_body_part` - Many-to-many table to store which body parts an exercise targets
-- `user_workout` - Stores workouts that where downloaded by user from workout templates
-- `user_workout_log` - Stores logs of user workouts. Log is generated after finishing a workout and contains all information about the training session
-- `user_exercise_history_item` - Stores history of user exercises. Each item is a single exercise that was done by user and contains all information about the exercise and progress that was made
+- `exerciseType` - Stores exercise types to specify what kind of attributes an exercise has
+- `bodyPart` - Stores body parts to specify what body parts an exercise targets
+- `exerciseBodyPart` - Many-to-many table to store which body parts an exercise targets
+- `userWorkout` - Stores workouts that where downloaded by user from workout templates
+- `userWorkoutLog` - Stores logs of user workouts. Log is generated after finishing a workout and contains all information about the training session
+- `userExerciseHistoryItem` - Stores history of user exercises. Each item is a single exercise that was done by user and contains all information about the exercise and progress that was made
 
 
 ## Prisma ORM
