@@ -99,5 +99,28 @@ async function getGender(req: AuthRequest, res: Response, next: NextFunction) {
   }
 }
 
-export { getAllUsers, getCurrentUser, addUserHeight, getUserHeight, getGender };
+async function getStreak(req: AuthRequest, res: Response, next: NextFunction) {
+  try {
+    const userId = Number((req.user as ReturnUser).userId) || 1;
+
+    const streak = await UserService.getStreak(userId);
+
+    if (!streak) {
+      throw new ApiError(500, 'Failed to calculate streak');
+    }
+
+    res.status(200).send({ streak });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export {
+  getAllUsers,
+  getCurrentUser,
+  addUserHeight,
+  getUserHeight,
+  getGender,
+  getStreak,
+};
 export type { ReturnUser };

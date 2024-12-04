@@ -1,3 +1,4 @@
+import fetchApi from '@/api/fetch';
 import ThemedText from '@/components/ThemedText';
 import ThemedView from '@/components/ThemedView';
 import TileWithTitle from '@/components/common/TileWithTitle';
@@ -6,10 +7,25 @@ import RecentNotifications from '@/components/home/RecentNotifications';
 import StatsPreview from '@/components/home/StatsPreview';
 import UpcomingWorkout from '@/components/home/UpcomingWorkout';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
 const HomePage = () => {
   const { user } = useAuthContext();
+  const [streak, setStreak] = useState(0);
+
+  useEffect(() => {
+    const getStreak = async () => {
+      const rawData = await fetchApi('/user/streak', 'GET');
+      const data = await rawData.json();
+
+      setStreak(data.streak);
+    };
+
+    if (!streak) {
+      getStreak();
+    }
+  }, []);
 
   if (!user) {
     return null;
@@ -26,7 +42,7 @@ const HomePage = () => {
       <ThemedText weight="semiBold" size="l">
         Recent progress 💪
       </ThemedText>
-      <StatsPreview percentageValue={0.12} streak={32} />
+      <StatsPreview percentageValue={0.12} streak={streak} />
 
       <ThemedText weight="semiBold" size="l">
         Feed ✨
