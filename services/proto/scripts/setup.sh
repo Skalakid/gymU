@@ -3,6 +3,8 @@
 ### CREATE TEMPORARY DIRECTORY ###
 mkdir generated
 
+head -n 1 ./scripts/build.node.sh
+which bash
 ### BUILD MODULES ####
 if command -v sudo 2>&1 >/dev/null
 then
