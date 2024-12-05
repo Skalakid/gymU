@@ -87,8 +87,10 @@ pipeline {
                 
                 dir ('services/proto') {
                     sh 'mkdir generated'
+                    // we don't have currently any python ci
+                    // so we can leave it as it currently is
+                    sh 'mkdir generated/python'
                     sh 'yarn build:node'
-                    sh 'yarn build:python'
                 }
 
                 sh 'yarn proto'
