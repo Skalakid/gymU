@@ -3,24 +3,25 @@
 ### CREATE TEMPORARY DIRECTORY ###
 mkdir generated
 
-head -n 1 ./scripts/build.node.sh
-which bash
 ### BUILD MODULES ####
-./scripts/build.node.sh
-./scripts/build.python.sh
+if command -v sudo 2>&1 >/dev/null
+then
+    ./scripts/build.node.sh
+    ./scripts/build.python.sh
+fi
 
 ### COMMON DIRS ###
 PROTO_DIR_ANALIZE=../analyze/src/proto
 PROTO_DIR_API=../api/src/proto
 
 ### CLEANUP OLD DIRECTORIES ###
-if ! command -v sudo 2>&1 >/dev/null
+if command -v sudo 2>&1 >/dev/null
 then
-    rm -rf $PROTO_DIR_API
-    rm -rf $PROTO_DIR_ANALIZE
-else
     sudo rm -rf $PROTO_DIR_API
     sudo rm -rf $PROTO_DIR_ANALIZE
+else
+    rm -rf $PROTO_DIR_API
+    rm -rf $PROTO_DIR_ANALIZE
 fi
 
 ### CREATE DIRECTORIES ###

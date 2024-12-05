@@ -84,6 +84,13 @@ pipeline {
         stage("Initialization") {
             steps {
                 sh 'yarn install'
+                
+                dir ('services/proto') {
+                    sh 'mkdir generated'
+                    sh 'yarn build:node'
+                    sh 'yarn build:python'
+                }
+
                 sh 'yarn proto'
                 echo "Environment initialized"
             }
