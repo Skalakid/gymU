@@ -1,6 +1,5 @@
 import * as grpc from '@grpc/grpc-js';
 import { UserRequest } from '../proto/UserRequest';
-import { IdsPackageMessage } from '../proto/IdsPackageMessage';
 import gymuPackage from '../proto.package';
 
 const client = new gymuPackage.BasketAnalyzeService(
