@@ -19,7 +19,7 @@ async def main() -> None:
 
     ### PREPARE MODELS' DATA ###
     exercise_baskets, exercise_products = await basket.get_prepared_data()
-    print(type(exercise_baskets), type(exercise_products))
+
     ### SETUP GRPC SERVER ###
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     analyze_pb2_grpc.add_BasketAnalyzeServiceServicer_to_server(
