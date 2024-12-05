@@ -32,4 +32,20 @@ async function createWorkoutLog(
   return log;
 }
 
-export { createWorkoutLog };
+async function getUserWorkoutLogs(userId: number) {
+  return await prisma.userWorkoutLog.findMany({
+    where: {
+      userWorkout: {
+        userId: userId,
+      },
+    },
+    orderBy: {
+      logDate: 'desc',
+    },
+    include: {
+      userWorkout: true,
+    },
+  });
+}
+
+export { createWorkoutLog, getUserWorkoutLogs };
