@@ -2,12 +2,10 @@
 
 ### CREATE TEMPORARY DIRECTORY ###
 mkdir generated
-echo $0
-pwd
-ls -lsa $(pwd)/scripts/
+
 ### BUILD MODULES ####
-bash ./scripts/build.node.sh
-bash ./scripts/build.python.sh
+./scripts/build.node.sh
+./scripts/build.python.sh
 
 ### COMMON DIRS ###
 PROTO_DIR_ANALIZE=../analyze/src/proto
