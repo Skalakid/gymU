@@ -84,8 +84,8 @@ pipeline {
         stage("Initialization") {
             steps {
                 sh 'yarn install'
-                echo "Environment initialized"
                 sh 'yarn proto'
+                echo "Environment initialized"
             }
         }
 

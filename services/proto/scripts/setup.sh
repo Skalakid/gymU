@@ -12,8 +12,14 @@ PROTO_DIR_ANALIZE=../analyze/src/proto
 PROTO_DIR_API=../api/src/proto
 
 ### CLEANUP OLD DIRECTORIES ###
-sudo rm -rf $PROTO_DIR_API
-sudo rm -rf $PROTO_DIR_ANALIZE
+if ! command -v sudo 2>&1 >/dev/null
+then
+    rm -rf $PROTO_DIR_API
+    rm -rf $PROTO_DIR_ANALIZE
+else
+    sudo rm -rf $PROTO_DIR_API
+    sudo rm -rf $PROTO_DIR_ANALIZE
+fi
 
 ### CREATE DIRECTORIES ###
 mkdir $PROTO_DIR_ANALIZE
