@@ -85,6 +85,7 @@ pipeline {
             steps {
                 sh 'yarn install'
                 echo "Environment initialized"
+                sh 'yarn proto'
             }
         }
 
@@ -111,6 +112,14 @@ pipeline {
 
                 stage ("Services / API") {
                     stages {
+                        stage("Prepare") {
+                            steps {
+                                dir('services/api') {
+                                    sh "yarn prisma:generate"
+                                }
+                            }
+                        }
+
                         stage("Lint") {
                             steps {
                                 dir('services/api') {
