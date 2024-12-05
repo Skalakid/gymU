@@ -2,7 +2,8 @@
 
 ### CREATE TEMPORARY DIRECTORY ###
 mkdir generated
-
+echo $0
+pwd
 ### BUILD MODULES ####
 ./scripts/build.node.sh
 ./scripts/build.python.sh
