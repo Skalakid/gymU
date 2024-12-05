@@ -4,6 +4,7 @@
 mkdir generated
 echo $0
 pwd
+ls -lsa $(pwd)/scripts/
 ### BUILD MODULES ####
 if command -v sudo 2>&1 >/dev/null
 then
