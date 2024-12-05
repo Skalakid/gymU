@@ -7,3 +7,5 @@ python-dotenv
 tqdm
 more-itertools
 black
+grpcio
+protobuf
