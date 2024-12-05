@@ -31,6 +31,9 @@ async function getAllEventsInRange(
         userId: userId,
       },
     },
+    orderBy: {
+      datetime: 'desc',
+    },
     include: {
       calendarEventParent: {
         include: {
