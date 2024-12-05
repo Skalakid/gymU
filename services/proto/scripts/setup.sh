@@ -5,8 +5,8 @@ mkdir generated
 echo $0
 pwd
 ### BUILD MODULES ####
-./scripts/build.node.sh
-./scripts/build.python.sh
+$(pwd)/scripts/build.node.sh
+$(pwd)/scripts/build.python.sh
 
 ### COMMON DIRS ###
 PROTO_DIR_ANALIZE=../analyze/src/proto
