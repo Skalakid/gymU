@@ -6,8 +6,8 @@ echo $0
 pwd
 ls -lsa $(pwd)/scripts/
 ### BUILD MODULES ####
-$(pwd)/scripts/build.node.sh
-$(pwd)/scripts/build.python.sh
+bash ./scripts/build.node.sh
+bash ./scripts/build.python.sh
 
 ### COMMON DIRS ###
 PROTO_DIR_ANALIZE=../analyze/src/proto
