@@ -95,6 +95,7 @@ pipeline {
 
                 sh 'yarn proto'
                 echo "Environment initialized"
+                sh 'yarn proto'
             }
         }
 
