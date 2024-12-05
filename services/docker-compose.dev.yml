@@ -9,3 +9,8 @@ services:
     image: gymu.api.service:dev
     restart: always
     command: dev:db:push
+  
+  analyze:
+    image: gymu.analyze.service:dev
+    restart: always
+    command: dev

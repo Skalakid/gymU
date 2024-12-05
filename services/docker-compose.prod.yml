@@ -7,3 +7,7 @@ services:
   api:
     image: gymu.api.service:prod
     command: prod
+    
+  analyze:
+    image: gymu.analyze.service:prod
+    command: prod
