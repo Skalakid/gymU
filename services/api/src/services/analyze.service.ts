@@ -14,18 +14,14 @@ const recommendExercises = async (userId: number, ids: number[]) =>
       userId: userId,
       ids: ids,
     };
-    client.recommendExercises(
-      request,
-      (error: Error, response: IdsPackageMessage) => {
-        console.log('test', response);
-        if (error) {
-          console.error(error);
-          reject(error);
-        }
+    client.recommendExercises(request, (error, response) => {
+      if (error) {
+        console.error(error);
+        reject(error);
+      }
 
-        resolve(response);
-      },
-    );
+      resolve(response);
+    });
   });
 
 export default {

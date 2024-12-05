@@ -16,3 +16,7 @@ cp ./src/* ./generated/node/
 ### FLATTEN DIRECTORY ###
 mv ./generated/node/gymu/* ./generated/node/.
 rm -rf ./generated/node/gymu/
+
+### FIX IMPORTS ###
+sed -i -e "s/\.\.\/gymu/\./g" ./generated/node/*
+sed -i -e "s/\.\/gymu/\./g" ./generated/node/*
