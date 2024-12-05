@@ -15,7 +15,7 @@ const recommendExercises = async (userId: number, ids: number[]) =>
     };
     client.recommendExercises(
       request,
-      (error: grpc.ServiceError | null, response: any) => {
+      (error: grpc.ServiceError | null, response) => {
         if (error) {
           console.error(error);
           reject(error);
