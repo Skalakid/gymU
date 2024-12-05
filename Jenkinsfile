@@ -86,7 +86,7 @@ pipeline {
                 sh 'yarn install'
                 
                 dir ('services/proto') {
-                    sh 'mkdir generated'
+                    sh 'mkdir -p generated'
                     // we don't have currently any python ci
                     // so we can leave it as it currently is
                     sh 'mkdir generated/python'
