@@ -16,23 +16,24 @@ async function getAllUsers(
   skip: number,
   pageSize: number,
   userIdsToSkip: number[] = [],
-): Promise<PaginatedResponse<BaseUser[]>> {
+): Promise<PaginatedResponse<BaseUser>> {
   const users: BaseUser[] = await UserDB.getAllUsers(
-    pageSize,
     skip,
+    pageSize,
     userIdsToSkip,
   );
 
   const allWorkoutsCount = await UserDB.countAllUsers(userIdsToSkip);
 
-  const paginatedResponse: PaginatedResponse<BaseUser[]> = {
-    currentPage: page,
-    pages: Math.ceil(allWorkoutsCount / pageSize),
+  const paginatedResponse: PaginatedResponse<BaseUser> = {
+    pageNo: page,
+    totalPages: Math.ceil(allWorkoutsCount / pageSize),
     totalItems: allWorkoutsCount,
     pageSize,
     currentPageSize: users.length,
     data: users,
   };
+
   return paginatedResponse;
 }
 
