@@ -1,25 +1,38 @@
 import { prisma } from '../config/db.server';
 
-async function getAllExercises() {
-  const exercises = await prisma.exercise.findMany({
+const exerciseItemSelector = {
+  exerciseId: true,
+  name: true,
+  description: true,
+  exerciseType: {
     select: {
-      exerciseId: true,
       name: true,
-      description: true,
-      exerciseType: {
+    },
+  },
+  exercisesBodyParts: {
+    select: {
+      bodyPart: {
         select: {
           name: true,
         },
       },
-      exercisesBodyParts: {
-        select: {
-          bodyPart: {
-            select: {
-              name: true,
-            },
-          },
-        },
-      },
+    },
+  },
+};
+
+async function getAllExercises() {
+  const exercises = await prisma.exercise.findMany({
+    select: exerciseItemSelector,
+  });
+
+  return exercises;
+}
+
+async function getExercisesByIds(ids: number[]) {
+  const exercises = await prisma.exercise.findMany({
+    select: exerciseItemSelector,
+    where: {
+      exerciseId: { in: ids },
     },
   });
 
@@ -69,4 +82,9 @@ async function getAllExersiceTypes() {
   return exerciseTypes;
 }
 
-export { getAllExercises, getExerciseDetails, getAllExersiceTypes };
+export {
+  getAllExercises,
+  getExercisesByIds,
+  getExerciseDetails,
+  getAllExersiceTypes,
+};

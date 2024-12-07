@@ -11,6 +11,32 @@ export type ApiResponse = {
   response: Response | null;
 };
 
+export async function fetchApiWithQueryParams(
+  endpoint: string,
+  params: Record<string, string> | Record<string, object>,
+  headers: object | null = null,
+  useAccessToken = true,
+  retries = 1,
+) {
+  const stringifiedParams: Record<string, string> = {};
+
+  for (let key in params) {
+    stringifiedParams[key] = JSON.stringify(params[key]);
+  }
+
+  const preparedParams = new URLSearchParams(stringifiedParams);
+  const preparedEndpoint = `${endpoint}?${preparedParams.toString()}`;
+
+  return await fetchApi(
+    preparedEndpoint,
+    'GET',
+    headers,
+    null,
+    useAccessToken,
+    retries,
+  );
+}
+
 async function fetchApi(
   endpoint: string,
   method: Method,
