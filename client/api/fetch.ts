@@ -20,7 +20,7 @@ export async function fetchApiWithQueryParams(
 ) {
   const stringifiedParams: Record<string, string> = {};
 
-  for (let key in params) {
+  for (const key in params) {
     stringifiedParams[key] = JSON.stringify(params[key]);
   }
 

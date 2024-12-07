@@ -10,7 +10,7 @@ import { useCreateWorkoutContext } from '@/contexts/CreateWorkoutContext';
 import { capitalize } from '@/utils/text.utils';
 import { useRouter } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
-import { StyleSheet, View, FlatList, SectionList } from 'react-native';
+import { StyleSheet, View, SectionList } from 'react-native';
 
 type ExerciseResponse = {
   exercises: BasicExercise[];
@@ -85,6 +85,7 @@ const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
   useEffect(() => {
     loadExerciseTags();
     getExercises();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sections = useMemo(
