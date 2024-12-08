@@ -11,6 +11,7 @@ router.get('/:id', authenticateToken, userController.getUserDetails);
 router.get('/height', authenticateToken, userController.getUserHeight);
 router.post('/height', authenticateToken, userController.addUserHeight);
 router.get('/gender', authenticateToken, userController.getGender);
+router.get('/streak', authenticateToken, userController.getStreak);
 
 router.post(
   '/workout/save',

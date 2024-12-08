@@ -13,6 +13,8 @@ const lightRed = '#ff9176';
 export const ChartPrimaryColor = (opacity = 1) =>
   `rgba(240, 99, 18, ${opacity})`;
 
+export const GaugeColors = ['#4562C9', '#b8e082', '#ff9176'];
+
 export const Colors = {
   light: {
     primary: primaryOrange,

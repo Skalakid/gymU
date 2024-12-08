@@ -84,6 +84,17 @@ async function getGender(userId: number) {
   });
 }
 
+async function getCreationDate(userId: number) {
+  return await prisma.appUser.findUnique({
+    select: {
+      createdAt: true,
+    },
+    where: {
+      userId,
+    },
+  });
+}
+
 export {
   countAllUsers,
   getUserByEmail,
@@ -92,4 +103,5 @@ export {
   addUserHeight,
   getUserHeight,
   getGender,
+  getCreationDate,
 };

@@ -84,6 +84,16 @@ pipeline {
         stage("Initialization") {
             steps {
                 sh 'yarn install'
+                
+                dir ('services/proto') {
+                    sh 'mkdir -p generated'
+                    // we don't have currently any python ci
+                    // so we can leave it as it currently is
+                    sh 'mkdir generated/python'
+                    sh 'yarn build:node'
+                }
+
+                sh 'yarn proto'
                 echo "Environment initialized"
             }
         }
@@ -111,6 +121,14 @@ pipeline {
 
                 stage ("Services / API") {
                     stages {
+                        stage("Prepare") {
+                            steps {
+                                dir('services/api') {
+                                    sh "yarn prisma:generate"
+                                }
+                            }
+                        }
+
                         stage("Lint") {
                             steps {
                                 dir('services/api') {

@@ -66,6 +66,10 @@ async function getSelectedMeasurements(
     where: {
       userId: userId,
     },
+
+    orderBy: {
+      saveDate: 'asc',
+    },
   });
 
   return measurements;

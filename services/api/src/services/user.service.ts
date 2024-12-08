@@ -1,6 +1,8 @@
 import * as UserDB from '../persistance/user.db';
 import { PaginatedResponse } from '../types/api';
 import { BaseUser, UserDetails } from '../types/user';
+import * as CalendarDB from '../persistance/calendar.db';
+import * as UserWorkoutLogDB from '../persistance/userWorkoutLog.db';
 
 async function checkEmailUniqueness(email: string) {
   try {
@@ -53,6 +55,42 @@ async function getGender(userId: number) {
   return await UserDB.getGender(userId);
 }
 
+async function getStreak(userId: number) {
+  const userCreationDate = await UserDB.getCreationDate(userId);
+
+  if (!userCreationDate) {
+    return 0;
+  }
+
+  const userAddedWorkouts = await CalendarDB.getAllEventsInRange(
+    userId,
+    userCreationDate.createdAt!,
+    new Date(),
+  );
+
+  const userCompletedWorkouts =
+    await UserWorkoutLogDB.getUserWorkoutLogs(userId);
+
+  const makeUnique = (value: string, index: number, array: string[]) =>
+    array.indexOf(value) === index;
+
+  const addedWorkoutsDates = userAddedWorkouts
+    .map((workout) => workout.datetime.toLocaleDateString())
+    .filter(makeUnique);
+
+  const completedWorkoutDates = userCompletedWorkouts
+    .map((workout) => workout.logDate!.toLocaleDateString())
+    .filter(makeUnique);
+
+  let streak = 0;
+
+  for (const date of addedWorkoutsDates) {
+    streak = completedWorkoutDates.includes(date) ? streak + 1 : 0;
+  }
+
+  return streak;
+}
+
 export {
   checkEmailUniqueness,
   getAllUsers,
@@ -60,4 +98,5 @@ export {
   addUserHeight,
   getUserHeight,
   getGender,
+  getStreak,
 };

@@ -75,6 +75,8 @@ services:
         - 3000:3000
         - 5555:5555
       environment:
+        - GRPC_HOST=analyze.service
+        - GRPC_PORT=50051
         - DATABASE_ADDRESS=postgres.service
       secrets:
         - postgres_db
@@ -83,4 +85,27 @@ services:
         - asset_service_password
       networks:
         - gymu.network
-  
+
+    analyze:
+      image: gymu.analyze.service:latest
+      build:
+        context: ./analyze
+        dockerfile: Dockerfile
+      volumes:
+        - ./analyze/src:/app/src
+        - ./analyze/main.py:/app/main.py
+      depends_on:
+        - postgres
+        - api
+      container_name: analyze.service
+      ports:
+        - 3001:3001
+      environment:
+        - GRPC_PORT=50051
+        - DATABASE_ADDRESS=postgres.service
+      secrets:
+        - postgres_db
+        - postgres_password
+        - postgres_user
+      networks:
+        - gymu.network
