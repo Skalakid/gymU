@@ -1,9 +1,52 @@
 import { prisma } from '../config/db.server';
 
+async function countAllUsers(userIdsToSkip: number[] = []) {
+  return await prisma.appUser.count({
+    where: {
+      userId: {
+        notIn: userIdsToSkip,
+      },
+    },
+  });
+}
+
 async function getUserByEmail(email: string) {
   return await prisma.appUser.findUnique({
     where: {
       email: email,
+    },
+  });
+}
+
+async function getUserById(userId: number) {
+  return await prisma.appUser.findUnique({
+    where: {
+      userId: userId,
+    },
+    select: {
+      userId: true,
+      username: true,
+      description: true,
+    },
+  });
+}
+
+async function getAllUsers(
+  skip: number,
+  pageSize: number,
+  userIdsToSkip: number[] = [],
+) {
+  return await prisma.appUser.findMany({
+    skip: skip,
+    take: pageSize,
+    where: {
+      userId: {
+        notIn: userIdsToSkip,
+      },
+    },
+    select: {
+      userId: true,
+      username: true,
     },
   });
 }
@@ -53,7 +96,10 @@ async function getCreationDate(userId: number) {
 }
 
 export {
+  countAllUsers,
   getUserByEmail,
+  getUserById,
+  getAllUsers,
   addUserHeight,
   getUserHeight,
   getGender,

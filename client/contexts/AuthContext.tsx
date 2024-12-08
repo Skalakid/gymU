@@ -75,6 +75,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
       userId: data.userId,
       email: data.email,
       username: data.username,
+      description: data.description,
     });
     setIsAuthenticated(true);
   }, []);
@@ -150,6 +151,7 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
           userId: data.userId,
           email: data.email,
           username: data.username,
+          description: data.description,
         });
         setIsAuthenticated(true);
       } catch (error) {

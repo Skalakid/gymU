@@ -6,8 +6,9 @@ import TagSelector from '@/components/workouts/TagSelector';
 import WorkoutItem from '@/components/workouts/WorkoutItem';
 import { Colors } from '@/constants/Colors';
 import Icons from '@/constants/Icons';
+import usePagination from '@/hooks/usePagination';
 import { useRouter, useSegments } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 
 type WorkoutListProps = {
@@ -22,31 +23,13 @@ const WorkoutListPage = ({
   getAllWorkoutTagsEndpoint,
 }: WorkoutListProps) => {
   const router = useRouter();
-  const [workouts, setWorkouts] = useState<Workout[]>([]);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [areTagsLoaded, setAreTagsLoaded] = useState(false);
   const [tags, setTags] = useState<WorkoutType[]>([]);
   const segments = useSegments();
   const isFocused = segments[segments.length - 1] === 'workouts';
 
-  const getAllWorkouts = useCallback(
-    async (tagIds: number[] | null = null) => {
-      try {
-        const params = tagIds !== null ? `?tagIds=${tagIds.join(',')}` : '';
-        const response = await fetchApi(
-          `${getAllWorkoutsEndpoint}${params}`,
-          'GET',
-        );
-        const paginatedWorkouts: PaginatedResponse<Workout> =
-          await response.json();
-        setWorkouts(paginatedWorkouts.data);
-        setIsLoaded(true);
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    [getAllWorkoutsEndpoint],
-  );
+  const { data, loadMore, handleRefresh, initialLoader, refreshing } =
+    usePagination(getAllWorkoutsEndpoint);
 
   const getAllWorkoutTags = useCallback(async () => {
     try {
@@ -60,16 +43,57 @@ const WorkoutListPage = ({
   }, [getAllWorkoutTagsEndpoint]);
 
   useEffect(() => {
-    getAllWorkouts();
     getAllWorkoutTags();
-  }, [isFocused, getAllWorkouts, getAllWorkoutTags]);
+  }, [isFocused, getAllWorkoutTags]);
 
   const handleTagSelectionChange = (selectedTags: WorkoutType[]) => {
-    getAllWorkouts(selectedTags.map((tag) => tag.tagId));
+    const tagIds = selectedTags.map((tag) => tag.tagId);
+    handleRefresh(`tagIds=${tagIds.join(',')}`);
   };
 
   const handleAddWorkout = () => {
     router.navigate('/explore/add');
+  };
+
+  const workoutFlatList = useMemo(
+    () => (
+      <FlatList
+        style={styles.workoutList}
+        data={data}
+        keyExtractor={(item) => item.workoutId.toString()}
+        renderItem={({ item }) => (
+          <WorkoutItem
+            id={item.workoutId}
+            name={item.name}
+            level={item.workoutLevel}
+            tags={item.workoutTags}
+            onPress={() => {
+              if (segments[segments.length - 1] === 'workouts') {
+                router.navigate(`/workouts/${item.workoutId}`);
+              } else if (segments[segments.length - 1] === 'explore') {
+                router.navigate(`/explore/${item.workoutId}`);
+              }
+            }}
+          />
+        )}
+        ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.1}
+      />
+    ),
+    [data, loadMore, router, segments],
+  );
+
+  const renderContent = () => {
+    if (initialLoader || refreshing) {
+      return <ActivityIndicator color={Colors.dark.primary} />;
+    }
+
+    if (data.length === 0) {
+      return <ThemedText>No workouts found...</ThemedText>;
+    }
+
+    return workoutFlatList;
   };
 
   return (
@@ -88,34 +112,8 @@ const WorkoutListPage = ({
             onSelectionChange={handleTagSelectionChange}
           />
         )}
-        <FlatList
-          style={styles.workoutList}
-          data={workouts}
-          keyExtractor={(item) => item.workoutId.toString()}
-          renderItem={({ item }) => (
-            <WorkoutItem
-              id={item.workoutId}
-              name={item.name}
-              level={item.workoutLevel}
-              tags={item.workoutTags}
-              onPress={() => {
-                if (segments[segments.length - 1] === 'workouts') {
-                  router.navigate(`/workouts/${item.workoutId}`);
-                } else if (segments[segments.length - 1] === 'explore') {
-                  router.navigate(`/explore/${item.workoutId}`);
-                }
-              }}
-            />
-          )}
-          ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
-          ListEmptyComponent={() =>
-            isLoaded ? (
-              <ThemedText>No workouts found...</ThemedText>
-            ) : (
-              <ActivityIndicator color={Colors.dark.primary} />
-            )
-          }
-        />
+
+        {renderContent()}
       </ThemedView>
     </ThemedView>
   );

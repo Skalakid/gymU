@@ -1,8 +1,8 @@
-import { prisma } from '../config/db.server';
 import * as UserDB from '../persistance/user.db';
+import { PaginatedResponse } from '../types/api';
+import { BaseUser, UserDetails } from '../types/user';
 import * as CalendarDB from '../persistance/calendar.db';
 import * as UserWorkoutLogDB from '../persistance/userWorkoutLog.db';
-import { ReturnUser } from '../types/user';
 
 async function checkEmailUniqueness(email: string) {
   try {
@@ -13,14 +13,34 @@ async function checkEmailUniqueness(email: string) {
   }
 }
 
-async function getAllUsers() {
-  const users: ReturnUser[] = (await prisma.appUser.findMany()).map((user) => ({
-    userId: user.userId,
-    email: user.email,
-    username: user.username,
-  }));
+async function getAllUsers(
+  page: number,
+  skip: number,
+  pageSize: number,
+  userIdsToSkip: number[] = [],
+): Promise<PaginatedResponse<BaseUser>> {
+  const users: BaseUser[] = await UserDB.getAllUsers(
+    skip,
+    pageSize,
+    userIdsToSkip,
+  );
 
-  return users;
+  const allWorkoutsCount = await UserDB.countAllUsers(userIdsToSkip);
+
+  const paginatedResponse: PaginatedResponse<BaseUser> = {
+    pageNo: page,
+    totalPages: Math.ceil(allWorkoutsCount / pageSize),
+    totalItems: allWorkoutsCount,
+    pageSize,
+    currentPageSize: users.length,
+    data: users,
+  };
+
+  return paginatedResponse;
+}
+
+async function getUserDetails(userId: number): Promise<UserDetails | null> {
+  return await UserDB.getUserById(userId);
 }
 
 async function addUserHeight(userId: number, height: number) {
@@ -74,6 +94,7 @@ async function getStreak(userId: number) {
 export {
   checkEmailUniqueness,
   getAllUsers,
+  getUserDetails,
   addUserHeight,
   getUserHeight,
   getGender,

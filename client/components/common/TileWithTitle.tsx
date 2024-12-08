@@ -1,4 +1,4 @@
-import { ViewStyle } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 import React from 'react';
 import Tile, { ThemedViewProps } from './Tile';
 import ThemedText from '../ThemedText';
@@ -7,6 +7,7 @@ type TileWithTitleProps = {
   title: string;
   titleStyle?: ViewStyle;
   size?: 's' | 'm' | 'l';
+  contentStyle?: ViewStyle;
 } & ThemedViewProps;
 
 const TileWithTitle = ({
@@ -14,6 +15,7 @@ const TileWithTitle = ({
   size = 'l',
   titleStyle,
   children,
+  contentStyle,
   ...rest
 }: TileWithTitleProps) => {
   return (
@@ -22,7 +24,7 @@ const TileWithTitle = ({
         {title}
       </ThemedText>
 
-      {children}
+      <View style={[contentStyle]}>{children}</View>
     </Tile>
   );
 };

@@ -14,6 +14,7 @@ export default async function seedTags() {
             email: user.email,
             passwordHash: hashedPassword,
             gender: 'M',
+            description: user?.description || null,
           },
         });
       }),
@@ -33,6 +34,7 @@ function getExampleUsers(): Array<NewUser> {
       username: 'pigeon64',
       email: 'test2@test.pl',
       password: 'test',
+      description: 'My dream is to lift 150kg',
     },
     {
       username: 'pepe',

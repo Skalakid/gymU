@@ -49,7 +49,6 @@ const StatsPreview = ({
       <TileWithTitle title="Streak" style={styles.smallStatsTile} size="m">
         <View style={[styles.tile, { alignItems: 'baseline' }]}>
           <Icon icon={Icons.flame} size={32} color={theme.primary} />
-
           <ThemedText size="x5l" weight="bold">
             {streak}
           </ThemedText>
