@@ -75,6 +75,7 @@ async function getWorkoutDetails(workoutId: number, userId: number) {
         bodyParts: item.exercise.exercisesBodyParts.map(
           (item) => item.bodyPart.name,
         ),
+        imageUrls: item.exercise.imageUrls,
       };
     })
     .sort((a, b) => a.orderIndex - b.orderIndex);

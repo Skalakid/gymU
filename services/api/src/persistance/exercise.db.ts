@@ -49,6 +49,7 @@ async function getExerciseDetails(exerciseId: number) {
           },
         },
       },
+      imageUrls: true,
     },
   });
 

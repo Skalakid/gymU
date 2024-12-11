@@ -12,6 +12,7 @@ type DetailedExercise = {
   exerciseType: string;
   bodyParts: string[];
   description: string;
+  imageUrls?: string[];
 };
 
 type ExerciseItem = {

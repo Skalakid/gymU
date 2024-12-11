@@ -26,6 +26,7 @@ async function getExerciseDetails(
     name: exercise?.name,
     description: exercise?.description ?? '',
     exerciseType: exercise?.exerciseType.name,
+    imageUrls: exercise?.imageUrls,
     bodyParts: exercise?.exercisesBodyParts.map((bp) => bp.bodyPart.name),
   };
 }
