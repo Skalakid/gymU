@@ -33,7 +33,7 @@ const HomePage = () => {
 
   return (
     <ThemedView style={styles.container}>
-      <ProfileHeader username={user.username} />
+      <ProfileHeader username={user.username} userId={user.userId} />
 
       <TileWithTitle title="Upcoming training:" titleStyle={styles.title}>
         <UpcomingWorkout />
@@ -48,7 +48,11 @@ const HomePage = () => {
         Feed ✨
       </ThemedText>
 
-      <TileWithTitle style={{ flex: 1 }} title="Recent notifications">
+      <TileWithTitle
+        style={{ flex: 1 }}
+        contentStyle={{ flex: 1 }}
+        title="Recent notifications"
+      >
         <RecentNotifications />
       </TileWithTitle>
     </ThemedView>

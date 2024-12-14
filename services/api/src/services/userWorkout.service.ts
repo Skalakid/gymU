@@ -30,9 +30,9 @@ async function getAllUserWorkouts(
     };
   });
 
-  const paginatedResponse: PaginatedResponse<GeneralWorkout[]> = {
-    currentPage: page,
-    pages: Math.ceil(allWorkoutsCount / pageSize),
+  const paginatedResponse: PaginatedResponse<GeneralWorkout> = {
+    pageNo: page,
+    totalPages: Math.ceil(allWorkoutsCount / pageSize),
     totalItems: allWorkoutsCount,
     pageSize,
     currentPageSize: workoutsWithTagName.length,

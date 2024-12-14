@@ -37,7 +37,7 @@ const SignUpPage = () => {
         labelStyle: { color: theme.colors.text },
       },
     ],
-    [],
+    [theme.colors.text],
   );
 
   const handleRegisterUser = async () => {

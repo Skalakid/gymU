@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Icons from '@/constants/Icons';
 import RowTextInput from '../input/RowTextInput';
 import { useExerciseContext } from '@/contexts/ExerciseContext';
+import Tile from '../common/Tile';
+import PrimaryButton from '../button/PrimaryButton';
 
 type ExerciseDetailsFormProps = {
   type: string;
@@ -12,6 +14,7 @@ type ExerciseDetailsFormProps = {
   defaultWeight?: number;
   defaultTime?: number;
   defaultBreakTime?: number;
+  onSubmit?: () => void;
 };
 
 const ExerciseDetailsForm = ({
@@ -22,6 +25,7 @@ const ExerciseDetailsForm = ({
   defaultWeight = 30,
   defaultTime = 60,
   defaultBreakTime = 60,
+  onSubmit,
 }: ExerciseDetailsFormProps) => {
   const { getExerciseType } = useExerciseContext();
   const [exerciseType] = useState<ExerciseType | null>(
@@ -52,49 +56,53 @@ const ExerciseDetailsForm = ({
   }, [breakTime, exerciseType, onFormUpdate, reps, sets, time, weight]);
 
   return (
-    <View style={styles.container}>
-      {exerciseType?.hasSets && (
-        <RowTextInput
-          value={sets}
-          onChageText={(value) => handleNumericChange(value, setSets)}
-          label="Sets"
-          icon={Icons.repeat}
-        />
-      )}
-      {exerciseType?.hasReps && (
-        <RowTextInput
-          value={reps}
-          onChageText={(value) => handleNumericChange(value, setReps)}
-          label="Reps"
-          icon={Icons.flame}
-        />
-      )}
-      {exerciseType?.hasWeights && (
-        <RowTextInput
-          value={weight}
-          onChageText={(value) => handleNumericChange(value, setWeight, 1000)}
-          label="Weight"
-          icon={Icons.weight}
-        />
-      )}
-      {exerciseType?.hasTime && (
-        <RowTextInput
-          value={time}
-          onChageText={(value) => handleNumericChange(value, setTime)}
-          label="Time"
-          icon={Icons.time}
-        />
-      )}
+    <Tile style={styles.container}>
+      <View style={styles.inputs}>
+        {exerciseType?.hasSets && (
+          <RowTextInput
+            value={sets}
+            onChageText={(value) => handleNumericChange(value, setSets)}
+            label="Sets"
+            icon={Icons.repeat}
+          />
+        )}
+        {exerciseType?.hasReps && (
+          <RowTextInput
+            value={reps}
+            onChageText={(value) => handleNumericChange(value, setReps)}
+            label="Reps"
+            icon={Icons.flame}
+          />
+        )}
+        {exerciseType?.hasWeights && (
+          <RowTextInput
+            value={weight}
+            onChageText={(value) => handleNumericChange(value, setWeight, 1000)}
+            label="Weight"
+            icon={Icons.weight}
+          />
+        )}
+        {exerciseType?.hasTime && (
+          <RowTextInput
+            value={time}
+            onChageText={(value) => handleNumericChange(value, setTime)}
+            label="Time"
+            icon={Icons.time}
+          />
+        )}
 
-      {exerciseType?.hasSets && sets > 1 && (
-        <RowTextInput
-          value={breakTime}
-          onChageText={(value) => handleNumericChange(value, setBreakTime)}
-          label="Break"
-          icon={Icons.battery}
-        />
-      )}
-    </View>
+        {exerciseType?.hasSets && sets > 1 && (
+          <RowTextInput
+            value={breakTime}
+            onChageText={(value) => handleNumericChange(value, setBreakTime)}
+            label="Break"
+            icon={Icons.battery}
+          />
+        )}
+      </View>
+
+      <PrimaryButton value="Add" onPress={onSubmit} />
+    </Tile>
   );
 };
 
@@ -102,6 +110,7 @@ export default ExerciseDetailsForm;
 
 const styles = StyleSheet.create({
   container: {
-    gap: 10,
+    gap: 20,
   },
+  inputs: { gap: 10 },
 });

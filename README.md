@@ -44,7 +44,7 @@ For detailed information about particular services see:
 - [Postgres](services/postgres/README.md)
 - [Api](services/api/README.md)
 - [Analyze](services/analyze/README.md)
-- To be added...
+- [Asset](services/asset/README.md)
 
 #### Requirements
 

@@ -1,10 +1,10 @@
 type PaginatedResponse<T> = {
-  currentPage: number;
-  pages: number;
+  data: T[];
+  pageNo: number;
+  totalPages: number;
   totalItems: number;
   pageSize: number;
   currentPageSize: number;
-  data: T;
 };
 
 export type { PaginatedResponse };

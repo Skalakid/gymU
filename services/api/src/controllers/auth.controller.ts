@@ -91,6 +91,9 @@ async function login(req: Request, res: Response, next: NextFunction) {
       userId: user.userId,
       email: user.email,
       username: user.username,
+      description: user.description,
+      gender: user.gender,
+      height: user.height,
     };
 
     const accessToken = generateAuthenticationToken(returnUser);

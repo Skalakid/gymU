@@ -15,6 +15,7 @@ model AppUser {
   createdAt            DateTime?             @default(now()) @map("created_at") @db.Timestamptz(6)
   height               Int?
   gender               String                @db.VarChar(1)
+  description          String?               @db.Text
   userWorkouts         UserWorkout[]
   workoutTemplates     WorkoutTemplate[]
   refreshTokens        RefreshToken[]
@@ -45,6 +46,7 @@ model Exercise {
   exerciseTypeId           Int                       @map("exercise_type_id")
   name                     String                    @db.VarChar(255)
   description              String?
+  imageUrls                String[]                  @map("image_urls")
   exerciseType             ExerciseType              @relation(fields: [exerciseTypeId], references: [exerciseTypeId], onDelete: NoAction, onUpdate: NoAction)
   exerciseTemplateItems    ExerciseTemplateItem[]
   exercisesBodyParts       ExercisesBodyParts[]

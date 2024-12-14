@@ -1,4 +1,4 @@
-import { StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Tile from '../common/Tile';
 import ThemedText from '../ThemedText';
@@ -8,6 +8,13 @@ import useTheme from '@/hooks/useTheme';
 import Icon from '../common/Icon';
 import { capitalize } from '@/utils/text.utils';
 import fetchApi from '@/api/fetch';
+import ImageCarousel from '../imageCarousel/ImageCarousel';
+import ExpandableItem from '../common/ExpandableItem';
+import Icons from '@/constants/Icons';
+import Animated, {
+  useAnimatedStyle,
+  withTiming,
+} from 'react-native-reanimated';
 
 type ExerciseDetailsInfoProps = {
   exerciseID: number;
@@ -21,6 +28,7 @@ const ExerciseDetailsInfo = ({
   const { getExerciseTypeIcon } = useExerciseContext();
   const theme = useTheme();
   const [exercise, setExercise] = useState<DetailedExercise | null>(null);
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
   const getExerciseDetails = async (id: number) => {
     try {
@@ -35,6 +43,12 @@ const ExerciseDetailsInfo = ({
       console.error(error);
     }
   };
+
+  const expandButtonAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      { rotate: withTiming(isDescriptionExpanded ? '180deg' : '0deg') },
+    ],
+  }));
 
   useEffect(() => {
     setExercise(null);
@@ -72,7 +86,27 @@ const ExerciseDetailsInfo = ({
           ))}
         </View>
 
-        <ThemedText size="s">{exercise.description}</ThemedText>
+        <ImageCarousel imageUrls={exercise.imageUrls ?? []} />
+
+        <TouchableOpacity
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+          onPress={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+        >
+          <ThemedText size="m" weight="semiBold">
+            Description
+          </ThemedText>
+          <Animated.View style={expandButtonAnimatedStyle}>
+            <Icon icon={Icons.arrowBottom} size={14} />
+          </Animated.View>
+        </TouchableOpacity>
+
+        <ExpandableItem isExpanded={isDescriptionExpanded}>
+          <ThemedText size="s">{exercise.description}</ThemedText>
+        </ExpandableItem>
       </View>
     </Tile>
   );

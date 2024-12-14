@@ -59,4 +59,14 @@ async function refreshAccessToken() {
   }
 }
 
-export { refreshAccessToken };
+function getAuthorizationHeaderSync() {
+  let accessToken: string | null = null;
+  const token = SecureStore.getItem('accessToken');
+  if (token !== null) {
+    accessToken = 'Bearer ' + token;
+  }
+
+  return accessToken;
+}
+
+export { refreshAccessToken, getAuthorizationHeaderSync };
