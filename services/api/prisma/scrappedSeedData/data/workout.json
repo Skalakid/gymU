@@ -5,7 +5,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -53,7 +54,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -116,7 +118,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -144,7 +147,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -187,7 +191,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -230,7 +235,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -282,7 +288,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -429,7 +436,8 @@
         "sets": 5,
         "reps": 10,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 3,
@@ -477,7 +485,8 @@
         "sets": 5,
         "reps": 10,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 3,
@@ -621,7 +630,8 @@
         "sets": 5,
         "reps": 10,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 3,
@@ -669,7 +679,8 @@
         "sets": 5,
         "reps": 10,
         "id": "Front_Barbell_Squat",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 3,
@@ -716,7 +727,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -768,7 +780,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -877,7 +890,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -926,7 +940,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 40
       },
       {
         "sets": 3,
@@ -1026,7 +1041,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 3,
@@ -1069,7 +1085,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -1173,7 +1190,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -1225,7 +1243,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -1272,7 +1291,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -1423,7 +1443,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Day #4 of the 'M-F Workout Routine: 5 Day Body Part Split Workout' training.",
@@ -1566,7 +1587,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -1657,19 +1679,22 @@
         "sets": 2,
         "reps": 10,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 45
+        "breakTime": 45,
+        "weight": 40
       },
       {
         "sets": 2,
         "reps": 10,
         "id": "Arnold_Dumbbell_Press",
-        "breakTime": 45
+        "breakTime": 45,
+        "weight": 40
       },
       {
         "sets": 2,
         "reps": 10,
         "id": "Dumbbell_Bicep_Curl",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 40
       },
       {
         "sets": 2,
@@ -1855,7 +1880,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -1870,7 +1896,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -1903,7 +1930,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -1989,7 +2017,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -2032,7 +2061,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -2084,7 +2114,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -2163,7 +2194,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -2362,7 +2394,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 90
+        "breakTime": 90,
+        "weight": 40
       },
       {
         "sets": 3,
@@ -2505,7 +2538,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -2568,7 +2602,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -2596,7 +2631,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -2639,7 +2675,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -2700,7 +2737,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -2753,7 +2791,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       }
     ],
     "description": "Day #1 of the 'The Best Upper Body Workout Routine' training.",
@@ -2817,7 +2856,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       }
     ],
     "description": "Day #3 of the 'The Best Upper Body Workout Routine' training.",
@@ -2881,7 +2921,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       }
     ],
     "description": "Day #5 of the 'The Best Upper Body Workout Routine' training.",
@@ -2898,12 +2939,14 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -2960,7 +3003,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       }
     ],
     "description": "Day #7 of the 'The Best Upper Body Workout Routine' training.",
@@ -2977,7 +3021,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -2997,7 +3042,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       }
     ],
     "description": "Day #8 of the 'The Best Upper Body Workout Routine' training.",
@@ -3039,7 +3085,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -3049,7 +3096,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       }
     ],
     "description": "Day #9 of the 'The Best Upper Body Workout Routine' training.",
@@ -3123,7 +3171,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -3148,7 +3197,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       }
     ],
     "description": "Day #11 of the 'The Best Upper Body Workout Routine' training.",
@@ -3214,7 +3264,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 90
+        "breakTime": 90,
+        "weight": 40
       },
       {
         "sets": 3,
@@ -3358,7 +3409,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Barbell_Deadlift",
-        "breakTime": 90
+        "breakTime": 90,
+        "weight": 5
       },
       {
         "sets": 3,
@@ -3376,7 +3428,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Front_Barbell_Squat",
-        "breakTime": 90
+        "breakTime": 90,
+        "weight": 5
       },
       {
         "sets": 3,
@@ -3554,12 +3607,14 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "reps": 15,
         "sets": 3,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Day #2 of the 'Spring Shred: 8 Week Fat Loss Workout Plan' training.",
@@ -3849,7 +3904,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -3896,7 +3952,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -4042,7 +4099,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -4193,7 +4251,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -4270,7 +4329,8 @@
       {
         "sets": 3,
         "reps": -1,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Day #6 of the '5 Day Muscle & Strength Building Workout Split' training.",
@@ -4292,7 +4352,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -4320,7 +4381,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -4353,7 +4415,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -4457,7 +4520,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -4467,7 +4531,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -4501,7 +4566,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -4584,7 +4650,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -4821,7 +4888,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -4863,7 +4931,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -4910,7 +4979,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       }
     ],
     "description": "Day #9 of the 'The BodyMorph: 12 Week Transformation Workout to Help You Build Muscle' training.",
@@ -5016,7 +5086,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -5026,7 +5097,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -5073,7 +5145,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -5115,7 +5188,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -5162,7 +5236,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -5209,7 +5284,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -5278,7 +5354,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -5357,7 +5434,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -5436,7 +5514,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -5473,7 +5552,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -5716,7 +5796,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -5749,7 +5830,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -5759,7 +5841,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -5769,7 +5852,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -5797,7 +5881,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -5941,7 +6026,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Day #3 of the 'The Fat Incinerator: 8 Week Fat Burning Workout' training.",
@@ -5958,7 +6044,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -5973,7 +6060,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -5988,7 +6076,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -6397,7 +6486,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -6568,12 +6658,14 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -6675,7 +6767,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -6841,7 +6934,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 1,
@@ -6962,7 +7056,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -6972,7 +7067,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 1,
@@ -7066,7 +7162,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 1,
@@ -7103,7 +7200,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -7145,7 +7243,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -7177,7 +7276,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -7261,7 +7361,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Split_Squat_with_Dumbbells"
+        "id": "Split_Squat_with_Dumbbells",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -7330,7 +7431,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -7481,7 +7583,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -7523,7 +7626,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -7622,7 +7726,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -7768,7 +7873,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -7815,7 +7921,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -7929,7 +8036,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -7939,7 +8047,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -7996,7 +8105,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -8006,7 +8116,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       }
     ],
     "description": "Day #2 of the 'Batman Workout Routine: 14 Week Superhero Workout' training.",
@@ -8023,7 +8134,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -8127,7 +8239,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -8137,7 +8250,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -8189,7 +8303,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -8310,7 +8425,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -8392,7 +8508,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 3,
@@ -8434,7 +8551,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       },
       {
         "sets": 1,
@@ -8471,7 +8589,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -8523,7 +8642,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -8555,7 +8675,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -8607,12 +8728,14 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -8684,7 +8807,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -8752,7 +8876,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -8793,7 +8918,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Alternate_Incline_Dumbbell_Curl"
+        "id": "Alternate_Incline_Dumbbell_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -8829,7 +8955,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -8981,13 +9108,15 @@
         "sets": 2,
         "reps": 15,
         "id": "Clean_and_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "reps": 8,
         "sets": 3,
         "id": "Clean_and_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       }
     ],
     "description": "Day #3 of the '6 Week Navy Seal Workout Routine: Speed, Strength & Endurance' training.",
@@ -9006,13 +9135,15 @@
         "sets": 3,
         "reps": 12,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "reps": 5,
         "sets": 4,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 1,
@@ -9092,7 +9223,8 @@
         "reps": 1,
         "sets": 3,
         "id": "Farmers_Walk",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       }
     ],
     "description": "Day #5 of the '6 Week Navy Seal Workout Routine: Speed, Strength & Endurance' training.",
@@ -9168,7 +9300,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -9196,7 +9329,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -9206,7 +9340,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -9244,7 +9379,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -9420,7 +9556,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 8,
@@ -9461,7 +9598,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -9504,7 +9642,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -9552,7 +9691,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -9633,7 +9773,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -9696,7 +9837,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -9786,7 +9928,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -9855,7 +9998,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -9934,7 +10078,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -10013,7 +10158,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 3,
@@ -10028,7 +10174,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -10111,7 +10258,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -10152,7 +10300,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -10178,7 +10327,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -10214,7 +10364,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -10372,7 +10523,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -10392,7 +10544,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       }
     ],
     "description": "Day #3 of the '8 Week Beginner Fat Loss Workout for Women' training.",
@@ -10415,7 +10568,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -10532,7 +10686,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -10542,7 +10697,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -10569,7 +10725,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -10601,7 +10758,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -10759,7 +10917,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -10880,7 +11039,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -11077,7 +11237,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -11173,7 +11334,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -11219,7 +11381,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -11229,7 +11392,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       }
     ],
     "description": "Day #2 of the '12 Week Push, Pull, Legs Workout for Women' training.",
@@ -11393,7 +11557,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -11429,7 +11594,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -11476,7 +11642,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -11528,7 +11695,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -11665,7 +11833,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -11698,7 +11867,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -11762,7 +11932,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Dumbbell_Bicep_Curl",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "sets": 3,
@@ -11797,7 +11968,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Stiff-Legged_Dumbbell_Deadlift",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "sets": 3,
@@ -11852,7 +12024,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -11949,7 +12122,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -11989,7 +12163,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Arnold_Dumbbell_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "sets": 3,
@@ -12109,7 +12284,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Stiff-Legged_Dumbbell_Deadlift",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "sets": 3,
@@ -12392,7 +12568,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -12402,7 +12579,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -12498,7 +12676,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 5,
@@ -12557,7 +12736,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -12810,7 +12990,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Mountain_Climbers"
+        "id": "Mountain_Climbers",
+        "time": 180
       },
       {
         "reps": 15,
@@ -12855,7 +13036,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Mountain_Climbers"
+        "id": "Mountain_Climbers",
+        "time": 180
       },
       {
         "reps": 15,
@@ -12885,7 +13067,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -12931,7 +13114,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -13008,7 +13192,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -13142,7 +13327,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Stiff-Legged_Dumbbell_Deadlift",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 40
       },
       {
         "sets": 3,
@@ -13196,7 +13382,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Arnold_Dumbbell_Press",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 40
       },
       {
         "sets": 3,
@@ -13208,7 +13395,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Dumbbell_Bicep_Curl",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 40
       },
       {
         "sets": 3,
@@ -13260,7 +13448,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -13308,12 +13497,14 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -13341,17 +13532,20 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -13397,17 +13591,20 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -13501,7 +13698,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -13532,7 +13730,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -13603,7 +13802,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       }
     ],
     "description": "Day #1 of the 'Bikini Ready Workout: 8 Week Workout for Women' training.",
@@ -13655,7 +13855,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -13696,7 +13897,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -13747,7 +13949,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 3,
@@ -14015,12 +14218,14 @@
       {
         "sets": 1,
         "reps": 12,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "reps": 12,
         "sets": 3,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "reps": 12,
@@ -14096,7 +14301,8 @@
       {
         "reps": 15,
         "sets": 3,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "reps": 15,
@@ -14106,7 +14312,8 @@
       {
         "reps": 20,
         "sets": 3,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "reps": 20,
@@ -14127,22 +14334,26 @@
       {
         "sets": 2,
         "reps": 12,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "reps": 12,
         "sets": 3,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 2,
         "reps": 12,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "reps": 12,
         "sets": 3,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -14301,7 +14512,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -14345,7 +14557,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 5,
@@ -14430,7 +14643,8 @@
       {
         "sets": 3,
         "reps": 8,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -14466,7 +14680,8 @@
       {
         "sets": 5,
         "reps": 5,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -14636,7 +14851,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -14744,7 +14960,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -14936,7 +15153,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -15107,7 +15325,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -15138,7 +15357,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 3,
@@ -15189,12 +15409,14 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -15418,7 +15640,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -15428,7 +15651,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -15438,7 +15662,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Day #3 of the 'Brie Larson Inspired Workout: Train Like Captain Marvel' training.",
@@ -15584,7 +15809,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -15594,7 +15820,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -15604,7 +15831,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -15638,7 +15866,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -15682,7 +15911,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -15731,7 +15961,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -15751,7 +15982,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -15761,7 +15993,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Day #1 of the 'Muscle & Strength Full Body Workout Routine' training.",
@@ -15779,7 +16012,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -15852,7 +16086,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -15872,7 +16107,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Day #3 of the 'Muscle & Strength Full Body Workout Routine' training.",
@@ -15895,7 +16131,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -15915,7 +16152,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -15947,7 +16185,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -16004,7 +16243,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -16066,7 +16306,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -16123,7 +16364,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -16160,7 +16402,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -16255,7 +16498,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -16275,7 +16519,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -16285,7 +16530,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       }
     ],
     "description": "Day #2 of the '3 Day Full Body Planet Fitness Workout (Machines & Dumbbells Only)' training.",
@@ -16356,7 +16602,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -16508,7 +16755,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -16529,7 +16777,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -16771,7 +17020,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Barbell_Deadlift",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 5
       },
       {
         "sets": 5,
@@ -16789,7 +17039,8 @@
         "sets": 4,
         "reps": 10,
         "id": "Dumbbell_Bicep_Curl",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 40
       },
       {
         "sets": 4,
@@ -16824,7 +17075,8 @@
         "sets": 5,
         "reps": 10,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 5
       },
       {
         "sets": 5,
@@ -16928,7 +17180,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -17102,7 +17355,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -17155,7 +17409,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 1,
@@ -17227,7 +17482,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -17284,7 +17540,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 1,
@@ -17393,7 +17650,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -17705,7 +17963,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -17741,7 +18000,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -17798,7 +18058,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -17860,7 +18121,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -17887,7 +18149,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -17919,7 +18182,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -18062,7 +18326,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -18164,7 +18429,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -18327,7 +18593,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -18398,7 +18665,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       }
     ],
     "description": "Day #5 of the 'Doug's 6 Day Cutting Routine' training.",
@@ -18611,7 +18879,8 @@
         "sets": 1,
         "reps": 10,
         "id": "Stiff-Legged_Dumbbell_Deadlift",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 40
       },
       {
         "sets": 1,
@@ -18647,13 +18916,15 @@
         "sets": 1,
         "reps": 10,
         "id": "Arnold_Dumbbell_Press",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 40
       },
       {
         "sets": 1,
         "reps": 10,
         "id": "Dumbbell_Bicep_Curl",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       }
     ],
     "description": "Day #4 of the '4 Day Dumbbell and Bodyweight Fat Loss Workout' training.",
@@ -18671,7 +18942,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -18804,7 +19076,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 8,
@@ -18917,7 +19190,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 6,
@@ -19005,7 +19279,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -19092,7 +19367,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -19197,7 +19473,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "sets": 3,
@@ -19238,7 +19515,8 @@
         "sets": 4,
         "reps": 10,
         "id": "Barbell_Deadlift",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "sets": 3,
@@ -19414,7 +19692,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Mountain_Climbers",
-        "breakTime": 20
+        "breakTime": 20,
+        "time": 180
       },
       {
         "sets": 3,
@@ -19426,7 +19705,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Bicycling",
-        "breakTime": 60
+        "breakTime": 60,
+        "time": 180
       }
     ],
     "description": "Day #1 of the '20 Minute HIIT Workout You Can Do Anywhere' training.",
@@ -19521,7 +19801,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 8,
@@ -19573,7 +19854,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 8,
@@ -19660,7 +19942,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -19702,7 +19985,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -19920,7 +20204,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -19962,7 +20247,8 @@
         "sets": 4,
         "reps": 10,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "sets": 4,
@@ -20165,7 +20451,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Mountain_Climbers"
+        "id": "Mountain_Climbers",
+        "time": 180
       }
     ],
     "description": "Day #6 of the '6 Week High-Intensity Functional Training Workout' training.",
@@ -20182,7 +20469,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 8,
@@ -20255,32 +20543,38 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 12,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 2,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
         "reps": 12,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 2,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 8,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -20382,12 +20676,14 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
         "reps": 8,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -20506,7 +20802,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "sets": 3,
@@ -20589,7 +20886,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Mountain_Climbers",
-        "breakTime": 60
+        "breakTime": 60,
+        "time": 180
       },
       {
         "sets": 3,
@@ -20824,7 +21122,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -21190,7 +21489,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -21241,7 +21541,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -21374,7 +21675,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 3,
@@ -21507,7 +21809,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -21589,7 +21892,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -21660,7 +21964,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -21705,7 +22010,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -21726,7 +22032,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -21858,7 +22165,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -21903,7 +22211,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -21929,7 +22238,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -21944,7 +22254,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -21969,7 +22280,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -22030,7 +22342,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -22056,7 +22369,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -22096,7 +22410,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -22122,7 +22437,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Clean_and_Press"
+        "id": "Clean_and_Press",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -22165,7 +22481,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -22226,7 +22543,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -22392,7 +22710,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 3,
@@ -22530,7 +22849,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -22566,7 +22886,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -22612,7 +22933,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -22791,7 +23113,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Dumbbell_Shoulder_Press"
+        "id": "Dumbbell_Shoulder_Press",
+        "weight": 40
       },
       {
         "sets": 1,
@@ -22838,7 +23161,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -22925,7 +23249,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -22976,7 +23301,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -23012,7 +23338,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -23064,7 +23391,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -23208,7 +23536,8 @@
       {
         "reps": 15,
         "sets": 3,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "reps": 15,
@@ -23246,13 +23575,15 @@
         "sets": 2,
         "reps": 15,
         "id": "Clean_and_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "reps": 8,
         "sets": 3,
         "id": "Clean_and_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "sets": 1,
@@ -23352,12 +23683,14 @@
       {
         "sets": 1,
         "reps": 12,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "reps": 12,
         "sets": 3,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "reps": 12,
@@ -23393,7 +23726,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -23403,7 +23737,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -23413,7 +23748,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       }
     ],
     "description": "Monday 10x3 Bench Press Day",
@@ -23429,7 +23765,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -23485,7 +23822,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -23516,7 +23854,8 @@
       {
         "sets": 3,
         "reps": -1,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -23559,7 +23898,8 @@
       {
         "sets": 3,
         "reps": -1,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -23612,7 +23952,8 @@
       {
         "sets": 3,
         "reps": -1,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -23655,7 +23996,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -23665,7 +24007,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -23691,7 +24034,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -23778,7 +24122,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 5,
@@ -23799,7 +24144,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -23835,7 +24181,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 1,
@@ -23855,7 +24202,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Curl"
+        "id": "Barbell_Curl",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -23932,7 +24280,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -23953,7 +24302,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -23989,7 +24339,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -24019,7 +24370,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       }
     ],
     "description": "Day #2 of the 'Modified Strength Hypertrophy Upper Lower (S.H.U.L) Workout' training.",
@@ -24035,7 +24387,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -24127,12 +24480,14 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -24225,7 +24580,8 @@
       {
         "sets": 6,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -24293,7 +24649,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -24340,7 +24697,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -24424,7 +24782,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -24452,12 +24811,14 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -24490,7 +24851,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -24518,7 +24880,8 @@
       {
         "sets": 7,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 7,
@@ -24533,7 +24896,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -24559,7 +24923,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 7,
@@ -24574,7 +24939,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -24605,7 +24971,8 @@
       {
         "sets": 7,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 7,
@@ -24713,7 +25080,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -24749,12 +25117,14 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -24769,7 +25139,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       }
     ],
     "description": "Day #3 of the 'Summer Strength: 4 Day Strength Building Workout Split' training.",
@@ -24790,7 +25161,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -24862,7 +25234,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -24893,7 +25266,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -25011,7 +25385,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -25026,7 +25401,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -25047,7 +25423,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -25083,7 +25460,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -25124,7 +25502,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -25206,7 +25585,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -25370,7 +25750,8 @@
       {
         "reps": 5,
         "sets": 5,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "reps": 5,
@@ -25395,7 +25776,8 @@
       {
         "reps": 5,
         "sets": 4,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -25420,17 +25802,20 @@
       {
         "reps": 5,
         "sets": 4,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "reps": 3,
         "sets": 1,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "reps": 8,
         "sets": 1,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "reps": 5,
@@ -25600,7 +25985,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Lower Body Workout #1 Squat Focus",
@@ -25616,7 +26002,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -25626,7 +26013,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -25652,7 +26040,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -25662,7 +26051,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -25698,7 +26088,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -25749,7 +26140,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Lower Body Workout A",
@@ -25765,7 +26157,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -25775,7 +26168,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -25842,7 +26236,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -25852,7 +26247,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -25914,7 +26310,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -25924,7 +26321,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -25997,7 +26395,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -26023,7 +26422,8 @@
       {
         "sets": 9,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -26116,7 +26516,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -26137,7 +26538,8 @@
       {
         "sets": 9,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -26209,7 +26611,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -26219,7 +26622,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -26250,7 +26654,8 @@
       {
         "sets": 10,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -26276,7 +26681,8 @@
       {
         "sets": 9,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -26302,7 +26708,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -26369,7 +26776,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -26390,7 +26798,8 @@
       {
         "sets": 9,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -26436,7 +26845,8 @@
       {
         "sets": 6,
         "reps": 2,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -26472,7 +26882,8 @@
       {
         "sets": 3,
         "reps": 4,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -26508,7 +26919,8 @@
       {
         "sets": 3,
         "reps": 7,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -26555,7 +26967,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Monday Lower Body 1",
@@ -26571,7 +26984,8 @@
       {
         "sets": 10,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -26612,7 +27026,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Thursday Lower Body 2",
@@ -26628,7 +27043,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -26669,7 +27085,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Monday Lower Body 1",
@@ -26685,7 +27102,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -26726,7 +27144,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Thursday Lower Body 2",
@@ -26773,7 +27192,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Monday Lower Body 1",
@@ -26789,7 +27209,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       }
     ],
     "description": "Tuesday Upper Body 1",
@@ -26810,7 +27231,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Thursday Lower Body 2",
@@ -26831,7 +27253,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Monday Lower Body 1",
@@ -26847,7 +27270,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       }
     ],
     "description": "Tuesday Upper Body 1",
@@ -26873,12 +27297,14 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Thursday Upper Body 2",
@@ -26904,7 +27330,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Shoulder_Press"
+        "id": "Dumbbell_Shoulder_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -26914,7 +27341,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -26960,7 +27388,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       }
     ],
     "description": "Day #2 of the 'MFT Training: Boost Strength and Build High Performance Muscle' training.",
@@ -27039,7 +27468,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -27071,7 +27501,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Wednesday Workout Full Body",
@@ -27093,7 +27524,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -27135,7 +27567,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Monday Monday",
@@ -27151,12 +27584,14 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -27192,12 +27627,14 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Wednesday Wednesday",
@@ -27254,12 +27691,14 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 5,
         "reps": 5,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Friday Friday",
@@ -27275,7 +27714,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 5,
@@ -27383,7 +27823,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -27409,7 +27850,8 @@
       {
         "sets": 9,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -27435,7 +27877,8 @@
       {
         "reps": -1,
         "sets": 3,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -27461,7 +27904,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -27502,7 +27946,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -27528,7 +27973,8 @@
       {
         "sets": 9,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -27646,7 +28092,8 @@
       {
         "sets": 6,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -27667,7 +28114,8 @@
       {
         "sets": 9,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -27760,7 +28208,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -27796,7 +28245,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -27806,7 +28256,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -27873,7 +28324,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -27899,12 +28351,14 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "reps": 5,
         "sets": 5,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "reps": 5,
@@ -27935,22 +28389,26 @@
       {
         "reps": 5,
         "sets": 4,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "reps": 3,
         "sets": 1,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "reps": 2,
         "sets": 1,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "reps": 1,
         "sets": 1,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "reps": 10,
@@ -28017,7 +28475,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -28058,12 +28517,14 @@
       {
         "sets": 6,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 5,
         "reps": 10,
-        "id": "Dumbbell_Shoulder_Press"
+        "id": "Dumbbell_Shoulder_Press",
+        "weight": 40
       },
       {
         "sets": 5,
@@ -28186,7 +28647,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -28217,7 +28679,8 @@
       {
         "sets": 10,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -28243,7 +28706,8 @@
       {
         "sets": 9,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -28336,7 +28800,8 @@
       {
         "sets": 10,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -28362,7 +28827,8 @@
       {
         "sets": 9,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -28455,7 +28921,8 @@
       {
         "sets": 6,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Day #11 of the 'The Conjugate System: Phase 1 of the Beginner Powerlifting Workout' training.",
@@ -28471,7 +28938,8 @@
       {
         "sets": 9,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -28559,7 +29027,8 @@
       {
         "sets": 10,
         "reps": 10,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -28580,7 +29049,8 @@
       {
         "sets": 9,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -28660,7 +29130,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       }
     ],
     "description": "Day #1 of the '8 Pack Abs Workout: How To Get The Ultimate 8 Pack' training.",
@@ -28851,7 +29322,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -28861,7 +29333,8 @@
       {
         "sets": 3,
         "reps": 1,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -28887,7 +29360,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 1,
@@ -29034,7 +29508,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 3,
@@ -29169,7 +29644,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Day #4 of the 'Core Strength Road Map: 4 Weeks to a Shredded & Strong Core' training.",
@@ -29185,7 +29661,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 1,
@@ -29256,7 +29733,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       },
       {
         "sets": 1,
@@ -29439,7 +29917,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Frog, Plank and Roll Ab Workout Perform 2-3x Per Week",
@@ -29455,7 +29934,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Day #1 of the 'Core Strength Blueprint Workout v1.2 With Coach Myers' training.",
@@ -29471,7 +29951,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Day #2 of the 'Core Strength Blueprint Workout v1.2 With Coach Myers' training.",
@@ -29487,7 +29968,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Day #3 of the 'Core Strength Blueprint Workout v1.2 With Coach Myers' training.",
@@ -29508,7 +29990,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -29857,7 +30340,8 @@
         "sets": 2,
         "reps": 10,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -29875,7 +30359,8 @@
         "sets": 2,
         "reps": 10,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 40
       },
       {
         "sets": 2,
@@ -29928,7 +30413,8 @@
         "sets": 2,
         "reps": 10,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 40
       },
       {
         "sets": 2,
@@ -29958,7 +30444,8 @@
         "sets": 2,
         "reps": 10,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -30023,7 +30510,8 @@
         "sets": 2,
         "reps": 10,
         "id": "Arnold_Dumbbell_Press",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 40
       },
       {
         "sets": 2,
@@ -30070,7 +30558,8 @@
         "sets": 2,
         "reps": 10,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -30234,7 +30723,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Mountain_Climbers",
-        "breakTime": 120
+        "breakTime": 120,
+        "time": 180
       }
     ],
     "description": "Day #2 of the 'Calisthenics for Lifters: 12 Week Workout to Improve Performance' training.",
@@ -30481,7 +30971,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -30533,7 +31024,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -30568,7 +31060,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -30600,7 +31093,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -30625,7 +31119,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -30703,7 +31198,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -30723,7 +31219,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       }
     ],
     "description": "Day #2 of the 'Full Body Workout Program for Tall Guys' training.",
@@ -30780,7 +31277,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -30881,7 +31379,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -30911,7 +31410,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -31143,7 +31643,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -31170,7 +31671,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -31185,7 +31687,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -31217,7 +31720,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -31249,7 +31753,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -31291,7 +31796,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -31301,7 +31807,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -31359,12 +31866,14 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 5,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -31415,7 +31924,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       }
     ],
     "description": "Day #1 of the 'The Conditioning Comeback: 8 Week Total Body Fitness Workout' training.",
@@ -31514,7 +32024,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -31524,7 +32035,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 0,
@@ -31613,7 +32125,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -31633,7 +32146,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -31658,7 +32172,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 3,
@@ -31708,7 +32223,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       }
     ],
     "description": "40 Minute Blast Abs, Cardio and Resistance Workout",
@@ -31740,7 +32256,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 1,
@@ -31867,7 +32384,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -31918,7 +32436,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -31933,7 +32452,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -32015,7 +32535,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -32102,7 +32623,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -32174,7 +32696,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -32246,7 +32769,8 @@
       {
         "sets": 6,
         "reps": 2,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -32277,7 +32801,8 @@
       {
         "sets": 4,
         "reps": 8,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -32329,7 +32854,8 @@
       {
         "sets": 4,
         "reps": 45,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -32366,7 +32892,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 8,
@@ -32417,7 +32944,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -32478,7 +33006,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -32499,7 +33028,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -32514,7 +33044,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -32545,7 +33076,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -32586,7 +33118,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -32617,7 +33150,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -32658,7 +33192,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -32704,7 +33239,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -32760,7 +33296,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -32786,12 +33323,14 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       },
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -32801,7 +33340,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -32822,7 +33362,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -32915,7 +33456,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -32925,7 +33467,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -32956,7 +33499,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -32966,7 +33510,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Shoulder_Press"
+        "id": "Dumbbell_Shoulder_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -32997,7 +33542,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -33033,7 +33579,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -33048,7 +33595,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       }
     ],
     "description": "Day Four Chest, Shoulders and Arms",
@@ -33064,7 +33612,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -33148,12 +33697,14 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -33190,7 +33741,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -33232,12 +33784,14 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 1,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -33247,7 +33801,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -33559,7 +34114,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 3,
@@ -33610,7 +34166,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 3,
@@ -33741,7 +34298,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 3,
@@ -33888,7 +34446,8 @@
         "reps": 25,
         "sets": 3,
         "id": "Alternating_Renegade_Row",
-        "breakTime": 45
+        "breakTime": 45,
+        "weight": 40
       },
       {
         "reps": 25,
@@ -34343,7 +34902,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 1,
@@ -34384,7 +34944,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 1,
@@ -34471,7 +35032,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -34502,7 +35064,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -34538,7 +35101,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -34553,7 +35117,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -34599,7 +35164,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       }
     ],
     "description": "Day #2 of the '6 Day Push/Pull/Legs Planet Fitness Workout' training.",
@@ -34625,7 +35191,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -34748,7 +35315,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -34938,7 +35506,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -34984,7 +35553,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -35040,7 +35610,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -35244,7 +35815,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -35336,7 +35908,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -35367,12 +35940,14 @@
       {
         "sets": 1,
         "reps": 12,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "reps": 12,
         "sets": 3,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 1,
@@ -35433,12 +36008,14 @@
       {
         "sets": 1,
         "reps": 12,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "reps": 12,
         "sets": 3,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 1,
@@ -35499,12 +36076,14 @@
       {
         "sets": 1,
         "reps": 12,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "reps": 12,
         "sets": 3,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 1,
@@ -35529,12 +36108,14 @@
       {
         "sets": 1,
         "reps": 12,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "reps": 12,
         "sets": 3,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "reps": 12,
@@ -35554,7 +36135,8 @@
       {
         "reps": 20,
         "sets": 3,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       }
     ],
     "description": "Day #3 of the 'Starting Strong: The Ultimate 8 Week Workout for Beginners' training.",
@@ -35575,7 +36157,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -35606,7 +36189,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -35631,7 +36215,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       }
     ],
     "description": "Day #2 of the 'Push/Pull Sample Planet Fitness Workout' training.",
@@ -35647,7 +36232,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -35801,7 +36387,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -35888,7 +36475,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -35966,7 +36554,8 @@
       {
         "sets": 4,
         "reps": 12,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -36017,7 +36606,8 @@
       {
         "sets": 4,
         "reps": 12,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -36027,7 +36617,8 @@
       {
         "sets": 2,
         "reps": 30,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -36084,12 +36675,14 @@
       {
         "sets": 4,
         "reps": 6,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 2,
         "reps": 12,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -36115,7 +36708,8 @@
       {
         "sets": 3,
         "reps": 6,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -36151,7 +36745,8 @@
       {
         "sets": 4,
         "reps": 6,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -36161,7 +36756,8 @@
       {
         "sets": 2,
         "reps": 30,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -36218,7 +36814,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -36391,7 +36988,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -36671,7 +37269,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 1,
@@ -36803,7 +37402,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -36869,7 +37469,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 1,
@@ -36915,7 +37516,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -36986,7 +37588,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 1,
@@ -37011,7 +37614,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 1,
@@ -37037,7 +37641,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -37123,7 +37728,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       }
     ],
     "description": "Day #4 of the '5 Day Minimal Equipment Home Workout Routine' training.",
@@ -37205,12 +37811,14 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -37266,12 +37874,14 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -37327,12 +37937,14 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -37393,7 +38005,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -37445,7 +38058,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -37487,7 +38101,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -37517,7 +38132,8 @@
       {
         "sets": 3,
         "reps": 1,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       }
     ],
     "description": "Day #3 of the 'Robert Downey Jr Inspired Workout Program: Train Like Iron Man' training.",
@@ -37549,7 +38165,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -37682,7 +38299,8 @@
         "reps": 15,
         "sets": 3,
         "id": "Stiff-Legged_Dumbbell_Deadlift",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 40
       },
       {
         "reps": 20,
@@ -37873,7 +38491,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -38111,7 +38730,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -38147,7 +38767,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -38173,7 +38794,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -38183,7 +38805,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -38209,7 +38832,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -38265,7 +38889,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Thursday Lower Body B",
@@ -38291,7 +38916,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -38591,7 +39217,8 @@
         "sets": 2,
         "reps": 10,
         "id": "Mountain_Climbers",
-        "breakTime": 10
+        "breakTime": 10,
+        "time": 180
       },
       {
         "sets": 2,
@@ -38614,7 +39241,8 @@
         "sets": 1,
         "reps": 10,
         "id": "Mountain_Climbers",
-        "breakTime": 10
+        "breakTime": 10,
+        "time": 180
       },
       {
         "sets": 1,
@@ -38626,7 +39254,8 @@
         "sets": 1,
         "reps": 10,
         "id": "Mountain_Climbers",
-        "breakTime": 10
+        "breakTime": 10,
+        "time": 180
       },
       {
         "sets": 1,
@@ -38832,7 +39461,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -38875,7 +39505,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -38900,7 +39531,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -39023,7 +39655,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -39245,7 +39878,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -39342,7 +39976,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       }
     ],
     "description": "Day #2 of the 'WWE Pro Wrestler John Cena Workout Routine' training.",
@@ -39465,7 +40100,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -39491,7 +40127,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -39598,7 +40235,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Curl"
+        "id": "Barbell_Curl",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -39654,7 +40292,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -39774,7 +40413,8 @@
         "sets": 3,
         "reps": 4,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 90
+        "breakTime": 90,
+        "weight": 40
       },
       {
         "sets": 2,
@@ -40070,13 +40710,15 @@
         "sets": 2,
         "reps": 15,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 40
       },
       {
         "sets": 3,
         "reps": 10,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 40
       },
       {
         "sets": 3,
@@ -40134,13 +40776,15 @@
         "sets": 2,
         "reps": 15,
         "id": "Front_Barbell_Squat",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
         "id": "Front_Barbell_Squat",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 5
       },
       {
         "sets": 3,
@@ -40239,7 +40883,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -40285,7 +40930,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 1,
@@ -40466,13 +41112,15 @@
         "sets": 1,
         "reps": 10,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "reps": 8,
         "sets": 2,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "reps": 15,
@@ -40531,13 +41179,15 @@
         "sets": 1,
         "reps": 10,
         "id": "Barbell_Curl",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "reps": 8,
         "sets": 2,
         "id": "Barbell_Curl",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 1,
@@ -40572,13 +41222,15 @@
         "sets": 2,
         "reps": 15,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "reps": 12,
         "sets": 2,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "reps": 0,
@@ -40649,13 +41301,15 @@
         "sets": 2,
         "reps": 15,
         "id": "Front_Barbell_Squat",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "reps": 12,
         "sets": 2,
         "id": "Front_Barbell_Squat",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "reps": 12,
@@ -40679,13 +41333,15 @@
         "sets": 1,
         "reps": 10,
         "id": "Dumbbell_Bicep_Curl",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 40
       },
       {
         "reps": 12,
         "sets": 2,
         "id": "Dumbbell_Bicep_Curl",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 40
       },
       {
         "sets": 1,
@@ -40732,7 +41388,8 @@
         "reps": 8,
         "sets": 3,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -40892,7 +41549,8 @@
         "reps": 12,
         "sets": 3,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 90
+        "breakTime": 90,
+        "weight": 40
       },
       {
         "sets": 1,
@@ -40957,13 +41615,15 @@
         "sets": 1,
         "reps": 15,
         "id": "Dumbbell_Bicep_Curl",
-        "breakTime": 90
+        "breakTime": 90,
+        "weight": 40
       },
       {
         "reps": 8,
         "sets": 4,
         "id": "Dumbbell_Bicep_Curl",
-        "breakTime": 90
+        "breakTime": 90,
+        "weight": 40
       },
       {
         "sets": 1,
@@ -41040,13 +41700,15 @@
         "sets": 2,
         "reps": 15,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "reps": 15,
         "sets": 3,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "reps": 15,
@@ -41151,7 +41813,8 @@
       {
         "sets": 6,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -41222,7 +41885,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -41424,13 +42088,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Barbell_Deadlift",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "reps": 8,
         "sets": 3,
         "id": "Barbell_Deadlift",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -41448,13 +42114,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "reps": 5,
         "sets": 3,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -41531,13 +42199,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Stiff-Legged_Dumbbell_Deadlift",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "reps": 8,
         "sets": 3,
         "id": "Stiff-Legged_Dumbbell_Deadlift",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "sets": 2,
@@ -41632,13 +42302,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "reps": 8,
         "sets": 3,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "sets": 2,
@@ -41656,7 +42328,8 @@
         "reps": 8,
         "sets": 3,
         "id": "Dumbbell_Shoulder_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "reps": 8,
@@ -41680,13 +42353,15 @@
         "reps": 20,
         "sets": 3,
         "id": "Bicycling",
-        "breakTime": 30
+        "breakTime": 30,
+        "time": 180
       },
       {
         "reps": 8,
         "sets": 3,
         "id": "Bicycling",
-        "breakTime": 30
+        "breakTime": 30,
+        "time": 180
       }
     ],
     "description": "Session 3 Weeks 1-3",
@@ -41702,12 +42377,14 @@
       {
         "sets": 2,
         "reps": 12,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "reps": 12,
         "sets": 3,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -41752,7 +42429,8 @@
         "reps": 12,
         "sets": 3,
         "id": "Arnold_Dumbbell_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "reps": 12,
@@ -41791,12 +42469,14 @@
       {
         "sets": 2,
         "reps": 12,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "reps": 12,
         "sets": 3,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -41813,12 +42493,14 @@
       {
         "sets": 2,
         "reps": 12,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "reps": 12,
         "sets": 3,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -41891,13 +42573,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Stiff-Legged_Dumbbell_Deadlift",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "reps": 12,
         "sets": 3,
         "id": "Stiff-Legged_Dumbbell_Deadlift",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "sets": 2,
@@ -41964,7 +42648,8 @@
         "reps": 5,
         "sets": 4,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 90
+        "breakTime": 90,
+        "weight": 5
       },
       {
         "reps": 10,
@@ -42119,7 +42804,8 @@
         "reps": 5,
         "sets": 4,
         "id": "Barbell_Deadlift",
-        "breakTime": 180
+        "breakTime": 180,
+        "weight": 5
       },
       {
         "reps": 5,
@@ -42209,7 +42895,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -42229,7 +42916,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -42389,7 +43077,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -42425,7 +43114,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -42451,7 +43141,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -42533,7 +43224,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -42579,7 +43271,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -42605,12 +43298,14 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 1,
@@ -43001,7 +43696,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -43088,7 +43784,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -43332,7 +44029,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       }
     ],
     "description": "Day #3 of the 'Hollywood Muscle: Zac Efron Inspired Workout Routine' training.",
@@ -43361,13 +44059,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 4,
         "reps": 10,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -43426,13 +44126,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 4,
         "reps": 10,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -43450,13 +44152,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 40
       },
       {
         "sets": 4,
         "reps": 10,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 40
       },
       {
         "sets": 1,
@@ -43515,13 +44219,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Front_Barbell_Squat",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 4,
         "reps": 10,
         "id": "Front_Barbell_Squat",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -43592,13 +44298,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -43681,13 +44389,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 40
       },
       {
         "sets": 3,
         "reps": 10,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 40
       },
       {
         "sets": 2,
@@ -43770,25 +44480,29 @@
         "sets": 2,
         "reps": 12,
         "id": "Front_Barbell_Squat",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
         "id": "Front_Barbell_Squat",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 2,
         "reps": 12,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -43847,13 +44561,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 5,
         "reps": 10,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -43912,13 +44628,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 5,
         "reps": 10,
         "id": "Barbell_Deadlift",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -43936,13 +44654,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 40
       },
       {
         "sets": 5,
         "reps": 10,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 40
       },
       {
         "sets": 1,
@@ -44001,13 +44721,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Front_Barbell_Squat",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 5,
         "reps": 10,
         "id": "Front_Barbell_Squat",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -44077,7 +44799,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -44164,7 +44887,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -44200,7 +44924,8 @@
       {
         "sets": 10,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 10,
@@ -44338,7 +45063,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Day #2 of the 'Steve Kuclo Mass Building Inspired Workout Split' training.",
@@ -44760,13 +45486,15 @@
         "sets": 1,
         "reps": 12,
         "id": "Stiff-Legged_Dumbbell_Deadlift",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "reps": 8,
         "sets": 2,
         "id": "Stiff-Legged_Dumbbell_Deadlift",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "sets": 1,
@@ -44897,13 +45625,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "reps": 8,
         "sets": 3,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -44974,13 +45704,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Front_Barbell_Squat",
-        "breakTime": 90
+        "breakTime": 90,
+        "weight": 5
       },
       {
         "reps": 8,
         "sets": 3,
         "id": "Front_Barbell_Squat",
-        "breakTime": 90
+        "breakTime": 90,
+        "weight": 5
       },
       {
         "sets": 1,
@@ -45099,7 +45831,8 @@
         "reps": 10,
         "sets": 3,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "sets": 2,
@@ -45259,7 +45992,8 @@
         "reps": 10,
         "sets": 3,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "sets": 2,
@@ -45324,13 +46058,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Dumbbell_Bicep_Curl",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "reps": 10,
         "sets": 3,
         "id": "Dumbbell_Bicep_Curl",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 40
       },
       {
         "sets": 2,
@@ -45413,13 +46149,15 @@
         "sets": 2,
         "reps": 12,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 45
+        "breakTime": 45,
+        "weight": 5
       },
       {
         "reps": 12,
         "sets": 3,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 45
+        "breakTime": 45,
+        "weight": 5
       },
       {
         "reps": 12,
@@ -45637,7 +46375,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -45734,7 +46473,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -45765,12 +46505,14 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Day #1 of the 'Bodybuilding Icons: Reg Park Inspired Workout & Training' training.",
@@ -45791,7 +46533,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -45801,7 +46544,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -45811,7 +46555,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -45837,7 +46582,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -45847,7 +46593,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -45862,7 +46609,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -45980,12 +46728,14 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Clean_and_Jerk"
+        "id": "Clean_and_Jerk",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -46082,7 +46832,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -46133,12 +46884,14 @@
       {
         "sets": 1,
         "reps": 20,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -46174,7 +46927,8 @@
       {
         "sets": 3,
         "reps": 20,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -46241,12 +46995,14 @@
       {
         "sets": 2,
         "reps": 20,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -46287,7 +47043,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -46353,7 +47110,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -46394,7 +47152,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -46465,7 +47224,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -46542,7 +47302,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -46574,25 +47335,29 @@
         "sets": 2,
         "reps": 12,
         "id": "Barbell_Deadlift",
-        "breakTime": 90
+        "breakTime": 90,
+        "weight": 5
       },
       {
         "reps": 8,
         "sets": 4,
         "id": "Barbell_Deadlift",
-        "breakTime": 90
+        "breakTime": 90,
+        "weight": 5
       },
       {
         "sets": 2,
         "reps": 12,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "reps": 8,
         "sets": 4,
         "id": "Bench_Press_-_Powerlifting",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "reps": 8,
@@ -46686,13 +47451,15 @@
         "sets": 2,
         "reps": 8,
         "id": "Clean_and_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "reps": 8,
         "sets": 3,
         "id": "Clean_and_Press",
-        "breakTime": 60
+        "breakTime": 60,
+        "weight": 5
       },
       {
         "sets": 1,
@@ -46781,7 +47548,8 @@
         "reps": 1,
         "sets": 3,
         "id": "Farmers_Walk",
-        "breakTime": 30
+        "breakTime": 30,
+        "weight": 40
       },
       {
         "sets": 1,
@@ -46815,7 +47583,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -46866,7 +47635,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 3,
@@ -46943,7 +47713,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 3,
@@ -46979,12 +47750,14 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -47134,7 +47907,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -47238,7 +48012,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Yoke_Walk"
+        "id": "Yoke_Walk",
+        "weight": 20
       },
       {
         "sets": 1,
@@ -47356,7 +48131,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Yoke_Walk"
+        "id": "Yoke_Walk",
+        "weight": 20
       },
       {
         "sets": 1,
@@ -47484,7 +48260,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bicycling"
+        "id": "Bicycling",
+        "time": 180
       },
       {
         "sets": 3,
@@ -47525,7 +48302,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -47556,7 +48334,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Yoke_Walk"
+        "id": "Yoke_Walk",
+        "weight": 20
       },
       {
         "sets": 1,
@@ -47643,12 +48422,14 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -47816,7 +48597,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -47888,7 +48670,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -48019,7 +48802,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -48297,7 +49081,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Dumbbell_Bench_Press",
-        "breakTime": 90
+        "breakTime": 90,
+        "weight": 40
       },
       {
         "sets": 3,
@@ -48325,7 +49110,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Shoulder_Press"
+        "id": "Dumbbell_Shoulder_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -48361,7 +49147,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -48387,7 +49174,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -48413,12 +49201,14 @@
       {
         "sets": 4,
         "reps": -1,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -48482,12 +49272,14 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -48518,7 +49310,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -48554,7 +49347,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -48575,7 +49369,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -48626,12 +49421,14 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -48688,12 +49485,14 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 5,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 5,
@@ -48729,17 +49528,20 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 1,
         "reps": -1,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       }
     ],
     "description": "135lb Bench Press Workout Perform 2x/Week",
@@ -48760,7 +49562,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -48812,7 +49615,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -48843,7 +49647,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -48869,7 +49674,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -48911,7 +49717,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -48963,12 +49770,14 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -49056,7 +49865,8 @@
       {
         "sets": 7,
         "reps": 10,
-        "id": "Sumo_Deadlift"
+        "id": "Sumo_Deadlift",
+        "weight": 5
       },
       {
         "sets": 6,
@@ -49179,7 +49989,8 @@
       {
         "sets": 6,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 6,
@@ -49210,7 +50021,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -49235,7 +50047,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Farmers_Walk"
+        "id": "Farmers_Walk",
+        "weight": 40
       }
     ],
     "description": "Day #1 of the 'The Cobra Workout: Heavy High Volume Back Program' training.",
@@ -49281,7 +50094,8 @@
       {
         "sets": 1,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Day #2 of the 'The Cobra Workout: Heavy High Volume Back Program' training.",
@@ -49297,7 +50111,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -49567,7 +50382,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -49659,7 +50475,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -49701,7 +50518,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 5,
@@ -49737,7 +50555,8 @@
       {
         "sets": 8,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       }
     ],
     "description": "Weeks 4-6 Back Workout",
@@ -49831,7 +50650,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -49852,7 +50672,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -49883,7 +50704,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -49986,7 +50808,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -50115,7 +50938,8 @@
       {
         "sets": 6,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 4,
@@ -50259,7 +51083,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -50404,7 +51229,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 2,
@@ -50518,7 +51344,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -50575,7 +51402,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -50708,7 +51536,8 @@
         "sets": 3,
         "reps": 10,
         "id": "Dumbbell_Bicep_Curl",
-        "breakTime": 120
+        "breakTime": 120,
+        "weight": 40
       }
     ],
     "description": "Beginner Bicep Workout Routine Workout One",
@@ -50908,7 +51737,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Alternate_Incline_Dumbbell_Curl"
+        "id": "Alternate_Incline_Dumbbell_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -51061,7 +51891,8 @@
       {
         "sets": 3,
         "reps": -1,
-        "id": "Alternate_Incline_Dumbbell_Curl"
+        "id": "Alternate_Incline_Dumbbell_Curl",
+        "weight": 40
       },
       {
         "sets": 5,
@@ -51212,7 +52043,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Alternate_Incline_Dumbbell_Curl"
+        "id": "Alternate_Incline_Dumbbell_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -51286,7 +52118,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Alternate_Incline_Dumbbell_Curl"
+        "id": "Alternate_Incline_Dumbbell_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -51454,7 +52287,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -51667,7 +52501,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -51776,7 +52611,8 @@
       {
         "sets": 5,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 5,
@@ -51870,7 +52706,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -51959,12 +52796,14 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -52185,7 +53024,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -52267,7 +53107,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Dumbbell_Bicep_Curl"
+        "id": "Dumbbell_Bicep_Curl",
+        "weight": 40
       },
       {
         "sets": 2,
@@ -52520,7 +53361,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -52706,7 +53548,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Dumbbell_Shoulder_Press"
+        "id": "Dumbbell_Shoulder_Press",
+        "weight": 40
       }
     ],
     "description": "Day #1 of the 'Super Shoulder Striations: Get Ripped Shoulders with this Workout' training.",
@@ -52824,7 +53667,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 5,
@@ -53004,7 +53848,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 4,
@@ -53251,7 +54096,8 @@
       {
         "sets": 7,
         "reps": 10,
-        "id": "Barbell_Deadlift"
+        "id": "Barbell_Deadlift",
+        "weight": 5
       },
       {
         "sets": 6,
@@ -53536,7 +54382,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Barbell_Ab_Rollout"
+        "id": "Barbell_Ab_Rollout",
+        "weight": 5
       }
     ],
     "description": "Squat Day Sample Workout",
@@ -53679,7 +54526,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 1,
@@ -53772,7 +54620,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -53833,7 +54682,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Front_Barbell_Squat"
+        "id": "Front_Barbell_Squat",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -53909,7 +54759,8 @@
       {
         "sets": 2,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       },
       {
         "sets": 5,
@@ -54032,7 +54883,8 @@
       {
         "sets": 4,
         "reps": 10,
-        "id": "Stiff-Legged_Dumbbell_Deadlift"
+        "id": "Stiff-Legged_Dumbbell_Deadlift",
+        "weight": 40
       }
     ],
     "description": "Leg Carnage Workout Quads & Hamstrings",
@@ -54414,7 +55266,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Arnold_Dumbbell_Press"
+        "id": "Arnold_Dumbbell_Press",
+        "weight": 40
       },
       {
         "sets": 3,
@@ -54440,7 +55293,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Bench_Press_-_Powerlifting"
+        "id": "Bench_Press_-_Powerlifting",
+        "weight": 5
       },
       {
         "sets": 3,
@@ -54460,7 +55314,8 @@
       {
         "sets": 3,
         "reps": 10,
-        "id": "Dumbbell_Bench_Press"
+        "id": "Dumbbell_Bench_Press",
+        "weight": 40
       },
       {
         "sets": 3,
