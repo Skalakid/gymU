@@ -5,6 +5,7 @@ type NewExerciseType = {
   hasWeights: boolean;
   hasTime: boolean;
   isBreak: boolean;
+  progressTarget: Prisma.JsonValue;
 };
 
 type NewExercise = {
