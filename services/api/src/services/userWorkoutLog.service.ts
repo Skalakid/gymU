@@ -5,6 +5,8 @@ async function createWorkoutLog(
   userWorkoutId: number,
   opinion: number,
   exercises: ExerciseHistoryItem[],
+  userId: number,
+  eventId?: number | null,
 ) {
   function parseOpinion(value: number): number {
     if (value < 0) {
@@ -26,6 +28,8 @@ async function createWorkoutLog(
     userWorkoutId,
     workoutOpinion,
     workoutExercises,
+    userId,
+    eventId,
   );
 }
 

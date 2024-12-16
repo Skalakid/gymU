@@ -10,6 +10,7 @@ type LiveTrainingContext = {
   currentWorkout: Workout | null;
   trainingItems: TrainingItem[];
   currentExerciseIndex: number;
+  calendarEventId: number | null;
   nextItem: () => number;
   peviousItem: () => number;
   getWorkoutExercise: (
@@ -19,6 +20,7 @@ type LiveTrainingContext = {
   getExerciseOpinion: (trainingItemIndex: number) => Opinion | null;
   saveWorkoutLog: (workoutOpinion: number) => void;
   resetTraining: () => void;
+  updateSelectedCalendarEventId: (eventId: number | null) => void;
 };
 
 const LiveTrainingContext = React.createContext<LiveTrainingContext>({
@@ -27,6 +29,7 @@ const LiveTrainingContext = React.createContext<LiveTrainingContext>({
   currentWorkout: null,
   trainingItems: [],
   currentExerciseIndex: 0,
+  calendarEventId: null,
   nextItem: () => 0,
   peviousItem: () => 0,
   getWorkoutExercise: () => null,
@@ -34,6 +37,7 @@ const LiveTrainingContext = React.createContext<LiveTrainingContext>({
   getExerciseOpinion: () => null,
   saveWorkoutLog: () => null,
   resetTraining: () => null,
+  updateSelectedCalendarEventId: (eventId: number | null) => null,
 });
 
 type Opinion = {
@@ -50,6 +54,7 @@ function LiveTrainingContextProvider({
   const [trainingItems, setTrainingItems] = useState<TrainingItem[]>([]);
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState<number>(0);
   const [opinions, setOpinions] = useState<Opinion[]>([]);
+  const [calendarEventId, setCalendarEventId] = useState<number | null>(null);
 
   const getTrainingItem = useCallback(
     (exercise: DetailedExerciseItem, index: number): TrainingItem => {
@@ -232,6 +237,7 @@ function LiveTrainingContextProvider({
   const saveWorkoutLog = useCallback(
     async (workoutOpinion: number) => {
       try {
+        console.log(calendarEventId);
         const response = await fetchApi(
           '/workout/live-training/save',
           'POST',
@@ -245,6 +251,7 @@ function LiveTrainingContextProvider({
               opinion: opinions[index]?.value || 0,
               orderIndex: index,
             })),
+            eventId: calendarEventId,
           },
         );
         if (!response.ok) {
@@ -258,7 +265,19 @@ function LiveTrainingContextProvider({
         }
       }
     },
-    [currentWorkout?.exercises, currentWorkout?.workoutId, opinions],
+    [
+      currentWorkout?.exercises,
+      currentWorkout?.workoutId,
+      opinions,
+      calendarEventId,
+    ],
+  );
+
+  const updateSelectedCalendarEventId = useCallback(
+    (eventId: number | null) => {
+      setCalendarEventId(eventId);
+    },
+    [],
   );
 
   const value = useMemo(
@@ -267,6 +286,7 @@ function LiveTrainingContextProvider({
       currentWorkout,
       trainingItems,
       currentExerciseIndex,
+      calendarEventId,
       startLiveTraining,
       nextItem,
       peviousItem,
@@ -275,10 +295,12 @@ function LiveTrainingContextProvider({
       getExerciseOpinion,
       saveWorkoutLog,
       resetTraining,
+      updateSelectedCalendarEventId,
     }),
     [
       currentExerciseIndex,
       currentWorkout,
+      calendarEventId,
       nextItem,
       peviousItem,
       isLoading,
@@ -289,6 +311,7 @@ function LiveTrainingContextProvider({
       getExerciseOpinion,
       saveWorkoutLog,
       resetTraining,
+      updateSelectedCalendarEventId,
     ],
   );
 

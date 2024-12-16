@@ -1,18 +1,58 @@
 import { ExerciseHistoryItem } from '../types/exerciseHistoryItem';
 import { prisma } from '../config/db.server';
+import { createEvent } from './calendar.db';
+
+async function getProperEventId(
+  userId: number,
+  workoutId: number,
+  timestamp: Date,
+  eventId?: number | null,
+) {
+  if (eventId !== null && eventId !== undefined) {
+    const userWorkoutLog = await prisma.userWorkoutLog.findFirst({
+      where: {
+        eventId: eventId,
+      },
+    });
+
+    if (userWorkoutLog === null || userWorkoutLog === undefined) {
+      return eventId;
+    }
+  }
+
+  const { events } = await createEvent(userId, {
+    workoutId: workoutId,
+    repeatCount: 0,
+    repeatFrequency: 0,
+    repeatUnit: 'day',
+    datetime: timestamp,
+  });
+
+  return events[0].eventId;
+}
 
 async function createWorkoutLog(
   userWorkoutId: number,
   opinion: number,
   exercises: ExerciseHistoryItem[],
+  userId: number,
+  eventId?: number | null,
 ) {
   const timeStamp = new Date();
+
+  const calendarEventId = await getProperEventId(
+    userId,
+    userWorkoutId,
+    timeStamp,
+    eventId,
+  );
 
   const log = await prisma.userWorkoutLog.create({
     data: {
       userWorkoutId: userWorkoutId,
       opinion: opinion,
       logDate: timeStamp,
+      eventId: calendarEventId,
     },
   });
 

@@ -44,7 +44,7 @@ const CalendarPage = () => {
 
       try {
         const response = await fetchApi(
-          `/calendar/grid/${firstDay}/${lastDay}`,
+          `/calendar/grid/${firstDay.getTime()}/${lastDay.getTime()}`,
           'GET',
           null,
           null,
@@ -165,7 +165,11 @@ const CalendarPage = () => {
               level={workout.level}
               tags={workout.tags}
               onPress={() => {
-                router.navigate(`/workouts/${workout.workoutId}`);
+                router.navigate({
+                  // @ts-ignore
+                  pathname: `/workouts/${workout.workoutId}`,
+                  params: { eventId: eventId },
+                });
               }}
               key={eventId}
             />

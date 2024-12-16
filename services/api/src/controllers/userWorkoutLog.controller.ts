@@ -3,6 +3,7 @@ import { AuthRequest } from '../middlewares/auth.middleware';
 import { ExerciseHistoryItem } from '../types/exerciseHistoryItem';
 import * as UserWorkoutLogService from '../services/userWorkoutLog.service';
 import ApiError from '../error/ApiError';
+import { ReturnUser } from './user.controller';
 
 async function createWorkoutLog(
   req: AuthRequest,
@@ -10,14 +11,17 @@ async function createWorkoutLog(
   next: NextFunction,
 ) {
   try {
+    const userId = Number((req.user as ReturnUser).userId) || -1;
     const {
       userWorkoutId,
       opinion,
       exercises,
+      eventId,
     }: {
       userWorkoutId: number;
       opinion: number;
       exercises: ExerciseHistoryItem[];
+      eventId?: number | null;
     } = req.body;
 
     if (!userWorkoutId || opinion === undefined || !exercises) {
@@ -44,6 +48,8 @@ async function createWorkoutLog(
       userWorkoutId,
       opinion,
       exercises,
+      userId,
+      eventId,
     );
     res.status(201).send(workoutLog);
   } catch (error) {

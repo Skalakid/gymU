@@ -4,6 +4,9 @@ import { ReturnUser } from './user.controller';
 import * as CalendarService from '../services/calendar.service';
 import { NewCalendarEvent } from '../types/calendar';
 
+const prepareDateInput = (dateStr: string) =>
+  isNaN(+dateStr) ? dateStr : +dateStr;
+
 async function getAllEventsInRange(
   req: AuthRequest,
   res: Response,
@@ -15,8 +18,8 @@ async function getAllEventsInRange(
 
     const events = await CalendarService.getAllEventsInRange(
       userId,
-      new Date(startDate),
-      new Date(endDate),
+      new Date(prepareDateInput(startDate)),
+      new Date(prepareDateInput(endDate)),
     );
 
     res.status(200).send(events);
