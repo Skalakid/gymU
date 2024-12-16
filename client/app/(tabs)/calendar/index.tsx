@@ -166,7 +166,7 @@ const CalendarPage = () => {
               tags={workout.tags}
               onPress={() => {
                 router.navigate({
-                  // @ts-ignore
+                  // @ts-expect-error: pathname is correct
                   pathname: `/workouts/${workout.workoutId}`,
                   params: { eventId: eventId },
                 });

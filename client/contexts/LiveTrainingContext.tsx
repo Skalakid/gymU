@@ -37,7 +37,7 @@ const LiveTrainingContext = React.createContext<LiveTrainingContext>({
   getExerciseOpinion: () => null,
   saveWorkoutLog: () => null,
   resetTraining: () => null,
-  updateSelectedCalendarEventId: (eventId: number | null) => null,
+  updateSelectedCalendarEventId: (eventId: number | null) => eventId,
 });
 
 type Opinion = {
@@ -237,7 +237,6 @@ function LiveTrainingContextProvider({
   const saveWorkoutLog = useCallback(
     async (workoutOpinion: number) => {
       try {
-        console.log(calendarEventId);
         const response = await fetchApi(
           '/workout/live-training/save',
           'POST',
