@@ -302,7 +302,7 @@
       "Barbell_Glute_Bridge/0.jpg",
       "Barbell_Glute_Bridge/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Barbell_Hack_Squat",
@@ -321,7 +321,7 @@
       "Barbell_Hack_Squat/0.jpg",
       "Barbell_Hack_Squat/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Barbell_Hip_Thrust",
@@ -339,7 +339,7 @@
       "Barbell_Hip_Thrust/0.jpg",
       "Barbell_Hip_Thrust/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Barbell_Lunge",
@@ -358,7 +358,7 @@
       "Barbell_Lunge/0.jpg",
       "Barbell_Lunge/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Barbell_Seated_Calf_Raise",
@@ -374,7 +374,7 @@
       "Barbell_Seated_Calf_Raise/0.jpg",
       "Barbell_Seated_Calf_Raise/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Barbell_Shoulder_Press",
@@ -392,7 +392,7 @@
       "Barbell_Shoulder_Press/0.jpg",
       "Barbell_Shoulder_Press/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Barbell_Shrug",
@@ -408,7 +408,7 @@
       "Barbell_Shrug/0.jpg",
       "Barbell_Shrug/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Barbell_Side_Split_Squat",
@@ -427,7 +427,7 @@
       "Barbell_Side_Split_Squat/0.jpg",
       "Barbell_Side_Split_Squat/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Barbell_Squat",
@@ -447,7 +447,7 @@
       "Barbell_Squat/0.jpg",
       "Barbell_Squat/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Barbell_Step_Ups",
@@ -466,7 +466,7 @@
       "Barbell_Step_Ups/0.jpg",
       "Barbell_Step_Ups/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Barbell_Walking_Lunge",
@@ -485,7 +485,7 @@
       "Barbell_Walking_Lunge/0.jpg",
       "Barbell_Walking_Lunge/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Bench_Dips",
@@ -560,7 +560,7 @@
       "Bent-Arm_Barbell_Pullover/0.jpg",
       "Bent-Arm_Barbell_Pullover/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Bent-Arm_Dumbbell_Pullover",
@@ -579,7 +579,7 @@
       "Bent-Arm_Dumbbell_Pullover/0.jpg",
       "Bent-Arm_Dumbbell_Pullover/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Bent-Knee_Hip_Raise",
@@ -614,7 +614,7 @@
       "Bent_Over_Barbell_Row/0.jpg",
       "Bent_Over_Barbell_Row/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Bent_Over_One-Arm_Long_Bar_Row",
@@ -653,7 +653,7 @@
       "Bent_Over_Two-Dumbbell_Row/0.jpg",
       "Bent_Over_Two-Dumbbell_Row/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Bent_Over_Two-Dumbbell_Row_With_Palms_In",
@@ -671,7 +671,7 @@
       "Bent_Over_Two-Dumbbell_Row_With_Palms_In/0.jpg",
       "Bent_Over_Two-Dumbbell_Row_With_Palms_In/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Bicycling",
@@ -1119,7 +1119,7 @@
       "Close-Grip_Barbell_Bench_Press/0.jpg",
       "Close-Grip_Barbell_Bench_Press/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Close-Grip_Dumbbell_Press",
@@ -1137,7 +1137,7 @@
       "Close-Grip_Dumbbell_Press/0.jpg",
       "Close-Grip_Dumbbell_Press/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Close-Grip_EZ-Bar_Press",
@@ -1208,7 +1208,7 @@
       "Close-Grip_Standing_Barbell_Curl/0.jpg",
       "Close-Grip_Standing_Barbell_Curl/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Concentration_Curls",
@@ -1364,7 +1364,7 @@
       "Decline_Barbell_Bench_Press/0.jpg",
       "Decline_Barbell_Bench_Press/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Decline_Crunch",
@@ -1398,7 +1398,7 @@
       "Decline_Dumbbell_Bench_Press/0.jpg",
       "Decline_Dumbbell_Bench_Press/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Decline_Dumbbell_Flyes",
@@ -1414,7 +1414,7 @@
       "Decline_Dumbbell_Flyes/0.jpg",
       "Decline_Dumbbell_Flyes/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Decline_Dumbbell_Triceps_Extension",
@@ -1430,7 +1430,7 @@
       "Decline_Dumbbell_Triceps_Extension/0.jpg",
       "Decline_Dumbbell_Triceps_Extension/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Decline_Push-Up",
@@ -1595,7 +1595,7 @@
       "Dumbbell_Bench_Press_with_Neutral_Grip/0.jpg",
       "Dumbbell_Bench_Press_with_Neutral_Grip/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Dumbbell_Bicep_Curl",
@@ -1630,7 +1630,7 @@
       "Dumbbell_Floor_Press/0.jpg",
       "Dumbbell_Floor_Press/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Dumbbell_Flyes",
@@ -1646,7 +1646,7 @@
       "Dumbbell_Flyes/0.jpg",
       "Dumbbell_Flyes/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Dumbbell_Incline_Row",
@@ -1666,7 +1666,7 @@
       "Dumbbell_Incline_Row/0.jpg",
       "Dumbbell_Incline_Row/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Dumbbell_Lunges",
@@ -1685,7 +1685,7 @@
       "Dumbbell_Lunges/0.jpg",
       "Dumbbell_Lunges/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Dumbbell_Lying_Rear_Lateral_Raise",
@@ -1701,7 +1701,7 @@
       "Dumbbell_Lying_Rear_Lateral_Raise/0.jpg",
       "Dumbbell_Lying_Rear_Lateral_Raise/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Dumbbell_One-Arm_Triceps_Extension",
@@ -1717,7 +1717,7 @@
       "Dumbbell_One-Arm_Triceps_Extension/0.jpg",
       "Dumbbell_One-Arm_Triceps_Extension/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Dumbbell_One-Arm_Upright_Row",
@@ -1735,7 +1735,7 @@
       "Dumbbell_One-Arm_Upright_Row/0.jpg",
       "Dumbbell_One-Arm_Upright_Row/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Dumbbell_Rear_Lunge",
@@ -1754,7 +1754,7 @@
       "Dumbbell_Rear_Lunge/0.jpg",
       "Dumbbell_Rear_Lunge/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Dumbbell_Seated_One-Leg_Calf_Raise",
@@ -1770,7 +1770,7 @@
       "Dumbbell_Seated_One-Leg_Calf_Raise/0.jpg",
       "Dumbbell_Seated_One-Leg_Calf_Raise/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Dumbbell_Shoulder_Press",
@@ -1803,7 +1803,7 @@
       "Dumbbell_Shrug/0.jpg",
       "Dumbbell_Shrug/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Dumbbell_Side_Bend",
@@ -1819,7 +1819,7 @@
       "Dumbbell_Side_Bend/0.jpg",
       "Dumbbell_Side_Bend/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Dumbbell_Squat",
@@ -1839,7 +1839,7 @@
       "Dumbbell_Squat/0.jpg",
       "Dumbbell_Squat/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Dumbbell_Step_Ups",
@@ -1858,7 +1858,7 @@
       "Dumbbell_Step_Ups/0.jpg",
       "Dumbbell_Step_Ups/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "EZ-Bar_Curl",
@@ -2050,7 +2050,7 @@
       "Front_Barbell_Squat_To_A_Bench/0.jpg",
       "Front_Barbell_Squat_To_A_Bench/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Front_Box_Jump",
@@ -2103,7 +2103,7 @@
       "Front_Dumbbell_Raise/0.jpg",
       "Front_Dumbbell_Raise/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Front_Leg_Raises",
@@ -2421,7 +2421,7 @@
       "Incline_Dumbbell_Curl/0.jpg",
       "Incline_Dumbbell_Curl/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Incline_Dumbbell_Flyes",
@@ -2438,7 +2438,7 @@
       "Incline_Dumbbell_Flyes/0.jpg",
       "Incline_Dumbbell_Flyes/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Incline_Dumbbell_Press",
@@ -2456,7 +2456,7 @@
       "Incline_Dumbbell_Press/0.jpg",
       "Incline_Dumbbell_Press/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Incline_Push-Up",
@@ -2911,7 +2911,7 @@
       "Lying_Dumbbell_Tricep_Extension/0.jpg",
       "Lying_Dumbbell_Tricep_Extension/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Lying_Leg_Curls",
@@ -3202,7 +3202,7 @@
       "One-Arm_Dumbbell_Row/0.jpg",
       "One-Arm_Dumbbell_Row/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "One-Arm_Flat_Bench_Dumbbell_Flye",
@@ -3218,7 +3218,7 @@
       "One-Arm_Flat_Bench_Dumbbell_Flye/0.jpg",
       "One-Arm_Flat_Bench_Dumbbell_Flye/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "One-Arm_Incline_Lateral_Raise",
@@ -3439,7 +3439,7 @@
       "One_Arm_Dumbbell_Bench_Press/0.jpg",
       "One_Arm_Dumbbell_Bench_Press/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "One_Arm_Dumbbell_Preacher_Curl",
@@ -3455,7 +3455,7 @@
       "One_Arm_Dumbbell_Preacher_Curl/0.jpg",
       "One_Arm_Dumbbell_Preacher_Curl/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "One_Arm_Lat_Pulldown",
@@ -3489,7 +3489,7 @@
       "One_Arm_Pronated_Dumbbell_Triceps_Extension/0.jpg",
       "One_Arm_Pronated_Dumbbell_Triceps_Extension/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Pallof_Press",
@@ -3524,7 +3524,7 @@
       "Palms-Up_Barbell_Wrist_Curl_Over_A_Bench/0.jpg",
       "Palms-Up_Barbell_Wrist_Curl_Over_A_Bench/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Palms-Up_Dumbbell_Wrist_Curl_Over_A_Bench",
@@ -3540,7 +3540,7 @@
       "Palms-Up_Dumbbell_Wrist_Curl_Over_A_Bench/0.jpg",
       "Palms-Up_Dumbbell_Wrist_Curl_Over_A_Bench/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Parallel_Bar_Dip",
@@ -3610,7 +3610,7 @@
       "Plie_Dumbbell_Squat/0.jpg",
       "Plie_Dumbbell_Squat/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Plyo_Kettlebell_Pushups",
@@ -3919,7 +3919,7 @@
       "Reverse_Barbell_Curl/0.jpg",
       "Reverse_Barbell_Curl/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Reverse_Cable_Curl",
@@ -4173,7 +4173,7 @@
       "Seated_Barbell_Twist/0.jpg",
       "Seated_Barbell_Twist/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Seated_Biceps",
@@ -4259,7 +4259,7 @@
       "Seated_Dumbbell_Curl/0.jpg",
       "Seated_Dumbbell_Curl/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Seated_Dumbbell_Press",
@@ -4276,7 +4276,7 @@
       "Seated_Dumbbell_Press/0.jpg",
       "Seated_Dumbbell_Press/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Seated_Leg_Curl",
@@ -4324,7 +4324,7 @@
       "Seated_One-Arm_Dumbbell_Palms-Up_Wrist_Curl/0.jpg",
       "Seated_One-Arm_Dumbbell_Palms-Up_Wrist_Curl/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Seated_Palm-Up_Barbell_Wrist_Curl",
@@ -4340,7 +4340,7 @@
       "Seated_Palm-Up_Barbell_Wrist_Curl/0.jpg",
       "Seated_Palm-Up_Barbell_Wrist_Curl/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Seated_Side_Lateral_Raise",
@@ -5075,7 +5075,7 @@
       "Standing_Alternating_Dumbbell_Press/0.jpg",
       "Standing_Alternating_Dumbbell_Press/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Standing_Barbell_Calf_Raise",
@@ -5091,7 +5091,7 @@
       "Standing_Barbell_Calf_Raise/0.jpg",
       "Standing_Barbell_Calf_Raise/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Standing_Biceps_Cable_Curl",
@@ -5156,7 +5156,7 @@
       "Standing_Dumbbell_Calf_Raise/0.jpg",
       "Standing_Dumbbell_Calf_Raise/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Standing_Dumbbell_Press",
@@ -5173,7 +5173,7 @@
       "Standing_Dumbbell_Press/0.jpg",
       "Standing_Dumbbell_Press/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Standing_Dumbbell_Reverse_Curl",
@@ -5190,7 +5190,7 @@
       "Standing_Dumbbell_Reverse_Curl/0.jpg",
       "Standing_Dumbbell_Reverse_Curl/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Standing_Dumbbell_Upright_Row",
@@ -5208,7 +5208,7 @@
       "Standing_Dumbbell_Upright_Row/0.jpg",
       "Standing_Dumbbell_Upright_Row/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Standing_Leg_Curl",
@@ -5257,7 +5257,7 @@
       "Standing_Overhead_Barbell_Triceps_Extension/0.jpg",
       "Standing_Overhead_Barbell_Triceps_Extension/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Standing_Rope_Crunch",
@@ -5455,7 +5455,7 @@
       "Tricep_Dumbbell_Kickback/0.jpg",
       "Tricep_Dumbbell_Kickback/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Triceps_Pushdown",
@@ -5524,7 +5524,7 @@
       "Upright_Barbell_Row/0.jpg",
       "Upright_Barbell_Row/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Upright_Cable_Row",
@@ -5704,7 +5704,7 @@
       "Wide-Grip_Barbell_Bench_Press/0.jpg",
       "Wide-Grip_Barbell_Bench_Press/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Wide-Grip_Lat_Pulldown",
@@ -5758,7 +5758,7 @@
       "Wide-Grip_Standing_Barbell_Curl/0.jpg",
       "Wide-Grip_Standing_Barbell_Curl/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Wide_Stance_Barbell_Squat",
@@ -5778,7 +5778,7 @@
       "Wide_Stance_Barbell_Squat/0.jpg",
       "Wide_Stance_Barbell_Squat/1.jpg"
     ],
-    "type": "reps"
+    "type": "weights"
   },
   {
     "id": "Wrist_Roller",
