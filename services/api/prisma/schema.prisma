@@ -68,14 +68,16 @@ model ExerciseTemplateItem {
 }
 
 model ExerciseType {
-  exerciseTypeId Int        @id @default(autoincrement()) @map("exercise_type_id")
-  name           String     @db.VarChar(50)
-  hasReps        Boolean?   @default(false) @map("has_reps")
-  hasSets        Boolean?   @default(false) @map("has_sets")
-  hasWeights     Boolean?   @default(false) @map("has_weights")
-  hasTime        Boolean?   @default(false) @map("has_time")
-  isBreak        Boolean?   @default(false) @map("is_break")
-  exercises      Exercise[]
+  exerciseTypeId Int      @id @default(autoincrement()) @map("exercise_type_id")
+  name           String   @db.VarChar(50)
+  hasReps        Boolean? @default(false) @map("has_reps")
+  hasSets        Boolean? @default(false) @map("has_sets")
+  hasWeights     Boolean? @default(false) @map("has_weights")
+  hasTime        Boolean? @default(false) @map("has_time")
+  isBreak        Boolean? @default(false) @map("is_break")
+  progressTarget Json     @map("progress_target")
+
+  exercises Exercise[]
 
   @@map("exercise_type")
 }
