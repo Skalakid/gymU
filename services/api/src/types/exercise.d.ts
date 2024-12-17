@@ -39,6 +39,7 @@ type DetailedExercise = {
   value?: ExerciseDetails;
   description?: string;
   orderIndex?: number;
+  imageUrls?: string[];
 };
 
 type NewExerciseTemplateItem = {

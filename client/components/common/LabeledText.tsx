@@ -9,7 +9,7 @@ type LabeledTextProps = ThemedTextProps & {
 const LabeledText = ({ label, text, ...rest }: LabeledTextProps) => {
   return (
     <View style={styles.container}>
-      <ThemedText size="m" weight="medium">
+      <ThemedText size="m" weight="light">
         {label}
       </ThemedText>
       <ThemedText {...rest}>{text}</ThemedText>
@@ -22,6 +22,6 @@ export default LabeledText;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    gap: 5,
+    gap: 2,
   },
 });

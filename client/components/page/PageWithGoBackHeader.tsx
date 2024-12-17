@@ -21,6 +21,7 @@ const PageWithGoBackHeader = ({
   style,
   headerStyle = {},
   title,
+  ...rest
 }: PageWithGoBackHeaderProps) => {
   return (
     <ThemedView style={styles.container}>
@@ -30,6 +31,7 @@ const PageWithGoBackHeader = ({
         leftIcon={Icons.arrowLeft}
         leftIconSize={32}
         leftIconOnPress={() => router.back()}
+        {...rest}
       />
       <ThemedView style={[styles.content, style]}>{children}</ThemedView>
     </ThemedView>

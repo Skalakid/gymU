@@ -10,6 +10,7 @@ type TrainingItem = {
     isBreak: boolean;
   };
   type: string;
+  imageUrls: string[];
 };
 
 type ActionType = 'next' | 'prev';

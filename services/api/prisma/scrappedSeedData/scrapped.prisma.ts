@@ -149,6 +149,9 @@ async function seedScrappedExercisesAndReturn() {
         name: exercise.name,
         exerciseTypeId: exerciseTypesIds[exercise.type as 'time' | 'reps'],
         description: exercise.description,
+        imageUrls: exercise.images.map(
+          (path) => `http://localhost:3000/assets?file=/exercises/${path}`,
+        ),
       };
     }),
   });

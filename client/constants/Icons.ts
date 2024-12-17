@@ -36,6 +36,7 @@ import settings from '../assets/icons/settings.svg';
 import time from '../assets/icons/time.svg';
 import trash from '../assets/icons/trash.svg';
 import user from '../assets/icons/user.svg';
+import users from '../assets/icons/users.svg';
 import weight from '../assets/icons/weight.svg';
 
 export default {
@@ -77,5 +78,6 @@ export default {
   time,
   trash,
   user,
+  users,
   weight,
 };

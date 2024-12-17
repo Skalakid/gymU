@@ -100,6 +100,7 @@ async function getWorkoutDetails(workoutId: number) {
                   },
                 },
               },
+              imageUrls: true,
             },
           },
           value: true,

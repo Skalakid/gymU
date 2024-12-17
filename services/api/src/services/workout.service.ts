@@ -43,9 +43,9 @@ async function getAllWorkouts(
     },
   );
 
-  const paginatedResponse: PaginatedResponse<GeneralWorkout[]> = {
-    currentPage: page,
-    pages: Math.ceil(allWorkoutsCount / pageSize),
+  const paginatedResponse: PaginatedResponse<GeneralWorkout> = {
+    pageNo: page,
+    totalPages: Math.ceil(allWorkoutsCount / pageSize),
     totalItems: allWorkoutsCount,
     pageSize,
     currentPageSize: workoutsWithTagName.length,
@@ -75,6 +75,7 @@ async function getWorkoutDetails(workoutId: number, userId: number) {
         bodyParts: item.exercise.exercisesBodyParts.map(
           (item) => item.bodyPart.name,
         ),
+        imageUrls: item.exercise.imageUrls,
       };
     })
     .sort((a, b) => a.orderIndex - b.orderIndex);

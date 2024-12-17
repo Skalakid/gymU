@@ -65,6 +65,7 @@ function LiveTrainingContextProvider({
           isBreak: exercise.value.isBreak || false,
         },
         type: exercise.exerciseType,
+        imageUrls: exercise.imageUrls || [],
       };
     },
     [],
@@ -104,6 +105,7 @@ function LiveTrainingContextProvider({
                   isBreak: true,
                 },
                 type: 'break',
+                imageUrls: [],
               });
             }
           }
