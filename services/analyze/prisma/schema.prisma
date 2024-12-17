@@ -70,13 +70,14 @@ model exercise_body_parts {
 }
 
 model exercise_template_item {
-  item_id             Int              @id @default(autoincrement())
-  workout_template_id Int
-  exercise_id         Int
-  value               Json
-  order_index         Int
-  exercise            exercise         @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
-  workout_template    workout_template @relation(fields: [workout_template_id], references: [workout_id], onDelete: NoAction, onUpdate: NoAction)
+  item_id                    Int                          @id @default(autoincrement())
+  workout_template_id        Int
+  exercise_id                Int
+  value                      Json
+  order_index                Int
+  exercise                   exercise                     @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
+  workout_template           workout_template             @relation(fields: [workout_template_id], references: [workout_id], onDelete: NoAction, onUpdate: NoAction)
+  user_exercise_history_item user_exercise_history_item[]
 }
 
 model exercise_type {
@@ -118,15 +119,17 @@ model tag {
 }
 
 model user_exercise_history_item {
-  item_id          Int              @id @default(autoincrement())
-  user_log_id      Int
-  exercise_id      Int
-  opinion          Int
-  value            Json
-  order_index      Int
-  timestamp        DateTime?        @default(now()) @db.Timestamptz(6)
-  exercise         exercise         @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
-  user_workout_log user_workout_log @relation(fields: [user_log_id], references: [log_id], onDelete: NoAction, onUpdate: NoAction)
+  item_id                   Int                     @id @default(autoincrement())
+  user_log_id               Int
+  exercise_id               Int
+  opinion                   Int
+  value                     Json
+  order_index               Int
+  timestamp                 DateTime?               @default(now()) @db.Timestamptz(6)
+  exercise_template_item_id Int?
+  exercise                  exercise                @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
+  exercise_template_item    exercise_template_item? @relation(fields: [exercise_template_item_id], references: [item_id])
+  user_workout_log          user_workout_log        @relation(fields: [user_log_id], references: [log_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model user_workout {

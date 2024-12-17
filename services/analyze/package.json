@@ -1,5 +1,5 @@
 {
-  "name": "recommender",
+  "name": "@gymu/analyze",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -9,6 +9,8 @@
     "start": "python main.py",
     "dev": "yarn setup && nodemon --exec yarn start --legacy-watch",
     "prod": "yarn setup && yarn start",
-    "prisma:generate" : "npx prisma@5.17.0 generate"
+    "lint": "pylint main.py",
+    "prisma:generate" : "npx prisma@5.17.0 generate",
+    "prisma:pull": "npx prisma@5.17.0 db pull"
   }
 }

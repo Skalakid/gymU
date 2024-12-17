@@ -1,11 +1,12 @@
-from dotenv import load_dotenv
-from src.models.basket import basket
-from concurrent import futures
-from src.proto import analyze_pb2_grpc
-
-import os
 import asyncio
+import os
+from concurrent import futures
+
 import grpc
+from dotenv import load_dotenv
+
+from src.models.basket import basket
+from src.proto import analyze_pb2_grpc
 from src.rpc.analyze import BasketAnalyzeServiceImpl
 
 
