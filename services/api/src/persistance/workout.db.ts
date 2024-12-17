@@ -106,6 +106,7 @@ async function getWorkoutDetails(workoutId: number) {
           value: true,
           orderIndex: true,
           exerciseId: true,
+          itemId: true,
         },
       },
     },

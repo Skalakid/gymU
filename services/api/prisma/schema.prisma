@@ -64,6 +64,8 @@ model ExerciseTemplateItem {
   exercise          Exercise        @relation(fields: [exerciseId], references: [exerciseId], onDelete: NoAction, onUpdate: NoAction)
   workoutTemplate   WorkoutTemplate @relation(fields: [workoutTemplateId], references: [workoutId], onDelete: NoAction, onUpdate: NoAction)
 
+  userExerciseHistoryItems UserExerciseHistoryItem[]
+
   @@map("exercise_template_item")
 }
 
@@ -101,15 +103,18 @@ model Tag {
 }
 
 model UserExerciseHistoryItem {
-  itemId         Int            @id @default(autoincrement()) @map("item_id")
-  userLogId      Int            @map("user_log_id")
-  exerciseId     Int            @map("exercise_id")
-  opinion        Int
-  value          Json
-  orderIndex     Int            @map("order_index")
-  timestamp      DateTime?      @default(now()) @db.Timestamptz(6)
-  exercise       Exercise       @relation(fields: [exerciseId], references: [exerciseId], onDelete: NoAction, onUpdate: NoAction)
-  userWorkoutLog UserWorkoutLog @relation(fields: [userLogId], references: [logId], onDelete: NoAction, onUpdate: NoAction)
+  itemId                 Int       @id @default(autoincrement()) @map("item_id")
+  userLogId              Int       @map("user_log_id")
+  exerciseId             Int       @map("exercise_id")
+  opinion                Int
+  value                  Json
+  orderIndex             Int       @map("order_index")
+  timestamp              DateTime? @default(now()) @db.Timestamptz(6)
+  exerciseTemplateItemId Int?      @map("exercise_template_item_id")
+
+  exercise             Exercise              @relation(fields: [exerciseId], references: [exerciseId], onDelete: NoAction, onUpdate: NoAction)
+  userWorkoutLog       UserWorkoutLog        @relation(fields: [userLogId], references: [logId], onDelete: NoAction, onUpdate: NoAction)
+  exerciseTemplateItem ExerciseTemplateItem? @relation(fields: [exerciseTemplateItemId], references: [itemId])
 
   @@map("user_exercise_history_item")
 }

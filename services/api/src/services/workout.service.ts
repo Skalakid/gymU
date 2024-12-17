@@ -62,12 +62,19 @@ async function getWorkoutDetails(workoutId: number, userId: number) {
     throw null;
   }
 
+  const exercises = workout.exerciseTemplateItems;
+
+  if (!exercises) {
+    throw null;
+  }
+
   const isSavedByUser = await isWorkoutSavedByUser(userId, workoutId);
 
-  const exerciseItems: DetailedExercise[] = workout.exerciseTemplateItems
+  const exerciseItems: DetailedExercise[] = exercises
     .map((item) => {
       return {
         exerciseId: item.exerciseId,
+        itemId: item.itemId,
         name: item.exercise.name,
         exerciseType: item.exercise.exerciseType.name,
         value: JSON.parse(item.value as string),

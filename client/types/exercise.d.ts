@@ -43,6 +43,7 @@ type ExerciseDetails = {
 
 type DetailedExerciseItem = DetailedExercise & {
   value: ExerciseDetails;
+  itemId?: number;
 };
 
 type OrderedExerciseItem = DetailedExerciseItem & {
