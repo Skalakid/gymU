@@ -249,7 +249,7 @@ function LiveTrainingContextProvider({
               value: exercise.value,
               opinion: opinions[index]?.value || 0,
               orderIndex: index,
-              itemId: exercise.itemId,
+              exerciseTemplateItemId: exercise.itemId,
             })),
             eventId: calendarEventId,
           },

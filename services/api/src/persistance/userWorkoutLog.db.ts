@@ -59,6 +59,7 @@ async function createWorkoutLog(
   exercises.forEach(async (exercise) => {
     await prisma.userExerciseHistoryItem.create({
       data: {
+        exerciseTemplateItemId: exercise.exerciseTemplateItemId,
         userLogId: log.logId,
         exerciseId: exercise.exerciseId,
         opinion: exercise.opinion,
