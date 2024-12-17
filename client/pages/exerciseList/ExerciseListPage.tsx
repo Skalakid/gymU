@@ -1,24 +1,41 @@
-import fetchApi from '@/api/fetch';
+import fetchApi, { fetchApiWithQueryParams } from '@/api/fetch';
 import ThemedText from '@/components/ThemedText';
 import ThemedView from '@/components/ThemedView';
+import SectionListHeader from '@/components/common/SectionListHeader';
 import BasicExerciseItem from '@/components/exercises/BasicExerciseItem';
 import Header from '@/components/navigation/Header';
 import TagSelector from '@/components/workouts/TagSelector';
 import Icons from '@/constants/Icons';
+import { useCreateWorkoutContext } from '@/contexts/CreateWorkoutContext';
 import { capitalize } from '@/utils/text.utils';
 import { useRouter } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { useEffect, useMemo, useState } from 'react';
+import { StyleSheet, View, SectionList } from 'react-native';
+
+type ExerciseResponse = {
+  exercises: BasicExercise[];
+  recommended: BasicExercise[];
+};
 
 type ExerciseListPageProps = {
   onItemSelected: (exercise: BasicExercise) => void;
+};
+
+const getUniqueExerciseIds = (exercises: OrderedExerciseItem[]) => {
+  const mapped = exercises.map((item) => item.exerciseId);
+  const unique = Array.from(new Set(mapped));
+  return unique;
 };
 
 const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
   const router = useRouter();
   const [tags, setTags] = useState<WorkoutType[]>([]);
   const [exercises, setExercises] = useState<BasicExercise[]>([]);
+  const [recommendedExercises, setRecommendedExercises] = useState<
+    BasicExercise[]
+  >([]);
   const [areTagsLoaded, setAreTagsLoaded] = useState(false);
+  const { selectedExercises } = useCreateWorkoutContext();
 
   const loadExerciseTags = async () => {
     try {
@@ -42,13 +59,16 @@ const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
 
   const getExercises = async () => {
     try {
-      const response = await fetchApi('/exercise/all', 'GET', null);
+      const response = await fetchApiWithQueryParams('/exercise/all', {
+        selectedExercises: getUniqueExerciseIds(selectedExercises),
+      });
       if (!response.ok) {
         console.error('Failed to load exercises');
         return;
       }
-      const data: BasicExercise[] = await response.json();
-      setExercises(data);
+      const data: ExerciseResponse = await response.json();
+      setExercises(data.exercises);
+      setRecommendedExercises(data.recommended);
     } catch (error) {
       console.error(error);
     }
@@ -65,7 +85,18 @@ const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
   useEffect(() => {
     loadExerciseTags();
     getExercises();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const sections = useMemo(
+    () => [
+      ...(recommendedExercises.length > 0
+        ? [{ title: 'Recommendations', data: recommendedExercises }]
+        : []),
+      { title: 'Exercises', data: exercises },
+    ],
+    [exercises, recommendedExercises],
+  );
 
   return (
     <ThemedView style={styles.container}>
@@ -91,9 +122,9 @@ const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
           />
         )}
 
-        <FlatList
+        <SectionList
           style={styles.exerciseList}
-          data={exercises ?? []}
+          sections={sections ?? []}
           renderItem={({ item, index }) => (
             <BasicExerciseItem
               key={`exercise${item.name}${index}`}
@@ -104,6 +135,10 @@ const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
               description={item.shortDescription}
               onPress={() => handleItemPress(item)}
             />
+          )}
+          stickySectionHeadersEnabled={true}
+          renderSectionHeader={({ section: { title } }) => (
+            <SectionListHeader title={title} />
           )}
         />
       </View>

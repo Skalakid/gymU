@@ -99,7 +99,7 @@ services:
         - api
       container_name: analyze.service
       ports:
-        - 3001:3001
+        - 3001:50051
       environment:
         - GRPC_PORT=50051
         - DATABASE_ADDRESS=postgres.service
