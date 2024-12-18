@@ -242,7 +242,7 @@ function LiveTrainingContextProvider({
           'POST',
           null,
           {
-            userWorkoutId: currentWorkout?.workoutId,
+            workoutId: currentWorkout?.workoutId,
             opinion: workoutOpinion,
             exercises: currentWorkout?.exercises.map((exercise, index) => ({
               exerciseId: exercise.exerciseId,

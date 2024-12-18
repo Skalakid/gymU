@@ -13,18 +13,18 @@ async function createWorkoutLog(
   try {
     const userId = Number((req.user as ReturnUser).userId) || -1;
     const {
-      userWorkoutId,
+      workoutId,
       opinion,
       exercises,
       eventId,
     }: {
-      userWorkoutId: number;
+      workoutId: number;
       opinion: number;
       exercises: ExerciseHistoryItem[];
       eventId?: number | null;
     } = req.body;
 
-    if (!userWorkoutId || opinion === undefined || !exercises) {
+    if (!workoutId || opinion === undefined || !exercises) {
       throw new ApiError(400, 'Missing required fields');
     }
 
@@ -45,7 +45,7 @@ async function createWorkoutLog(
     }
 
     const workoutLog = await UserWorkoutLogService.createWorkoutLog(
-      userWorkoutId,
+      workoutId,
       opinion,
       exercises,
       userId,

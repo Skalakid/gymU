@@ -6,6 +6,9 @@ from collections import defaultdict
 import json
 
 def recommend_linear_progress(value, target):
+    if target == "":
+        return value
+
     delta = 0
 
     if target == "weight":
@@ -23,6 +26,17 @@ class ProgressService(metaclass=SingletonMeta):
 
     def __init__(self):
         self.client = PrismaClient()
+
+    async def get_user_workout_id(self, user_id: int, workout_id: int):
+        await self.client.connect()
+        user_workout = await self.client.db.user_workout.find_first(
+            where={"workout_id": workout_id, "user_id": user_id}
+        )
+
+        if user_workout is None:
+            return None
+
+        return user_workout.user_workout_id
 
     async def get_progress_targets(self, exercises: List[dict]):
         exercise_ids = list(set(map(lambda x: x["exercise_id"], exercises)))
@@ -107,8 +121,13 @@ class ProgressService(metaclass=SingletonMeta):
 
         return self.get_last_exercises(template_exercises, workouts_history_items)
 
-    async def recommend_progress(self, user_workout_id: int, func="linear"):
+    async def recommend_progress(self, user_id: int, workout_id: int, func="linear"):
         await self.client.connect()
+
+        user_workout_id = await self.get_user_workout_id(user_id, workout_id)
+
+        if user_workout_id is None:
+            return None
 
         exercises = await self.get_exercises(user_workout_id)
         exercises = await self.get_progress_targets(exercises)

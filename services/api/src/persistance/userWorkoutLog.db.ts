@@ -32,6 +32,7 @@ async function getProperEventId(
 }
 
 async function createWorkoutLog(
+  workoutId: number,
   userWorkoutId: number,
   opinion: number,
   exercises: ExerciseHistoryItem[],
@@ -42,7 +43,7 @@ async function createWorkoutLog(
 
   const calendarEventId = await getProperEventId(
     userId,
-    userWorkoutId,
+    workoutId,
     timeStamp,
     eventId,
   );

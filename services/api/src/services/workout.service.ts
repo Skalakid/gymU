@@ -1,11 +1,17 @@
+import ApiError from '../error/ApiError';
 import {
   getWorkoutIdsSavedByUser,
   isWorkoutSavedByUser,
 } from '../persistance/userWorkout.db';
 import * as WorkoutDB from '../persistance/workout.db';
+import {
+  ProgressRecommendationMessage,
+  ProgressRecommendationMessage__Output,
+} from '../proto/ProgressRecommendationMessage';
 import { PaginatedResponse } from '../types/api';
 import { DetailedExercise } from '../types/exercise';
 import { ExerciseWorkoutItem, GeneralWorkout } from '../types/workout';
+import analyzeService from './analyze.service';
 
 async function getAllWorkouts(
   skip: number,
@@ -61,11 +67,27 @@ async function getWorkoutDetails(workoutId: number, userId: number) {
   if (!workout) {
     throw null;
   }
+  const rpcMessage: ProgressRecommendationMessage =
+    (await analyzeService.recommendProgress(
+      userId,
+      workoutId,
+    )) as ProgressRecommendationMessage__Output;
 
+  if (!rpcMessage) {
+    throw new ApiError(500, 'RPC Method failed: Failed to execute method');
+  }
+
+  const progressedExercises = rpcMessage.exercises ?? [];
   const exercises = workout.exerciseTemplateItems;
 
   if (!exercises) {
-    throw null;
+    throw new ApiError(500, 'Workout exercises not found');
+  }
+
+  if (progressedExercises.length === exercises.length) {
+    for (let i in exercises) {
+      exercises[i].value = JSON.stringify(progressedExercises[i].value);
+    }
   }
 
   const isSavedByUser = await isWorkoutSavedByUser(userId, workoutId);
