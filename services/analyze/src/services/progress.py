@@ -56,7 +56,6 @@ class ProgressService(metaclass=SingletonMeta):
 
         return exercises
 
-
     def group_history_items_by_template_item_id(self, workouts_history_items):
         items_grouped_by_item_id = defaultdict(lambda: [])
 
@@ -110,6 +109,9 @@ class ProgressService(metaclass=SingletonMeta):
         )
 
         template_exercises = workout_template.exercise_template_item
+        if len(user_workout_logs) == 0:
+            return []
+
         template_exercises = sorted(template_exercises, key=lambda x: x.order_index)
 
         user_workout_logs = sorted(

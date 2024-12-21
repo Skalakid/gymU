@@ -16,9 +16,9 @@ service BasketAnalyzeService {
     rpc RecommendWorkouts(UserRequest) returns (IdsPackageMessage) {}
 }
 
-
 message UserProgressRequest {
-    int32 user_workout_id = 1;
+    int32 user_id = 1;
+    int32 workout_id = 2;
 }
 
 message ExerciseItem {
@@ -31,7 +31,6 @@ message ExerciseItem {
 message ProgressRecommendationMessage {
     repeated ExerciseItem exercises = 1;
 }
-
 
 service ProgressAnalyzeService {
     rpc RecommendProgress(UserProgressRequest) returns (ProgressRecommendationMessage) {}
