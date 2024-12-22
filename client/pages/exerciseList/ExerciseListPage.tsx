@@ -86,7 +86,7 @@ const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
     loadExerciseTags();
     getExercises();
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selectedExercises]);
 
   const sections = useMemo(
     () => [
