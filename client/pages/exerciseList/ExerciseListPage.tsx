@@ -9,8 +9,8 @@ import Icons from '@/constants/Icons';
 import { useCreateWorkoutContext } from '@/contexts/CreateWorkoutContext';
 import { capitalize } from '@/utils/text.utils';
 import { useRouter } from 'expo-router';
-import { useEffect, useMemo, useState } from 'react';
-import { StyleSheet, View, SectionList } from 'react-native';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { StyleSheet, View, SectionList, RefreshControl } from 'react-native';
 
 type ExerciseResponse = {
   exercises: BasicExercise[];
@@ -35,6 +35,7 @@ const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
     BasicExercise[]
   >([]);
   const [areTagsLoaded, setAreTagsLoaded] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const { selectedExercises } = useCreateWorkoutContext();
 
   const loadExerciseTags = async () => {
@@ -82,11 +83,21 @@ const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
     onItemSelected(exercise);
   };
 
-  useEffect(() => {
-    loadExerciseTags();
-    getExercises();
+  const handleOnRefresh = useCallback(async () => {
+    await Promise.allSettled([loadExerciseTags(), getExercises()]);
+    await setRefreshing(false);
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedExercises]);
+
+  const reloadPage = async () => {
+    setRefreshing(true);
+    handleOnRefresh();
+  };
+
+  useEffect(() => {
+    reloadPage();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const sections = useMemo(
     () => [
@@ -121,10 +132,15 @@ const ExerciseListPage = ({ onItemSelected }: ExerciseListPageProps) => {
             }}
           />
         )}
-
         <SectionList
           style={styles.exerciseList}
           sections={sections ?? []}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={handleOnRefresh}
+            />
+          }
           renderItem={({ item, index }) => (
             <BasicExerciseItem
               key={`exercise${item.name}${index}`}
