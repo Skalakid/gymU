@@ -108,10 +108,10 @@ class ProgressService(metaclass=SingletonMeta):
             include={"user_exercise_history_item": True},
         )
 
-        template_exercises = workout_template.exercise_template_item
         if len(user_workout_logs) == 0:
             return []
 
+        template_exercises = workout_template.exercise_template_item
         template_exercises = sorted(template_exercises, key=lambda x: x.order_index)
 
         user_workout_logs = sorted(

@@ -180,12 +180,11 @@ async def get_prepared_data():
 
 
 async def train_job():
-    baskets, products = get_prepared_data()
+    baskets, products = await get_prepared_data()
 
     basket_analysis = BasketMarketAnalysis(baskets, list(products), 0.0000001)
 
-    if not basket_analysis.is_already_trained:
-        basket_analysis.train()
+    basket_analysis.train()
 
     example_basket = list(baskets[0])[:4]
 
