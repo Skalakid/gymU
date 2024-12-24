@@ -2,23 +2,33 @@ from src.patterns.singleton import SingletonMeta
 from src.services.database import PrismaClient
 from typing import List
 from collections import defaultdict
+from math import exp
 
 import json
 
-def recommend_linear_progress(value, target):
-    if target == "":
+
+def recommend_linear_progress(value: int | float, occurences: int, config):
+    if "target" not in config:
         return value
 
-    delta = 0
+    if (
+        "maxOccurences" in config
+        and "interval" in config
+        and config["maxOccurences"] < occurences * config["interval"]
+    ):
+        return value
 
-    if target == "weight":
-        delta = 5
-    elif target == "reps":
-        delta = 1
-    elif target == "time":
-        delta = 30
+    target = config["target"]
 
-    value[target] += delta
+    result = value[target] + config["difference"] * (
+        occurences % config["interval"] == 0
+    )
+
+    if "maxValue" in config:
+        result = min(result, config["maxValue"])
+
+    value[target] = result
+
     return value
 
 
@@ -38,23 +48,24 @@ class ProgressService(metaclass=SingletonMeta):
 
         return user_workout.user_workout_id
 
-    async def get_progress_targets(self, exercises: List[dict]):
-        exercise_ids = list(set(map(lambda x: x["exercise_id"], exercises)))
-        exercises_with_types = await self.client.db.exercise.find_many(
-            where={"exercise_id": {"in": exercise_ids}}, include={"exercise_type": True}
+    #### PROGRES CONFIGS ####
+
+    async def get_progress_config(self, exercise_item_id: int):
+        return await self.client.db.progress_config.find_first(
+            where={
+                "exercise_template_item_id": exercise_item_id,
+                "user_workout_id": None,
+            },
+            order={"timestamp": "desc"},
         )
 
-        exercise_type_mapper = dict()
-
-        for exercise in exercises_with_types:
-            exercise_type_mapper[exercise.exercise_id] = json.loads(
-                exercise.exercise_type.progress_target
-            )
-
+    async def get_progress_configs(self, exercises):
         for exercise in exercises:
-            exercise["target"] = exercise_type_mapper[exercise["exercise_id"]]
+            exercise["progress"] = await self.get_progress_config(exercise["item_id"])
 
         return exercises
+
+    #### EXERCISES PREPARATION ####
 
     def group_history_items_by_template_item_id(self, workouts_history_items):
         items_grouped_by_item_id = defaultdict(lambda: [])
@@ -72,6 +83,7 @@ class ProgressService(metaclass=SingletonMeta):
 
         result = []
 
+        ### GET EXERCISES FROM LAST WORKOUT OR FROM TEMPLATE ###
         for exercise in template_exercises:
             item_id = exercise.item_id
 
@@ -108,12 +120,15 @@ class ProgressService(metaclass=SingletonMeta):
             include={"user_exercise_history_item": True},
         )
 
+        ### FOR FIRST EXERCISES ###
         if len(user_workout_logs) == 0:
             return []
 
+        ### PREPARE EXERCISES FROM TEMPLATE ###
         template_exercises = workout_template.exercise_template_item
         template_exercises = sorted(template_exercises, key=lambda x: x.order_index)
 
+        ### PREPARE EXERCISES FROM LOGS ###
         user_workout_logs = sorted(
             user_workout_logs, key=lambda x: x.log_date, reverse=True
         )
@@ -122,6 +137,8 @@ class ProgressService(metaclass=SingletonMeta):
         )
 
         return self.get_last_exercises(template_exercises, workouts_history_items)
+
+    #### MAIN ####
 
     async def recommend_progress(self, user_id: int, workout_id: int, func="linear"):
         await self.client.connect()
@@ -132,14 +149,20 @@ class ProgressService(metaclass=SingletonMeta):
             return None
 
         exercises = await self.get_exercises(user_workout_id)
-        exercises = await self.get_progress_targets(exercises)
+        exercises = await self.get_progress_configs(exercises)
+
+        ### COUNT RECOMMENDATIONS ###
 
         results = []
         for index, exercise in enumerate(exercises):
-            value = recommend_linear_progress(
-                exercise["value"],
-                exercise["target"][0] if len(exercise["target"]) != 0 else "",
-            )
+            progress = exercise["progress"]
+
+            if progress is None or progress.type == "none":
+                value = exercise["value"]
+            elif progress.type == "linear":
+                value = recommend_linear_progress(
+                    exercise["value"], exercise["occurences"], progress.value
+                )
 
             results.append(
                 {

@@ -29,7 +29,6 @@ export default async function seedExercises() {
             hasWeights: exerciseType.hasWeights,
             hasTime: exerciseType.hasTime,
             isBreak: exerciseType.isBreak,
-            progressTarget: exerciseType.progressTarget,
           },
         });
       }),
@@ -99,7 +98,6 @@ function getExerciseTypes(): NewExerciseType[] {
       hasWeights: false,
       hasTime: false,
       isBreak: false,
-      progressTarget: JSON.stringify(['reps']),
     },
     {
       name: 'time',
@@ -108,7 +106,6 @@ function getExerciseTypes(): NewExerciseType[] {
       hasWeights: false,
       hasTime: true,
       isBreak: false,
-      progressTarget: JSON.stringify(['time']),
     },
     {
       name: 'break',
@@ -117,7 +114,6 @@ function getExerciseTypes(): NewExerciseType[] {
       hasWeights: false,
       hasTime: false,
       isBreak: true,
-      progressTarget: JSON.stringify([]),
     },
     {
       name: 'weights',
@@ -126,7 +122,6 @@ function getExerciseTypes(): NewExerciseType[] {
       hasWeights: true,
       hasTime: false,
       isBreak: false,
-      progressTarget: JSON.stringify(['weight', 'reps']),
     },
   ];
 }

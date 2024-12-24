@@ -77,6 +77,7 @@ model exercise_template_item {
   order_index                Int
   exercise                   exercise                     @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
   workout_template           workout_template             @relation(fields: [workout_template_id], references: [workout_id], onDelete: NoAction, onUpdate: NoAction)
+  progress_config            progress_config[]
   user_exercise_history_item user_exercise_history_item[]
 }
 
@@ -88,7 +89,6 @@ model exercise_type {
   has_weights      Boolean?   @default(false)
   has_time         Boolean?   @default(false)
   is_break         Boolean?   @default(false)
-  progress_target  Json
   exercise         exercise[]
 }
 
@@ -137,6 +137,7 @@ model user_workout {
   user_id          Int
   workout_id       Int
   timestamp        DateTime?          @default(now()) @db.Timestamptz(6)
+  progress_config  progress_config[]
   app_user         app_user           @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
   workout_template workout_template   @relation(fields: [workout_id], references: [workout_id], onDelete: NoAction, onUpdate: NoAction)
   user_workout_log user_workout_log[]
@@ -184,8 +185,25 @@ model workout_template {
   workout_level          workout_level            @relation(fields: [workout_level_id], references: [level_id])
 }
 
+model progress_config {
+  config_id                 Int                    @id @default(autoincrement())
+  user_workout_id           Int?
+  exercise_template_item_id Int
+  type                      ProgressType
+  value                     Json
+  timestamp                 DateTime?              @default(now()) @db.Timestamptz(6)
+  exercise_template_item    exercise_template_item @relation(fields: [exercise_template_item_id], references: [item_id], onDelete: NoAction, onUpdate: NoAction)
+  user_workout              user_workout?          @relation(fields: [user_workout_id], references: [user_workout_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
 enum TimeUnit {
   day
   week
   month
+}
+
+enum ProgressType {
+  none
+  linear
+  sigmoidal
 }
