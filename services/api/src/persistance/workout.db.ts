@@ -139,7 +139,7 @@ async function createWorkout(
       return null;
     }
 
-    const workoutTags = await tx.workoutTags.createManyAndReturn({
+    await tx.workoutTags.createManyAndReturn({
       data: tagIds.map((tagId: number) => ({
         tagId,
         workoutTemplateId: newWorkout.workoutId,
@@ -160,7 +160,7 @@ async function createWorkout(
         a.orderIndex - b.orderIndex,
     );
 
-    const progressConfigs = await tx.progressConfig.createManyAndReturn({
+    await tx.progressConfig.createManyAndReturn({
       data: exerciseItems
         .map((item, index) => ({
           exerciseTemplateItemId: item.itemId,

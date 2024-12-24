@@ -1,4 +1,4 @@
-import { Alert, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
 import SelectDropdownInput from '../input/dropdown/SelectDropdownInput';
 import SelectDropdownItem from '../input/dropdown/SelectDropdownItem';
 import Tile from '../common/Tile';
@@ -57,7 +57,7 @@ const ExerciseDetailsProgressForm = ({
     }
 
     return targets;
-  }, [exerciseTypeName, target]);
+  }, [exerciseTypeName, target, getExerciseType]);
 
   useEffect(() => {
     switch (type) {
@@ -72,10 +72,12 @@ const ExerciseDetailsProgressForm = ({
           maxValue: maxValue === UNLIMITED_VALUE ? undefined : maxValue,
           maxOccurences:
             maxOccurences === UNLIMITED_VALUE ? undefined : maxOccurences,
+          // eslint-disable-next-line @typescript-eslint/no-extra-non-null-assertion
           target: target!!,
         });
         break;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, interval, difference, maxValue, maxOccurences, target]);
 
   const linearForm = useMemo(

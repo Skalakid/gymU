@@ -85,7 +85,7 @@ async function getWorkoutDetails(workoutId: number, userId: number) {
   }
 
   if (progressedExercises.length === exercises.length) {
-    for (let i in exercises) {
+    for (const i in exercises) {
       exercises[i].value = JSON.stringify(progressedExercises[i].value);
     }
   }
