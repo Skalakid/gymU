@@ -1,10 +1,9 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Icons from '@/constants/Icons';
 import RowTextInput from '../input/RowTextInput';
 import { useExerciseContext } from '@/contexts/ExerciseContext';
 import Tile from '../common/Tile';
-import PrimaryButton from '../button/PrimaryButton';
 
 type ExerciseDetailsFormProps = {
   type: string;
@@ -14,7 +13,7 @@ type ExerciseDetailsFormProps = {
   defaultWeight?: number;
   defaultTime?: number;
   defaultBreakTime?: number;
-  onSubmit?: () => void;
+  style: ViewStyle;
 };
 
 const ExerciseDetailsForm = ({
@@ -25,7 +24,7 @@ const ExerciseDetailsForm = ({
   defaultWeight = 30,
   defaultTime = 60,
   defaultBreakTime = 60,
-  onSubmit,
+  style,
 }: ExerciseDetailsFormProps) => {
   const { getExerciseType } = useExerciseContext();
   const [exerciseType] = useState<ExerciseType | null>(
@@ -56,7 +55,7 @@ const ExerciseDetailsForm = ({
   }, [breakTime, exerciseType, onFormUpdate, reps, sets, time, weight]);
 
   return (
-    <Tile style={styles.container}>
+    <Tile style={[styles.container, style]}>
       <View style={styles.inputs}>
         {exerciseType?.hasSets && (
           <RowTextInput
@@ -100,8 +99,6 @@ const ExerciseDetailsForm = ({
           />
         )}
       </View>
-
-      <PrimaryButton value="Add" onPress={onSubmit} />
     </Tile>
   );
 };
