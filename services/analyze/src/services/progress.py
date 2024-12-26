@@ -1,35 +1,9 @@
 from src.patterns.singleton import SingletonMeta
 from src.services.database import PrismaClient
-from typing import List
+from src.models.progress import linear
 from collections import defaultdict
-from math import exp
 
 import json
-
-
-def recommend_linear_progress(value: int | float, occurences: int, config):
-    if "target" not in config:
-        return value
-
-    if (
-        "maxOccurences" in config
-        and "interval" in config
-        and config["maxOccurences"] < occurences * config["interval"]
-    ):
-        return value
-
-    target = config["target"]
-
-    result = value[target] + config["difference"] * (
-        occurences % config["interval"] == 0
-    )
-
-    if "maxValue" in config:
-        result = min(result, config["maxValue"])
-
-    value[target] = result
-
-    return value
 
 
 class ProgressService(metaclass=SingletonMeta):
@@ -160,7 +134,7 @@ class ProgressService(metaclass=SingletonMeta):
             if progress is None or progress.type == "none":
                 value = exercise["value"]
             elif progress.type == "linear":
-                value = recommend_linear_progress(
+                value = linear.recommend_linear_progress(
                     exercise["value"], exercise["occurences"], progress.value
                 )
 
