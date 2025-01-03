@@ -7,6 +7,7 @@
     "initialize": "sh ./init.prisma.sh",
     "setup": "./setup.sh",
     "start": "python main.py",
+    "test": "echo Test finished",
     "train": "python train.py",
     "dev": "yarn setup && nodemon --exec yarn start --legacy-watch",
     "prod": "yarn setup && yarn start",

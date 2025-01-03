@@ -73,6 +73,10 @@ def runTscChecks(String checkName) {
     runCheck(checkName, "yarn tsc --noEmit", "tsc-noEmit-result.txt")
 }
 
+def runTests(String checkName) {
+    runCheck(checkName, "yarn test", "test-results.txt")
+}
+
 //// MAIN PIPELINE ////
 
 pipeline {
@@ -116,6 +120,14 @@ pipeline {
                                 }
                             }
                         }
+
+                        stage("Unit tests") {
+                            steps {
+                                dir('client') {
+                                    runTests("Mobile Client / Unit tests")
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -144,8 +156,67 @@ pipeline {
                                 }
                             }
                         }
+
+                        stage("Unit tests") {
+                            steps {
+                                dir('services/api') {
+                                    runTests("Services / API / Unit tests")
+                                }
+                            }
+                        }
+
                     }
                 }
+
+                stage ("Services / Asset") {
+                    stages {
+                        stage("Lint") {
+                            steps {
+                                dir('services/asset') {
+                                    runLinterChecks("Services / Asset / Lint")
+                                }
+                            }
+                        }
+
+                        stage("TSC Syntax Check") {
+                            steps {
+                                dir('services/asset') {
+                                    runTscChecks("Services / Asset / TSC Syntax Check")
+                                }
+                            }
+                        }
+
+                        stage("Unit tests") {
+                            steps {
+                                dir('services/asset') {
+                                    runTests("Services / Asset / Unit tests")
+                                }
+                            }
+                        }
+
+                    }
+                }
+                stage ("Services / Analyze") {
+                    stages {
+                        stage("Lint") {
+                            steps {
+                                dir('services/analyze') {
+                                    runLinterChecks("Services / Analyze / Lint")
+                                }
+                            }
+                        }
+
+                        stage("Unit tests") {
+                            steps {
+                                dir('services/analyze') {
+                                    runTests("Services / Analyze / Unit tests")
+                                }
+                            }
+                        }
+
+                    }
+                }
+
             }
         }
 
