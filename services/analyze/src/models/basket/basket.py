@@ -5,6 +5,8 @@ from more_itertools import powerset
 from src.services.database import PrismaClient
 from src import utils
 
+from sklearn.model_selection import train_test_split
+
 
 class BasketMarketAnalysis:
     ### CONSTRUCTOR ###
@@ -179,10 +181,17 @@ async def get_prepared_data():
     return baskets, products
 
 
+TRAIN_TEST_SPLIT_SEED = 42
+
+
 async def train_job():
     baskets, products = await get_prepared_data()
 
-    basket_analysis = BasketMarketAnalysis(baskets, list(products), 0.0000001)
+    baskets_train, baskets_test = train_test_split(
+        baskets, test_size=0.2, random_state=TRAIN_TEST_SPLIT_SEED
+    )
+
+    basket_analysis = BasketMarketAnalysis(baskets_train, list(products), 0.0000001)
 
     basket_analysis.train()
 

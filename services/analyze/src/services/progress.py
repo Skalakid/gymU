@@ -114,7 +114,7 @@ class ProgressService(metaclass=SingletonMeta):
 
     #### MAIN ####
 
-    async def recommend_progress(self, user_id: int, workout_id: int, func="linear"):
+    async def recommend_progress(self, user_id: int, workout_id: int):
         await self.client.connect()
 
         user_workout_id = await self.get_user_workout_id(user_id, workout_id)
