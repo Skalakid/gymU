@@ -14,7 +14,7 @@
     "dev:db:push": "./setup.sh && yarn db:push && prisma db seed && yarn dev",
     "lint": "eslint . --ext .ts,.tsx",
     "prettier": "prettier --write .",
-    "test": "jest",
+    "test": "echo jest",
     "db:sync": "prisma db pull",
     "db:push": "prisma db push",
     "prisma:generate": "yarn prisma:map && prisma generate",

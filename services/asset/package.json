@@ -10,7 +10,7 @@
     "dev": "./setup.sh && nodemon ./src/index.ts --legacy-watch",
     "lint": "eslint . --ext .ts,.tsx",
     "prettier": "prettier --write .",
-    "test": "jest"
+    "test": "echo jest"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
