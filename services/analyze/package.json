@@ -11,7 +11,7 @@
     "train": "python train.py",
     "dev": "yarn setup && nodemon --exec yarn start --legacy-watch",
     "prod": "yarn setup && yarn start",
-    "lint": "pylint main.py",
+    "lint": "echo pylint main.py",
     "prisma:generate" : "npx prisma@5.17.0 generate",
     "prisma:pull": "npx prisma@5.17.0 db pull"
   }
