@@ -9,3 +9,5 @@ more-itertools
 black
 grpcio
 protobuf
+pylint
+isort

@@ -3,6 +3,7 @@ type ExerciseHistoryItem = {
   opinion: number;
   value: JsonNull | InputJsonValue;
   orderIndex: number;
+  exerciseTemplateItemId?: number;
 };
 
 export type { ExerciseHistoryItem };

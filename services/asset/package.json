@@ -9,7 +9,8 @@
     "prod": "./setup.sh && yarn build && yarn start",
     "dev": "./setup.sh && nodemon ./src/index.ts --legacy-watch",
     "lint": "eslint . --ext .ts,.tsx",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "test": "echo jest"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

@@ -13,7 +13,9 @@ model app_user {
   email                 String                  @unique @db.VarChar(255)
   password_hash         String
   created_at            DateTime?               @default(now()) @db.Timestamptz(6)
+  height                Int?
   gender                String                  @db.VarChar(1)
+  description           String?
   calendar_event_parent calendar_event_parent[]
   refresh_token         refresh_token[]
   user_workout          user_workout[]
@@ -51,6 +53,7 @@ model exercise {
   exercise_type_id           Int
   name                       String                       @db.VarChar(255)
   description                String?
+  image_urls                 String[]
   exercise_type              exercise_type                @relation(fields: [exercise_type_id], references: [exercise_type_id], onDelete: NoAction, onUpdate: NoAction)
   exercise_body_parts        exercise_body_parts[]
   exercise_template_item     exercise_template_item[]
@@ -67,13 +70,15 @@ model exercise_body_parts {
 }
 
 model exercise_template_item {
-  item_id             Int              @id @default(autoincrement())
-  workout_template_id Int
-  exercise_id         Int
-  value               Json
-  order_index         Int
-  exercise            exercise         @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
-  workout_template    workout_template @relation(fields: [workout_template_id], references: [workout_id], onDelete: NoAction, onUpdate: NoAction)
+  item_id                    Int                          @id @default(autoincrement())
+  workout_template_id        Int
+  exercise_id                Int
+  value                      Json
+  order_index                Int
+  exercise                   exercise                     @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
+  workout_template           workout_template             @relation(fields: [workout_template_id], references: [workout_id], onDelete: NoAction, onUpdate: NoAction)
+  progress_config            progress_config[]
+  user_exercise_history_item user_exercise_history_item[]
 }
 
 model exercise_type {
@@ -114,15 +119,17 @@ model tag {
 }
 
 model user_exercise_history_item {
-  item_id          Int              @id @default(autoincrement())
-  user_log_id      Int
-  exercise_id      Int
-  opinion          Int
-  value            Json
-  order_index      Int
-  timestamp        DateTime?        @default(now()) @db.Timestamptz(6)
-  exercise         exercise         @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
-  user_workout_log user_workout_log @relation(fields: [user_log_id], references: [log_id], onDelete: NoAction, onUpdate: NoAction)
+  item_id                   Int                     @id @default(autoincrement())
+  user_log_id               Int
+  exercise_id               Int
+  opinion                   Int
+  value                     Json
+  order_index               Int
+  timestamp                 DateTime?               @default(now()) @db.Timestamptz(6)
+  exercise_template_item_id Int?
+  exercise                  exercise                @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
+  exercise_template_item    exercise_template_item? @relation(fields: [exercise_template_item_id], references: [item_id])
+  user_workout_log          user_workout_log        @relation(fields: [user_log_id], references: [log_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model user_workout {
@@ -130,6 +137,7 @@ model user_workout {
   user_id          Int
   workout_id       Int
   timestamp        DateTime?          @default(now()) @db.Timestamptz(6)
+  progress_config  progress_config[]
   app_user         app_user           @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
   workout_template workout_template   @relation(fields: [workout_id], references: [workout_id], onDelete: NoAction, onUpdate: NoAction)
   user_workout_log user_workout_log[]
@@ -177,8 +185,25 @@ model workout_template {
   workout_level          workout_level            @relation(fields: [workout_level_id], references: [level_id])
 }
 
+model progress_config {
+  config_id                 Int                    @id @default(autoincrement())
+  user_workout_id           Int?
+  exercise_template_item_id Int
+  type                      ProgressType
+  value                     Json
+  timestamp                 DateTime?              @default(now()) @db.Timestamptz(6)
+  exercise_template_item    exercise_template_item @relation(fields: [exercise_template_item_id], references: [item_id], onDelete: NoAction, onUpdate: NoAction)
+  user_workout              user_workout?          @relation(fields: [user_workout_id], references: [user_workout_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
 enum TimeUnit {
   day
   week
   month
+}
+
+enum ProgressType {
+  none
+  linear
+  sigmoidal
 }

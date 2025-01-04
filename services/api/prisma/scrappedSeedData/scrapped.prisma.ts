@@ -129,11 +129,17 @@ async function getUsedExerciseTypes() {
     where: { name: 'time' },
   });
 
+  const weightsType = await prisma.exerciseType.findFirst({
+    where: { name: 'weights' },
+  });
+
   return {
     // eslint-disable-next-line
     reps: repsType?.exerciseTypeId!!,
     // eslint-disable-next-line
     time: timeType?.exerciseTypeId!!,
+    // eslint-disable-next-line
+    weights: weightsType?.exerciseTypeId!!,
   };
 }
 
@@ -147,7 +153,8 @@ async function seedScrappedExercisesAndReturn() {
     data: exercisesJson.map((exercise) => {
       return {
         name: exercise.name,
-        exerciseTypeId: exerciseTypesIds[exercise.type as 'time' | 'reps'],
+        exerciseTypeId:
+          exerciseTypesIds[exercise.type as 'time' | 'reps' | 'weights'],
         description: exercise.description,
         imageUrls: exercise.images.map(
           (path) => `http://localhost:3000/assets?file=/exercises/${path}`,
@@ -237,6 +244,7 @@ async function seedWorkouts() {
           reps?: number;
           sets?: number;
           time?: number;
+          weight?: number;
           breakTime?: number;
         } = {};
 
@@ -250,6 +258,10 @@ async function seedWorkouts() {
 
         if ('time' in exercise) {
           value.time = exercise.time;
+        }
+
+        if ('weight' in exercise) {
+          value.weight = exercise.weight;
         }
 
         if ('breakTime' in exercise) {
