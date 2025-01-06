@@ -57,7 +57,7 @@ const TextInput = ({
         autoCapitalize="none"
         keyboardType={keyboardType}
         editable={!disabled}
-        placeholderTextColor={primaryColor}
+        placeholderTextColor={`${primaryColor}AA`}
       />
     </View>
   );
