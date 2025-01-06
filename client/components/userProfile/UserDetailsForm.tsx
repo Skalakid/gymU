@@ -1,4 +1,4 @@
-import { Alert, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
 import Tile from '../common/Tile';
 import ThemedText from '../ThemedText';
@@ -7,9 +7,10 @@ import PrimaryButton from '../button/PrimaryButton';
 
 type UserDetailsType = {
   userDetails: UserDetails | null;
+  onSave: (username: string, email: string, description: string) => void;
 };
 
-const UserDetailsForm = ({ userDetails }: UserDetailsType) => {
+const UserDetailsForm = ({ userDetails, onSave }: UserDetailsType) => {
   const [username, setUsername] = useState(userDetails?.username ?? '');
   const [email, setEmail] = useState(userDetails?.email ?? '');
   const [description, setDescription] = useState(
@@ -47,9 +48,7 @@ const UserDetailsForm = ({ userDetails }: UserDetailsType) => {
       </Tile>
       <PrimaryButton
         value="Save"
-        onPress={() => {
-          Alert.alert('User details saved!');
-        }}
+        onPress={() => onSave(username, email, description)}
       />
     </View>
   );

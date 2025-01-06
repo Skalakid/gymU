@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -12,7 +12,7 @@ import UserDetailsForm from '@/components/userProfile/UserDetailsForm';
 
 const UserProfilePage = () => {
   const router = useRouter();
-  const { user } = useAuthContext();
+  const { user, updateUserInfo } = useAuthContext();
   const { id } = useLocalSearchParams();
   const isCurrentUser = user?.userId === Number(id);
   const [userDetails, setUserDetails] = useState<UserDetails | null>(
@@ -41,6 +41,21 @@ const UserProfilePage = () => {
     setIsEditing(true);
   };
 
+  const handleOnSave = async (
+    username: string,
+    email: string,
+    description: string,
+  ) => {
+    try {
+      const newUserData = await updateUserInfo(username, email, description);
+      Alert.alert('User details updated', 'Your details have been updated');
+      setUserDetails(newUserData);
+      setIsEditing(false);
+    } catch (error) {
+      Alert.alert('Failed to save user details', 'Please try again later...');
+    }
+  };
+
   useEffect(() => {
     if (isCurrentUser) {
       return;
@@ -63,7 +78,7 @@ const UserProfilePage = () => {
       )}
 
       {isEditing ? (
-        <UserDetailsForm userDetails={userDetails} />
+        <UserDetailsForm userDetails={userDetails} onSave={handleOnSave} />
       ) : (
         <UserDetails userDetails={userDetails} />
       )}
