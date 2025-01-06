@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express';
 import { AuthRequest } from '../middlewares/auth.middleware';
 import * as UserService from '../services/user.service';
-import { ReturnUser } from '../types/user';
+import { NewUserDetails, ReturnUser } from '../types/user';
 import ApiError from '../error/ApiError';
 
 async function getAllUsers(
@@ -145,6 +145,38 @@ async function getStreak(req: AuthRequest, res: Response, next: NextFunction) {
   }
 }
 
+async function updateUserProfileInfo(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const userId = Number((req.user as ReturnUser).userId) || 1;
+    if (!userId) {
+      throw new ApiError(400, 'Invalid user id');
+    }
+
+    const userDetails: NewUserDetails = req.body;
+    if (
+      !userDetails ||
+      userDetails?.username === undefined ||
+      userDetails?.email === undefined ||
+      userDetails?.description === undefined
+    ) {
+      throw new ApiError(400, 'Invalid user details');
+    }
+
+    const newUserDetails = await UserService.updateUserProfileInfo(
+      userId,
+      userDetails,
+    );
+
+    res.status(201).send(newUserDetails);
+  } catch (error) {
+    next(error);
+  }
+}
+
 export {
   getAllUsers,
   getUserDetails,
@@ -153,5 +185,6 @@ export {
   getUserHeight,
   getGender,
   getStreak,
+  updateUserProfileInfo,
 };
 export type { ReturnUser };

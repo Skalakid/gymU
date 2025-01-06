@@ -1,8 +1,9 @@
 import * as UserDB from '../persistance/user.db';
 import { PaginatedResponse } from '../types/api';
-import { BaseUser, UserDetails } from '../types/user';
+import { BaseUser, NewUserDetails, UserDetails } from '../types/user';
 import * as CalendarDB from '../persistance/calendar.db';
 import * as UserWorkoutLogDB from '../persistance/userWorkoutLog.db';
+import ApiError from '../error/ApiError';
 
 async function checkEmailUniqueness(email: string) {
   try {
@@ -40,7 +41,16 @@ async function getAllUsers(
 }
 
 async function getUserDetails(userId: number): Promise<UserDetails | null> {
-  return await UserDB.getUserById(userId);
+  const user = await UserDB.getUserById(userId);
+  if (!user) {
+    return null;
+  }
+  const deatils: UserDetails = {
+    userId: user.userId,
+    username: user.username,
+    description: user.description,
+  };
+  return deatils;
 }
 
 async function addUserHeight(userId: number, height: number) {
@@ -91,6 +101,32 @@ async function getStreak(userId: number) {
   return streak;
 }
 
+async function updateUserProfileInfo(
+  userId: number,
+  userDetails: NewUserDetails,
+) {
+  const user = await UserDB.getUserById(userId);
+  if (!user) {
+    throw new ApiError(404, 'User not found');
+  }
+
+  if (user.email !== userDetails.email) {
+    const emailIsUnique = await checkEmailUniqueness(userDetails.email);
+    if (!emailIsUnique) {
+      throw new ApiError(400, 'Email is already in use');
+    }
+  }
+
+  if (
+    userDetails.description !== null &&
+    userDetails.description.length > 255
+  ) {
+    throw new ApiError(400, 'Description is too long');
+  }
+
+  return await UserDB.updateUserProfileInfo(userId, userDetails);
+}
+
 export {
   checkEmailUniqueness,
   getAllUsers,
@@ -99,4 +135,5 @@ export {
   getUserHeight,
   getGender,
   getStreak,
+  updateUserProfileInfo,
 };

@@ -20,9 +20,15 @@ type UserDetails = {
   description: string | null;
 };
 
+type NewUserDetails = {
+  username: string;
+  email: string;
+  description: string | null;
+};
+
 type BaseUser = {
   userId: number;
   username: string;
 };
 
-export type { NewUser, ReturnUser, UserDetails, BaseUser };
+export type { NewUser, ReturnUser, UserDetails, BaseUser, NewUserDetails };
