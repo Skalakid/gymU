@@ -183,4 +183,4 @@ async function logout(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export { login, signup, refreshToken, logout };
+export { login, signup, refreshToken, logout, generateAuthenticationToken };

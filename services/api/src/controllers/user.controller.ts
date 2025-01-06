@@ -3,6 +3,7 @@ import { AuthRequest } from '../middlewares/auth.middleware';
 import * as UserService from '../services/user.service';
 import { NewUserDetails, ReturnUser } from '../types/user';
 import ApiError from '../error/ApiError';
+import { generateAuthenticationToken } from './auth.controller';
 
 async function getAllUsers(
   req: AuthRequest,
@@ -171,7 +172,12 @@ async function updateUserProfileInfo(
       userDetails,
     );
 
-    res.status(201).send(newUserDetails);
+    const newAccessToken = generateAuthenticationToken(newUserDetails);
+    if (!newAccessToken) {
+      return null;
+    }
+
+    res.status(201).send({ ...newUserDetails, accessToken: newAccessToken });
   } catch (error) {
     next(error);
   }

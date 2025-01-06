@@ -6,6 +6,8 @@ interface AuthRequest extends Request {
   user?: string | JwtPayload | undefined;
 }
 
+const accessTokenBlacklist: string[] = [];
+
 function authenticateToken(
   req: AuthRequest,
   res: Response,
@@ -15,6 +17,10 @@ function authenticateToken(
   const token = authToken && authToken.split(' ')[1];
   if (!token) {
     throw new ApiError(401, 'Unauthorized');
+  }
+
+  if (accessTokenBlacklist.includes(token)) {
+    throw new ApiError(403, 'Forbidden');
   }
 
   try {
@@ -33,5 +39,9 @@ function authenticateToken(
   }
 }
 
-export { authenticateToken };
+function blackListToken(token: string) {
+  accessTokenBlacklist.push(token);
+}
+
+export { authenticateToken, blackListToken };
 export type { AuthRequest };
