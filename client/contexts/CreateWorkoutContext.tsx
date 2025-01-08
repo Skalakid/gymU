@@ -126,6 +126,7 @@ function CreateWorkoutContextProvider({
           exercises: selectedExercises.map((exercise, index) => ({
             exerciseId: exercise.exerciseId,
             value: JSON.stringify(filterNonNull(exercise.value)),
+            progress: exercise.progress,
             orderIndex: index,
           })),
         },

@@ -7,6 +7,7 @@ import { StyleSheet, View } from 'react-native';
 import WorkoutGeneralInfo from './WorkoutGeneralInfo';
 import WorkoutExercises from './WorkoutExercises';
 import WorkoutModalPage from '../WorkoutModalPage';
+import { useLiveTrainingContext } from '@/contexts/LiveTrainingContext';
 
 type WorkoutDetailsPageProps = {
   onWorkoutDetailsChange?: (workoutDetails: Workout) => void;
@@ -20,9 +21,10 @@ const WorkoutDetailsPage = ({
   rightIcon,
 }: WorkoutDetailsPageProps) => {
   const router = useRouter();
-  const { id } = useLocalSearchParams();
+  const { id, eventId } = useLocalSearchParams();
   const [currentSubpage, setCurrentSubpage] = useState(0);
   const [workoutDetails, setWorkoutDetails] = useState<Workout | null>(null);
+  const { updateSelectedCalendarEventId } = useLiveTrainingContext();
 
   const getWorkoutDetails = useCallback(async () => {
     try {
@@ -44,6 +46,12 @@ const WorkoutDetailsPage = ({
   }, [getWorkoutDetails]);
 
   const handleRightIconPress = async () => {
+    if (eventId) {
+      updateSelectedCalendarEventId(parseInt(eventId as string));
+    } else {
+      updateSelectedCalendarEventId(null);
+    }
+
     if (onRightIconPress && workoutDetails) {
       await onRightIconPress(workoutDetails);
     }

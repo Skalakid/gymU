@@ -115,6 +115,14 @@ function getExerciseTypes(): NewExerciseType[] {
       hasTime: false,
       isBreak: true,
     },
+    {
+      name: 'weights',
+      hasReps: true,
+      hasSets: true,
+      hasWeights: true,
+      hasTime: false,
+      isBreak: false,
+    },
   ];
 }
 

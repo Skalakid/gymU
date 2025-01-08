@@ -1,10 +1,13 @@
 import * as UserWorkoutLogDB from '../persistance/userWorkoutLog.db';
+import * as UserWorkout from '../persistance/userWorkout.db';
 import { ExerciseHistoryItem } from '../types/exerciseHistoryItem';
 
 async function createWorkoutLog(
-  userWorkoutId: number,
+  workoutId: number,
   opinion: number,
   exercises: ExerciseHistoryItem[],
+  userId: number,
+  eventId?: number | null,
 ) {
   function parseOpinion(value: number): number {
     if (value < 0) {
@@ -22,10 +25,19 @@ async function createWorkoutLog(
     opinion: parseOpinion(exercise.opinion),
   }));
 
+  const userWorkoutId = await UserWorkout.getUserWorkoutId(userId, workoutId);
+
+  if (userWorkoutId === undefined) {
+    throw null;
+  }
+
   return await UserWorkoutLogDB.createWorkoutLog(
+    workoutId,
     userWorkoutId,
     workoutOpinion,
     workoutExercises,
+    userId,
+    eventId,
   );
 }
 

@@ -20,6 +20,7 @@ const WorkoutExercisePickerPage = () => {
         time: null,
         breakTime: null,
       },
+      progress: { type: 'none' },
       orderIndex: selectedExercises.length,
     });
     router.navigate('/(tabs)/explore/add/exercise/details');

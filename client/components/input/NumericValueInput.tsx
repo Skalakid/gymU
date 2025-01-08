@@ -13,6 +13,8 @@ import Icons from '@/constants/Icons';
 
 type TextInputProps = {
   value?: number;
+  placeholder?: string;
+  placeholderValue?: number;
   onValueChange?: (value: number) => void;
   label?: string;
   style?: ViewStyle;
@@ -24,6 +26,8 @@ type TextInputProps = {
 
 const NumericValueInput = ({
   value,
+  placeholder,
+  placeholderValue,
   onValueChange,
   label,
   style,
@@ -86,7 +90,7 @@ const NumericValueInput = ({
             SizePresets.m,
             WeightPresets.semiBold,
           ]}
-          value={`${value}`}
+          value={`${value != placeholderValue ? value : placeholder}`}
           onChangeText={handleValueChange}
           autoCapitalize="none"
           keyboardType="numeric"

@@ -1,3 +1,4 @@
+import { ExerciseTemplateItem } from '@prisma/client';
 import { prisma } from '../config/db.server';
 import { ExerciseWorkoutItem } from '../types/workout';
 
@@ -106,6 +107,7 @@ async function getWorkoutDetails(workoutId: number) {
           value: true,
           orderIndex: true,
           exerciseId: true,
+          itemId: true,
         },
       },
     },
@@ -121,41 +123,55 @@ async function createWorkout(
   tagIds: number[],
   exercises: ExerciseWorkoutItem[],
 ) {
-  const newWorkout = await prisma.workoutTemplate.create({
-    data: {
-      authorId: authorId || 1,
-      name,
-      description,
-      createdAt: new Date(),
-      private: isPrivate,
-      workoutLevelId,
-    },
-  });
-  if (!newWorkout) {
-    return null;
-  }
-
-  const workoutTags = tagIds.map((tagId: number) => {
-    return prisma.workoutTags.create({
+  return prisma.$transaction(async (tx) => {
+    const newWorkout = await tx.workoutTemplate.create({
       data: {
+        authorId: authorId || 1,
+        name,
+        description,
+        createdAt: new Date(),
+        private: isPrivate,
+        workoutLevelId,
+      },
+    });
+
+    if (!newWorkout) {
+      return null;
+    }
+
+    await tx.workoutTags.createManyAndReturn({
+      data: tagIds.map((tagId: number) => ({
         tagId,
         workoutTemplateId: newWorkout.workoutId,
-      },
+      })),
     });
-  });
-  const exerciseItems = exercises.map((item: ExerciseWorkoutItem) => {
-    return prisma.exerciseTemplateItem.create({
-      data: {
-        workoutTemplateId: newWorkout.workoutId,
-        exerciseId: item.exerciseId,
-        value: item.value,
-        orderIndex: item.orderIndex,
-      },
-    });
-  });
-  await prisma.$transaction([...workoutTags, ...exerciseItems]);
 
-  return newWorkout;
+    const exerciseItems = (
+      await tx.exerciseTemplateItem.createManyAndReturn({
+        data: exercises.map((item: ExerciseWorkoutItem) => ({
+          workoutTemplateId: newWorkout.workoutId,
+          exerciseId: item.exerciseId,
+          value: item.value,
+          orderIndex: item.orderIndex,
+        })),
+      })
+    ).sort(
+      (a: ExerciseTemplateItem, b: ExerciseTemplateItem) =>
+        a.orderIndex - b.orderIndex,
+    );
+
+    await tx.progressConfig.createManyAndReturn({
+      data: exerciseItems
+        .map((item, index) => ({
+          exerciseTemplateItemId: item.itemId,
+          type: exercises[index].progress.type,
+          value: exercises[index].progress,
+        }))
+        .filter(({ type }) => type !== 'none'),
+    });
+
+    return newWorkout;
+  });
 }
 
 async function getAllWorkoutTags() {

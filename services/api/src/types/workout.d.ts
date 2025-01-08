@@ -1,3 +1,5 @@
+import { ProgressConfigType } from './exercise';
+
 type NewWorkoutTemplate = {
   authorId: number;
   name: string;
@@ -29,6 +31,7 @@ type WorkoutTag = {
 type ExerciseWorkoutItem = {
   exerciseId: number;
   value: JsonNull | InputJsonValue;
+  progress: ProgressConfigType;
   orderIndex: number;
 };
 

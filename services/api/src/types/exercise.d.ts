@@ -49,10 +49,36 @@ type NewExerciseTemplateItem = {
   orderIndex: number;
 };
 
+type ProgressTarget = 'sets' | 'reps' | 'weight' | 'time';
+
+type ProgressType = 'none' | 'linear' | 'sigmoidal';
+
+type NoneProgressType = {
+  type: 'none';
+};
+
+type LinearProgressType = {
+  type: 'linear';
+  interval: number;
+  difference: number;
+  maxValue?: number;
+  maxOccurences?: number;
+  target: ProgressTarget;
+};
+
+type ProgressConfigType = {
+  type: ProgressType;
+} & (NoneProgressType | LinearProgressType);
+
 export type {
   NewExerciseType,
   NewExercise,
   NewExerciseTemplateItem,
   BasicExercise,
   DetailedExercise,
+  ProgressTarget,
+  ProgressType,
+  NoneProgressType,
+  LinearProgressType,
+  ProgressConfigType,
 };

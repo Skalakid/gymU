@@ -64,18 +64,42 @@ model ExerciseTemplateItem {
   exercise          Exercise        @relation(fields: [exerciseId], references: [exerciseId], onDelete: NoAction, onUpdate: NoAction)
   workoutTemplate   WorkoutTemplate @relation(fields: [workoutTemplateId], references: [workoutId], onDelete: NoAction, onUpdate: NoAction)
 
+  userExerciseHistoryItems UserExerciseHistoryItem[]
+  progressConfigs          ProgressConfig[]
+
   @@map("exercise_template_item")
 }
 
+model ProgressConfig {
+  configId               Int          @id @default(autoincrement()) @map("config_id")
+  userWorkoutId          Int?         @map("user_workout_id")
+  exerciseTemplateItemId Int          @map("exercise_template_item_id")
+  type                   ProgressType
+  value                  Json
+  timestamp              DateTime?    @default(now()) @db.Timestamptz(6)
+
+  exerciseTemplateItem ExerciseTemplateItem @relation(fields: [exerciseTemplateItemId], references: [itemId], onDelete: NoAction, onUpdate: NoAction)
+  userWorkout          UserWorkout?         @relation(fields: [userWorkoutId], references: [userWorkoutId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("progress_config")
+}
+
+enum ProgressType {
+  none
+  linear
+  sigmoidal
+}
+
 model ExerciseType {
-  exerciseTypeId Int        @id @default(autoincrement()) @map("exercise_type_id")
-  name           String     @db.VarChar(50)
-  hasReps        Boolean?   @default(false) @map("has_reps")
-  hasSets        Boolean?   @default(false) @map("has_sets")
-  hasWeights     Boolean?   @default(false) @map("has_weights")
-  hasTime        Boolean?   @default(false) @map("has_time")
-  isBreak        Boolean?   @default(false) @map("is_break")
-  exercises      Exercise[]
+  exerciseTypeId Int      @id @default(autoincrement()) @map("exercise_type_id")
+  name           String   @db.VarChar(50)
+  hasReps        Boolean? @default(false) @map("has_reps")
+  hasSets        Boolean? @default(false) @map("has_sets")
+  hasWeights     Boolean? @default(false) @map("has_weights")
+  hasTime        Boolean? @default(false) @map("has_time")
+  isBreak        Boolean? @default(false) @map("is_break")
+
+  exercises Exercise[]
 
   @@map("exercise_type")
 }
@@ -99,15 +123,18 @@ model Tag {
 }
 
 model UserExerciseHistoryItem {
-  itemId         Int            @id @default(autoincrement()) @map("item_id")
-  userLogId      Int            @map("user_log_id")
-  exerciseId     Int            @map("exercise_id")
-  opinion        Int
-  value          Json
-  orderIndex     Int            @map("order_index")
-  timestamp      DateTime?      @default(now()) @db.Timestamptz(6)
-  exercise       Exercise       @relation(fields: [exerciseId], references: [exerciseId], onDelete: NoAction, onUpdate: NoAction)
-  userWorkoutLog UserWorkoutLog @relation(fields: [userLogId], references: [logId], onDelete: NoAction, onUpdate: NoAction)
+  itemId                 Int       @id @default(autoincrement()) @map("item_id")
+  userLogId              Int       @map("user_log_id")
+  exerciseId             Int       @map("exercise_id")
+  opinion                Int
+  value                  Json
+  orderIndex             Int       @map("order_index")
+  timestamp              DateTime? @default(now()) @db.Timestamptz(6)
+  exerciseTemplateItemId Int?      @map("exercise_template_item_id")
+
+  exercise             Exercise              @relation(fields: [exerciseId], references: [exerciseId], onDelete: NoAction, onUpdate: NoAction)
+  userWorkoutLog       UserWorkoutLog        @relation(fields: [userLogId], references: [logId], onDelete: NoAction, onUpdate: NoAction)
+  exerciseTemplateItem ExerciseTemplateItem? @relation(fields: [exerciseTemplateItemId], references: [itemId])
 
   @@map("user_exercise_history_item")
 }
@@ -120,6 +147,7 @@ model UserWorkout {
   appUser         AppUser          @relation(fields: [userId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
   workoutTemplate WorkoutTemplate  @relation(fields: [workoutId], references: [workoutId], onDelete: NoAction, onUpdate: NoAction)
   userWorkoutLogs UserWorkoutLog[]
+  progressConfigs ProgressConfig[]
 
   @@map("user_workout")
 }

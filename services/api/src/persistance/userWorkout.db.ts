@@ -1,5 +1,16 @@
 import { prisma } from '../config/db.server';
 
+async function getUserWorkoutId(userId: number, workoutId: number) {
+  return (
+    await prisma.userWorkout.findFirst({
+      where: {
+        userId: userId,
+        workoutId: workoutId,
+      },
+    })
+  )?.userWorkoutId;
+}
+
 async function addWorkoutToUserAccount(userId: number, workoutId: number) {
   await prisma.userWorkout.create({
     data: {
@@ -124,6 +135,7 @@ async function isWorkoutSavedByUser(userId: number, workoutId: number) {
 }
 
 export {
+  getUserWorkoutId,
   addWorkoutToUserAccount,
   getAllUserWorkouts,
   countAllFilteredWorkouts,

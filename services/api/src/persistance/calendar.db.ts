@@ -85,7 +85,14 @@ async function createEvent(userId: number, calendarEvent: NewCalendarEvent) {
       );
     }
 
-    await tx.calendarEvent.createMany({ data: events });
+    const createdEvents = await tx.calendarEvent.createManyAndReturn({
+      data: events,
+    });
+
+    return {
+      eventParent,
+      events: createdEvents,
+    };
   });
 }
 
