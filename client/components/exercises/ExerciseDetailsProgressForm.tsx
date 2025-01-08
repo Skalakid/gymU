@@ -5,6 +5,7 @@ import Tile from '../common/Tile';
 import { useEffect, useMemo, useState } from 'react';
 import RowTextInput from '../input/RowTextInput';
 import { useExerciseContext } from '@/contexts/ExerciseContext';
+import { capitalize } from '@/utils/text.utils';
 
 const UNLIMITED_VALUE = 0;
 const progressTypes = ['none', 'linear', 'sigmoidal'];
@@ -127,13 +128,13 @@ const ExerciseDetailsProgressForm = ({
             placeholder="none"
             renderItem={(target) => (
               <>
-                <SelectDropdownItem value={target} />
+                <SelectDropdownItem value={capitalize(target)} />
               </>
             )}
             onSelect={(target) => {
               setTarget(target);
             }}
-            selectedValue={target}
+            selectedValue={capitalize(target)}
           />
         </>
       ) : null,
@@ -149,13 +150,13 @@ const ExerciseDetailsProgressForm = ({
         placeholder="none"
         renderItem={(type) => (
           <>
-            <SelectDropdownItem value={type} />
+            <SelectDropdownItem value={capitalize(type)} />
           </>
         )}
         onSelect={(type) => {
           setType(type);
         }}
-        selectedValue={type}
+        selectedValue={capitalize(type)}
       />
       {progressTargetDropdown}
       {linearForm}
