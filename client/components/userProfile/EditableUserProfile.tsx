@@ -5,7 +5,14 @@ import IconButton from '@/components/button/IconButton';
 import Icons from '@/constants/Icons';
 import useTheme from '@/hooks/useTheme';
 
-const EditableUserProfile = ({ ...props }: UserProfileType) => {
+type EditableUserProfileProps = UserProfileType & {
+  onEditPress: () => void;
+};
+
+const EditableUserProfile = ({
+  onEditPress,
+  ...props
+}: EditableUserProfileProps) => {
   const theme = useTheme();
 
   return (
@@ -13,7 +20,7 @@ const EditableUserProfile = ({ ...props }: UserProfileType) => {
       <UserProfile {...props} />
       <IconButton
         icon={Icons.edit}
-        onPress={props.onPress}
+        onPress={onEditPress}
         style={[
           styles.editButton,
           {

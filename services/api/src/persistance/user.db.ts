@@ -1,4 +1,5 @@
 import { prisma } from '../config/db.server';
+import { NewUserDetails } from '../types/user';
 
 async function countAllUsers(userIdsToSkip: number[] = []) {
   return await prisma.appUser.count({
@@ -27,6 +28,7 @@ async function getUserById(userId: number) {
       userId: true,
       username: true,
       description: true,
+      email: true,
     },
   });
 }
@@ -95,6 +97,26 @@ async function getCreationDate(userId: number) {
   });
 }
 
+async function updateUserProfileInfo(
+  userId: number,
+  userDetails: NewUserDetails,
+) {
+  return await prisma.appUser.update({
+    where: {
+      userId: userId,
+    },
+    data: {
+      ...userDetails,
+    },
+    select: {
+      userId: true,
+      username: true,
+      description: true,
+      email: true,
+    },
+  });
+}
+
 export {
   countAllUsers,
   getUserByEmail,
@@ -104,4 +126,5 @@ export {
   getUserHeight,
   getGender,
   getCreationDate,
+  updateUserProfileInfo,
 };

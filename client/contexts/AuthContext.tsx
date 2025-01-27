@@ -17,6 +17,11 @@ type AuthContext = {
   isAuthenticated: boolean;
   user: User | null;
   isLoaded: boolean;
+  updateUserInfo: (
+    username: string,
+    email: string,
+    description: string,
+  ) => Promise<User> | null;
 };
 
 const AuthContext = React.createContext<AuthContext>({
@@ -26,6 +31,7 @@ const AuthContext = React.createContext<AuthContext>({
   isAuthenticated: false,
   user: null,
   isLoaded: false,
+  updateUserInfo: () => null,
 });
 
 type LoginResponse = {
@@ -132,6 +138,45 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
     setUser(null);
   }, [deleteTokens]);
 
+  const updateUserInfo = useCallback(
+    async (username: string, email: string, description: string) => {
+      try {
+        const response = await fetchApi(
+          '/user/edit',
+          'PUT',
+          null,
+          {
+            username,
+            email,
+            description,
+          },
+          true,
+        );
+        if (!response.ok) {
+          throw new Error('Failed to update user info');
+        }
+        const data = await response.json();
+        // Update access token
+        await SecureStore.setItemAsync(
+          SECURE_STORE_KEYS.ACCESS_TOKEN,
+          data.accessToken,
+        );
+
+        const newUserData = {
+          userId: data.userId,
+          email: data.email,
+          username: data.username,
+          description: data.description,
+        };
+        setUser(newUserData);
+        return newUserData;
+      } catch (error) {
+        throw new Error('Failed to update user info');
+      }
+    },
+    [],
+  );
+
   useEffect(() => {
     const loadToken = async () => {
       try {
@@ -166,8 +211,16 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
   }, [deleteTokens]);
 
   const value = React.useMemo(
-    () => ({ isAuthenticated, user, isLoaded, login, register, logout }),
-    [isAuthenticated, user, isLoaded, login, register, logout],
+    () => ({
+      isAuthenticated,
+      user,
+      isLoaded,
+      login,
+      register,
+      logout,
+      updateUserInfo,
+    }),
+    [isAuthenticated, user, isLoaded, login, register, logout, updateUserInfo],
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

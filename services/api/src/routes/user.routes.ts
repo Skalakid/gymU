@@ -24,5 +24,6 @@ router.get(
   userWorkoutController.getAllUserWorkouts,
 );
 router.get('/workout/tag/all', userWorkoutController.getAllWorkoutTags);
+router.put('/edit', authenticateToken, userController.updateUserProfileInfo);
 
 export = router;

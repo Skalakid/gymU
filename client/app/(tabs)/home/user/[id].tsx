@@ -1,24 +1,24 @@
-import { StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
-import ThemedText from '@/components/ThemedText';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import PageWithGoBackHeader from '@/components/page/PageWithGoBackHeader';
-import LabeledText from '@/components/common/LabeledText';
-import Tile from '@/components/common/Tile';
 import Icons from '@/constants/Icons';
 import UserProfile from '@/components/userProfile/UserProfile';
 import EditableUserProfile from '@/components/userProfile/EditableUserProfile';
 import fetchApi from '@/api/fetch';
+import UserDetails from '@/components/userProfile/UserDetails';
+import UserDetailsForm from '@/components/userProfile/UserDetailsForm';
 
 const UserProfilePage = () => {
   const router = useRouter();
-  const { user } = useAuthContext();
+  const { user, updateUserInfo } = useAuthContext();
   const { id } = useLocalSearchParams();
   const isCurrentUser = user?.userId === Number(id);
   const [userDetails, setUserDetails] = useState<UserDetails | null>(
     isCurrentUser ? user : null,
   );
+  const [isEditing, setIsEditing] = useState(false);
 
   const getUserDetails = useCallback(async () => {
     try {
@@ -37,6 +37,25 @@ const UserProfilePage = () => {
     router.navigate('/home/settings');
   };
 
+  const handleEditPress = () => {
+    setIsEditing(true);
+  };
+
+  const handleOnSave = async (
+    username: string,
+    email: string,
+    description: string,
+  ) => {
+    try {
+      const newUserData = await updateUserInfo(username, email, description);
+      Alert.alert('User details updated', 'Your details have been updated');
+      setUserDetails(newUserData);
+      setIsEditing(false);
+    } catch (error) {
+      Alert.alert('Failed to save user details', 'Please try again later...');
+    }
+  };
+
   useEffect(() => {
     if (isCurrentUser) {
       return;
@@ -53,27 +72,16 @@ const UserProfilePage = () => {
       rightIconOnPress={handleRightIconPress}
     >
       {isCurrentUser ? (
-        <EditableUserProfile onPress={() => {}} size={112} />
+        <EditableUserProfile onEditPress={handleEditPress} size={112} />
       ) : (
         <UserProfile size={112} />
       )}
 
-      <Tile style={styles.tile}>
-        <ThemedText size="l" weight="semiBold" style={styles.userInfoTitle}>
-          General info
-        </ThemedText>
-        <View style={styles.userInfoContent}>
-          <LabeledText label="Username" text={userDetails?.username ?? '-'} />
-          {userDetails?.email && (
-            <LabeledText label="Email" text={userDetails?.email ?? '-'} />
-          )}
-
-          <LabeledText
-            label="Description"
-            text={userDetails?.description ?? '-'}
-          />
-        </View>
-      </Tile>
+      {isEditing ? (
+        <UserDetailsForm userDetails={userDetails} onSave={handleOnSave} />
+      ) : (
+        <UserDetails userDetails={userDetails} />
+      )}
     </PageWithGoBackHeader>
   );
 };
@@ -89,7 +97,4 @@ const styles = StyleSheet.create({
     gap: 20,
     alignItems: 'center',
   },
-  tile: { width: '100%' },
-  userInfoContent: { gap: 5 },
-  userInfoTitle: { marginBottom: 10 },
 });
